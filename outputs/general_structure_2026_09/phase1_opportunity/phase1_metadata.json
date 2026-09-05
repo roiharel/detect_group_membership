@@ -1,6 +1,6 @@
 {
   "phase": "1 - dyad-day opportunity table",
-  "generated_utc": "2026-09-05T16:03:13+00:00",
+  "generated_utc": "2026-09-05T17:25:38+00:00",
   "membership_source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_hourly_membership_with_association_events.parquet",
   "row_unit": "unordered pair of dynamic social units on one UTC calendar day",
   "state_rules": {
@@ -21,8 +21,8 @@
   "social_units": 27,
   "days": 919,
   "state_counts": {
-    "observed_no_encounter": 92153,
-    "detected_encounter": 3812,
+    "observed_no_encounter": 92152,
+    "detected_encounter": 3813,
     "insufficient_support": 141
   },
   "dyads_with_any_detected_encounter": 82,

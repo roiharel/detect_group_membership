@@ -16,5 +16,77 @@
     "status": "ok",
     "returncode": 0,
     "seconds": 15.7
+  },
+  {
+    "step": "fine_5m",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 410.4
+  },
+  {
+    "step": "fine_5m_expectation",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 9.4
+  },
+  {
+    "step": "fine_2m",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 510.7
+  },
+  {
+    "step": "fine_2m_expectation",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 11.5
+  },
+  {
+    "step": "phase1_opportunity",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 12.1
+  },
+  {
+    "step": "phase2_two_stage",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 9.2
+  },
+  {
+    "step": "excursions",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 80.0
+  },
+  {
+    "step": "weekly_network_metrics",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 13.4
+  },
+  {
+    "step": "excursion_destinations",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 19.6
+  },
+  {
+    "step": "level2_inputs",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 12.2
+  },
+  {
+    "step": "figure1",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 32.8
+  },
+  {
+    "step": "figure2",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 1.3
   }
 ]

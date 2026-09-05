@@ -1,6 +1,6 @@
 {
   "phase": "2 - two-stage encounter unit",
-  "generated_utc": "2026-09-05T16:03:19+00:00",
+  "generated_utc": "2026-09-05T17:25:47+00:00",
   "membership_source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_hourly_membership_with_association_events.parquet",
   "finescale_sources": {
     "5m": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_5m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
@@ -15,11 +15,11 @@
   },
   "encounter_class_rule": "structural span >= 168 h is a sustained association, not a discrete encounter; threshold matches the membership builder's 7-day dynamic-reassignment rule",
   "primary_gap_rule_hours": 3.0,
-  "stage1_events": 2457,
+  "stage1_events": 2454,
   "stage1_dyads": 82,
   "stage1_events_by_class": {
-    "discrete_encounter": 2432,
-    "sustained_association": 25
+    "discrete_encounter": 2428,
+    "sustained_association": 26
   },
   "sustained_association_dyads": [
     "Bronze - Magenta",
@@ -36,9 +36,9 @@
   "discrete_encounter_dyads": 82,
   "median_discrete_encounter_span_hours": 14.0,
   "stage1_events_by_scale": {
-    "large_merge": 1667,
+    "large_merge": 1660,
     "small_subset_merge": 605,
-    "medium_partial_merge": 185
+    "medium_partial_merge": 189
   },
   "events_with_5m_finescale": 1100,
   "events_with_2m_finescale": 937,
@@ -63,61 +63,61 @@
   "gap_rule_sensitivity": [
     {
       "gap_rule_hours": 2.0,
-      "events": 2643,
+      "events": 2635,
       "dyads": 82,
       "median_structural_span_hours": 13.0,
-      "mean_structural_span_hours": 17.864169504351118,
+      "mean_structural_span_hours": 17.93548387096774,
       "max_structural_span_hours": 8457.0,
       "median_encounter_hours": 13.0,
-      "large_merge": 1784,
-      "medium_partial_merge": 195,
-      "small_subset_merge": 664,
-      "discrete_encounters": 2618,
-      "sustained_associations": 25,
-      "sustained_dyads": 9
+      "large_merge": 1776,
+      "medium_partial_merge": 198,
+      "small_subset_merge": 661,
+      "discrete_encounters": 2608,
+      "sustained_associations": 27,
+      "sustained_dyads": 10
     },
     {
       "gap_rule_hours": 3.0,
-      "events": 2457,
+      "events": 2454,
       "dyads": 82,
       "median_structural_span_hours": 14.0,
-      "mean_structural_span_hours": 19.367928367928368,
+      "mean_structural_span_hours": 19.405867970660147,
       "max_structural_span_hours": 8463.0,
       "median_encounter_hours": 14.0,
-      "large_merge": 1667,
-      "medium_partial_merge": 185,
+      "large_merge": 1660,
+      "medium_partial_merge": 189,
       "small_subset_merge": 605,
-      "discrete_encounters": 2432,
-      "sustained_associations": 25,
+      "discrete_encounters": 2428,
+      "sustained_associations": 26,
       "sustained_dyads": 10
     },
     {
       "gap_rule_hours": 6.0,
-      "events": 2167,
+      "events": 2170,
       "dyads": 82,
       "median_structural_span_hours": 14.0,
-      "mean_structural_span_hours": 22.472081218274113,
+      "mean_structural_span_hours": 22.44331797235023,
       "max_structural_span_hours": 8463.0,
       "median_encounter_hours": 14.0,
-      "large_merge": 1486,
-      "medium_partial_merge": 169,
-      "small_subset_merge": 512,
-      "discrete_encounters": 2141,
+      "large_merge": 1482,
+      "medium_partial_merge": 173,
+      "small_subset_merge": 515,
+      "discrete_encounters": 2144,
       "sustained_associations": 26,
       "sustained_dyads": 11
     },
     {
       "gap_rule_hours": 14.0,
-      "events": 1400,
+      "events": 1401,
       "dyads": 82,
       "median_structural_span_hours": 12.0,
-      "mean_structural_span_hours": 39.46357142857143,
+      "mean_structural_span_hours": 39.4475374732334,
       "max_structural_span_hours": 8524.0,
       "median_encounter_hours": 8.0,
       "large_merge": 994,
-      "medium_partial_merge": 98,
-      "small_subset_merge": 308,
-      "discrete_encounters": 1353,
+      "medium_partial_merge": 97,
+      "small_subset_merge": 310,
+      "discrete_encounters": 1354,
       "sustained_associations": 47,
       "sustained_dyads": 17
     }

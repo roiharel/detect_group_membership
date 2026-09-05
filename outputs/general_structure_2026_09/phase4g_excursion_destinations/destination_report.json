@@ -1,9 +1,9 @@
 {
   "source": "outputs\\membership_export_narrow\\canonical_hourly_membership_narrow.csv",
   "method": "modal other unit among animals sharing the focal animal's association clusters on that night; nights with no co-clustered animal from another unit are left unresolved",
-  "away_animal_nights": 17061,
-  "resolved": 6774,
-  "resolution_rate": 0.397,
+  "away_animal_nights": 16954,
+  "resolved": 6765,
+  "resolution_rate": 0.399,
   "distinct_destinations": 26,
   "by_rule": {
     "dominant": {
@@ -19,9 +19,9 @@
       "animals": 39
     },
     "any_away": {
-      "excursions": 5271,
-      "excursions_reaching_another_unit": 3205,
-      "with_a_named_destination": 852,
+      "excursions": 5255,
+      "excursions_reaching_another_unit": 3198,
+      "with_a_named_destination": 850,
       "destination_rate": 0.2658,
       "multi_destination_excursions": 59,
       "edges": 81,

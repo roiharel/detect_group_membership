@@ -142,7 +142,7 @@
         "group_weeks": 15,
         "median_collars": 13.0,
         "pct_weeks_modular": 0.0,
-        "max_modularity": 0.0
+        "max_modularity": -0.0
       },
       {
         "dynamic_social_unit": "Lapis",

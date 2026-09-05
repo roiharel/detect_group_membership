@@ -1,7 +1,7 @@
 {
   "min_side": 2,
   "gap_bridged_hours": 2,
-  "dyad_hours": 31016,
+  "dyad_hours": 31008,
   "encounter_bouts": 2053,
   "encounter_dyads": 62,
   "bout_hours": {
@@ -15,9 +15,9 @@
     "max": 8384.0
   },
   "bouts_under_a_day": 1958,
-  "bouts_under_6h": 886,
-  "crossing_episodes": 1802,
-  "crossing_animals": 217,
+  "bouts_under_6h": 887,
+  "crossing_episodes": 1796,
+  "crossing_animals": 216,
   "crossing_dyads": 76,
   "dyads_with_repeat_crossings": 64,
   "dyads_by_kind": {
@@ -27,19 +27,19 @@
   },
   "overlap": {
     "shared_dyads": 58,
-    "encounter_hours_on_shared_dyads": 31557.0,
-    "hours_inside_a_stay": 22493.0,
-    "share_inside": 0.713,
+    "encounter_hours_on_shared_dyads": 31549.0,
+    "hours_inside_a_stay": 22457.0,
+    "share_inside": 0.712,
     "dyads_over_half_inside": 23
   },
-  "split_bouts": 5503,
+  "split_bouts": 5532,
   "split_units": 16,
   "split_hours_median": 3.0,
-  "split_under_a_day": 5403,
-  "excursion_bouts": 21607,
-  "excursion_animals": 372,
+  "split_under_a_day": 5432,
+  "excursion_bouts": 21479,
+  "excursion_animals": 371,
   "excursion_hours_median": 2.0,
-  "excursion_under_a_day": 20752,
+  "excursion_under_a_day": 20610,
   "example_weeks": {
     "Lilac_0p45": {
       "unit": "Lilac",
