@@ -1,0 +1,687 @@
+<title>Meeting Versus Mixing</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #F1F3F0;
+    --surface: #FFFFFF;
+    --ink: #191C1A;
+    --ink-2: #3B423D;
+    --muted: #6C7570;
+    --rule: #D2D8D2;
+    --rule-strong: #A9B2AB;
+    --accent: #1F4E5F;
+    --accent-soft: #E1EAEC;
+    --bar-track: #E3E7E3;
+    --warn: #7E6412;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131614; --surface: #1A1E1B; --ink: #E9EBE7; --ink-2: #C3C9C3;
+      --muted: #949D97; --rule: #2B312D; --rule-strong: #46504A; --accent: #86BDC9;
+      --accent-soft: #1C2C31; --bar-track: #232823; --warn: #C9A73E;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131614; --surface: #1A1E1B; --ink: #E9EBE7; --ink-2: #C3C9C3;
+    --muted: #949D97; --rule: #2B312D; --rule-strong: #46504A; --accent: #86BDC9;
+    --accent-soft: #1C2C31; --bar-track: #232823; --warn: #C9A73E;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 3.5rem 1.5rem 6rem;
+          display: flex; flex-direction: column; gap: 3.25rem; }
+  .prose { max-width: 40rem; }
+  p { margin: 0 0 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  code, .mono { font-family: var(--mono); font-size: 0.86em; }
+  code { background: var(--accent-soft); padding: 0.08em 0.32em; color: var(--ink-2); }
+
+  header { display: flex; flex-direction: column; gap: 1.1rem; }
+  .eyebrow { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+             text-transform: uppercase; color: var(--muted);
+             display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; }
+  h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(2rem, 5.2vw, 3rem);
+       line-height: 1.04; letter-spacing: -0.022em; margin: 0; text-wrap: balance; max-width: 34rem; }
+  .standfirst { font-size: 1.12rem; color: var(--ink-2); max-width: 38rem; margin: 0; }
+  .ledger { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+            border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule);
+            margin-top: 0.6rem; }
+  .ledger div { padding: 0.7rem 0.9rem 0.75rem 0; display: flex; flex-direction: column; gap: 0.1rem; }
+  .ledger .k { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--muted); }
+  .ledger .v { font-family: var(--mono); font-size: 1.06rem; font-weight: 500;
+               font-variant-numeric: tabular-nums; color: var(--ink); }
+
+  section { display: flex; flex-direction: column; gap: 1.1rem; }
+  .shead { display: flex; flex-direction: column; gap: 0.3rem;
+           border-top: 1px solid var(--rule-strong); padding-top: 0.9rem; }
+  .snum { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+          color: var(--accent); text-transform: uppercase; }
+  h2 { font-family: var(--sans); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.014em;
+       line-height: 1.16; margin: 0; text-wrap: balance; }
+  h3 { font-family: var(--sans); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.006em;
+       margin: 0.7rem 0 0.15rem; text-wrap: balance; }
+  .claim { font-size: 1.06rem; border-left: 2px solid var(--accent);
+           padding: 0.1rem 0 0.1rem 1rem; max-width: 39rem; }
+  .claim .lab { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em;
+                text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.2rem; }
+
+  /* two definitions side by side */
+  .versus { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+            gap: 0 2.2rem; border-top: 1px solid var(--rule); }
+  .versus > div { padding: 1rem 0 1.15rem; border-bottom: 1px solid var(--rule);
+                  display: flex; flex-direction: column; gap: 0.45rem; }
+  .versus h4 { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.11em;
+               text-transform: uppercase; color: var(--muted); margin: 0; font-weight: 500; }
+  .versus .big { font-family: var(--mono); font-size: 1.55rem; font-weight: 500;
+                 letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+                 line-height: 1.1; display: block; }
+  .versus p { font-size: 0.95rem; color: var(--ink-2); margin: 0; }
+  .v-model .big { color: var(--warn); }
+  .v-struct .big { color: var(--accent); }
+
+  /* chart */
+  .chart { display: grid;
+           grid-template-columns: minmax(10rem, auto) minmax(11rem, 1fr) 4.6rem 6.4rem;
+           align-items: center; column-gap: 0.9rem; row-gap: 0.3rem;
+           font-family: var(--mono); font-size: 0.78rem;
+           font-variant-numeric: tabular-nums; overflow-x: auto; }
+  .chart .ch { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase;
+               color: var(--muted); padding-bottom: 0.4rem;
+               border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem; }
+  .dyad { color: var(--ink-2); white-space: nowrap; }
+  .track { background: var(--bar-track); height: 0.8rem; position: relative; }
+  .fill { position: absolute; top: 0; bottom: 0; }
+  .ci { position: absolute; top: 50%; height: 1.5px; background: var(--ink);
+        transform: translateY(-50%); z-index: 3; }
+  .fused { position: absolute; top: 50%; width: 0.5rem; height: 0.5rem;
+           background: var(--paper); border: 1.5px solid var(--ink);
+           transform: translate(50%, -50%) rotate(45deg); z-index: 4; }
+  .val { text-align: right; color: var(--ink); }
+  .sup { text-align: right; color: var(--muted); font-size: 0.71rem; }
+  .axis { grid-column: 2; display: flex; justify-content: space-between;
+          font-size: 0.63rem; color: var(--muted); border-top: 1px solid var(--rule);
+          padding-top: 0.25rem; margin-top: 0.3rem; }
+  .chart-key { grid-column: 1 / -1; font-family: var(--serif); font-size: 0.9rem;
+               color: var(--muted); max-width: 40rem; margin-top: 0.6rem; }
+  .chart-key b { color: var(--ink-2); font-weight: 600; }
+
+  .tw { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 33rem; }
+  caption { text-align: left; font-family: var(--mono); font-size: 0.66rem;
+            letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted);
+            padding-bottom: 0.5rem; }
+  th, td { text-align: left; padding: 0.45rem 0.9rem 0.45rem 0; vertical-align: top;
+           border-bottom: 1px solid var(--rule); }
+  thead th { font-family: var(--mono); font-weight: 500; font-size: 0.66rem;
+             letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted);
+             border-bottom: 1px solid var(--rule-strong); }
+  td.n, th.n { text-align: right; font-family: var(--mono);
+               font-variant-numeric: tabular-nums; padding-right: 0; }
+  tbody tr:last-child td { border-bottom: 1px solid var(--rule-strong); }
+  tr.hi td { background: var(--accent-soft); }
+  .field { font-family: var(--mono); font-size: 0.84em; color: var(--ink-2); }
+
+  figure { margin: 0.4rem 0 0.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  figure svg { display: block; width: 100%; max-width: 56rem; height: auto;
+               color: var(--ink); overflow: visible; }
+  figcaption { font-size: 0.92rem; color: var(--muted); max-width: 40rem; }
+  figcaption b { color: var(--ink-2); font-weight: 600; }
+  .fig-scroll { overflow-x: auto; }
+  /* no `fill` here: a class rule would outrank the per-element fill attributes
+     that carry meaning. Each <svg> sets fill="currentColor" as its default. */
+  .svg-label { font-family: var(--mono); font-size: 11px; }
+  .svg-label-sm { font-family: var(--mono); font-size: 9.5px; opacity: 0.72; }
+  .svg-num { font-family: var(--mono); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+  ul { margin: 0.2rem 0 0.6rem; padding-left: 1.1rem; }
+  li { margin-bottom: 0.3rem; max-width: 39rem; }
+  li::marker { color: var(--rule-strong); }
+
+  footer { border-top: 1px solid var(--rule-strong); padding-top: 1rem;
+           font-family: var(--mono); font-size: 0.72rem; color: var(--muted); line-height: 1.7; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">
+      <span>Baboon group membership</span>
+      <span>Phases 0&ndash;4 executed</span>
+      <span>3 September 2026</span>
+    </div>
+    <h1>Meeting versus mixing</h1>
+    <p class="standfirst">Two definitions were doing one job. Separating them turns 117 detected meetings into 2,867, turns one remarkable dyad into one remarkable state, and lets the two stages be fitted as what they are.</p>
+    <div class="ledger">
+      <div><span class="k">Dyad-days</span><span class="v">73,353</span></div>
+      <div><span class="k">Stage-1 events</span><span class="v">1,705</span></div>
+      <div><span class="k">Encounter dyads</span><span class="v">68</span></div>
+      <div><span class="k">Measurable dyads</span><span class="v">12</span></div>
+      <div><span class="k">Held-out AUC</span><span class="v">0.880</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="shead">
+      <span class="snum">01 &nbsp;/&nbsp; The two definitions</span>
+      <h2>One asks whether a 5 m contact was recorded; the other asks whether two groups shared a cluster</h2>
+    </div>
+
+    <div class="versus">
+      <div class="v-model">
+        <h4>The meeting model &mdash; response as fitted</h4>
+        <span class="big">0.21%</span>
+        <p>117 positive dyad-days in 56,128 candidates across 207 dyads. A candidate is any pair of groups each tracked <em>somewhere</em> that day, so the median &ldquo;opportunity to meet&rdquo; is two groups <strong>10.7 km apart</strong> &mdash; the maximum is 37.9 km. A positive requires a recorded 5 m cross-group edge, and on positive days the groups are a median of 440 m apart.</p>
+      </div>
+      <div class="v-struct">
+        <h4>The structural merge &mdash; inventory as built</h4>
+        <span class="big">3,217</span>
+        <p>merge events across 74 dyads. A merge exists when animals of two units belong to the <em>same spatial cluster</em> &mdash; adaptive clustering with a 120&ndash;900 m edge range, so the scale is hundreds of metres. There is no denominator at all, because it is an inventory rather than a model.</p>
+      </div>
+    </div>
+
+    <figure class="fig-scroll">
+      <svg fill="currentColor" viewBox="0 0 880 340" role="img" aria-label="Logarithmic distance axis from one metre to one hundred kilometres, showing that the meeting model detects contact at 2 to 5 metres while its candidate denominator is populated by group pairs 2 to 24 kilometres apart, with the structural cluster scale of 120 to 900 metres lying between them.">
+        <defs>
+          <marker id="arrowSpan" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,1 7,4 0,7" fill="currentColor"/>
+          </marker>
+          <marker id="arrowSpanStart" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="8,1 1,4 8,7" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <text class="svg-label" x="70" y="58" fill="var(--warn)">MEETING MODEL &#8212; numerator: a recorded 2&#8211;5 m cross-group contact</text>
+        <rect x="115.8" y="64" width="60.5" height="14" fill="var(--warn)"/>
+
+        <line x1="176.3" y1="98" x2="575" y2="98" stroke="currentColor" stroke-width="1"
+              stroke-dasharray="3 3" marker-end="url(#arrowSpan)" marker-start="url(#arrowSpanStart)"/>
+        <text class="svg-label" x="375" y="92" text-anchor="middle">three orders of magnitude</text>
+
+        <text class="svg-label" x="70" y="124" fill="var(--warn)">MEETING MODEL &#8212; denominator: candidate dyad-day separation, 5th&#8211;95th pct</text>
+        <rect x="575" y="130" width="160.4" height="14" fill="var(--warn)" opacity="0.42"/>
+        <line x1="682.3" y1="126" x2="682.3" y2="148" stroke="currentColor" stroke-width="1.6"/>
+        <text class="svg-num" x="682.3" y="164" text-anchor="middle">median 10.7 km</text>
+        <line x1="766" y1="133" x2="766" y2="141" stroke="currentColor" stroke-width="1.6"/>
+        <text class="svg-label-sm" x="772" y="140">max 37.9 km</text>
+
+        <text class="svg-label" x="70" y="196" fill="var(--accent)">STRUCTURAL MERGE &#8212; cluster edge range, 120&#8211;900 m</text>
+        <rect x="386" y="202" width="133.1" height="14" fill="var(--accent)"/>
+
+        <text class="svg-label" x="70" y="248">Separation on the days a 5 m contact was recorded</text>
+        <rect x="319.8" y="254" width="277.2" height="14" fill="currentColor" opacity="0.22"/>
+        <line x1="471.8" y1="250" x2="471.8" y2="272" stroke="currentColor" stroke-width="1.6"/>
+        <text class="svg-num" x="471.8" y="288" text-anchor="middle">median 440 m</text>
+
+        <line x1="70" y1="308" x2="830" y2="308" stroke="currentColor" stroke-width="1"/>
+        <line x1="70" y1="308" x2="70" y2="314" stroke="currentColor" stroke-width="1"/>
+        <line x1="222" y1="308" x2="222" y2="314" stroke="currentColor" stroke-width="1"/>
+        <line x1="374" y1="308" x2="374" y2="314" stroke="currentColor" stroke-width="1"/>
+        <line x1="526" y1="308" x2="526" y2="314" stroke="currentColor" stroke-width="1"/>
+        <line x1="678" y1="308" x2="678" y2="314" stroke="currentColor" stroke-width="1"/>
+        <line x1="830" y1="308" x2="830" y2="314" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label-sm" x="70" y="328" text-anchor="middle">1 m</text>
+        <text class="svg-label-sm" x="222" y="328" text-anchor="middle">10 m</text>
+        <text class="svg-label-sm" x="374" y="328" text-anchor="middle">100 m</text>
+        <text class="svg-label-sm" x="526" y="328" text-anchor="middle">1 km</text>
+        <text class="svg-label-sm" x="678" y="328" text-anchor="middle">10 km</text>
+        <text class="svg-label-sm" x="830" y="328" text-anchor="middle">100 km</text>
+      </svg>
+      <figcaption><b>The scales barely overlap.</b> The meeting model decides a positive at 2&ndash;5 m, but fills its denominator with pairs whose typical separation is 10.7 km. The structural merge sits between them, at the 120&ndash;900 m scale at which clusters are formed &mdash; which is also where groups actually are on the days a contact is recorded.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>The two halves of the model are joined by a left merge and <code>fillna(0)</code>, and that is where the artefact enters. Only <strong>128</strong> of the 56,128 candidate dyad-days appear in the fine-scale file at all; 117 of those are positive; the remaining <strong>56,000</strong> are zero-filled with <code>eligible_2min_bins = 0</code>, so there is no exposure behind the zero. The file itself is <code>bigmerge_..._no_copper_lilac_2min_metric_rows.csv</code> &mdash; the exclusion is in the filename, while the excluded dyad's days stay in the denominator as zeros.</p>
+    </div>
+
+    <figure class="fig-scroll">
+      <svg fill="currentColor" viewBox="0 0 880 470" role="img" aria-label="Two parallel pipelines from the same hourly membership table. In the fitted version the meeting decision comes from an external filtered file that covers only 128 of 56,128 candidate days, and a left merge with fillna zero manufactures 56,011 zeros, 2,406 of which were real encounters. In the two-stage repair the meeting decision is derived from the same source by spatial cluster co-membership, giving 2,867 encounter days across 68 dyads with absence split into explicit states.">
+        <defs>
+          <marker id="flow" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,1 8,4.5 0,8" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <rect x="290" y="10" width="300" height="38" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <text class="svg-label" x="440" y="27" text-anchor="middle">hourly membership, one frozen source</text>
+        <text class="svg-num" x="440" y="41" text-anchor="middle">1,924,104 animal-hours</text>
+
+        <polyline points="400,48 400,64 300,64 300,98" fill="none" stroke="currentColor"
+                  stroke-width="1.2" marker-end="url(#flow)"/>
+        <polyline points="480,48 480,64 760,64 760,98" fill="none" stroke="currentColor"
+                  stroke-width="1.2" marker-end="url(#flow)"/>
+
+        <rect x="40" y="76" width="112" height="18" fill="var(--warn)"/>
+        <text class="svg-label" x="96" y="89" text-anchor="middle" fill="var(--paper)">AS FITTED</text>
+        <rect x="490" y="76" width="172" height="18" fill="var(--accent)"/>
+        <text class="svg-label" x="576" y="89" text-anchor="middle" fill="var(--paper)">TWO-STAGE REPAIR</text>
+
+        <rect x="40" y="100" width="350" height="56" fill="none" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label" x="52" y="122">form every pair each tracked somewhere that day</text>
+        <text class="svg-num" x="52" y="142">56,128 dyad-days &#183; 207 dyads</text>
+
+        <rect x="490" y="100" width="350" height="56" fill="none" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label" x="502" y="122">same pairs, plus shared observed hours</text>
+        <text class="svg-num" x="502" y="142">73,353 dyad-days &#183; 317 dyads</text>
+
+        <line x1="215" y1="156" x2="215" y2="188" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+        <line x1="665" y1="156" x2="665" y2="188" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+
+        <rect x="40" y="190" width="350" height="66" fill="none" stroke="var(--warn)"
+              stroke-width="1.4" stroke-dasharray="5 4"/>
+        <text class="svg-label" x="52" y="212">meeting = a 5 m contact in the bigmerge file</text>
+        <text class="svg-num" x="52" y="230">present for 128 of 56,128 days</text>
+        <text class="svg-label-sm" x="52" y="248">Copper&#8211;Lilac dropped by construction</text>
+        <line x1="6" y1="223" x2="36" y2="223" stroke="var(--warn)" stroke-width="1.2"
+              stroke-dasharray="4 3" marker-end="url(#flow)"/>
+        <text class="svg-label-sm" x="6" y="212" fill="var(--warn)">not from the source</text>
+
+        <rect x="490" y="190" width="350" height="66" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text class="svg-label" x="502" y="212">meeting = both units in one spatial cluster</text>
+        <text class="svg-num" x="502" y="230">2,867 encounter days &#183; 68 dyads</text>
+        <text class="svg-label-sm" x="502" y="248">derived from the same source</text>
+
+        <line x1="215" y1="256" x2="215" y2="288" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+        <line x1="665" y1="256" x2="665" y2="288" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+
+        <rect x="40" y="290" width="350" height="56" fill="none" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label" x="52" y="312">left merge, then fillna(0)</text>
+        <text class="svg-label-sm" x="52" y="332">every absence becomes a zero, exposure unknown</text>
+
+        <rect x="490" y="290" width="350" height="56" fill="none" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label" x="502" y="312">absence split by what was observed</text>
+        <text class="svg-label-sm" x="502" y="332">observed-none / insufficient support / excluded</text>
+
+        <line x1="215" y1="346" x2="215" y2="378" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+        <line x1="665" y1="346" x2="665" y2="378" stroke="currentColor" stroke-width="1.2" marker-end="url(#flow)"/>
+
+        <rect x="40" y="380" width="350" height="60" fill="var(--warn)" opacity="0.12"/>
+        <rect x="40" y="380" width="350" height="60" fill="none" stroke="var(--warn)" stroke-width="1.4"/>
+        <text class="svg-num" x="52" y="404">117 positive &#183; 56,011 zeros</text>
+        <text class="svg-label" x="52" y="424" fill="var(--warn)">2,406 of those zeros were real encounters</text>
+
+        <rect x="490" y="380" width="350" height="60" fill="var(--accent)" opacity="0.12"/>
+        <rect x="490" y="380" width="350" height="60" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text class="svg-num" x="502" y="404">3.9% encounter rate, exposure known</text>
+        <text class="svg-label" x="502" y="424" fill="var(--accent)">median closest approach 66 m</text>
+      </svg>
+      <figcaption><b>The difference is provenance, not thresholds.</b> On the left the meeting decision arrives from a separate, already-filtered product that covers 128 of the 56,128 candidate days, so <code>fillna(0)</code> has to invent the other 56,011 answers. On the right the same decision is derived from the source that built the denominator, so absence is a measurement with three named reasons rather than a default value.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <caption>The three differences that matter</caption>
+        <thead><tr><th></th><th>Meeting model</th><th>Structural merge</th></tr></thead>
+        <tbody>
+          <tr><td>Spatial scale</td><td>5 m contact between individuals</td><td>cluster co-membership, order 10&sup2; m</td></tr>
+          <tr><td>Denominator</td><td>every co-tracked dyad-day, median 10.7 km apart</td><td>none &mdash; an inventory</td></tr>
+          <tr><td>Positive class comes from</td><td>a filtered downstream product that drops one dyad</td><td>the membership table itself</td></tr>
+          <tr><td>Absence means</td><td>zero-filled; exposure unknown</td><td>not applicable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>Both measurements are legitimate. Using one as the response while meaning the other is what makes the ecological coefficients uninterpretable.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">02 &nbsp;/&nbsp; Phase 0 &mdash; cohort ledger</span>
+      <h2>Twenty products, one frozen source, three corrected numbers</h2>
+    </div>
+    <div class="prose">
+      <ul>
+        <li>The legacy inventory source holds <strong>1,703,133 rows and 347 animals</strong>. The 1,516,740 figure quoted from its metadata is <span class="field">rows_used</span> after filtering to 2025 onward, not the source size.</li>
+        <li>The saved candidate table spans 207 dyads over 21 groups because it derives from the older proximity-status product, whose unit set includes <span class="field">SneakySilver</span> but omits Gold, Green, Mint, Red and TrickyTeal. The frozen source has 26 units and 317 co-observed dyads.</li>
+        <li>The 2 m fine-scale product's file is <em>named</em> <code>canonical_5m_shuffle_expectation_2min_rows.csv</code>. Radius is set by the directory, not the filename &mdash; anything resolving it by name alone silently analyses the wrong radius.</li>
+      </ul>
+      <p>The crosswalk records which identifier answers which question: <span class="field">temp_group_id</span> for one hour and one cluster, <span class="field">association_cluster_id</span> as the join key for fine-scale bins, <span class="field">association_event_id</span> as Stage-1 encounter identity, and the legacy <span class="field">merge_episode_id</span> and positive <span class="field">episode_id</span>, which should now be used only to reproduce saved results.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">03 &nbsp;/&nbsp; Phase 1 &mdash; opportunity table</span>
+      <h2>The fabricated negatives are general, not one dyad's problem</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <caption>73,353 dyad-days &middot; 317 dyads &middot; 26 units &middot; 873 days</caption>
+        <thead><tr><th>State</th><th class="n">Dyad-days</th><th class="n">Dyads</th><th class="n">Median shared hours</th><th class="n">Median closest approach</th></tr></thead>
+        <tbody>
+          <tr><td>observed_no_encounter</td><td class="n">70,312</td><td class="n">316</td><td class="n">24</td><td class="n">10,783 m</td></tr>
+          <tr class="hi"><td>detected_encounter</td><td class="n">2,867</td><td class="n">68</td><td class="n">24</td><td class="n">66 m</td></tr>
+          <tr><td>insufficient_support</td><td class="n">174</td><td class="n">119</td><td class="n">7</td><td class="n">11,123 m</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The states separate cleanly on a variable the rule never used: encounter days have a median closest approach of <strong>66 m</strong>, non-encounter days <strong>10.8 km</strong>.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <caption>Cross-tabulated against the saved candidate table</caption>
+        <thead><tr><th>Phase 1 state</th><th>Saved call</th><th class="n">Dyad-days</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>detected_encounter</td><td>saved as zero meetings</td><td class="n">2,406</td></tr>
+          <tr><td>detected_encounter</td><td>absent from saved table</td><td class="n">344</td></tr>
+          <tr><td>detected_encounter</td><td>saved as positive</td><td class="n">117</td></tr>
+          <tr><td>observed_no_encounter</td><td>saved as zero</td><td class="n">52,848</td></tr>
+          <tr><td>observed_no_encounter</td><td>absent from saved table</td><td class="n">17,464</td></tr>
+          <tr><td>insufficient_support</td><td>saved as zero</td><td class="n">8</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The 2,406 fabricated negatives span <strong>53 dyads</strong>. Copper&ndash;Lilac contributes 592 &mdash; the largest single share, but under a quarter. Copper&ndash;Magenta (200), Lilac&ndash;Magenta (155), Lapis&ndash;LapisSplinter (121), Jade&ndash;Purple (114) and 48 further dyads carry the rest. Repairing the Copper&ndash;Lilac exclusion alone would not fix the response.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">04 &nbsp;/&nbsp; Phase 2 &mdash; two-stage unit</span>
+      <h2>Three durations, and a state that is not an encounter</h2>
+    </div>
+    <div class="prose">
+      <p>1,705 Stage-1 events across 68 dyads, each carrying three durations that the saved pipeline reported as one figure: <strong>structural span</strong> (median 14 h), <strong>supported exposure</strong> (median 2.3 h), and <strong>active contact time</strong> (median 0.17 h).</p>
+      <h3>Sixteen runs are sustained associations, in five dyads</h3>
+      <p>Sixteen Stage-1 runs last at least 168 hours with an observed-hour fraction near 1. Those are not encounters. The 168-hour threshold matches the membership builder's own 7-day reassignment rule, so the two agree by design. They occur in <strong>Bronze&ndash;Magenta, Copper&ndash;LapisSplinter, Copper&ndash;Lilac, LapisSplinter&ndash;Lilac and Maroon&ndash;Sapphire</strong> &mdash; and the Copper&ndash;LapisSplinter and LapisSplinter&ndash;Lilac windows are identical, which is a three-way fusion rather than two dyadic events. The remaining 1,689 events are discrete encounters.</p>
+      <h3>What the saved rule discarded</h3>
+      <p>Across the retained 5 m exposure, <strong>42.5% of eligible bins carry zero cross-group contact</strong> &mdash; precisely the bins <code>build_positive_episodes()</code> removes before measuring integration. The worked example is blunter still: Lapis&ndash;LapisSplinter event <span class="field">E0080</span>, 19&ndash;21 May 2026, structural span 42 h, <strong>517 eligible bins</strong>, of which the saved rule keeps <strong>53</strong>. It discards 89.8% of the observed exposure, then reports the remainder as the encounter.</p>
+    </div>
+    <figure class="fig-scroll">
+      <svg fill="currentColor" viewBox="0 0 880 320" role="img" aria-label="Hour by hour bins for one 42-hour encounter. Daytime hours carry 17 to 30 eligible two-minute bins each while overnight hours carry zero or one. Cross-group contact occurs in only 53 of the 517 eligible bins, concentrated in three hours. Below, three bars compare the 42-hour structural span, 17.2 hours of supported exposure and 1.8 hours of active contact.">
+        <text class="svg-label" x="70" y="66">eligible 2-min bins per hour</text>
+        <text class="svg-label" x="790" y="66" text-anchor="end" fill="var(--warn)">bins with cross-group contact</text>
+
+        <line x1="70" y1="80" x2="66" y2="80" stroke="currentColor" stroke-width="1"/>
+        <line x1="70" y1="125" x2="66" y2="125" stroke="currentColor" stroke-width="1"/>
+        <text class="svg-label-sm" x="62" y="84" text-anchor="end">30</text>
+        <text class="svg-label-sm" x="62" y="129" text-anchor="end">15</text>
+        <text class="svg-label-sm" x="62" y="174" text-anchor="end">0</text>
+
+        <g fill="currentColor" opacity="0.2">
+          <rect x="70" y="110" width="13" height="60"/><rect x="87" y="92" width="13" height="78"/>
+          <rect x="104" y="80" width="13" height="90"/><rect x="121" y="80" width="13" height="90"/>
+          <rect x="138" y="80" width="13" height="90"/><rect x="155" y="167" width="13" height="3"/>
+          <rect x="189" y="167" width="13" height="3"/><rect x="223" y="167" width="13" height="3"/>
+          <rect x="257" y="167" width="13" height="3"/><rect x="291" y="167" width="13" height="3"/>
+          <rect x="325" y="167" width="13" height="3"/><rect x="342" y="83" width="13" height="87"/>
+          <rect x="359" y="80" width="13" height="90"/><rect x="376" y="83" width="13" height="87"/>
+          <rect x="410" y="83" width="13" height="87"/><rect x="427" y="98" width="13" height="72"/>
+          <rect x="444" y="101" width="13" height="69"/><rect x="461" y="101" width="13" height="69"/>
+          <rect x="478" y="119" width="13" height="51"/><rect x="495" y="101" width="13" height="69"/>
+          <rect x="512" y="95" width="13" height="75"/><rect x="529" y="86" width="13" height="84"/>
+          <rect x="546" y="80" width="13" height="90"/><rect x="563" y="167" width="13" height="3"/>
+          <rect x="597" y="167" width="13" height="3"/><rect x="631" y="167" width="13" height="3"/>
+          <rect x="665" y="167" width="13" height="3"/><rect x="699" y="167" width="13" height="3"/>
+          <rect x="733" y="167" width="13" height="3"/><rect x="750" y="83" width="13" height="87"/>
+          <rect x="767" y="80" width="13" height="90"/>
+        </g>
+        <g fill="var(--warn)">
+          <rect x="87" y="167" width="13" height="3"/><rect x="104" y="167" width="13" height="3"/>
+          <rect x="138" y="140" width="13" height="30"/><rect x="155" y="167" width="13" height="3"/>
+          <rect x="189" y="167" width="13" height="3"/><rect x="223" y="167" width="13" height="3"/>
+          <rect x="257" y="167" width="13" height="3"/><rect x="291" y="167" width="13" height="3"/>
+          <rect x="342" y="167" width="13" height="3"/><rect x="376" y="161" width="13" height="9"/>
+          <rect x="495" y="164" width="13" height="6"/><rect x="529" y="134" width="13" height="36"/>
+          <rect x="546" y="134" width="13" height="36"/><rect x="563" y="167" width="13" height="3"/>
+          <rect x="597" y="167" width="13" height="3"/><rect x="733" y="167" width="13" height="3"/>
+          <rect x="767" y="161" width="13" height="9"/>
+        </g>
+
+        <line x1="70" y1="170" x2="790" y2="170" stroke="currentColor" stroke-width="1"/>
+        <g stroke="currentColor" stroke-width="1">
+          <line x1="70" y1="170" x2="70" y2="176"/><line x1="172" y1="170" x2="172" y2="176"/>
+          <line x1="274" y1="170" x2="274" y2="176"/><line x1="376" y1="170" x2="376" y2="176"/>
+          <line x1="478" y1="170" x2="478" y2="176"/><line x1="580" y1="170" x2="580" y2="176"/>
+          <line x1="682" y1="170" x2="682" y2="176"/><line x1="767" y1="170" x2="767" y2="176"/>
+        </g>
+        <text class="svg-label-sm" x="70" y="190">19 May 11:00</text>
+        <text class="svg-label-sm" x="274" y="190" text-anchor="middle">23:00</text>
+        <text class="svg-label-sm" x="376" y="190" text-anchor="middle">20 May 05:00</text>
+        <text class="svg-label-sm" x="580" y="190" text-anchor="middle">17:00</text>
+        <text class="svg-label-sm" x="780" y="190" text-anchor="end">21 May 04:00</text>
+
+        <text class="svg-label" x="70" y="206">structural span &#8212; first to last encounter hour</text>
+        <text class="svg-num" x="790" y="206" text-anchor="end">42.0 h</text>
+        <rect x="70" y="210" width="714" height="11" fill="currentColor" opacity="0.32"/>
+
+        <text class="svg-label" x="70" y="240" fill="var(--accent)">supported exposure &#8212; 517 eligible bins &#215; 2 min</text>
+        <text class="svg-num" x="790" y="240" text-anchor="end">17.2 h</text>
+        <rect x="70" y="244" width="293" height="11" fill="var(--accent)"/>
+
+        <text class="svg-label" x="70" y="274" fill="var(--warn)">active contact &#8212; 53 contact-positive bins &#215; 2 min</text>
+        <text class="svg-num" x="790" y="274" text-anchor="end">1.8 h</text>
+        <rect x="70" y="278" width="30" height="11" fill="var(--warn)"/>
+        <line x1="100" y1="283.5" x2="140" y2="283.5" stroke="var(--warn)" stroke-width="1" stroke-dasharray="3 3"/>
+        <text class="svg-label-sm" x="146" y="287" fill="var(--warn)">all the saved rule keeps</text>
+      </svg>
+      <figcaption><b>One 42-hour encounter, Lapis&ndash;LapisSplinter, 19&ndash;21 May 2026.</b> Daytime hours carry 17&ndash;30 eligible bins; the flat stretches are overnight hours with one bin or none. Cross-group contact occurs in 53 of the 517 eligible bins and is concentrated in three hours. Because <code>build_positive_episodes()</code> filters to contact-positive bins before measuring anything, it keeps the warn-coloured bars and reports them as the encounter &mdash; discarding 89.8% of the observed exposure, and with it every zero that a rate needs in its denominator. The three bars are why one duration figure cannot serve three roles.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <caption>Gap-rule sensitivity &mdash; the dyad count never moves</caption>
+        <thead><tr><th class="n">Gap</th><th class="n">Events</th><th class="n">Dyads</th><th class="n">Discrete</th><th class="n">Sustained</th><th class="n">Median span</th></tr></thead>
+        <tbody>
+          <tr><td class="n">2 h</td><td class="n">1,812</td><td class="n">68</td><td class="n">1,796</td><td class="n">16</td><td class="n">14 h</td></tr>
+          <tr class="hi"><td class="n">3 h</td><td class="n">1,705</td><td class="n">68</td><td class="n">1,689</td><td class="n">16</td><td class="n">14 h</td></tr>
+          <tr><td class="n">6 h</td><td class="n">1,547</td><td class="n">68</td><td class="n">1,531</td><td class="n">16</td><td class="n">14 h</td></tr>
+          <tr><td class="n">14 h</td><td class="n">1,109</td><td class="n">68</td><td class="n">1,093</td><td class="n">16</td><td class="n">6 h</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">05 &nbsp;/&nbsp; Phase 3 &mdash; the mixing gradient</span>
+      <h2>Twelve dyads, none of them near composition expectation</h2>
+    </div>
+
+    <div class="chart">
+      <span class="ch">Dyad, discrete encounters</span>
+      <span class="ch">Cross-group contact minus composition expectation (5 m)</span>
+      <span class="ch" style="text-align:right">Deficit</span>
+      <span class="ch" style="text-align:right">Bins / events</span>
+
+      <div class="dyad">Jade &ndash; Purple</div>
+      <div class="track"><div class="fill" style="right:0;width:97.16%;background:linear-gradient(90deg,#00A86B,#6A4C9C)"></div><div class="ci" style="right:95.86%;width:2.66%"></div></div>
+      <div class="val">&minus;0.486</div><div class="sup">7,960 / 119</div>
+
+      <div class="dyad">Chartreuse &ndash; Purple</div>
+      <div class="track"><div class="fill" style="right:0;width:96.56%;background:linear-gradient(90deg,#A8C020,#6A4C9C)"></div><div class="ci" style="right:94.00%;width:5.18%"></div></div>
+      <div class="val">&minus;0.483</div><div class="sup">3,033 / 24</div>
+
+      <div class="dyad">Lilac &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="right:0;width:96.10%;background:linear-gradient(90deg,#9B87C4,#B03A76)"></div><div class="ci" style="right:92.78%;width:5.80%"></div></div>
+      <div class="val">&minus;0.481</div><div class="sup">5,533 / 57</div>
+
+      <div class="dyad">Copper &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="right:0;width:93.84%;background:linear-gradient(90deg,#B06B33,#B03A76)"></div><div class="ci" style="right:91.08%;width:5.02%"></div></div>
+      <div class="val">&minus;0.469</div><div class="sup">7,934 / 128</div>
+
+      <div class="dyad">Emerald &ndash; Lilac</div>
+      <div class="track"><div class="fill" style="right:0;width:90.46%;background:linear-gradient(90deg,#2E8B57,#9B87C4)"></div><div class="ci" style="right:84.94%;width:9.64%"></div></div>
+      <div class="val">&minus;0.452</div><div class="sup">3,849 / 46</div>
+
+      <div class="dyad">Bronze &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="right:0;width:89.34%;background:linear-gradient(90deg,#8C6239,#B03A76)"></div><div class="ci" style="right:85.40%;width:6.94%"></div><div class="fused" style="right:71.04%" title="sustained association: -0.355"></div></div>
+      <div class="val">&minus;0.447</div><div class="sup">3,032 / 48</div>
+
+      <div class="dyad">Bronze &ndash; Lilac</div>
+      <div class="track"><div class="fill" style="right:0;width:76.36%;background:linear-gradient(90deg,#8C6239,#9B87C4)"></div><div class="ci" style="right:69.02%;width:14.70%"></div></div>
+      <div class="val">&minus;0.382</div><div class="sup">1,691 / 22</div>
+
+      <div class="dyad">LapisSplinter &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="right:0;width:71.20%;background:linear-gradient(90deg,#6E9BC5,#B03A76)"></div><div class="ci" style="right:65.66%;width:11.72%"></div></div>
+      <div class="val">&minus;0.356</div><div class="sup">6,559 / 86</div>
+
+      <div class="dyad">Lapis &ndash; Periwinkle</div>
+      <div class="track"><div class="fill" style="right:0;width:68.46%;background:linear-gradient(90deg,#26619C,#8FA8E8)"></div><div class="ci" style="right:64.64%;width:8.42%"></div></div>
+      <div class="val">&minus;0.342</div><div class="sup">4,089 / 65</div>
+
+      <div class="dyad">Copper &ndash; Lilac</div>
+      <div class="track"><div class="fill" style="right:0;width:67.84%;background:linear-gradient(90deg,#B06B33,#9B87C4)"></div><div class="ci" style="right:62.82%;width:10.02%"></div><div class="fused" style="right:6.58%" title="sustained association: -0.033"></div></div>
+      <div class="val">&minus;0.339</div><div class="sup">6,205 / 47</div>
+
+      <div class="dyad">Maroon &ndash; Sapphire</div>
+      <div class="track"><div class="fill" style="right:0;width:65.40%;background:linear-gradient(90deg,#7B2D3B,#1560BD)"></div><div class="ci" style="right:63.06%;width:4.86%"></div><div class="fused" style="right:29.16%" title="sustained association: -0.146"></div></div>
+      <div class="val">&minus;0.327</div><div class="sup">1,209 / 16</div>
+
+      <div class="dyad">Lapis &ndash; LapisSplinter</div>
+      <div class="track"><div class="fill" style="right:0;width:59.08%;background:linear-gradient(90deg,#26619C,#6E9BC5)"></div><div class="ci" style="right:54.26%;width:11.14%"></div></div>
+      <div class="val">&minus;0.295</div><div class="sup">10,803 / 82</div>
+
+      <div class="axis"><span>&minus;0.5</span><span>&minus;0.4</span><span>&minus;0.3</span><span>&minus;0.2</span><span>&minus;0.1</span><span>0</span></div>
+      <p class="chart-key">Each bar is one dyad, shaded between its two groups' own colours. <b>Black rule</b> = 95% percentile bootstrap interval over Stage-1 encounters within the dyad, 2,000 draws. <b>Diamond</b> = the same dyad measured while in sustained association. Dyad-weighted mean across the twelve: <b>&minus;0.405 [&minus;0.442, &minus;0.367]</b>; all twelve below expectation.</p>
+    </div>
+
+    <div class="claim">
+      <span class="lab">The reframing this forces</span>
+      Copper&ndash;Lilac is not an outlier dyad. It is an ordinary dyad that entered an extraordinary state. Its discrete encounters give &minus;0.339, tenth of twelve &mdash; inside the pack. Its fused period gives &minus;0.033, near composition expectation. The earlier pooled figure of &minus;0.048 was its fusion dominating its own record: 93,763 of its 99,968 bins sit in the fused stratum.
+    </div>
+
+    <div class="prose">
+      <p>So the general claim no longer rests on one case, and it is stronger for it:</p>
+    </div>
+
+    <div class="claim">
+      <span class="lab">General result</span>
+      Groups that encounter each other barely mix, and they barely mix everywhere &mdash; the deficit is large and negative in all twelve measurable dyads. Mixing to near composition expectation is a property of <em>sustained association</em>, a state five dyads entered and only one carried to near-completion.
+    </div>
+
+    <h3>Weighting is not cosmetic</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Stratum</th><th class="n">Dyad-weighted</th><th class="n">Bin-weighted</th><th>Largest dyad's share of bins</th></tr></thead>
+        <tbody>
+          <tr><td>Discrete encounters</td><td class="n">&minus;0.405</td><td class="n">&minus;0.421</td><td>22.8% &mdash; Lapis&ndash;LapisSplinter</td></tr>
+          <tr><td>Sustained associations</td><td class="n">&minus;0.178</td><td class="n">&minus;0.057</td><td>99.4% &mdash; Copper&ndash;Lilac</td></tr>
+          <tr><td>All encounters pooled</td><td class="n">&minus;0.369</td><td class="n">&minus;0.198</td><td>85.9% &mdash; Copper&ndash;Lilac</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Pooling by bin rather than by dyad halves the estimate. In the discrete stratum the largest dyad contributes 22.8% of bins, so that estimate is genuinely a population statement.</p>
+
+      <h3>Radius behaves the same way in every dyad</h3>
+      <p>Using the 5 m eligible bin set as a common denominator, so the 2 m rate is never conditioned on a 2 m contact existing, the 2 m contact rate is <strong>0.086 to 0.194</strong> of the 5 m rate across all twelve discrete-encounter dyads, with a median near 0.14. Under sustained fusion the ratio rises &mdash; Copper&ndash;Lilac 0.262, Maroon&ndash;Sapphire 0.141. Dyads differ in <em>how much</em> they mix, not in how their mixing is distributed across distance; only fusion shifts that.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">06 &nbsp;/&nbsp; Phase 4 &mdash; the two stages, fitted</span>
+      <h2>The stages really do have different predictors</h2>
+    </div>
+    <div class="prose">
+      <p>Stage 1 is a binomial GEE with robust errors clustered on dyad (72,724 dyad-days, 317 dyads, 2,852 encounters), plus a variational-Bayes mixed GLM for variance components. Stage 2 models cross-group edge counts with <code>logit(composition expectation)</code> as an offset, so its intercept <em>is</em> the mean logit deficit; uncertainty comes from a cluster bootstrap over encounters, because overdispersion runs 12&ndash;27&times;. Every covariate strictly precedes its outcome, and proximity enters as two separate terms &mdash; the dyad's typical distance, and how close they were yesterday.</p>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Stage 1 &mdash; whether two groups meet &middot; odds ratios per SD</caption>
+        <thead><tr><th>Term</th><th class="n">Full sample</th><th class="n">95% CI</th><th class="n">Within 5 km</th></tr></thead>
+        <tbody>
+          <tr><td>Between-dyad typical distance</td><td class="n">0.143</td><td class="n">0.115&ndash;0.177</td><td class="n">0.159</td></tr>
+          <tr><td>Within-dyad distance yesterday</td><td class="n">0.346</td><td class="n">0.310&ndash;0.386</td><td class="n">0.385</td></tr>
+          <tr class="hi"><td>Prior encounters, strictly preceding</td><td class="n">1.762</td><td class="n">1.486&ndash;2.088</td><td class="n">1.565</td></tr>
+          <tr><td>Collar coverage, smaller unit</td><td class="n">0.887</td><td class="n">0.666&ndash;1.181</td><td class="n">0.946</td></tr>
+          <tr><td>Collar coverage, total</td><td class="n">1.326</td><td class="n">0.974&ndash;1.805</td><td class="n">1.353</td></tr>
+          <tr><td>Season (sin)</td><td class="n">0.616</td><td class="n">0.439&ndash;0.863</td><td class="n">0.862</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="claim">
+      <span class="lab">Stage 1 &mdash; three findings</span>
+      <strong>History predicts encounters beyond geometry.</strong> Prior encounters carry OR 1.76 with both distance terms in the model, and 1.57 [1.27, 1.93] when restricted to dyads already within 5 km &mdash; so repeated contact between particular pairs is not a restatement of range overlap. <strong>Encounter propensity is a dyad property:</strong> the dyad variance component is 1.52&ndash;1.59 across prior scales while the shared group component shrinks from 0.12 to 0.02 as the prior tightens, meaning it is not identified. <strong>Collar coverage does not manufacture encounters</strong> &mdash; both coverage intervals span 1, in both samples.
+    </div>
+
+    <div class="scales">
+      <div class="stage-1">
+        <h4>Transfer to a dyad the model has never seen</h4>
+        <span class="big">0.880</span>
+        <p>out-of-sample AUC with <strong>whole dyads held out</strong>. Discrimination transfers; calibration does not &mdash; slope 0.540, which is what should happen when a large dyad-level variance cannot be estimated for a new pair.</p>
+      </div>
+      <div class="stage-2">
+        <h4>Mixing during a discrete encounter</h4>
+        <span class="big">4.6%</span>
+        <p>of the composition expectation. The Stage 2 intercept is &minus;3.073 [&minus;3.433, &minus;2.765] on the logit scale &mdash; observed 0.0589 against an expectation of 0.4504. This is the Phase 3 gradient restated as a model.</p>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <caption>Stage 2 &mdash; mixing given an encounter &middot; 738 events, 12 dyads, within dyad</caption>
+        <thead><tr><th>Term</th><th class="n">Estimate</th><th class="n">95% bootstrap CI</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>log structural span</td><td class="n">+0.624</td><td class="n">+0.302, +0.828</td><td>robust in every specification</td></tr>
+          <tr><td>Pre-event distance, 7 days before</td><td class="n">+0.005</td><td class="n">&minus;0.080, +0.083</td><td>null within dyad</td></tr>
+          <tr><td>log supported exposure</td><td class="n">&minus;0.095</td><td class="n">&minus;0.329, +0.188</td><td>null &mdash; not an observation artefact</td></tr>
+          <tr><td>Collar coverage</td><td class="n">&minus;0.015</td><td class="n">&minus;0.182, +0.144</td><td>null within dyad</td></tr>
+          <tr><td>Prior encounters</td><td class="n">&minus;0.256</td><td class="n">&minus;0.355, &minus;0.174</td><td>dies under calendar time</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h3>Two coefficients that did not survive specification</h3>
+      <p><strong>Prior encounters is calendar time.</strong> Within a dyad it correlates 0.285 with elapsed days; adding an explicit time term moves it to &minus;0.082 [&minus;0.289, +0.060]. There is no support for mixing declining with encounter history.</p>
+      <p><strong>Distance and coverage effects at Stage 2 are between-dyad confounds.</strong> Both are null within dyad and both look real once dyad effects are dropped &mdash; pre-event distance to &minus;0.123 [&minus;0.216, &minus;0.018], coverage to &minus;0.389 [&minus;0.487, &minus;0.295] &mdash; while overdispersion doubles from 12.8 to 27.1. A mixing model without dyad structure reports dyad identity as if it were a covariate.</p>
+
+      <h3>The sustained-association contrast, confirmed with a caveat</h3>
+      <p>Unconditioned and within dyad, <span class="field">is_sustained</span> is <strong>+1.376 [+0.338, +1.543]</strong>: a sustained association mixes about 1.4 logit units closer to expectation than the <em>same dyads'</em> discrete encounters. Adding exposure to that model collapses it to &minus;0.109 [&minus;0.789, +0.462] &mdash; a second instance of the collinearity trap, since sustained events are by construction the highest-exposure ones, exactly as they are the longest. It rests on 16 events in 3 dyads and the interval is strongly asymmetric, so Phase 3's per-dyad description stays the primary evidence and this is a confirmation, not an independent test.</p>
+    </div>
+
+    <div class="claim">
+      <span class="lab">What this settles</span>
+      Result 4 is now a positive finding rather than an absence. Geometry and history drive <em>whether</em> groups meet; neither predicts <em>how much</em> they mix, where duration is the only robust term. That the two stages have genuinely different predictors is what justified separating them in the first place.
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">07 &nbsp;/&nbsp; Limits and next step</span>
+      <h2>What Phases 0&ndash;4 did not settle</h2>
+    </div>
+    <div class="prose">
+      <ul>
+        <li><strong>Fine-scale coverage is 12 of 68 structural dyads.</strong> The gradient rests on dyads for which an upstream 2-minute product exists. Extending it means regenerating that product for more dyads, which was not attempted here.</li>
+        <li><strong>Eligible bins are bins with at least one within-radius edge</strong> in a shared cluster. A fully unconditioned denominator needs the 2-minute GPS join; the radius-nested comparison bounds how much this matters but does not remove the conditioning.</li>
+        <li><strong>The composition-preserving shuffle is the reference throughout.</strong> The within-origin reference used in the Copper&ndash;Lilac analysis is a different estimator; the two are not interchangeable.</li>
+        <li><strong>Demographic group size is still absent.</strong> Phases 2 and 3 use observed collar counts, correctly labeled as such. Phase 4 must not reuse them as group size.</li>
+        <li><strong>Nothing here is a model.</strong> These are repaired descriptive quantities with uncertainty.</li>
+      </ul>
+        <li><strong>Calibration does not transfer to unseen dyads</strong> (slope 0.540), and Stage 2 is within-dyad only &mdash; 12 dyads cannot carry a between-dyad claim.</li>
+        <li><strong>The mixed model is variational Bayes</strong>, a mean-field approximation. Its variance components are informative and prior sensitivity is reported, but pymc has no compiler in this environment and no MCMC was attempted, so nothing here is a hierarchical Bayesian fit.</li>
+      </ul>
+      <h3>Phase 5 entry conditions are met</h3>
+      <p>Both stages now have a frozen sample, a specification that survives its own sensitivity checks, and a documented set of dead coefficients. No ecological covariate is in either model yet &mdash; NDVI, rainfall and shared concentrated resources belong to Phase 5, together with the matched fission model that makes the scarcity-fragments / abundance-connects prediction falsifiable. The bar is already set: the seasonal term here passed in the full sample and failed the within-5 km restriction, so any ecological effect must clear that same test.</p>
+    </div>
+  </section>
+
+  <footer>
+    Scripts <span class="mono">phase0_cohort_ledger.py</span> &middot; <span class="mono">phase1_opportunity_table.py</span> &middot; <span class="mono">phase2_two_stage_events.py</span> &middot; <span class="mono">phase3_mixing_gradient.py</span><br>
+    Outputs under <span class="mono">outputs/general_structure_2026_09/</span>. No existing output was modified. Frozen source: <span class="mono">canonical_hourly_membership_with_association_events.parquet</span> &mdash; 1,924,104 animal-hours, 350 animals, 26 origin groups.<br>
+    Companion to <span class="mono">docs/structure_2026-09-03/PAPER_STRUCTURE_GENERAL.md</span> and <span class="mono">PHASE0_3_RESULTS.md</span>
+  </footer>
+
+</div>

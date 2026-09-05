@@ -1,0 +1,988 @@
+{
+  "seed": 20260904,
+  "well_observed_from": "2024-12-01",
+  "design_note": "Season is an annual sin/cos harmonic on day-of-year; trend is linear in months. Every model is clustered on unit (dyad for axis A) and reports the same fit with and without an effort covariate. The aliasing block gives the number of seasonal cycles in the window and the collinearity between season, trend and effort -- read it before any coefficient.",
+  "effort": {
+    "months": 30,
+    "first_month": {
+      "month": "2024-02",
+      "animals": 2,
+      "units": 1,
+      "resolvable": 0.0
+    },
+    "peak_month": {
+      "month": "2026-03",
+      "animals": 242,
+      "units": 23,
+      "resolvable": 0.951
+    },
+    "animals_fold_increase": 121.0,
+    "well_observed_from": "2024-12-01",
+    "verdict": "Collared animals rise about 121-fold and resolvability from 0.00 to 0.95 across the record. No raw secular trend in any event rate is interpretable; every trend term below is reported only alongside an effort covariate, and even then the two are strongly correlated."
+  },
+  "axis_a_between_group": {
+    "full_record": {
+      "n": 73179,
+      "dyads": 317,
+      "encounter_rate": 0.0392
+    },
+    "aliasing": {
+      "window": [
+        "2024-12-01",
+        "2026-07-21"
+      ],
+      "span_days": 597.0,
+      "seasonal_cycles_in_window": 1.63,
+      "corr_season_sin_trend": 0.335,
+      "corr_season_cos_trend": -0.305,
+      "corr_season_sin_effort": 0.034,
+      "corr_season_cos_effort": 0.068,
+      "corr_trend_effort": 0.014,
+      "vif": {
+        "season_sin": 1.13,
+        "season_cos": 1.11,
+        "trend_months": 1.25,
+        "shared_hours": 1.01
+      }
+    },
+    "by_calendar_month": [
+      {
+        "month_of_year": 1,
+        "rows": 5817,
+        "rate_pooled": 0.0306,
+        "units_present": 210,
+        "rate_unit_balanced": 0.0217
+      },
+      {
+        "month_of_year": 2,
+        "rows": 7203,
+        "rate_pooled": 0.0372,
+        "units_present": 231,
+        "rate_unit_balanced": 0.0342
+      },
+      {
+        "month_of_year": 3,
+        "rows": 7878,
+        "rate_pooled": 0.0348,
+        "units_present": 231,
+        "rate_unit_balanced": 0.0252
+      },
+      {
+        "month_of_year": 4,
+        "rows": 7499,
+        "rate_pooled": 0.0313,
+        "units_present": 210,
+        "rate_unit_balanced": 0.0253
+      },
+      {
+        "month_of_year": 5,
+        "rows": 8455,
+        "rate_pooled": 0.029,
+        "units_present": 275,
+        "rate_unit_balanced": 0.0182
+      },
+      {
+        "month_of_year": 6,
+        "rows": 8196,
+        "rate_pooled": 0.0334,
+        "units_present": 231,
+        "rate_unit_balanced": 0.0247
+      },
+      {
+        "month_of_year": 7,
+        "rows": 4220,
+        "rate_pooled": 0.0633,
+        "units_present": 210,
+        "rate_unit_balanced": 0.0383
+      },
+      {
+        "month_of_year": 8,
+        "rows": 2947,
+        "rate_pooled": 0.0645,
+        "units_present": 105,
+        "rate_unit_balanced": 0.0591
+      },
+      {
+        "month_of_year": 9,
+        "rows": 3056,
+        "rate_pooled": 0.0553,
+        "units_present": 136,
+        "rate_unit_balanced": 0.0466
+      },
+      {
+        "month_of_year": 10,
+        "rows": 4040,
+        "rate_pooled": 0.0319,
+        "units_present": 136,
+        "rate_unit_balanced": 0.0307
+      },
+      {
+        "month_of_year": 11,
+        "rows": 3495,
+        "rate_pooled": 0.0272,
+        "units_present": 120,
+        "rate_unit_balanced": 0.0264
+      },
+      {
+        "month_of_year": 12,
+        "rows": 4695,
+        "rate_pooled": 0.0339,
+        "units_present": 120,
+        "rate_unit_balanced": 0.0267
+      }
+    ],
+    "model_with_effort": {
+      "label": "does a structural encounter occur? Binomial GEE clustered on dyad",
+      "n": 67501,
+      "clusters": 317,
+      "effort_term_included": true,
+      "base_rate": 0.0368,
+      "terms": {
+        "season_sin": {
+          "coef": -0.0338,
+          "or_per_sd": 0.967,
+          "ci": [
+            0.838,
+            1.116
+          ]
+        },
+        "season_cos": {
+          "coef": -0.1986,
+          "or_per_sd": 0.82,
+          "ci": [
+            0.71,
+            0.946
+          ]
+        },
+        "trend_months": {
+          "coef": -0.2909,
+          "or_per_sd": 0.748,
+          "ci": [
+            0.615,
+            0.909
+          ]
+        },
+        "shared_hours": {
+          "coef": 0.038,
+          "or_per_sd": 1.039,
+          "ci": [
+            0.955,
+            1.129
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.2852,
+      "seasonal_peak_day_of_year": 193.0,
+      "seasonal_peak_month": "Jul",
+      "seasonal_joint_wald_p": 0.0103
+    },
+    "model_without_effort": {
+      "label": "same, effort term dropped -- for contrast",
+      "n": 67501,
+      "clusters": 317,
+      "effort_term_included": false,
+      "base_rate": 0.0368,
+      "terms": {
+        "season_sin": {
+          "coef": -0.033,
+          "or_per_sd": 0.968,
+          "ci": [
+            0.839,
+            1.116
+          ]
+        },
+        "season_cos": {
+          "coef": -0.1955,
+          "or_per_sd": 0.822,
+          "ci": [
+            0.713,
+            0.949
+          ]
+        },
+        "trend_months": {
+          "coef": -0.2896,
+          "or_per_sd": 0.749,
+          "ci": [
+            0.615,
+            0.911
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.2807,
+      "seasonal_peak_day_of_year": 193.0,
+      "seasonal_peak_month": "Jul",
+      "seasonal_joint_wald_p": 0.0124
+    },
+    "distance_restriction_ladder": [
+      {
+        "restriction": "all supported dyad-days",
+        "n": 67501,
+        "dyads": 317,
+        "encounter_rate": 0.0368,
+        "seasonal_amplitude_logit": 0.2852,
+        "seasonal_peak_month": "Jul",
+        "seasonal_joint_wald_p": 0.0103,
+        "trend_or_per_sd": 0.748,
+        "trend_ci": [
+          0.615,
+          0.909
+        ]
+      },
+      {
+        "restriction": "min centroid distance <= 10 km",
+        "n": 30794,
+        "dyads": 165,
+        "encounter_rate": 0.0802,
+        "seasonal_amplitude_logit": 0.2495,
+        "seasonal_peak_month": "Jul",
+        "seasonal_joint_wald_p": 0.0074,
+        "trend_or_per_sd": 0.857,
+        "trend_ci": [
+          0.706,
+          1.039
+        ]
+      },
+      {
+        "restriction": "min centroid distance <= 5 km",
+        "n": 14775,
+        "dyads": 115,
+        "encounter_rate": 0.1601,
+        "seasonal_amplitude_logit": 0.1776,
+        "seasonal_peak_month": "Jul",
+        "seasonal_joint_wald_p": 0.2308,
+        "trend_or_per_sd": 0.919,
+        "trend_ci": [
+          0.757,
+          1.115
+        ]
+      },
+      {
+        "restriction": "min centroid distance <= 2 km",
+        "n": 5102,
+        "dyads": 82,
+        "encounter_rate": 0.4328,
+        "seasonal_amplitude_logit": 0.0867,
+        "seasonal_peak_month": "Oct",
+        "seasonal_joint_wald_p": 0.6287,
+        "trend_or_per_sd": 1.12,
+        "trend_ci": [
+          0.88,
+          1.427
+        ]
+      }
+    ],
+    "denominator_composition": {
+      "dyads_present_throughout": 45,
+      "dyads_total": 317,
+      "dyads_in_denominator_first_month": 45,
+      "dyads_in_denominator_last_month": 210,
+      "median_min_centroid_distance_first_half_m": 8669.55376819213,
+      "median_min_centroid_distance_second_half_m": 11437.450729583725
+    },
+    "balanced_panel_ladder": [
+      {
+        "restriction": "balanced panel",
+        "n": 26258,
+        "dyads": 45,
+        "encounter_rate": 0.0731,
+        "seasonal_amplitude_logit": 0.3483,
+        "seasonal_peak_month": "Aug",
+        "seasonal_joint_wald_p": 0.0454,
+        "trend_or_per_sd": 1.1,
+        "trend_ci": [
+          0.884,
+          1.368
+        ]
+      },
+      {
+        "restriction": "balanced panel and <= 5 km",
+        "n": 9149,
+        "dyads": 36,
+        "encounter_rate": 0.199,
+        "seasonal_amplitude_logit": 0.2484,
+        "seasonal_peak_month": "Aug",
+        "seasonal_joint_wald_p": 0.1575,
+        "trend_or_per_sd": 1.095,
+        "trend_ci": [
+          0.884,
+          1.355
+        ]
+      },
+      {
+        "restriction": "balanced panel and <= 2 km",
+        "n": 3628,
+        "dyads": 31,
+        "encounter_rate": 0.465,
+        "seasonal_amplitude_logit": 0.1073,
+        "seasonal_peak_month": "Oct",
+        "seasonal_joint_wald_p": 0.4941,
+        "trend_or_per_sd": 1.294,
+        "trend_ci": [
+          0.998,
+          1.677
+        ]
+      }
+    ],
+    "verdict": "The seasonal signal decays monotonically as the dyads are restricted to those already close, and stops being distinguishable from zero at 5 km -- the same restriction that killed the Phase 4 seasonal term. The season is therefore in WHERE GROUPS ARE, not in whether they interact once co-located. The apparent secular decline is denominator composition: on a balanced dyad panel the trend is null and the sign flips, while the median closest approach across all dyad-days rises as newly collared units add distant pairs."
+  },
+  "axis_b_within_group": {
+    "full_record": {
+      "group_weeks": 1418,
+      "units": 26
+    },
+    "aliasing": {
+      "window": [
+        "2024-12-02",
+        "2026-06-15"
+      ],
+      "span_days": 560.0,
+      "seasonal_cycles_in_window": 1.53,
+      "corr_season_sin_trend": 0.215,
+      "corr_season_cos_trend": -0.087,
+      "corr_season_sin_effort": 0.015,
+      "corr_season_cos_effort": 0.124,
+      "corr_trend_effort": 0.183,
+      "vif": {
+        "season_sin": 1.05,
+        "season_cos": 1.03,
+        "trend_months": 1.1,
+        "n_animals_observed": 1.06
+      }
+    },
+    "by_calendar_month_split": [
+      {
+        "month_of_year": 1,
+        "rows": 108,
+        "rate_pooled": 0.0833,
+        "units_present": 20,
+        "rate_unit_balanced": 0.1062
+      },
+      {
+        "month_of_year": 2,
+        "rows": 124,
+        "rate_pooled": 0.1048,
+        "units_present": 21,
+        "rate_unit_balanced": 0.0952
+      },
+      {
+        "month_of_year": 3,
+        "rows": 154,
+        "rate_pooled": 0.0844,
+        "units_present": 22,
+        "rate_unit_balanced": 0.0773
+      },
+      {
+        "month_of_year": 4,
+        "rows": 123,
+        "rate_pooled": 0.0569,
+        "units_present": 21,
+        "rate_unit_balanced": 0.0476
+      },
+      {
+        "month_of_year": 5,
+        "rows": 106,
+        "rate_pooled": 0.0849,
+        "units_present": 21,
+        "rate_unit_balanced": 0.0536
+      },
+      {
+        "month_of_year": 6,
+        "rows": 81,
+        "rate_pooled": 0.1111,
+        "units_present": 13,
+        "rate_unit_balanced": 0.0989
+      },
+      {
+        "month_of_year": 7,
+        "rows": 57,
+        "rate_pooled": 0.0526,
+        "units_present": 15,
+        "rate_unit_balanced": 0.1
+      },
+      {
+        "month_of_year": 8,
+        "rows": 60,
+        "rate_pooled": 0.1167,
+        "units_present": 15,
+        "rate_unit_balanced": 0.1167
+      },
+      {
+        "month_of_year": 9,
+        "rows": 79,
+        "rate_pooled": 0.0633,
+        "units_present": 17,
+        "rate_unit_balanced": 0.0588
+      },
+      {
+        "month_of_year": 10,
+        "rows": 67,
+        "rate_pooled": 0.1194,
+        "units_present": 17,
+        "rate_unit_balanced": 0.1176
+      },
+      {
+        "month_of_year": 11,
+        "rows": 63,
+        "rate_pooled": 0.0635,
+        "units_present": 16,
+        "rate_unit_balanced": 0.0625
+      },
+      {
+        "month_of_year": 12,
+        "rows": 126,
+        "rate_pooled": 0.1111,
+        "units_present": 16,
+        "rate_unit_balanced": 0.0938
+      }
+    ],
+    "split_model_with_effort": {
+      "label": "multi-animal split in >25% of timestamps; Binomial GEE clustered on unit",
+      "n": 1148,
+      "clusters": 26,
+      "effort_term_included": true,
+      "base_rate": 0.088,
+      "terms": {
+        "season_sin": {
+          "coef": -0.1835,
+          "or_per_sd": 0.832,
+          "ci": [
+            0.541,
+            1.28
+          ]
+        },
+        "season_cos": {
+          "coef": -0.0275,
+          "or_per_sd": 0.973,
+          "ci": [
+            0.725,
+            1.305
+          ]
+        },
+        "trend_months": {
+          "coef": 0.1412,
+          "or_per_sd": 1.152,
+          "ci": [
+            0.873,
+            1.52
+          ]
+        },
+        "n_animals_observed": {
+          "coef": 0.981,
+          "or_per_sd": 2.667,
+          "ci": [
+            1.055,
+            6.745
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.2652,
+      "seasonal_peak_day_of_year": 265.0,
+      "seasonal_peak_month": "Sep",
+      "seasonal_joint_wald_p": 0.6444
+    },
+    "split_model_without_effort": {
+      "label": "same, effort term dropped -- for contrast",
+      "n": 1148,
+      "clusters": 26,
+      "effort_term_included": false,
+      "base_rate": 0.088,
+      "terms": {
+        "season_sin": {
+          "coef": -0.1489,
+          "or_per_sd": 0.862,
+          "ci": [
+            0.543,
+            1.367
+          ]
+        },
+        "season_cos": {
+          "coef": 0.0639,
+          "or_per_sd": 1.066,
+          "ci": [
+            0.862,
+            1.318
+          ]
+        },
+        "trend_months": {
+          "coef": 0.3289,
+          "or_per_sd": 1.389,
+          "ci": [
+            1.022,
+            1.889
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.2322,
+      "seasonal_peak_day_of_year": 298.0,
+      "seasonal_peak_month": "Oct",
+      "seasonal_joint_wald_p": 0.778
+    },
+    "modularity_model_well_covered": {
+      "label": "is the group-week modular? >=12 collars only; Binomial GEE clustered on unit",
+      "n": 308,
+      "clusters": 12,
+      "effort_term_included": true,
+      "base_rate": 0.2208,
+      "terms": {
+        "season_sin": {
+          "coef": -0.2248,
+          "or_per_sd": 0.799,
+          "ci": [
+            0.501,
+            1.272
+          ]
+        },
+        "season_cos": {
+          "coef": 0.06,
+          "or_per_sd": 1.062,
+          "ci": [
+            0.906,
+            1.244
+          ]
+        },
+        "trend_months": {
+          "coef": 0.3645,
+          "or_per_sd": 1.44,
+          "ci": [
+            1.04,
+            1.993
+          ]
+        },
+        "n_animals_observed": {
+          "coef": 0.4253,
+          "or_per_sd": 1.53,
+          "ci": [
+            0.704,
+            3.326
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.3358,
+      "seasonal_peak_day_of_year": 290.0,
+      "seasonal_peak_month": "Oct",
+      "seasonal_joint_wald_p": 0.6149
+    },
+    "modularity_aliasing_well_covered": {
+      "window": [
+        "2024-12-02",
+        "2026-06-15"
+      ],
+      "span_days": 560.0,
+      "seasonal_cycles_in_window": 1.53,
+      "corr_season_sin_trend": 0.295,
+      "corr_season_cos_trend": -0.018,
+      "corr_season_sin_effort": 0.125,
+      "corr_season_cos_effort": -0.02,
+      "corr_trend_effort": 0.081,
+      "vif": {
+        "season_sin": 1.11,
+        "season_cos": 1.0,
+        "trend_months": 1.1,
+        "n_animals_observed": 1.02
+      }
+    },
+    "modularity_trend_verifiability": {
+      "well_covered_units": 12,
+      "units_spanning_window_with_20plus_weeks": 2,
+      "units": [
+        "Chartreuse",
+        "Lapis"
+      ],
+      "fitted": false,
+      "reason": "A balanced-panel fit would be clustered on 2 units. Cluster-robust standard errors are badly anti-conservative below roughly 10 clusters, so the trend term is reported as UNVERIFIABLE rather than confirmed or refuted. The unrestricted estimate stands on 12 units with collar coverage still carrying OR 1.53."
+    }
+  },
+  "axis_c_individual": {
+    "full_record": {
+      "resolvable_animal_nights": 75668,
+      "animals": 341,
+      "away_rate": 0.0309,
+      "onset_rate": 0.0016
+    },
+    "aliasing": {
+      "window": [
+        "2024-12-01",
+        "2026-07-21"
+      ],
+      "span_days": 597.0,
+      "seasonal_cycles_in_window": 1.63,
+      "corr_season_sin_trend": 0.258,
+      "corr_season_cos_trend": -0.312,
+      "corr_season_sin_effort": 0.088,
+      "corr_season_cos_effort": -0.009,
+      "corr_trend_effort": 0.165,
+      "vif": {
+        "season_sin": 1.07,
+        "season_cos": 1.11,
+        "trend_months": 1.21,
+        "unit_resolvable": 1.03
+      }
+    },
+    "by_calendar_month_away": [
+      {
+        "month_of_year": 1,
+        "rows": 7124,
+        "rate_pooled": 0.0257,
+        "units_present": 19,
+        "rate_unit_balanced": 0.0146
+      },
+      {
+        "month_of_year": 2,
+        "rows": 7093,
+        "rate_pooled": 0.0252,
+        "units_present": 19,
+        "rate_unit_balanced": 0.0419
+      },
+      {
+        "month_of_year": 3,
+        "rows": 7980,
+        "rate_pooled": 0.0338,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0715
+      },
+      {
+        "month_of_year": 4,
+        "rows": 7969,
+        "rate_pooled": 0.0364,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0747
+      },
+      {
+        "month_of_year": 5,
+        "rows": 8053,
+        "rate_pooled": 0.0356,
+        "units_present": 21,
+        "rate_unit_balanced": 0.0384
+      },
+      {
+        "month_of_year": 6,
+        "rows": 7391,
+        "rate_pooled": 0.0406,
+        "units_present": 20,
+        "rate_unit_balanced": 0.039
+      },
+      {
+        "month_of_year": 7,
+        "rows": 4014,
+        "rate_pooled": 0.0371,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0351
+      },
+      {
+        "month_of_year": 8,
+        "rows": 3407,
+        "rate_pooled": 0.0352,
+        "units_present": 11,
+        "rate_unit_balanced": 0.0306
+      },
+      {
+        "month_of_year": 9,
+        "rows": 3369,
+        "rate_pooled": 0.0288,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0181
+      },
+      {
+        "month_of_year": 10,
+        "rows": 4130,
+        "rate_pooled": 0.0169,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0156
+      },
+      {
+        "month_of_year": 11,
+        "rows": 4255,
+        "rate_pooled": 0.0266,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0198
+      },
+      {
+        "month_of_year": 12,
+        "rows": 7042,
+        "rate_pooled": 0.0332,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0353
+      }
+    ],
+    "by_calendar_month_onset": [
+      {
+        "month_of_year": 1,
+        "rows": 7124,
+        "rate_pooled": 0.002,
+        "units_present": 19,
+        "rate_unit_balanced": 0.0017
+      },
+      {
+        "month_of_year": 2,
+        "rows": 7093,
+        "rate_pooled": 0.0013,
+        "units_present": 19,
+        "rate_unit_balanced": 0.0012
+      },
+      {
+        "month_of_year": 3,
+        "rows": 7980,
+        "rate_pooled": 0.0016,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0019
+      },
+      {
+        "month_of_year": 4,
+        "rows": 7969,
+        "rate_pooled": 0.0006,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0011
+      },
+      {
+        "month_of_year": 5,
+        "rows": 8053,
+        "rate_pooled": 0.0015,
+        "units_present": 21,
+        "rate_unit_balanced": 0.0011
+      },
+      {
+        "month_of_year": 6,
+        "rows": 7391,
+        "rate_pooled": 0.0015,
+        "units_present": 20,
+        "rate_unit_balanced": 0.001
+      },
+      {
+        "month_of_year": 7,
+        "rows": 4014,
+        "rate_pooled": 0.004,
+        "units_present": 20,
+        "rate_unit_balanced": 0.0016
+      },
+      {
+        "month_of_year": 8,
+        "rows": 3407,
+        "rate_pooled": 0.0032,
+        "units_present": 11,
+        "rate_unit_balanced": 0.0028
+      },
+      {
+        "month_of_year": 9,
+        "rows": 3369,
+        "rate_pooled": 0.0003,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0002
+      },
+      {
+        "month_of_year": 10,
+        "rows": 4130,
+        "rate_pooled": 0.0015,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0016
+      },
+      {
+        "month_of_year": 11,
+        "rows": 4255,
+        "rate_pooled": 0.0026,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0023
+      },
+      {
+        "month_of_year": 12,
+        "rows": 7042,
+        "rate_pooled": 0.001,
+        "units_present": 15,
+        "rate_unit_balanced": 0.0007
+      }
+    ],
+    "away_model_with_effort": {
+      "label": "is the animal away from its origin group tonight? Binomial GEE clustered on unit",
+      "n": 71827,
+      "clusters": 22,
+      "effort_term_included": true,
+      "base_rate": 0.0319,
+      "terms": {
+        "season_sin": {
+          "coef": 0.0157,
+          "or_per_sd": 1.016,
+          "ci": [
+            0.75,
+            1.376
+          ]
+        },
+        "season_cos": {
+          "coef": -0.0901,
+          "or_per_sd": 0.914,
+          "ci": [
+            0.729,
+            1.145
+          ]
+        },
+        "trend_months": {
+          "coef": 0.1472,
+          "or_per_sd": 1.159,
+          "ci": [
+            0.873,
+            1.537
+          ]
+        },
+        "unit_resolvable": {
+          "coef": 0.1122,
+          "or_per_sd": 1.119,
+          "ci": [
+            0.562,
+            2.227
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.1284,
+      "seasonal_peak_day_of_year": 172.0,
+      "seasonal_peak_month": "Jun",
+      "seasonal_joint_wald_p": 0.73
+    },
+    "onset_model_with_effort": {
+      "label": "does an excursion START tonight? Binomial GEE clustered on unit",
+      "n": 71827,
+      "clusters": 22,
+      "effort_term_included": true,
+      "base_rate": 0.0016,
+      "terms": {
+        "season_sin": {
+          "coef": -0.105,
+          "or_per_sd": 0.9,
+          "ci": [
+            0.683,
+            1.186
+          ]
+        },
+        "season_cos": {
+          "coef": -0.1878,
+          "or_per_sd": 0.829,
+          "ci": [
+            0.584,
+            1.176
+          ]
+        },
+        "trend_months": {
+          "coef": -0.1981,
+          "or_per_sd": 0.82,
+          "ci": [
+            0.578,
+            1.164
+          ]
+        },
+        "unit_resolvable": {
+          "coef": -0.0448,
+          "or_per_sd": 0.956,
+          "ci": [
+            0.552,
+            1.655
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.3065,
+      "seasonal_peak_day_of_year": 214.0,
+      "seasonal_peak_month": "Aug",
+      "seasonal_joint_wald_p": 0.5733
+    },
+    "onset_model_without_effort": {
+      "label": "same, effort term dropped -- for contrast",
+      "n": 71827,
+      "clusters": 22,
+      "effort_term_included": false,
+      "base_rate": 0.0016,
+      "terms": {
+        "season_sin": {
+          "coef": -0.1065,
+          "or_per_sd": 0.899,
+          "ci": [
+            0.686,
+            1.177
+          ]
+        },
+        "season_cos": {
+          "coef": -0.1905,
+          "or_per_sd": 0.827,
+          "ci": [
+            0.595,
+            1.149
+          ]
+        },
+        "trend_months": {
+          "coef": -0.2057,
+          "or_per_sd": 0.814,
+          "ci": [
+            0.614,
+            1.079
+          ]
+        }
+      },
+      "seasonal_amplitude_logit": 0.3109,
+      "seasonal_peak_day_of_year": 214.0,
+      "seasonal_peak_month": "Aug",
+      "seasonal_joint_wald_p": 0.5226
+    }
+  },
+  "ndvi_reference": {
+    "n": 7423,
+    "units": 23,
+    "window": [
+      "2024-12-01",
+      "2026-04-29"
+    ],
+    "model": {
+      "label": "NDVI deviation from the unit's own mean; Gaussian GEE clustered on unit",
+      "n": 7423,
+      "clusters": 23,
+      "effort_term_included": true,
+      "base_rate": 0.0,
+      "terms": {
+        "season_sin": {
+          "coef": -0.009,
+          "effect_per_sd": -0.009,
+          "ci": [
+            -0.019,
+            0.001
+          ]
+        },
+        "season_cos": {
+          "coef": -0.029,
+          "effect_per_sd": -0.029,
+          "ci": [
+            -0.037,
+            -0.02
+          ]
+        },
+        "trend_months": {
+          "coef": -0.0075,
+          "effect_per_sd": -0.008,
+          "ci": [
+            -0.019,
+            0.004
+          ]
+        },
+        "ndvi_unit_mean": {
+          "coef": -0.0001,
+          "effect_per_sd": -0.0,
+          "ci": [
+            -0.003,
+            0.002
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.0458,
+      "seasonal_peak_day_of_year": 199.0,
+      "seasonal_peak_month": "Jul",
+      "seasonal_joint_wald_p": 0.0
+    },
+    "mean_ndvi_deviation_by_month": {
+      "1": -0.052,
+      "2": -0.0832,
+      "3": 0.0164,
+      "4": -0.0062,
+      "5": 0.1236,
+      "6": 0.0639,
+      "7": 0.0146,
+      "8": 0.0335,
+      "9": 0.0472,
+      "10": -0.0236,
+      "11": 0.0549,
+      "12": -0.0104
+    }
+  }
+}

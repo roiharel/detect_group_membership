@@ -1,0 +1,72 @@
+{
+  "source": "outputs\\copper_lilac_individual_network_may2025_2026-09-03\\individual_network_monthly_undirected.csv",
+  "permutations": 500,
+  "seed": 20260903,
+  "definitions": {
+    "Q_origin": "Newman modularity of the Copper|Lilac partition; falls as origins merge",
+    "Q_origin_z": "(observed - permuted mean) / permuted sd, origin labels shuffled",
+    "Q_within_*": "Louvain modularity inside one origin group alone",
+    "cross_within_ratio": "pooled cross-origin association / pooled within-origin"
+  },
+  "summary": {
+    "all": {
+      "Q_origin": 0.15343396399909817,
+      "Q_origin_z": 4.536182050156825,
+      "assortativity_origin": -0.098522555193401,
+      "Q_within_copper": 0.00012610970898665815,
+      "Q_within_lilac": 0.0019032923798243243,
+      "cross_within_ratio": 0.39447606013121295
+    },
+    "pre_deployment": {
+      "Q_origin": 0.2765195605009061,
+      "Q_origin_z": 6.612276075060796,
+      "assortativity_origin": -0.014083806692502332,
+      "Q_within_copper": 0.0002049282771033195,
+      "Q_within_lilac": 0.0020011498798298763,
+      "cross_within_ratio": 0.18547259695065627
+    },
+    "post_deployment": {
+      "Q_origin": 0.0415379671792728,
+      "Q_origin_z": 2.648823845698667,
+      "assortativity_origin": -0.17528505383058166,
+      "Q_within_copper": 0.0,
+      "Q_within_lilac": 0.001511862379802116,
+      "cross_within_ratio": 0.5844792084771735
+    },
+    "early_to_2025_05": {
+      "Q_origin": 0.2891347782962954,
+      "Q_origin_z": 6.753656825265738,
+      "assortativity_origin": 0.0032285749677054137,
+      "Q_within_copper": 0.000273237702804426,
+      "Q_within_lilac": 0.0,
+      "cross_within_ratio": 0.15137225451205888
+    },
+    "from_2026": {
+      "Q_origin": 0.0105192740923429,
+      "Q_origin_z": 2.235652204838639,
+      "assortativity_origin": -0.21111111111111105,
+      "Q_within_copper": 0.0,
+      "Q_within_lilac": NaN,
+      "cross_within_ratio": 0.5507195221875916
+    }
+  },
+  "trends": {
+    "Q_origin": {
+      "per_year": -0.20114226297512353,
+      "p": 1.3404180664371262e-09
+    },
+    "assortativity_origin": {
+      "per_year": -0.19619878823234926,
+      "p": 0.005310371793865249
+    },
+    "Q_within_copper": {
+      "per_year": -0.00015262875464758726,
+      "p": 0.39661894606633985
+    },
+    "Q_within_lilac": {
+      "per_year": 0.006397032737984126,
+      "p": 0.03305947249722438
+    }
+  },
+  "caveat": "Conditioned on canonical Copper-Lilac fusion hours, which saturate after 2025-08-01; association is GPS proximity at 5 m, not affiliation."
+}

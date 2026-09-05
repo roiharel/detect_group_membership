@@ -1,0 +1,78 @@
+{
+  "focal": "24AE04_6L7M",
+  "roost_radius_m": 100.0,
+  "roost_proxy": "median of last 15 min of recording (dusk) and first 15 min of the following day (dawn); a shared roost requires both",
+  "first_month_favouring_copper": "2025-06-01 00:00:00",
+  "monthly": [
+    {
+      "month": "2024-11-01 00:00:00",
+      "nights": 17,
+      "with_lilac": 0.76890756302521,
+      "with_copper": 0.4117647058823529,
+      "lilac_minus_copper": 0.3571428571428571
+    },
+    {
+      "month": "2024-12-01 00:00:00",
+      "nights": 30,
+      "with_lilac": 0.8976190476190475,
+      "with_copper": 0.3958333333333333,
+      "lilac_minus_copper": 0.5017857142857143
+    },
+    {
+      "month": "2025-01-01 00:00:00",
+      "nights": 31,
+      "with_lilac": 0.9205837173579109,
+      "with_copper": 0.23790322580645162,
+      "lilac_minus_copper": 0.6826804915514593
+    },
+    {
+      "month": "2025-02-01 00:00:00",
+      "nights": 28,
+      "with_lilac": 0.8571428571428571,
+      "with_copper": 0.0,
+      "lilac_minus_copper": 0.8571428571428571
+    },
+    {
+      "month": "2025-03-01 00:00:00",
+      "nights": 31,
+      "with_lilac": 0.874731182795699,
+      "with_copper": 0.40552995391705066,
+      "lilac_minus_copper": 0.4692012288786483
+    },
+    {
+      "month": "2025-04-01 00:00:00",
+      "nights": 30,
+      "with_lilac": 0.9444444444444445,
+      "with_copper": 0.5341269841269842,
+      "lilac_minus_copper": 0.4103174603174603
+    },
+    {
+      "month": "2025-05-01 00:00:00",
+      "nights": 31,
+      "with_lilac": 0.6462365591397848,
+      "with_copper": 0.3310291858678956,
+      "lilac_minus_copper": 0.31520737327188925
+    },
+    {
+      "month": "2025-06-01 00:00:00",
+      "nights": 30,
+      "with_lilac": 0.5733333333333334,
+      "with_copper": 0.7484126984126984,
+      "lilac_minus_copper": -0.17507936507936506
+    },
+    {
+      "month": "2025-07-01 00:00:00",
+      "nights": 25,
+      "with_lilac": 0.2546666666666667,
+      "with_copper": 0.8971428571428571,
+      "lilac_minus_copper": -0.6424761904761904
+    },
+    {
+      "month": "2025-08-01 00:00:00",
+      "nights": 28,
+      "with_lilac": 0.4857142857142857,
+      "with_copper": 0.9829931972789117,
+      "lilac_minus_copper": -0.49727891156462595
+    }
+  ]
+}

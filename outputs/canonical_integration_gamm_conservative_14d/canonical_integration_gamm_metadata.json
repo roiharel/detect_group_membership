@@ -1,0 +1,37 @@
+{
+  "canonical": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support_conservative_dynamic\\canonical_hourly_membership.parquet",
+  "output_dir": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_integration_gamm_conservative_14d",
+  "trace_types": {
+    "dispersal_join": "dynamic_assignment == sustained_non_origin_association; context is same temp cluster and same dynamic social unit",
+    "within_group_split_off": "animal is in a non-main temp_group component while its dynamic_social_unit is split across multiple components; context is all same dynamic_social_unit animals at that timestamp"
+  },
+  "responses": {
+    "centroid_centrality_percentile": {
+      "label": "Centroid centrality percentile",
+      "interpretation": "higher = more integrated / central",
+      "ylim": [
+        -3,
+        103
+      ]
+    },
+    "normalized_centroid_distance": {
+      "label": "Normalized centroid distance",
+      "interpretation": "lower = more integrated / central",
+      "ylim": null
+    },
+    "log1p_normalized_centroid_distance": {
+      "label": "log1p normalized centroid distance",
+      "interpretation": "lower = more integrated / central; log scale dampens extreme split distances",
+      "ylim": null
+    }
+  },
+  "model": "MixedLM(response ~ cubic B-spline(days_since_trace_start, df=5) + random intercept by trace_id)",
+  "max_gap_hours": 36,
+  "min_split_trace_hours": 6,
+  "min_split_trace_timestamps": 6,
+  "min_context_animals": 2,
+  "max_model_days": 60,
+  "n_trace_rows": 99635,
+  "n_metric_rows": 94407,
+  "n_traces": 1464
+}

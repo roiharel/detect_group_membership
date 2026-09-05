@@ -1,0 +1,276 @@
+<title>Temporal Variation in Social Structure</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--ground:#f4f5f3;--paper:#fff;--ink:#15191a;--ink-2:#3a4244;--muted:#6b7476;
+--rule:#d5dad7;--rule-soft:#e6eae7;--accent:#0f5f57;
+--c1:#1f6f8b;--c2:#4a92aa;--c3:#84b6c6;--c4:#8a5a1f;--c5:#6b4a7a;
+--sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+--serif:"Newsreader",Georgia,serif;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0f1213;
+--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;--muted:#8f9998;--rule:#2c3435;
+--rule-soft:#232a2b;--accent:#5fc0b0;--c1:#74b6d0;--c2:#4f93ad;--c3:#356a7f;
+--c4:#d3a061;--c5:#b494c4;}}
+:root[data-theme="dark"]{--ground:#0f1213;--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;
+--muted:#8f9998;--rule:#2c3435;--rule-soft:#232a2b;--accent:#5fc0b0;--c1:#74b6d0;
+--c2:#4f93ad;--c3:#356a7f;--c4:#d3a061;--c5:#b494c4;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:800px;margin:0 auto;padding:48px 28px 80px}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.15;
+letter-spacing:-.01em;margin:0 0 26px;text-wrap:balance}
+.plate{background:var(--paper);border:1px solid var(--rule-soft);padding:22px 22px 8px}
+.plate svg{display:block;width:100%;height:auto;overflow:visible}
+.scroll{overflow-x:auto}.scroll>svg{min-width:640px}
+.cap{font-size:12.5px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;
+padding-top:14px;border-top:1px solid var(--rule)}
+.cap b{font-weight:600;color:var(--ink)}.cap .fignum{font-weight:600;color:var(--ink)}
+.note{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:22px;
+padding-top:14px;border-top:1px solid var(--rule-soft)}
+.note code{font-family:var(--mono);font-size:.92em}
+text{font-family:var(--sans)}
+.gl{font-size:9.4px;fill:var(--ink-2)}
+.ts{font-size:8.4px;fill:var(--muted)}
+.ph{font-size:11px;fill:var(--ink);font-weight:600}
+.pl{font-size:14px;font-weight:700;fill:var(--ink)}
+.g{stroke:var(--rule-soft);stroke-width:.8}
+.ax{stroke:var(--rule);stroke-width:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+  <div class="kicker">Figure 4 &middot; draft</div>
+  <h1>How often and with whom is a group property; how is not</h1>
+
+  <div class="plate">
+    <div class="scroll"><svg viewBox="0 0 700 736" role="img" aria-label="Three panels. Event rate and partner identity are stable group properties; merge-scale composition is not distinguishable from shuffled group labels and well-sampled groups traverse most of its range within their own record.">
+<text class="pl" x="0" y="26.0">a</text>
+<text class="ph" x="18" y="26.0">A hierarchy of stability</text>
+<line class="g" x1="176.0" y1="50.0" x2="176.0" y2="236.0"/>
+<text class="ts" x="176.0" y="248.0" text-anchor="middle">0</text>
+<line class="g" x1="251.0" y1="50.0" x2="251.0" y2="236.0"/>
+<text class="ts" x="251.0" y="248.0" text-anchor="middle">0.25</text>
+<line class="g" x1="326.0" y1="50.0" x2="326.0" y2="236.0"/>
+<text class="ts" x="326.0" y="248.0" text-anchor="middle">0.50</text>
+<line class="g" x1="401.0" y1="50.0" x2="401.0" y2="236.0"/>
+<text class="ts" x="401.0" y="248.0" text-anchor="middle">0.75</text>
+<line class="g" x1="476.0" y1="50.0" x2="476.0" y2="236.0"/>
+<text class="ts" x="476.0" y="248.0" text-anchor="middle">1</text>
+<line x1="326.0" y1="50.0" x2="326.0" y2="236.0" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".6"/>
+<text class="ts" x="326.0" y="47.0" text-anchor="middle">half</text>
+<text class="gl" x="167.0" y="68.4" text-anchor="end">Event rate per group-week</text>
+<rect x="176.0" y="60.4" width="198.6" height="9" fill="var(--c1)" opacity=".85"/>
+<text class="ts" x="381.6" y="68.4">0.66</text>
+<text class="ts" x="534.0" y="68.4">92 group-quarters, 23 groups</text>
+<text class="gl" x="167.0" y="88.4" text-anchor="end">Merge-partner identity</text>
+<text class="ts" x="180.0" y="88.4" fill="var(--c1)">not a variance ratio &mdash; see note</text>
+<text class="ts" x="534.0" y="88.4">Jaccard 0.61 vs null 0.15 (4.0×)</text>
+<text class="gl" x="167.0" y="108.4" text-anchor="end">Family: individual separations</text>
+<rect x="176.0" y="100.4" width="157.8" height="9" fill="var(--c1)" opacity=".85"/>
+<text class="ts" x="340.8" y="108.4">0.53   p = < 0.001</text>
+<text class="ts" x="534.0" y="108.4">76 group-quarters, 14 groups</text>
+<text class="gl" x="167.0" y="128.4" text-anchor="end">Family: between-group merges</text>
+<rect x="176.0" y="120.4" width="142.5" height="9" fill="var(--c1)" opacity=".85"/>
+<text class="ts" x="325.5" y="128.4">0.47   p = < 0.001</text>
+<text class="gl" x="167.0" y="148.4" text-anchor="end">Family: within-group splits</text>
+<rect x="176.0" y="140.4" width="95.1" height="9" fill="var(--c1)" opacity=".85"/>
+<text class="ts" x="278.1" y="148.4">0.32   p = < 0.001</text>
+<text class="gl" x="167.0" y="168.4" text-anchor="end">Within-group modularity</text>
+<rect x="176.0" y="160.4" width="50.7" height="9" fill="var(--c4)" opacity=".85"/>
+<text class="ts" x="233.7" y="168.4">0.17</text>
+<text class="ts" x="534.0" y="168.4">368 group-weeks, 12 units</text>
+<text class="gl" x="167.0" y="188.4" text-anchor="end">Merge scale: small subset</text>
+<rect x="176.0" y="180.4" width="39.0" height="9" fill="var(--c4)" opacity=".85"/>
+<text class="ts" x="222.0" y="188.4">0.13   p = 0.086</text>
+<text class="ts" x="534.0" y="188.4">54 group-quarters, 10 groups</text>
+<text class="gl" x="167.0" y="208.4" text-anchor="end">Merge scale: large merge</text>
+<rect x="176.0" y="200.4" width="16.8" height="9" fill="var(--c4)" opacity=".85"/>
+<text class="ts" x="199.8" y="208.4">0.06   p = 0.261</text>
+<text class="gl" x="167.0" y="228.4" text-anchor="end">Merge scale: medium partial</text>
+<rect x="176.0" y="220.4" width="15.9" height="9" fill="var(--c4)" opacity=".85"/>
+<text class="ts" x="198.9" y="228.4">0.05   p = 0.257</text>
+<line class="ax" x1="176.0" y1="236.0" x2="476.0" y2="236.0"/>
+<text class="ts" x="326.0" y="263.0" text-anchor="middle">share of variance between groups rather than within a group over time</text>
+<text class="pl" x="0" y="302.0">b</text>
+<text class="ph" x="18" y="302.0">Merge scale, quarter by quarter</text>
+<line class="g" x1="176.0" y1="330.0" x2="176.0" y2="498.0"/>
+<text class="ts" x="176.0" y="510.0" text-anchor="middle">'25Q1</text>
+<line class="g" x1="236.0" y1="330.0" x2="236.0" y2="498.0"/>
+<text class="ts" x="236.0" y="510.0" text-anchor="middle">'25Q2</text>
+<line class="g" x1="296.0" y1="330.0" x2="296.0" y2="498.0"/>
+<text class="ts" x="296.0" y="510.0" text-anchor="middle">'25Q3</text>
+<line class="g" x1="356.0" y1="330.0" x2="356.0" y2="498.0"/>
+<text class="ts" x="356.0" y="510.0" text-anchor="middle">'25Q4</text>
+<line class="g" x1="416.0" y1="330.0" x2="416.0" y2="498.0"/>
+<text class="ts" x="416.0" y="510.0" text-anchor="middle">'26Q1</text>
+<line class="g" x1="476.0" y1="330.0" x2="476.0" y2="498.0"/>
+<text class="ts" x="476.0" y="510.0" text-anchor="middle">'26Q2</text>
+<line class="g" x1="176.0" y1="498.0" x2="476.0" y2="498.0"/>
+<text class="ts" x="170.0" y="501.0" text-anchor="end">0</text>
+<line class="g" x1="176.0" y1="414.0" x2="476.0" y2="414.0"/>
+<text class="ts" x="170.0" y="417.0" text-anchor="end">.5</text>
+<line class="g" x1="176.0" y1="330.0" x2="476.0" y2="330.0"/>
+<text class="ts" x="170.0" y="333.0" text-anchor="end">1</text>
+<polyline points="236.0,426.9 296.0,412.6 356.0,430.8 416.0,400.7 476.0,417.8" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="236.0" cy="426.9" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="412.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="430.8" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="400.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="417.8" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="420.8" fill="var(--c1)">Bronze</text>
+<polyline points="176.0,408.9 236.0,422.6 296.0,419.0 356.0,460.2 416.0,424.5" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="408.9" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="422.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="419.0" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="460.2" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="424.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="422.0" y="427.5" fill="var(--c1)">Chartreuse</text>
+<polyline points="176.0,387.7 236.0,402.5 296.0,447.8 356.0,443.8 416.0,438.5 476.0,421.6" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="387.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="402.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="447.8" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="443.8" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="438.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="421.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="424.6" fill="var(--c1)">Copper</text>
+<polyline points="176.0,412.6 236.0,404.4 296.0,402.6 356.0,468.0 416.0,430.3" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="412.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="404.4" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="402.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="468.0" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="430.3" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="422.0" y="433.3" fill="var(--c1)">Emerald</text>
+<polyline points="416.0,334.7 476.0,387.6" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="416.0" cy="334.7" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="387.6" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="356.0,381.1 416.0,359.1 476.0,393.4" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="356.0" cy="381.1" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="416.0" cy="359.1" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="393.4" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="176.0,370.7 236.0,427.1 296.0,447.7 356.0,401.3 416.0,444.5 476.0,422.6" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="370.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="427.1" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="447.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="401.3" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="444.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="422.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="425.6" fill="var(--c1)">Lapis</text>
+<polyline points="176.0,393.4 236.0,404.3 296.0,403.0 356.0,399.2 416.0,417.8 476.0,410.6" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="393.4" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="404.3" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="403.0" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="399.2" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="417.8" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="410.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="413.6" fill="var(--c1)">LapisSplinter</text>
+<polyline points="176.0,409.0 236.0,409.3 296.0,468.1 356.0,463.1 416.0,437.2 476.0,422.1" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="409.0" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="409.3" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="468.1" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="463.1" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="437.2" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="422.1" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="425.1" fill="var(--c1)">Lilac</text>
+<polyline points="176.0,387.2 236.0,401.3 296.0,428.9 356.0,424.7 416.0,401.5 476.0,424.7" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="387.2" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="236.0" cy="401.3" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="428.9" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="424.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="401.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="424.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="427.7" fill="var(--c1)">Magenta</text>
+<polyline points="416.0,346.8 476.0,381.1" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="416.0" cy="346.8" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="381.1" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="176.0,383.5 296.0,404.7 356.0,391.1 416.0,446.7 476.0,436.6" fill="none" stroke="var(--c1)" stroke-width="1.6" opacity=".9" stroke-linejoin="round"/>
+<circle cx="176.0" cy="383.5" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="296.0" cy="404.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="356.0" cy="391.1" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="416.0" cy="446.7" r="2.4" fill="var(--c1)" opacity=".9"/>
+<circle cx="476.0" cy="436.6" r="2.4" fill="var(--c1)" opacity=".9"/>
+<text class="ts" x="482.0" y="439.6" fill="var(--c1)">Periwinkle</text>
+<polyline points="356.0,489.9 416.0,394.6" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="356.0" cy="489.9" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="416.0" cy="394.6" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="296.0,410.9 356.0,402.5 416.0,378.0 476.0,396.0" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="296.0" cy="410.9" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="356.0" cy="402.5" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="416.0" cy="378.0" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="396.0" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="416.0,424.6 476.0,448.2" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="416.0" cy="424.6" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="448.2" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="416.0,471.1 476.0,457.8" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="416.0" cy="471.1" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="457.8" r="1.6" fill="var(--muted)" opacity=".45"/>
+<polyline points="416.0,424.6 476.0,456.0" fill="none" stroke="var(--muted)" stroke-width="1" opacity=".45" stroke-linejoin="round"/>
+<circle cx="416.0" cy="424.6" r="1.6" fill="var(--muted)" opacity=".45"/>
+<circle cx="476.0" cy="456.0" r="1.6" fill="var(--muted)" opacity=".45"/>
+<line class="ax" x1="176.0" y1="498.0" x2="476.0" y2="498.0"/>
+<line class="ax" x1="176.0" y1="330.0" x2="176.0" y2="498.0"/>
+<text class="ts" transform="translate(150.0 414.0) rotate(-90)" text-anchor="middle">share of merges that are large</text>
+<text class="pl" x="0" y="558.0">c</text>
+<text class="ph" x="18" y="558.0">Merge-partner fidelity</text>
+<line class="g" x1="176.0" y1="586.0" x2="176.0" y2="682.0"/>
+<text class="ts" x="176.0" y="694.0" text-anchor="middle">0</text>
+<line class="g" x1="251.0" y1="586.0" x2="251.0" y2="682.0"/>
+<text class="ts" x="251.0" y="694.0" text-anchor="middle">0.25</text>
+<line class="g" x1="326.0" y1="586.0" x2="326.0" y2="682.0"/>
+<text class="ts" x="326.0" y="694.0" text-anchor="middle">0.50</text>
+<line class="g" x1="401.0" y1="586.0" x2="401.0" y2="682.0"/>
+<text class="ts" x="401.0" y="694.0" text-anchor="middle">0.75</text>
+<line class="g" x1="476.0" y1="586.0" x2="476.0" y2="682.0"/>
+<text class="ts" x="476.0" y="694.0" text-anchor="middle">1</text>
+<polyline points="176.0,682.0 176.0,680.7 218.9,679.4 218.9,678.1 236.0,676.8 251.0,675.5 251.0,674.2 251.0,672.9 261.8,671.6 275.9,670.3 275.9,669.0 275.9,667.7 275.9,666.4 296.0,665.1 296.0,663.8 296.0,662.5 301.1,661.2 304.7,659.9 304.7,658.6 304.7,657.4 304.7,656.1 304.7,654.8 304.7,653.5 309.2,652.2 326.0,650.9 326.0,649.6 326.0,648.3 326.0,647.0 326.0,645.7 326.0,644.4 326.0,643.1 326.0,641.8 326.0,640.5 337.4,639.2 342.8,637.9 342.8,636.6 347.3,635.3 347.3,634.0 356.0,632.7 356.0,631.4 363.5,630.1 363.5,628.8 366.8,627.5 376.1,626.2 376.1,624.9 376.1,623.6 376.1,622.3 376.1,621.0 376.1,619.7 401.0,618.4 401.0,617.1 401.0,615.8 401.0,614.5 401.0,613.2 401.0,611.9 401.0,610.6 401.0,609.4 409.4,608.1 416.0,606.8 425.9,605.5 433.1,604.2 476.0,602.9 476.0,601.6 476.0,600.3 476.0,599.0 476.0,597.7 476.0,596.4 476.0,595.1 476.0,593.8 476.0,592.5 476.0,591.2 476.0,589.9 476.0,588.6 476.0,587.3 476.0,586.0" fill="none" stroke="var(--c1)" stroke-width="1.8"/>
+<line x1="222.2" y1="581.0" x2="222.2" y2="682.0" stroke="var(--c4)" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text class="ts" x="222.2" y="578.0" text-anchor="middle" fill="var(--c4)">null mean 0.15</text>
+<line x1="359.0" y1="581.0" x2="359.0" y2="682.0" stroke="var(--c1)" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text class="ts" x="359.0" y="578.0" text-anchor="middle" fill="var(--c1)">observed mean 0.61</text>
+<line class="ax" x1="176.0" y1="682.0" x2="476.0" y2="682.0"/>
+<line class="ax" x1="176.0" y1="586.0" x2="176.0" y2="682.0"/>
+<text class="ts" x="326.0" y="709.0" text-anchor="middle">Jaccard similarity of merge-partner sets, consecutive quarters (n = 74)</text>
+<text class="ts" transform="translate(150.0 634.0) rotate(-90)" text-anchor="middle">cumulative</text>
+</svg></div>
+    <p class="cap">
+      <span class="fignum">Figure 4.</span> Temporal decomposition of social structure over six
+      calendar quarters (2025Q1&ndash;2026Q2).
+      <b>(a)</b> For each quantity, the share of variance sitting between groups rather than
+      within a group over time, with a permutation test that shuffles group labels across
+      group-quarters and so keeps quarter-to-quarter drift intact. Event rate per group-week is
+      strongly a group property (ICC 0.66, and collar count does not
+      predict it, p&nbsp;=&nbsp;0.29). Event <em>family</em> composition is
+      about half a group property (ICC 0.53,
+      0.47, 0.32; all
+      p&nbsp;&le;&nbsp;0.001). Merge-<em>scale</em> composition is not
+      (ICC 0.06&ndash;0.13,
+      permutation p&nbsp;=&nbsp;0.09&ndash;0.26),
+      nor is within-group modularity (ICC 0.17).
+      <b>(b)</b> The same merge-scale proportion quarter by quarter, one line per group; groups
+      with five or more usable quarters are drawn heavy and labelled. Lapis traverses
+      0.30&ndash;0.76 across its own six quarters on
+      376 merges &mdash; a swing of 0.46, wider than the
+      whole between-group spread. LapisSplinter is the exception, holding
+      0.48&ndash;0.62 over six quarters.
+      <b>(c)</b> Empirical distribution of merge-partner set overlap between consecutive
+      quarters, 74 group-quarter transitions. Mean Jaccard
+      0.61 against 0.15 for a null that redraws the
+      same number of partners from those actually available that quarter &mdash;
+      4.0&times;. Groups keep their partners.
+    </p>
+  </div>
+
+  <p class="note">
+    <b>This corrects Figure 3.</b> That figure tested between-group composition against a
+    multinomial null in which each group drew from a fixed pooled distribution with no temporal
+    structure. Panel (b) here shows why that null is too weak for merge scale: once
+    quarter-to-quarter drift is retained, the between-group ordering is not distinguishable from
+    shuffled labels. Figure 3's family-composition result stands; its merge-scale panel should be
+    read as showing variation in the population, not differences between groups. Legacy hourly
+    source, 2025-01-01 onward; group-quarters need 20 events and groups need 4 quarters to enter
+    (a). Merges are counted for both participating groups. Modularity ICC is from the frozen
+    cohort. Generated by <code>build_temporal_figure.py</code> from
+    <code>analyze_temporal_variation.py</code>; seed 20260904.
+  </p>
+</div>

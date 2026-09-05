@@ -1,0 +1,67 @@
+{
+  "share_current": {
+    "label": "share_current",
+    "path": "//10.126.19.90/EAS_shared/baboon/working/data/processed/2025/gps/v1_cleaned/gps_v1.parquet",
+    "rows": 30143804,
+    "size_gb": 1.34,
+    "modified": "2026-09-05 09:32:30.484615803",
+    "columns": 17,
+    "animals": 392,
+    "start": "2024-03-01 04:01:09+00:00",
+    "end": "2026-09-05 06:00:00+00:00",
+    "groups": 27,
+    "probes": {
+      "25AA07_4S5T": {
+        "n": 95763,
+        "first": "2025-07-08 13:00:07+00:00",
+        "last": "2026-03-16 06:58:16+00:00"
+      },
+      "24AC17_7J8K": {
+        "n": 24780,
+        "first": "2024-07-16 08:54:07+00:00",
+        "last": "2025-08-29 16:00:06+00:00"
+      },
+      "24AA01_5O8B": {
+        "n": 305617,
+        "first": "2024-03-05 06:24:07+00:00",
+        "last": "2026-07-10 05:56:06+00:00"
+      }
+    },
+    "animals_ending_before_2026_06": 85
+  },
+  "local_network_v1": {
+    "label": "local_network_v1",
+    "path": "C:\\Users\\rharel\\Documents\\New project\\outputs\\network_v1_cleaned_gps_v1.parquet",
+    "rows": 24153071,
+    "size_gb": 1.03,
+    "modified": "2026-06-18 09:03:35.600533247",
+    "columns": 13,
+    "animals": 372,
+    "start": "2024-03-01 04:01:09+00:00",
+    "end": "2026-06-18 02:00:00+00:00",
+    "groups": 27,
+    "probes": {
+      "25AA07_4S5T": {
+        "n": 98678,
+        "first": "2025-07-08 13:00:07+00:00",
+        "last": "2026-03-23 13:26:30+00:00"
+      },
+      "24AC17_7J8K": {
+        "n": 24780,
+        "first": "2024-07-16 08:54:07+00:00",
+        "last": "2025-08-29 16:00:06+00:00"
+      },
+      "24AA01_5O8B": {
+        "n": 297247,
+        "first": "2024-03-05 06:24:07+00:00",
+        "last": "2026-06-17 00:00:16+00:00"
+      }
+    },
+    "animals_ending_before_2026_06": 202
+  },
+  "delta_share_minus_local": {
+    "rows": 5990733,
+    "animals": 20,
+    "end_shift_days": 79.2
+  }
+}

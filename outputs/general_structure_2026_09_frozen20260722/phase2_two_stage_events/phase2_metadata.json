@@ -1,0 +1,127 @@
+{
+  "phase": "2 - two-stage encounter unit",
+  "generated_utc": "2026-09-03T20:58:32+00:00",
+  "membership_source": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership_with_association_events.parquet",
+  "finescale_sources": {
+    "5m": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_5m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+    "2m": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv"
+  },
+  "stage1_definition": "two dynamic social units co-present in one spatial cluster, consecutive encounter hours stitched when separated by <= 3.0 h",
+  "stage2_definition": "every eligible fine-scale 2-minute bin inside the stage-1 window, including bins with zero cross-group contact",
+  "duration_fields": {
+    "structural_span_hours": "last encounter hour minus first, plus one hour",
+    "supported_exposure_hours": "eligible fine-scale bins x 2 minutes",
+    "active_contact_hours": "contact-positive bins x 2 minutes"
+  },
+  "encounter_class_rule": "structural span >= 168 h is a sustained association, not a discrete encounter; threshold matches the membership builder's 7-day dynamic-reassignment rule",
+  "primary_gap_rule_hours": 3.0,
+  "stage1_events": 1705,
+  "stage1_dyads": 68,
+  "stage1_events_by_class": {
+    "discrete_encounter": 1689,
+    "sustained_association": 16
+  },
+  "sustained_association_dyads": [
+    "Bronze - Magenta",
+    "Copper - LapisSplinter",
+    "Copper - Lilac",
+    "LapisSplinter - Lilac",
+    "Maroon - Sapphire"
+  ],
+  "discrete_encounter_dyads": 68,
+  "median_discrete_encounter_span_hours": 14.0,
+  "stage1_events_by_scale": {
+    "large_merge": 1409,
+    "small_subset_merge": 211,
+    "medium_partial_merge": 85
+  },
+  "events_with_5m_finescale": 751,
+  "events_with_2m_finescale": 668,
+  "dyads_with_5m_finescale": 12,
+  "total_eligible_bins_5m": 159351,
+  "total_positive_bins_5m": 91621,
+  "share_of_5m_exposure_with_zero_cross_contact": 0.425,
+  "median_structural_span_hours": 14.0,
+  "median_supported_exposure_hours_where_measured": 2.3,
+  "median_active_contact_hours_where_measured": 0.16666666666666666,
+  "worked_example": {
+    "stage1_event_id": "Lapis__LapisSplinter__E0080",
+    "pair_key": "Lapis - LapisSplinter",
+    "start_hour": "2026-05-19 11:00:00",
+    "end_hour": "2026-05-21 04:00:00",
+    "structural_span_hours": 42.0,
+    "eligible_bins_retained_by_phase2": 517,
+    "bins_retained_by_saved_pipeline": 53,
+    "bins_dropped_by_saved_pipeline": 464,
+    "share_of_exposure_dropped_by_saved_pipeline": 0.8975
+  },
+  "gap_rule_sensitivity": [
+    {
+      "gap_rule_hours": 2.0,
+      "events": 1812,
+      "dyads": 68,
+      "median_structural_span_hours": 14.0,
+      "mean_structural_span_hours": 19.904525386313466,
+      "max_structural_span_hours": 8500.0,
+      "median_encounter_hours": 14.0,
+      "large_merge": 1484,
+      "medium_partial_merge": 91,
+      "small_subset_merge": 237,
+      "discrete_encounters": 1793,
+      "sustained_associations": 19,
+      "sustained_dyads": 5
+    },
+    {
+      "gap_rule_hours": 3.0,
+      "events": 1705,
+      "dyads": 68,
+      "median_structural_span_hours": 14.0,
+      "mean_structural_span_hours": 21.279178885630497,
+      "max_structural_span_hours": 8506.0,
+      "median_encounter_hours": 14.0,
+      "large_merge": 1409,
+      "medium_partial_merge": 85,
+      "small_subset_merge": 211,
+      "discrete_encounters": 1689,
+      "sustained_associations": 16,
+      "sustained_dyads": 5
+    },
+    {
+      "gap_rule_hours": 6.0,
+      "events": 1547,
+      "dyads": 68,
+      "median_structural_span_hours": 14.0,
+      "mean_structural_span_hours": 23.835811247575954,
+      "max_structural_span_hours": 8506.0,
+      "median_encounter_hours": 14.0,
+      "large_merge": 1287,
+      "medium_partial_merge": 76,
+      "small_subset_merge": 184,
+      "discrete_encounters": 1529,
+      "sustained_associations": 18,
+      "sustained_dyads": 6
+    },
+    {
+      "gap_rule_hours": 14.0,
+      "events": 1109,
+      "dyads": 68,
+      "median_structural_span_hours": 6.0,
+      "mean_structural_span_hours": 36.76375112714157,
+      "max_structural_span_hours": 8506.0,
+      "median_encounter_hours": 6.0,
+      "large_merge": 911,
+      "medium_partial_merge": 54,
+      "small_subset_merge": 144,
+      "discrete_encounters": 1072,
+      "sustained_associations": 37,
+      "sustained_dyads": 12
+    }
+  ],
+  "outputs": {
+    "events": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_events_with_stage2_mixing.csv",
+    "encounter_hours": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_encounter_hours.csv",
+    "dyad_coverage": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_dyad_coverage.csv",
+    "gap_sensitivity": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_gap_rule_sensitivity.csv",
+    "worked_example_bins": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\worked_example_bins.csv"
+  }
+}

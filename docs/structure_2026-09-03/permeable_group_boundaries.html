@@ -1,0 +1,701 @@
+<title>Permeable Group Boundaries</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --paper: #F1F3F0;
+    --surface: #FFFFFF;
+    --ink: #191C1A;
+    --ink-2: #3B423D;
+    --muted: #6C7570;
+    --rule: #D2D8D2;
+    --rule-strong: #A9B2AB;
+    --accent: #1F4E5F;
+    --accent-soft: #E1EAEC;
+    --bar: #4A8494;
+    --bar-track: #E3E7E3;
+    --warn: #7E6412;
+    --copper: #B06B33;
+    --lilac: #9B87C4;
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131614;
+      --surface: #1A1E1B;
+      --ink: #E9EBE7;
+      --ink-2: #C3C9C3;
+      --muted: #949D97;
+      --rule: #2B312D;
+      --rule-strong: #46504A;
+      --accent: #86BDC9;
+      --accent-soft: #1C2C31;
+      --bar: #4E8FA0;
+      --bar-track: #232823;
+      --warn: #C9A73E;
+      --copper: #C7822F;
+      --lilac: #A996D4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131614;
+    --surface: #1A1E1B;
+    --ink: #E9EBE7;
+    --ink-2: #C3C9C3;
+    --muted: #949D97;
+    --rule: #2B312D;
+    --rule-strong: #46504A;
+    --accent: #86BDC9;
+    --accent-soft: #1C2C31;
+    --bar: #4E8FA0;
+    --bar-track: #232823;
+    --warn: #C9A73E;
+    --copper: #C7822F;
+    --lilac: #A996D4;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+  }
+  .prose { max-width: 40rem; }
+  p { margin: 0 0 0.85rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+  code, .mono { font-family: var(--mono); font-size: 0.86em; }
+  code {
+    background: var(--accent-soft);
+    padding: 0.08em 0.32em;
+    color: var(--ink-2);
+  }
+  a { color: var(--accent); }
+
+  /* ---- masthead ---- */
+  header { display: flex; flex-direction: column; gap: 1.1rem; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+  }
+  h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.2vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    margin: 0;
+    text-wrap: balance;
+    max-width: 34rem;
+  }
+  .standfirst {
+    font-size: 1.12rem;
+    color: var(--ink-2);
+    max-width: 38rem;
+    margin: 0;
+  }
+  .ledger {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    border-top: 1px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 0.6rem;
+  }
+  .ledger div {
+    padding: 0.7rem 0.9rem 0.75rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .ledger dt, .ledger .k {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ledger .v {
+    font-family: var(--mono);
+    font-size: 1.06rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  /* ---- sections ---- */
+  section { display: flex; flex-direction: column; gap: 1.1rem; }
+  .shead { display: flex; flex-direction: column; gap: 0.3rem; border-top: 1px solid var(--rule-strong); padding-top: 0.9rem; }
+  .snum {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.014em;
+    line-height: 1.16;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.02rem;
+    letter-spacing: -0.006em;
+    margin: 0.7rem 0 0.15rem;
+    text-wrap: balance;
+  }
+  .claim {
+    font-family: var(--serif);
+    font-size: 1.06rem;
+    border-left: 2px solid var(--accent);
+    padding: 0.1rem 0 0.1rem 1rem;
+    color: var(--ink);
+    max-width: 38rem;
+  }
+  .claim .lab {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ---- gradient chart ---- */
+  .chart {
+    display: grid;
+    grid-template-columns: minmax(9.5rem, auto) minmax(9rem, 1fr) 4rem 5.5rem;
+    align-items: center;
+    column-gap: 0.9rem;
+    row-gap: 0.28rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    overflow-x: auto;
+  }
+  .chart .ch {
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 0.25rem;
+  }
+  .dyad { display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; color: var(--ink-2); }
+  .chip { width: 0.55rem; height: 0.55rem; flex: none; display: inline-block; }
+  .chips { display: flex; gap: 0.14rem; }
+  .track { background: var(--bar-track); height: 0.72rem; position: relative; }
+  .fill { position: absolute; inset: 0 auto 0 0; background: var(--bar); }
+  .fill.hero { background: linear-gradient(90deg, var(--copper), var(--lilac)); }
+  .val { text-align: right; color: var(--ink); }
+  .sup { text-align: right; color: var(--muted); font-size: 0.72rem; }
+  .axis {
+    grid-column: 2;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.64rem;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.25rem;
+    margin-top: 0.3rem;
+  }
+  .axis-note {
+    grid-column: 1 / -1;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 38rem;
+    margin-top: 0.55rem;
+  }
+  .hero-row .dyad, .hero-row .val { color: var(--ink); font-weight: 500; }
+
+  /* ---- scale contrast ---- */
+  .scales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 0 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .scales > div { padding: 1rem 0 1.1rem; border-bottom: 1px solid var(--rule); }
+  .scales h4 {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  .big {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    display: block;
+    line-height: 1.1;
+  }
+  .scales p { font-size: 0.95rem; color: var(--ink-2); margin: 0.4rem 0 0; }
+  .stage-1 .big { color: var(--accent); }
+  .stage-2 .big { color: var(--warn); }
+
+  /* ---- tables ---- */
+  .tw { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 34rem; }
+  caption {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 0.5rem;
+  }
+  th, td { text-align: left; padding: 0.45rem 0.9rem 0.45rem 0; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  thead th {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; padding-right: 0; }
+  tbody tr:last-child td { border-bottom: 1px solid var(--rule-strong); }
+  .field { font-family: var(--mono); font-size: 0.84em; color: var(--ink-2); }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.16rem 0.4rem;
+    white-space: nowrap;
+    border: 1px solid var(--rule-strong);
+    color: var(--muted);
+  }
+  .pill.ready { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .pill.blocked { border-color: var(--warn); color: var(--warn); }
+
+  /* ---- phases ---- */
+  .phases { display: flex; flex-direction: column; }
+  .phase {
+    display: grid;
+    grid-template-columns: 3.1rem 1fr;
+    gap: 0 1.1rem;
+    padding: 1.05rem 0 1.15rem;
+    border-top: 1px solid var(--rule);
+  }
+  .phase:last-child { border-bottom: 1px solid var(--rule-strong); }
+  .pnum {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    padding-top: 0.22rem;
+  }
+  .pbody { display: flex; flex-direction: column; gap: 0.4rem; }
+  .ptitle { font-family: var(--sans); font-weight: 600; font-size: 1.04rem; letter-spacing: -0.006em; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: baseline; }
+  .pbody p { font-size: 0.97rem; color: var(--ink-2); margin: 0; max-width: 40rem; }
+  .gate {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--ink);
+    background: var(--accent-soft);
+    padding: 0.5rem 0.7rem;
+    max-width: 40rem;
+  }
+  .gate b { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.66rem; color: var(--accent); display: block; }
+  .critical .pnum { color: var(--accent); font-weight: 600; }
+
+  ul { margin: 0.2rem 0 0.6rem; padding-left: 1.1rem; }
+  li { margin-bottom: 0.28rem; max-width: 38rem; }
+  li::marker { color: var(--rule-strong); }
+
+  footer {
+    border-top: 1px solid var(--rule-strong);
+    padding-top: 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">
+      <span>Baboon group membership</span>
+      <span>General structure &amp; continuation plan</span>
+      <span>3 September 2026</span>
+    </div>
+    <h1>Permeable group boundaries</h1>
+    <p class="standfirst">Restating the project as a population-level argument in which no single dyad carries a claim &mdash; and the ordered plan that finishes it.</p>
+    <div class="ledger">
+      <div><span class="k">Animal-hours</span><span class="v">1,924,104</span></div>
+      <div><span class="k">Animal-nights</span><span class="v">81,695</span></div>
+      <div><span class="k">Animals</span><span class="v">350</span></div>
+      <div><span class="k">Origin groups</span><span class="v">26</span></div>
+      <div><span class="k">Span</span><span class="v">Mar 24 &ndash; Jul 26</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="shead">
+      <span class="snum">01 &nbsp;/&nbsp; Why the structure changed</span>
+      <h2>Copper&ndash;Lilac is the tail of a distribution, not the spine of a paper</h2>
+    </div>
+    <div class="prose">
+      <p>Two facts from the saved tables argue against a case-led paper. First, Copper&ndash;Lilac supplies 27,891 of 39,975 two-minute rows in the cross-dyad file &mdash; <strong>69.8%</strong>. Any statistic pooled over those rows is largely a Copper&ndash;Lilac statistic, so cross-dyad claims must be weighted by dyad, not by bin.</p>
+      <p>Second, Copper&ndash;Lilac is the outlier rather than the exemplar. Every one of the twelve supported dyads sits below its composition expectation for close-range mixing, but the spread is wide, and Copper&ndash;Lilac sits almost at expectation while the rest sit far below it.</p>
+    </div>
+
+    <div class="chart">
+      <span class="ch">Dyad</span>
+      <span class="ch">Deficit below composition expectation</span>
+      <span class="ch" style="text-align:right">obs &minus; exp</span>
+      <span class="ch" style="text-align:right">2-min rows</span>
+
+      <div class="dyad hero-row"><span class="chips"><i class="chip" style="background:#B06B33"></i><i class="chip" style="background:#9B87C4"></i></span>Copper &ndash; Lilac</div>
+      <div class="track"><div class="fill hero" style="width:9.6%"></div></div>
+      <div class="val hero-row">&minus;0.048</div>
+      <div class="sup">27,891</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#7B2D3B"></i><i class="chip" style="background:#1560BD"></i></span>Maroon &ndash; Sapphire</div>
+      <div class="track"><div class="fill" style="width:47.2%"></div></div>
+      <div class="val">&minus;0.236</div>
+      <div class="sup">624</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#26619C"></i><i class="chip" style="background:#6E9BC5"></i></span>Lapis &ndash; LapisSplinter</div>
+      <div class="track"><div class="fill" style="width:60.8%"></div></div>
+      <div class="val">&minus;0.304</div>
+      <div class="sup">3,187</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#6E9BC5"></i><i class="chip" style="background:#B03A76"></i></span>LapisSplinter &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="width:69.8%"></div></div>
+      <div class="val">&minus;0.349</div>
+      <div class="sup">930</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#26619C"></i><i class="chip" style="background:#8FA8E8"></i></span>Lapis &ndash; Periwinkle</div>
+      <div class="track"><div class="fill" style="width:71.2%"></div></div>
+      <div class="val">&minus;0.356</div>
+      <div class="sup">1,121</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#8C6239"></i><i class="chip" style="background:#9B87C4"></i></span>Bronze &ndash; Lilac</div>
+      <div class="track"><div class="fill" style="width:76.8%"></div></div>
+      <div class="val">&minus;0.384</div>
+      <div class="sup">374</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#8C6239"></i><i class="chip" style="background:#B03A76"></i></span>Bronze &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="width:80.0%"></div></div>
+      <div class="val">&minus;0.400</div>
+      <div class="sup">677</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#2E8B57"></i><i class="chip" style="background:#9B87C4"></i></span>Emerald &ndash; Lilac</div>
+      <div class="track"><div class="fill" style="width:90.9%"></div></div>
+      <div class="val">&minus;0.455</div>
+      <div class="sup">568</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#B06B33"></i><i class="chip" style="background:#B03A76"></i></span>Copper &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="width:95.5%"></div></div>
+      <div class="val">&minus;0.477</div>
+      <div class="sup">1,069</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#A8C020"></i><i class="chip" style="background:#6A4C9C"></i></span>Chartreuse &ndash; Purple</div>
+      <div class="track"><div class="fill" style="width:96.4%"></div></div>
+      <div class="val">&minus;0.482</div>
+      <div class="sup">777</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#9B87C4"></i><i class="chip" style="background:#B03A76"></i></span>Lilac &ndash; Magenta</div>
+      <div class="track"><div class="fill" style="width:97.0%"></div></div>
+      <div class="val">&minus;0.485</div>
+      <div class="sup">1,008</div>
+
+      <div class="dyad"><span class="chips"><i class="chip" style="background:#00A86B"></i><i class="chip" style="background:#6A4C9C"></i></span>Jade &ndash; Purple</div>
+      <div class="track"><div class="fill" style="width:97.2%"></div></div>
+      <div class="val">&minus;0.486</div>
+      <div class="sup">1,749</div>
+
+      <div class="axis"><span>0</span><span>0.1</span><span>0.2</span><span>0.3</span><span>0.4</span><span>0.5</span></div>
+      <p class="axis-note">Mean observed minus shuffled cross-group edge fraction at a 2 m radius, drawn as magnitude of deficit. All twelve values are negative. Bar length is not weighted by support; the right-hand column carries it.</p>
+    </div>
+
+    <div class="claim">
+      <span class="lab">General result</span>
+      When two groups share space, close-range mixing is almost always far below what group composition alone would produce. Copper&ndash;Lilac is the rare record that approaches its own expectation &mdash; which makes it the demonstration of what full fusion looks like, at the top of a gradient, rather than the lead result.
+    </div>
+
+    <div class="claim">
+      <span class="lab">Revised by Phase 3 &mdash; see the companion, Meeting versus mixing</span>
+      Separating discrete encounters from sustained association sharpens this. Copper&ndash;Lilac's <em>encounters</em> give a 5 m deficit of &minus;0.339, tenth of twelve &mdash; inside the pack. Only its <em>fused</em> period reaches &minus;0.033. So the outlier is a state, not a dyad: encounters barely mix everywhere (dyad-weighted &minus;0.405 [&minus;0.442, &minus;0.367], 12 of 12 below expectation), and near-expectation mixing belongs to sustained association, which five dyads entered.
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">02 &nbsp;/&nbsp; Claim architecture</span>
+      <h2>Three nested levels, each with a population-scale dataset</h2>
+    </div>
+
+    <h3>Level 1 &mdash; Membership is a state, not a label</h3>
+    <div class="tw">
+      <table>
+        <caption>Nightly classification &mdash; 81,695 animal-nights, 350 animals, 26 origin groups</caption>
+        <thead><tr><th>Membership</th><th class="n">Nights</th><th class="n">Share</th><th>Association structure</th><th class="n">Nights</th><th class="n">Share</th></tr></thead>
+        <tbody>
+          <tr><td>With origin group</td><td class="n">67,561</td><td class="n">82.7%</td><td>Whole group</td><td class="n">54,572</td><td class="n">66.8%</td></tr>
+          <tr><td>With another group</td><td class="n">11,418</td><td class="n">14.0%</td><td>Between-group merge</td><td class="n">20,468</td><td class="n">25.1%</td></tr>
+          <tr><td>Isolated</td><td class="n">2,499</td><td class="n">3.1%</td><td>Within-group split</td><td class="n">3,789</td><td class="n">4.6%</td></tr>
+          <tr><td>Mixed / unclear</td><td class="n">217</td><td class="n">0.3%</td><td>Isolated / low support</td><td class="n">2,866</td><td class="n">3.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="claim">
+      <span class="lab">Claim &mdash; supported</span>
+      Group identity persists: animals are with their origin group on roughly five nights in six. Yet a quarter of animal-nights are spent in a configuration that includes another group. Persistence and permeability are simultaneous properties of one population, not competing descriptions of it.
+    </div>
+
+    <h3>Level 2 &mdash; Encounter and mixing are different processes at different scales</h3>
+    <div class="scales">
+      <div class="stage-1">
+        <h4>Structural encounter &mdash; shared spatial cluster</h4>
+        <span class="big">3,217</span>
+        <p>merge events across <strong>74 dyads</strong>, from an inventory of 13,615 events in five types. Copper&ndash;Lilac contributes 615 of them (19%) &mdash; substantial, not dominant.</p>
+      </div>
+      <div class="stage-2">
+        <h4>Detected close contact &mdash; current model response</h4>
+        <span class="big">117</span>
+        <p>positive dyad-days out of 56,128 candidates across 207 dyads &mdash; a <strong>0.21% positive rate</strong> in 21 dyads, with 56,000 candidate days carrying zero eligible 2-minute bins.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p>The two numbers do not conflict; they measure different things. But it means the encounter response now feeding the ecological models is a rare-event indicator of detected close contact, not an indicator of groups meeting. That definitional gap is the largest structural problem in the project, and it is general &mdash; it depends on no single dyad.</p>
+    </div>
+
+    <h3>Level 3 &mdash; A permeable population can retain internal structure</h3>
+    <div class="prose">
+      <p>Candidate routes connecting groups: repeated dyadic encounters, individual departures (5,828 separation events; 71 dispersal segments from 17 animals), and within-group fission that redistributes companions (4,570 split events; 466 analysed events from 15 groups, preceding-proximity AUC 0.568, bootstrap 0.558&ndash;0.578, mean ARI 0.100).</p>
+    </div>
+    <div class="claim">
+      <span class="lab">Claim &mdash; not yet supported</span>
+      These routes generate a structured, non-random network among groups. This is the level most likely to justify a broad-audience venue and the level with the least completed work. State it as the paper's ambition; assert it only once time-respecting connectivity is quantified.
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">03 &nbsp;/&nbsp; The unblocking decision</span>
+      <h2>Define the encounter at the structural scale, then measure mixing inside it</h2>
+    </div>
+    <div class="prose">
+      <p><strong>Stage 1 &mdash; structural encounter.</strong> Two social units occupy a shared spatial cluster, detected independently of close-range contact, using the existing <code>association_event_id</code> and merge-scale machinery.</p>
+      <p><strong>Stage 2 &mdash; mixing within the encounter.</strong> Retain <em>all</em> eligible fine-scale bins with a valid denominator, including bins with zero cross-group contact. Report a rate with observation, distinct from an undefined rate with no denominator.</p>
+      <p>The saved pipeline does the opposite: <code>build_positive_episodes()</code> filters to <code>has_cross_edge == True</code> before stitching, so the reported integration fraction describes only the contact-positive part of an episode. Every ecological coefficient inherits that conditioning.</p>
+      <p>Adopting the two-stage definition raises the stage-1 sample from 21 dyads to about 74, removes the rare-event pathology from the occurrence model, makes &ldquo;shared space without mixing&rdquo; a measured outcome rather than a missing row, and places Copper&ndash;Lilac on the same axis as every other dyad.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">04 &nbsp;/&nbsp; Definitions to freeze</span>
+      <h2>Seven quantities that must be settled before any refit</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Quantity</th><th>Current problem</th><th>Required form</th></tr></thead>
+        <tbody>
+          <tr><td>Encounter opportunity</td><td>Candidate days built from both groups having any position that day; unmatched rows zero-filled</td><td>Dyad-window table with shared observation duration and four explicit states: observed no encounter, detected encounter, insufficient support, excluded</td></tr>
+          <tr><td>Encounter occurrence</td><td>Positive 5 m cross-group contact</td><td>Structural encounter (stage 1)</td></tr>
+          <tr><td>Mixing</td><td>Cross-edge fraction over contact-positive bins only</td><td>Cross-edge rate over all supported bins in the encounter, against an origin- or composition-preserving reference</td></tr>
+          <tr><td>Duration</td><td>Elapsed span bridging positive bins up to 14 h apart</td><td>Structural span, supported exposure and active-contact time as three separate columns</td></tr>
+          <tr><td>Group size</td><td><span class="field">group_size_total</span> is a sum of observed collars, but is labeled and plotted as group size</td><td>Demographic size with provenance; collar coverage retained as a separate observation variable</td></tr>
+          <tr><td>Membership field</td><td>Scripts mix <span class="field">origin_group</span>, <span class="field">assigned_social_unit</span> and <span class="field">dynamic_social_unit</span></td><td>One documented choice per question; origin labels preserved wherever mixing is tested</td></tr>
+          <tr><td>Cohort</td><td>Three membership products in circulation &mdash; 1,924,104 / 1,703,133 / 1,070,061 rows; 26 vs 21 groups; different start dates</td><td>One frozen cohort with an event-ID crosswalk; older results re-derived or labeled legacy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The event inventory in Level 2 comes from the 1,703,133-row legacy source, filtered to 2025 onward, while the frozen membership export covers 1,924,104 rows from March 2024. Reconciling the two is a prerequisite for reporting population rates, because the denominator differs.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">05 &nbsp;/&nbsp; Manuscript shape</span>
+      <h2>Five results, each carried by a population-scale dataset</h2>
+    </div>
+    <div class="prose">
+      <p>Working title: <strong>Persistent groups with permeable boundaries: how often animal groups meet, and how little they mix.</strong></p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th class="n">#</th><th>Result</th><th>Evidence</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>Group identity persists while membership varies</td><td>81,695 animal-nights; state and association distributions</td><td><span class="pill ready">Data frozen</span></td></tr>
+          <tr><td class="n">2</td><td>Reconfiguration is common and structured by type and scale</td><td>13,615 events in five types across 74 dyads</td><td><span class="pill">Cohort reconcile</span></td></tr>
+          <tr><td class="n">3</td><td>Shared space rarely means close mixing</td><td>12 supported dyads, all below expectation, &minus;0.05 to &minus;0.49</td><td><span class="pill ready">Strongest general</span></td></tr>
+          <tr><td class="n">4</td><td>Encounter and mixing have different predictors</td><td>Two-stage model over about 74 dyads</td><td><span class="pill blocked">Blocked</span></td></tr>
+          <tr><td class="n">5</td><td>Permeability structures the population network</td><td>Repeated dyads, transfers, fission-mediated redistribution</td><td><span class="pill blocked">Ambition</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Supporting analyses, not main results: the Copper&ndash;Lilac trajectory as the endpoint case for Result 3; the Chartreuse&ndash;Purple matched comparison, which is a null (modularity difference 0.0015, interval &minus;0.025 to 0.023); individual dispersal centrality trajectories; and activity controls (VeDBA on 101/108 events, GPS movement on 97/108; <span class="mono">r</span> &asymp; 0.28 and 0.21 against saved 5 m integration).</p>
+      <h3>Figure plan</h3>
+      <ul>
+        <li><strong>Cohort and states.</strong> Animals &times; time coverage, state ribbon, nightly state distribution.</li>
+        <li><strong>Event inventory.</strong> Size versus duration by event type, five panels, log axes.</li>
+        <li><strong>The mixing gradient.</strong> Per-dyad observed minus expected contact with support and intervals, radius as a second dimension; Copper&ndash;Lilac labeled as the right-hand tail.</li>
+        <li><strong>Two-stage model.</strong> Encounter probability, then mixing conditional on encounter &mdash; predicted responses, not per-group coefficient forests.</li>
+        <li><strong>Population network.</strong> Dyadic encounter network against an opportunity-adjusted null.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">06 &nbsp;/&nbsp; Continuation plan</span>
+      <h2>Eight gated phases; no phase starts before its predecessor's gate is met</h2>
+    </div>
+    <div class="prose">
+      <p>New work goes in <code>outputs/general_structure_2026_09/</code>. Nothing existing is overwritten. Phases 0&ndash;3 are the critical path and yield a defensible paper on their own.</p>
+    </div>
+
+    <div class="phases">
+      <div class="phase critical">
+        <div class="pnum">Ph 0</div>
+        <div class="pbody">
+          <div class="ptitle">Cohort ledger and definition sheet <span class="pill ready">Critical path</span></div>
+          <p>A source-to-analysis ledger for every membership product &mdash; rows, animals, groups, date range, builder parameters, and which saved analyses consumed it &mdash; plus an event-ID crosswalk between the 1,924,104-row export and the legacy 1,703,133-row inventory source. One definitions sheet covering all seven rows above.</p>
+          <div class="gate"><b>Gate</b>Every saved result maps to exactly one cohort, and every quantity has one written definition with a worked example.</div>
+        </div>
+      </div>
+
+      <div class="phase critical">
+        <div class="pnum">Ph 1</div>
+        <div class="pbody">
+          <div class="ptitle">Opportunity table <span class="pill ready">Critical path</span></div>
+          <p>Replace zero-filled candidate days with a dyad-window table carrying shared observation duration and the four explicit states. Validate against known examples, including the 747 Copper&ndash;Lilac days currently coded as zero encounters.</p>
+          <div class="gate"><b>Gate</b>Dyad-window counts reported per state; no state inferred from a missing row; supported negatives distinguishable from unobserved windows.</div>
+        </div>
+      </div>
+
+      <div class="phase critical">
+        <div class="pnum">Ph 2</div>
+        <div class="pbody">
+          <div class="ptitle">Two-stage encounter unit <span class="pill ready">Critical path</span></div>
+          <p>Implement stage 1 and stage 2. Produce an event table with structural span, supported exposure and active-contact time as separate columns, plus one worked event showing which bins are retained, which are dropped, and why.</p>
+          <div class="gate"><b>Gate</b>The event table reproduces a hand-checked example, and stage-1 counts are reported per dyad with observation support.</div>
+        </div>
+      </div>
+
+      <div class="phase critical">
+        <div class="pnum">Ph 3</div>
+        <div class="pbody">
+          <div class="ptitle">The general mixing gradient <span class="pill ready">First publishable result</span></div>
+          <p>One observation-aware metric across all supported dyads with origin labels preserved, weighted by dyad rather than by bin. Report cross-origin and within-origin rates alongside their ratio so a falling reference stays visible. Sensitivity: radius, same-bin timing tolerance, GPS error, partner availability, stable-collar subsets.</p>
+          <div class="gate"><b>Gate</b>Figure 3 exists with per-dyad support and intervals, and the pooled statement is demonstrably not a restatement of one dyad.</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="pnum">Ph 4</div>
+        <div class="pbody">
+          <div class="ptitle">Two-stage model with sound inference</div>
+          <p>Fit both stages on the repaired samples, with a likelihood matched to the response and uncertainty matched to repeated dyads, groups and animals. Use a shared group effect for unordered pairs rather than alphabetical <span class="field">group_a</span> / <span class="field">group_b</span> terms. Replace or rename the normal-approximation and conjugate-sampling fits; columns named <span class="field">p_value</span> in the saved Bayesian tables are posterior sign proportions. Use genuinely preceding covariates, and separate between-dyad proximity from within-dyad change.</p>
+          <div class="gate"><b>Gate</b>One retained sample across all model comparisons; prior sensitivity and calibration reported; no effect attributed to an added predictor without a matched-sample comparison.</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="pnum">Ph 5</div>
+        <div class="pbody">
+          <div class="ptitle">Symmetric ecological test</div>
+          <p>Fission and intergroup encounter share one environmental framework with predictions that can fail: scarcity fragments, abundance connects. Add the missing environmental model of fission, control for season and shared concentrated resources, and separate demographic size from collar coverage.</p>
+          <div class="gate"><b>Gate</b>Both processes modeled on the frozen cohort with the same covariates; the two-sided prediction supported or rejected in print.</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="pnum">Ph 6</div>
+        <div class="pbody">
+          <div class="ptitle">Connectivity</div>
+          <p>Quantify time-respecting connections among groups from encounters and transfers, against an opportunity-adjusted null.</p>
+          <div class="gate"><b>Gate</b>Result 5 is either quantified or explicitly withdrawn from the main text.</div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="pnum">Ph 7</div>
+        <div class="pbody">
+          <div class="ptitle">Case studies and supplement hygiene</div>
+          <p>Recast Copper&ndash;Lilac as the labeled endpoint of Phase 3, with phase-contrast uncertainty and alternative phase boundaries. Reconcile dispersal outcomes (71 segments from 17 animals versus 28 events from 9 animals; repeated segments; censoring). Fix two confirmed export faults: leaver bootstrap intervals mislabeled in <code>compare_centrality_stayed_left.py</code>, and outcome-based selection above 100 positive 5 m bins in <code>plot_permanent_5m_colocation_cadence_filtered.py</code>.</p>
+          <div class="gate"><b>Gate</b>Every supplementary claim states its selection rule; no figure selects on the measured outcome without saying so.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>Where the headline is decided</h3>
+      <p>Phase 5 decides whether the paper is <em>structural</em> &mdash; how much groups actually mix &mdash; or <em>ecological</em> &mdash; what makes boundaries open. Recommendation: build Phases 0&ndash;3 first and keep ecology as a test appended in Phase 5, rather than promising a mechanism the current denominators cannot support.</p>
+      <h3>What to stop doing</h3>
+      <p>About twenty single-purpose scripts target individual dyads and animals. They were useful for discovery; continuing to add them raises the reconciliation burden without moving any of the five results forward. Freeze them, and add new analysis only through the shared Phase 2 event table, so every dyad is measured the same way.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <span class="snum">07 &nbsp;/&nbsp; Claim &middot; evidence &middot; gap</span>
+      <h2>What is standing, and what each claim still needs</h2>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Claim</th><th>Evidence now</th><th>Gap</th></tr></thead>
+        <tbody>
+          <tr><td>Identity persists while membership varies</td><td>82.7% of 81,695 animal-nights with origin group; 14.0% with another group</td><td>Coverage and ambiguity weighting; reconcile 26 vs 21 groups</td></tr>
+          <tr><td>Reconfiguration is routine and multi-scale</td><td>13,615 events, five types, 74 dyads</td><td>Older cohort; re-derive on the frozen source</td></tr>
+          <tr><td>Shared space rarely means mixing</td><td>12 of 12 dyads below expectation, &minus;0.05 to &minus;0.49</td><td>Dyad-weighted estimate, support-aware intervals, radius sensitivity</td></tr>
+          <tr><td>Full fusion is possible</td><td>Copper&ndash;Lilac 5 m ratio 0.162 &rarr; 0.911 across phases</td><td>Phase-contrast uncertainty; position on the general gradient</td></tr>
+          <tr><td>Encounter and mixing differ in predictors</td><td>Saved hurdle models</td><td>Denominator, exclusions, positive-bin conditioning, size covariate</td></tr>
+          <tr><td>Fission composition is partly anticipated</td><td>466 events, 15 groups, AUC 0.568 (0.558&ndash;0.578)</td><td>Sensitivity to overlapping events and window length</td></tr>
+          <tr><td>Permeability structures the population</td><td>Repeated dyads, 71 dispersal segments</td><td>Not yet quantified &mdash; do not assert</td></tr>
+          <tr><td>Ecology regulates permeability</td><td>Positive NDVI association in a model with known input faults</td><td>Repair inputs; add a fission model; test symmetrically</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Counts read from saved outputs in <span class="mono">C:\Users\rharel\Documents\group_mebership</span>. No model was rerun for this document.<br>
+    Companion to <span class="mono">docs/handoff_2026-09-03/CLAUDE_HANDOFF.md</span> &middot; source markdown at <span class="mono">docs/structure_2026-09-03/PAPER_STRUCTURE_GENERAL.md</span>
+  </footer>
+
+</div>

@@ -1,0 +1,10 @@
+{
+  "events_with_resident_comparison": 28,
+  "animals": 9,
+  "radii_m": [
+    2.0,
+    5.0
+  ],
+  "resident_benchmark": "mean proportion of simultaneously observed recipient residents within radius of another recipient resident",
+  "bootstrap_cluster_unit": "dispersal event"
+}

@@ -1,0 +1,29 @@
+{
+  "prepared_utc": "2026-09-03T18:12:53+00:00",
+  "eas_movebank": {
+    "path": "Z:\\baboon\\working\\data\\processed\\2025\\acc\\movebank_metadata.csv",
+    "animals": 395,
+    "mtime_utc": "2026-08-17T13:31:38+00:00"
+  },
+  "gps_snapshot": {
+    "path": "C:\\Users\\rharel\\Documents\\New project\\outputs\\network_v1_cleaned_gps_v1.parquet",
+    "animals": 372,
+    "mtime_utc": "2026-06-18T09:03:35+00:00"
+  },
+  "overrides": 1,
+  "override_detail": [
+    {
+      "animal_id": "26AB02_2N3O",
+      "group_id": "Lilac",
+      "group_gps": "Lapis",
+      "reason": "EAS metadata is authoritative and newer than the GPS snapshot"
+    }
+  ],
+  "in_gps_not_eas": 8,
+  "in_eas_not_gps": 31,
+  "demographics_groups": 27,
+  "not_established": [
+    "The nine animals collared as Lilac on 2025-07-31 are labelled Lilac in EVERY available source (EAS 2026-08-17, EAS reference 2025-12-05, local 2026-04-24). The server does not correct them. Their failure to associate with the Lilac core is therefore not a stale-label artifact and needs a field explanation.",
+    "group_id is static per animal in the GPS snapshot, so it cannot represent a group change over time; these overrides are also a single static value per animal."
+  ]
+}

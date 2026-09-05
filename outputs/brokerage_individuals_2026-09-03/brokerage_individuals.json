@@ -1,0 +1,68 @@
+{
+  "demography_source": "local copy: C:\\Users\\rharel\\Documents\\Github\\MBRP_basic\\data\\metadata_animal_name.csv",
+  "radii_m": [
+    1.0,
+    2.0,
+    5.0,
+    20.0
+  ],
+  "min_weeks_for_stability": 25,
+  "rank_stability_over_weeks": {
+    "1.0": {
+      "kendall_w": 0.09631696428571429,
+      "periods": 16,
+      "animals": 6,
+      "median_period_to_period_spearman": -0.028571428571428574,
+      "fraction_zero_brokerage": 0.3194244604316547
+    },
+    "2.0": {
+      "kendall_w": 0.24542936288088643,
+      "periods": 19,
+      "animals": 5,
+      "median_period_to_period_spearman": 0.5821440468234174,
+      "fraction_zero_brokerage": 0.36838390966831336
+    },
+    "5.0": {
+      "kendall_w": 0.26565096952908585,
+      "periods": 19,
+      "animals": 5,
+      "median_period_to_period_spearman": 0.6334429644276751,
+      "fraction_zero_brokerage": 0.4845722300140252
+    },
+    "20.0": {
+      "kendall_w": 0.14362880886426593,
+      "periods": 19,
+      "animals": 5,
+      "median_period_to_period_spearman": 0.44721359549995787,
+      "fraction_zero_brokerage": 0.8211781206171108
+    }
+  },
+  "rank_agreement_between_radii_spearman": {
+    "1-1": 1.0,
+    "1-2": 0.866506182295656,
+    "1-5": 0.7411095305832147,
+    "1-20": 0.4765501190824362,
+    "2-1": 0.866506182295656,
+    "2-2": 1.0,
+    "2-5": 0.8026042236568552,
+    "2-20": 0.4578339798166814,
+    "5-1": 0.7411095305832147,
+    "5-2": 0.8026042236568552,
+    "5-5": 1.0,
+    "5-20": 0.7559787947869515,
+    "20-1": 0.4765501190824362,
+    "20-2": 0.4578339798166814,
+    "20-5": 0.7559787947869514,
+    "20-20": 1.0
+  },
+  "definitions": {
+    "brokerage": "betweenness_centrality_subset, sources=Copper targets=Lilac, normalised, edge distance 1/association",
+    "effective_brokers": "exp(Shannon entropy of the brokerage share distribution); equivalent number of equally-important brokers",
+    "kendall_w": "concordance of per-week rank orders; 1 = identical ranking every week"
+  },
+  "caveats": [
+    "GPS proximity is not affiliation, and nothing was measured travelling these paths; betweenness is a structural descriptor, not a flow measurement.",
+    "Sex/age come from collar deployment metadata: 33 adult vs 7 subadult across 38 animals, so age-class contrasts rest on very few individuals.",
+    "Conditioned on canonical Copper-Lilac fusion hours, which saturate after 2025-08-01."
+  ]
+}

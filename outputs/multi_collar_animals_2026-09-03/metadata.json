@@ -1,0 +1,74 @@
+{
+  "night_locations": "Z:\\baboon\\working\\data\\processed\\2025\\gps\\individual_night_locations.parquet",
+  "metadata_source": "Baboons MBRP Mpala Kenya-reference-data.csv",
+  "animals_checked": [
+    "24AB02_0Y5R",
+    "24AC09_0S1T",
+    "24AC10_3U4V",
+    "24AE04_6L7M"
+  ],
+  "transfer_rule": "4+ consecutive weeks in which sleep-site agreement favours the non-origin group",
+  "why": "drop_duplicates on animal-id hides second deployments; a re-collared animal can look continuous, and a real transfer near a swap can be mistaken for a re-identification artefact (or vice versa).",
+  "summary": [
+    {
+      "animal_id": "24AB02_0Y5R",
+      "origin": "Lilac",
+      "sex": "m",
+      "age": "adult",
+      "n_deployments": 2,
+      "swap_dates": "2025-11-17",
+      "nights": 443,
+      "max_gap_days": 316.0,
+      "mean_own": 0.9371778026279003,
+      "mean_other": 0.6454911906966702,
+      "longest_run_favouring_other_weeks": 4,
+      "run_start": "2025-12-15",
+      "verdict": "TRANSFER LIKELY - starts 27 d from nearest collar swap"
+    },
+    {
+      "animal_id": "24AC09_0S1T",
+      "origin": "Copper",
+      "sex": "m",
+      "age": "adult",
+      "n_deployments": 1,
+      "swap_dates": "",
+      "nights": 711,
+      "max_gap_days": 15.0,
+      "mean_own": 0.9645192493893792,
+      "mean_other": 0.5966780045351473,
+      "longest_run_favouring_other_weeks": 3,
+      "run_start": "2026-03-09",
+      "verdict": "no sustained switch"
+    },
+    {
+      "animal_id": "24AC10_3U4V",
+      "origin": "Copper",
+      "sex": "m",
+      "age": "adult",
+      "n_deployments": 1,
+      "swap_dates": "",
+      "nights": 527,
+      "max_gap_days": 81.0,
+      "mean_own": 0.9632054812355565,
+      "mean_other": 0.5416349206349206,
+      "longest_run_favouring_other_weeks": 2,
+      "run_start": "2026-03-23",
+      "verdict": "no sustained switch"
+    },
+    {
+      "animal_id": "24AE04_6L7M",
+      "origin": "Lilac",
+      "sex": "m",
+      "age": "adult",
+      "n_deployments": 2,
+      "swap_dates": "2025-08-01",
+      "nights": 329,
+      "max_gap_days": 7.0,
+      "mean_own": 0.8089816532673675,
+      "mean_other": 0.6283937332508761,
+      "longest_run_favouring_other_weeks": 7,
+      "run_start": "2025-06-23",
+      "verdict": "TRANSFER LIKELY - starts 40 d from nearest collar swap"
+    }
+  ]
+}

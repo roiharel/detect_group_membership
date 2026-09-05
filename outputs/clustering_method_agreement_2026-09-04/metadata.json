@@ -1,0 +1,48 @@
+{
+  "window": [
+    "2025-01-01",
+    "2025-07-01"
+  ],
+  "hours_sampled": 1200,
+  "min_animals_per_hour": 8,
+  "seed": 20260904,
+  "methods": {
+    "fixed_500": "DBSCAN eps=500 m, min_samples=1 - the manuscript's setting",
+    "fixed_100": "DBSCAN eps=100 m, min_samples=1",
+    "adaptive": "kNN single linkage, k=2, factor=1.65, clipped 120.0-900.0 m - the canonical pipeline",
+    "hdbscan": "HDBSCAN min_cluster_size=2, noise as singletons - no fixed scale"
+  },
+  "pair_call_rates": {
+    "fixed_500": 0.052461338233042415,
+    "fixed_100": 0.04162838768948094,
+    "adaptive": 0.04614530699739703,
+    "hdbscan": 0.03454677691012096
+  },
+  "pairwise_agreement": {
+    "fixed_500__fixed_100": {
+      "agreement": 0.9891670494564385,
+      "jaccard": 0.7935060197008391
+    },
+    "fixed_500__adaptive": {
+      "agreement": 0.99291838922064,
+      "jaccard": 0.8659905831220572
+    },
+    "fixed_500__hdbscan": {
+      "agreement": 0.9781044250497627,
+      "jaccard": 0.5978910369068541
+    },
+    "fixed_100__adaptive": {
+      "agreement": 0.9954830806920839,
+      "jaccard": 0.9021153048527581
+    },
+    "fixed_100__hdbscan": {
+      "agreement": 0.9870999846884091,
+      "jaccard": 0.7103566824237215
+    },
+    "adaptive__hdbscan": {
+      "agreement": 0.9843438983310366,
+      "jaccard": 0.6750099324592769
+    }
+  },
+  "caveat": "Agreement is measured on hourly median positions from the raw GPS, not on the pipeline's own temporal-support logic, so this isolates the clustering step from everything downstream of it."
+}

@@ -1,0 +1,358 @@
+{
+  "seed": 20260904,
+  "sample_hours_utc": [
+    11,
+    16
+  ],
+  "min_animals_for_a_group_week": 3,
+  "frozen": {
+    "cohort": "frozen export (1,924,104 rows, 26 units, 2024-03-01+)",
+    "group_weeks": 1268,
+    "units": 23,
+    "window": [
+      "2024-02-26",
+      "2026-07-20"
+    ],
+    "spearman_modularity_vs_collars": 0.222,
+    "spearman_split_fraction_vs_collars": 0.163,
+    "detectability_ladder": [
+      {
+        "collars_observed": "1-4",
+        "group_weeks": 206,
+        "units": 16,
+        "pct_weeks_modular": 0.0,
+        "pct_weeks_with_split": 38.3
+      },
+      {
+        "collars_observed": "5-7",
+        "group_weeks": 342,
+        "units": 20,
+        "pct_weeks_modular": 1.2,
+        "pct_weeks_with_split": 50.0
+      },
+      {
+        "collars_observed": "8-9",
+        "group_weeks": 215,
+        "units": 18,
+        "pct_weeks_modular": 2.3,
+        "pct_weeks_with_split": 61.9
+      },
+      {
+        "collars_observed": "10-11",
+        "group_weeks": 137,
+        "units": 15,
+        "pct_weeks_modular": 6.6,
+        "pct_weeks_with_split": 57.7
+      },
+      {
+        "collars_observed": "12-14",
+        "group_weeks": 200,
+        "units": 12,
+        "pct_weeks_modular": 13.0,
+        "pct_weeks_with_split": 63.0
+      },
+      {
+        "collars_observed": "15-19",
+        "group_weeks": 139,
+        "units": 8,
+        "pct_weeks_modular": 8.6,
+        "pct_weeks_with_split": 66.9
+      },
+      {
+        "collars_observed": "20-99",
+        "group_weeks": 29,
+        "units": 2,
+        "pct_weeks_modular": 27.6,
+        "pct_weeks_with_split": 58.6
+      }
+    ],
+    "coverage_matched": [
+      {
+        "dynamic_social_unit": "Lilac",
+        "group_weeks": 38,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 55.3,
+        "max_modularity": 0.448676
+      },
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "group_weeks": 34,
+        "median_collars": 15.0,
+        "pct_weeks_modular": 14.7,
+        "max_modularity": 0.070923
+      },
+      {
+        "dynamic_social_unit": "FireOpal",
+        "group_weeks": 7,
+        "median_collars": 12.0,
+        "pct_weeks_modular": 14.3,
+        "max_modularity": 0.006182
+      },
+      {
+        "dynamic_social_unit": "Magenta",
+        "group_weeks": 7,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 14.3,
+        "max_modularity": 0.07076
+      },
+      {
+        "dynamic_social_unit": "Copper",
+        "group_weeks": 8,
+        "median_collars": 13.5,
+        "pct_weeks_modular": 12.5,
+        "max_modularity": 0.003577
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "group_weeks": 35,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 2.9,
+        "max_modularity": 0.004033
+      },
+      {
+        "dynamic_social_unit": "Maroon",
+        "group_weeks": 34,
+        "median_collars": 15.0,
+        "pct_weeks_modular": 2.9,
+        "max_modularity": 0.011285
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "group_weeks": 43,
+        "median_collars": 14.0,
+        "pct_weeks_modular": 2.3,
+        "max_modularity": 0.004878
+      },
+      {
+        "dynamic_social_unit": "PhantomWest",
+        "group_weeks": 14,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": -0.0
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "group_weeks": 29,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": 0.0
+      },
+      {
+        "dynamic_social_unit": "Turquoise",
+        "group_weeks": 13,
+        "median_collars": 12.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": 0.0
+      }
+    ],
+    "icc": {
+      "group_weeks": 368,
+      "units": 12,
+      "between_unit_variance": 0.00031,
+      "residual_variance": 0.001525,
+      "icc_between_unit": 0.169,
+      "collar_pvalue": 0.6414
+    },
+    "persistence": [
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "consecutive_week_pairs": 79,
+        "lag1_autocorrelation": 0.399
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "consecutive_week_pairs": 67,
+        "lag1_autocorrelation": -0.016
+      },
+      {
+        "dynamic_social_unit": "Lilac",
+        "consecutive_week_pairs": 36,
+        "lag1_autocorrelation": 0.417
+      },
+      {
+        "dynamic_social_unit": "Maroon",
+        "consecutive_week_pairs": 33,
+        "lag1_autocorrelation": -0.031
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "consecutive_week_pairs": 42,
+        "lag1_autocorrelation": -0.024
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "consecutive_week_pairs": 39,
+        "lag1_autocorrelation": NaN
+      }
+    ]
+  },
+  "legacy": {
+    "cohort": "legacy source (1,703,133 rows, 21 units, 2025-01-01+)",
+    "group_weeks": 1418,
+    "units": 26,
+    "window": [
+      "2024-02-26",
+      "2026-06-15"
+    ],
+    "spearman_modularity_vs_collars": 0.225,
+    "spearman_split_fraction_vs_collars": 0.489,
+    "detectability_ladder": [
+      {
+        "collars_observed": "1-4",
+        "group_weeks": 491,
+        "units": 24,
+        "pct_weeks_modular": 1.2,
+        "pct_weeks_with_split": 28.7
+      },
+      {
+        "collars_observed": "5-7",
+        "group_weeks": 306,
+        "units": 19,
+        "pct_weeks_modular": 1.3,
+        "pct_weeks_with_split": 61.4
+      },
+      {
+        "collars_observed": "8-9",
+        "group_weeks": 184,
+        "units": 12,
+        "pct_weeks_modular": 3.3,
+        "pct_weeks_with_split": 65.8
+      },
+      {
+        "collars_observed": "10-11",
+        "group_weeks": 123,
+        "units": 15,
+        "pct_weeks_modular": 9.8,
+        "pct_weeks_with_split": 82.1
+      },
+      {
+        "collars_observed": "12-14",
+        "group_weeks": 175,
+        "units": 12,
+        "pct_weeks_modular": 12.6,
+        "pct_weeks_with_split": 76.6
+      },
+      {
+        "collars_observed": "15-19",
+        "group_weeks": 107,
+        "units": 6,
+        "pct_weeks_modular": 31.8,
+        "pct_weeks_with_split": 81.3
+      },
+      {
+        "collars_observed": "20-99",
+        "group_weeks": 32,
+        "units": 2,
+        "pct_weeks_modular": 46.9,
+        "pct_weeks_with_split": 78.1
+      }
+    ],
+    "coverage_matched": [
+      {
+        "dynamic_social_unit": "Lilac",
+        "group_weeks": 39,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 53.8,
+        "max_modularity": 0.4577785891318795
+      },
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "group_weeks": 20,
+        "median_collars": 15.0,
+        "pct_weeks_modular": 45.0,
+        "max_modularity": 0.0645098645555353
+      },
+      {
+        "dynamic_social_unit": "FireOpal",
+        "group_weeks": 7,
+        "median_collars": 12.0,
+        "pct_weeks_modular": 14.3,
+        "max_modularity": 0.0056944152722351
+      },
+      {
+        "dynamic_social_unit": "Copper",
+        "group_weeks": 8,
+        "median_collars": 13.5,
+        "pct_weeks_modular": 12.5,
+        "max_modularity": 0.0030384881157945
+      },
+      {
+        "dynamic_social_unit": "PhantomWest",
+        "group_weeks": 9,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 11.1,
+        "max_modularity": 0.0803044386813948
+      },
+      {
+        "dynamic_social_unit": "Maroon",
+        "group_weeks": 9,
+        "median_collars": 12.0,
+        "pct_weeks_modular": 11.1,
+        "max_modularity": 0.0179223985071183
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "group_weeks": 45,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 2.2,
+        "max_modularity": 0.00715280162832
+      },
+      {
+        "dynamic_social_unit": "Magenta",
+        "group_weeks": 7,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": 3.3306690738754696e-16
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "group_weeks": 34,
+        "median_collars": 14.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": 2.220446049250313e-16
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "group_weeks": 27,
+        "median_collars": 13.0,
+        "pct_weeks_modular": 0.0,
+        "max_modularity": 1.1102230246251563e-16
+      }
+    ],
+    "icc": {
+      "group_weeks": 314,
+      "units": 12,
+      "between_unit_variance": 0.000319,
+      "residual_variance": 0.001835,
+      "icc_between_unit": 0.148,
+      "collar_pvalue": 0.4282
+    },
+    "persistence": [
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "consecutive_week_pairs": 73,
+        "lag1_autocorrelation": 0.331
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "consecutive_week_pairs": 75,
+        "lag1_autocorrelation": -0.018
+      },
+      {
+        "dynamic_social_unit": "Lilac",
+        "consecutive_week_pairs": 37,
+        "lag1_autocorrelation": 0.413
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "consecutive_week_pairs": 33,
+        "lag1_autocorrelation": 0.132
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "consecutive_week_pairs": 38,
+        "lag1_autocorrelation": -0.027
+      }
+    ]
+  }
+}

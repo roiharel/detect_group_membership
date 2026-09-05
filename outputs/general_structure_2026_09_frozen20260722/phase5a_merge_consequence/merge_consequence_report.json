@@ -1,0 +1,222 @@
+{
+  "seed": 20260904,
+  "design": {
+    "unit": "unit-week, frozen cohort",
+    "coverage_gate": ">= 12 collars in week t and in every pre and post week",
+    "pre_window": "weeks t-3 to t-2",
+    "buffer": "week t-1 deliberately unused",
+    "post_window": "weeks t+1 to t+2",
+    "treatment": "unit participated in a large merge in week t",
+    "everything_within_unit": true
+  },
+  "sample": {
+    "eligible_unit_weeks": 267,
+    "units": 10,
+    "large_merge_weeks": 173,
+    "no_merge_weeks": 85
+  },
+  "effects": {
+    "modularity": {
+      "direction": "higher = more divided",
+      "binary_large_merge": {
+        "n": 267,
+        "units": 10,
+        "treated": 173,
+        "effect": -0.00063,
+        "ci": [
+          -0.00395,
+          0.00268
+        ],
+        "p": 0.7082,
+        "pre_window_coefficient": -0.8205,
+        "sd_of_outcome_delta": 0.03773
+      },
+      "dose_n_merges": {
+        "n": 267,
+        "units": 10,
+        "treated": 609,
+        "effect": -0.00029,
+        "ci": [
+          -0.00121,
+          0.00063
+        ],
+        "p": 0.5345,
+        "pre_window_coefficient": -0.8211,
+        "sd_of_outcome_delta": 0.03773
+      }
+    },
+    "largest_community_fraction": {
+      "direction": "lower = more divided",
+      "binary_large_merge": {
+        "n": 267,
+        "units": 10,
+        "treated": 173,
+        "effect": 0.00633,
+        "ci": [
+          -0.00603,
+          0.0187
+        ],
+        "p": 0.3156,
+        "pre_window_coefficient": -0.6358,
+        "sd_of_outcome_delta": 0.10248
+      },
+      "dose_n_merges": {
+        "n": 267,
+        "units": 10,
+        "treated": 609,
+        "effect": 0.00015,
+        "ci": [
+          -0.00432,
+          0.00461
+        ],
+        "p": 0.949,
+        "pre_window_coefficient": -0.6336,
+        "sd_of_outcome_delta": 0.10248
+      }
+    },
+    "multi_animal_split_timestamp_fraction": {
+      "direction": "higher = more subgrouping",
+      "binary_large_merge": {
+        "n": 267,
+        "units": 10,
+        "treated": 173,
+        "effect": -0.00064,
+        "ci": [
+          -0.02891,
+          0.02764
+        ],
+        "p": 0.9648,
+        "pre_window_coefficient": -0.5727,
+        "sd_of_outcome_delta": 0.14379
+      },
+      "dose_n_merges": {
+        "n": 267,
+        "units": 10,
+        "treated": 609,
+        "effect": 0.0037,
+        "ci": [
+          -0.00144,
+          0.00885
+        ],
+        "p": 0.158,
+        "pre_window_coefficient": -0.5688,
+        "sd_of_outcome_delta": 0.14379
+      }
+    }
+  },
+  "matched": {
+    "modularity": {
+      "matched_pairs": 168,
+      "mean_difference": 7e-05,
+      "ci": [
+        -0.00246,
+        0.00238
+      ],
+      "caliper_pre": 0.05,
+      "caliper_collars": 3
+    },
+    "largest_community_fraction": {
+      "matched_pairs": 147,
+      "mean_difference": 0.02083,
+      "ci": [
+        0.0026,
+        0.03817
+      ],
+      "caliper_pre": 0.05,
+      "caliper_collars": 3
+    },
+    "multi_animal_split_timestamp_fraction": {
+      "matched_pairs": 152,
+      "mean_difference": 0.00305,
+      "ci": [
+        -0.01668,
+        0.02185
+      ],
+      "caliper_pre": 0.05,
+      "caliper_collars": 3
+    }
+  },
+  "reverse_direction": {
+    "any_large_merge": {
+      "treatment": "large merge only",
+      "by_predictor": {
+        "modularity": {
+          "n": 267,
+          "positives": 173,
+          "or_per_sd": 0.755,
+          "ci_or": [
+            0.617,
+            0.924
+          ],
+          "p": 0.0063
+        },
+        "largest_community_fraction": {
+          "n": 267,
+          "positives": 173,
+          "or_per_sd": 1.164,
+          "ci_or": [
+            0.765,
+            1.77
+          ],
+          "p": 0.4793
+        },
+        "multi_animal_split_timestamp_fraction": {
+          "n": 267,
+          "positives": 173,
+          "or_per_sd": 0.847,
+          "ci_or": [
+            0.577,
+            1.243
+          ],
+          "p": 0.3954
+        }
+      }
+    },
+    "any_merge": {
+      "treatment": "any merge, any scale",
+      "by_predictor": {
+        "modularity": {
+          "n": 267,
+          "positives": 182,
+          "or_per_sd": 0.926,
+          "ci_or": [
+            0.767,
+            1.118
+          ],
+          "p": 0.4237
+        },
+        "largest_community_fraction": {
+          "n": 267,
+          "positives": 182,
+          "or_per_sd": 1.053,
+          "ci_or": [
+            0.71,
+            1.562
+          ],
+          "p": 0.7968
+        },
+        "multi_animal_split_timestamp_fraction": {
+          "n": 267,
+          "positives": 182,
+          "or_per_sd": 0.971,
+          "ci_or": [
+            0.615,
+            1.533
+          ],
+          "p": 0.9001
+        }
+      }
+    },
+    "verdict": "pre-window modularity predicts a LARGE merge at OR 0.755 (p = 0.0063) but ANY merge at OR 0.926 (p = 0.4237). The association is specific to the treatment whose own definition requires a cohesive group, so it is definitional, not behavioural. No reverse effect."
+  },
+  "ac_feasibility": {
+    "excursions_total": 338,
+    "excursions_reaching_another_unit": 175,
+    "origin_groups_of_those": 12,
+    "units_with_a_fine_scale_mixing_estimate": 13,
+    "joined_excursions_whose_origin_has_fine_scale": 164,
+    "origin_groups_in_that_intersection": 9,
+    "animals_in_that_intersection": 39,
+    "note": "destination unit is not carried in the excursion table, so the true dyad-level sample is at most this and in practice smaller; a dyad-quarter design over 6 quarters would have very few positives"
+  }
+}

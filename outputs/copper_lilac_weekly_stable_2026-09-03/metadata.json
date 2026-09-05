@@ -1,0 +1,67 @@
+{
+  "prepared_utc": "2026-09-03T17:28:06+00:00",
+  "script": "analyze_copper_lilac_weekly_stable_cohort.py",
+  "purpose": "Weekly, constant-cohort re-analysis separating the Copper-Lilac merge from the 2025-08-01 collar deployment.",
+  "source_parquet": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\copper_lilac_effort_corrected_integration\\copper_lilac_fusion_2min_positions.parquet",
+  "source_sha256": "e3b4ccfe36541700e332b3246703fa390c595368d170589416ae5c7bb8e9aa98",
+  "deployment_date": "2025-08-01",
+  "deployment_note": "9 collars (6 Lilac, 3 Copper) first appear on 2025-08-01, 10:00-15:00. The monthly analysis begins its 'transition' phase on the same date, so monthly bins cannot identify the two apart.",
+  "stable_cohort": {
+    "n_animals": 14,
+    "n_copper": 7,
+    "n_lilac": 7,
+    "definition": "observed both before and on/after the deployment date",
+    "animal_ids": [
+      "24AA12_6P8Q",
+      "24AA16_9Q8P",
+      "24AB02_0Y5R",
+      "24AC09_0S1T",
+      "24AC10_3U4V",
+      "24AC11_5W6X",
+      "24AC12_7Y8Z",
+      "24AE02_2H3I",
+      "24AE03_4J5K",
+      "24AE04_6L7M",
+      "24AE22_4V5W",
+      "24AE26_3L1R",
+      "24AE28_6O6R",
+      "25AA07_4S5T"
+    ]
+  },
+  "radii_m": [
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0,
+    100.0,
+    200.0,
+    400.0
+  ],
+  "parameters": {
+    "min_pair_bins_per_week": 15,
+    "min_individual_partners": 2,
+    "bootstrap_replicates": 2000,
+    "bootstrap_unit": "individual, resampled within origin group and week",
+    "hac_lags": 4,
+    "seed": 20260903
+  },
+  "distance": "haversine on 2-minute median positions; contact = distance <= radius",
+  "headline_5m": {
+    "trend_per_year": 0.3618936052111076,
+    "trend_p": 2.625070690586464e-16,
+    "step_at_deployment": 0.016545875697426972,
+    "step_p": 0.6370525945678707,
+    "n_pre_weeks": 31,
+    "n_post_weeks": 29
+  },
+  "verified": [
+    "Monthly reconstruction from raw positions reproduces the published stable-cohort ratios at r=0.9997 (max abs error 0.026), so the pipeline matches the original."
+  ],
+  "not_established": [
+    "Fusion-hour eligibility is defined upstream using ALL collars. Fusion hours quadruple at the deployment and then saturate near every daytime hour. A constant cohort fixes which animals are compared, NOT which hours are eligible.",
+    "Late-period support is thin: by 2026 only 3-4 animals per group contribute.",
+    "Proximity is not affiliation."
+  ]
+}

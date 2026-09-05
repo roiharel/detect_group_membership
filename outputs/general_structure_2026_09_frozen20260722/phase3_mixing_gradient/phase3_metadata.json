@@ -1,0 +1,63 @@
+{
+  "phase": "3 - general mixing gradient",
+  "generated_utc": "2026-09-03T21:07:06+00:00",
+  "event_source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_events_with_stage2_mixing.csv",
+  "finescale_sources": {
+    "5m": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_5m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+    "2m": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv"
+  },
+  "reference": "composition-preserving shuffle expectation carried in the fine-scale product",
+  "primary_estimator": "edge-weighted deficit: sum(cross_edges)/sum(total_edges) minus the edge-weighted expectation",
+  "uncertainty": "percentile bootstrap over stage-1 encounters within a dyad, 2000 draws, seed 20260903; no interval below 3 encounters",
+  "pooling": "dyad-weighted; the bin-weighted pooled value is reported alongside so the difference in weighting is visible",
+  "strata": {
+    "discrete_encounter": 12,
+    "sustained_association": 3
+  },
+  "pooled": [
+    {
+      "stratum": "discrete_encounter",
+      "dyads": 12,
+      "dyad_weighted_mean_deficit": -0.4049137254425916,
+      "dyad_weighted_low": -0.44162401194296663,
+      "dyad_weighted_high": -0.3670684145079926,
+      "dyads_below_expectation": 12,
+      "bin_weighted_pooled_deficit": -0.42111036232645477,
+      "edge_weighted_pooled_deficit": -0.39142855969816887,
+      "largest_dyad_share_of_bins": 0.22771922428330524,
+      "largest_dyad_by_bins": "Lapis - LapisSplinter"
+    },
+    {
+      "stratum": "sustained_association",
+      "dyads": 3,
+      "dyad_weighted_mean_deficit": -0.1779636634350297,
+      "dyad_weighted_low": -0.3552106532413257,
+      "dyad_weighted_high": -0.03286188055301131,
+      "dyads_below_expectation": 3,
+      "bin_weighted_pooled_deficit": -0.05724324821600971,
+      "edge_weighted_pooled_deficit": -0.038465661392379,
+      "largest_dyad_share_of_bins": 0.9937995505999068,
+      "largest_dyad_by_bins": "Copper - Lilac"
+    },
+    {
+      "stratum": "all_encounters",
+      "dyads": 12,
+      "dyad_weighted_mean_deficit": -0.36860895549130507,
+      "dyad_weighted_low": -0.4313101733167008,
+      "dyad_weighted_high": -0.29341073119547817,
+      "dyads_below_expectation": 12,
+      "bin_weighted_pooled_deficit": -0.19802826768236673,
+      "edge_weighted_pooled_deficit": -0.15478268865309586,
+      "largest_dyad_share_of_bins": 0.8588611292484278,
+      "largest_dyad_by_bins": "Copper - Lilac"
+    }
+  ],
+  "dyads_with_finescale_support": 12,
+  "structural_dyads_without_finescale_support": 56,
+  "outputs": {
+    "by_dyad": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase3_mixing_gradient\\mixing_gradient_by_dyad.csv",
+    "pooled": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase3_mixing_gradient\\mixing_gradient_pooled.csv",
+    "radius_nested": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase3_mixing_gradient\\radius_nested_contact_rates.csv",
+    "figure": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase3_mixing_gradient\\mixing_gradient_5m.png"
+  }
+}

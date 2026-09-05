@@ -1,0 +1,265 @@
+{
+  "well_observed_from": "2024-12-01",
+  "scope_note": "Occurrence responses were tested in analyze_seasonality_and_trends.py. This script tests DEPTH and DURATION, which that script did not. Samples are one to two orders of magnitude smaller, so nulls here are weaker claims of absence than the occurrence nulls.",
+  "axis_a": {
+    "stage1_events_in_window": 1480,
+    "dyads": 66,
+    "encounter_duration": {
+      "label": "log encounter structural span; Gaussian GEE clustered on dyad",
+      "n": 1480,
+      "clusters": 66,
+      "response_mean": 1.9957,
+      "terms": {
+        "season_sin": {
+          "effect_per_sd": -0.024,
+          "ci": [
+            -0.135,
+            0.088
+          ]
+        },
+        "season_cos": {
+          "effect_per_sd": -0.054,
+          "ci": [
+            -0.182,
+            0.073
+          ]
+        },
+        "trend_months": {
+          "effect_per_sd": -0.033,
+          "ci": [
+            -0.232,
+            0.166
+          ]
+        },
+        "observed_hour_fraction": {
+          "effect_per_sd": -0.071,
+          "ci": [
+            -0.131,
+            -0.011
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.0842,
+      "seasonal_peak_month": "Jul",
+      "seasonal_joint_wald_p": 0.589
+    },
+    "events_with_5m": 716,
+    "mixing_depth": {
+      "label": "logit mixing deficit given an encounter; Gaussian GEE clustered on dyad",
+      "n": 716,
+      "clusters": 12,
+      "response_mean": -4.566,
+      "terms": {
+        "season_sin": {
+          "effect_per_sd": -0.275,
+          "ci": [
+            -0.676,
+            0.127
+          ]
+        },
+        "season_cos": {
+          "effect_per_sd": -0.011,
+          "ci": [
+            -0.249,
+            0.227
+          ]
+        },
+        "trend_months": {
+          "effect_per_sd": -0.28,
+          "ci": [
+            -0.821,
+            0.261
+          ]
+        },
+        "log_span": {
+          "effect_per_sd": 1.286,
+          "ci": [
+            1.127,
+            1.445
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.401,
+      "seasonal_peak_month": "Sep",
+      "seasonal_joint_wald_p": 0.3202
+    },
+    "mixing_depth_no_span_term": {
+      "label": "same, without the duration term -- season could act through duration",
+      "n": 716,
+      "clusters": 12,
+      "response_mean": -4.566,
+      "terms": {
+        "season_sin": {
+          "effect_per_sd": -0.215,
+          "ci": [
+            -0.704,
+            0.274
+          ]
+        },
+        "season_cos": {
+          "effect_per_sd": -0.167,
+          "ci": [
+            -0.447,
+            0.113
+          ]
+        },
+        "trend_months": {
+          "effect_per_sd": -0.386,
+          "ci": [
+            -1.006,
+            0.234
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.3993,
+      "seasonal_peak_month": "Aug",
+      "seasonal_joint_wald_p": 0.084
+    }
+  },
+  "axis_b": {
+    "split_events_in_window": 857,
+    "units": 16,
+    "median_persistent_split_hours": 3.0,
+    "split_duration": {
+      "label": "log persistent split hours; Gaussian GEE clustered on unit",
+      "n": 857,
+      "clusters": 16,
+      "response_mean": 1.3513,
+      "terms": {
+        "season_sin": {
+          "effect_per_sd": 0.081,
+          "ci": [
+            -0.117,
+            0.278
+          ]
+        },
+        "season_cos": {
+          "effect_per_sd": -0.013,
+          "ci": [
+            -0.142,
+            0.117
+          ]
+        },
+        "trend_months": {
+          "effect_per_sd": 0.066,
+          "ci": [
+            -0.082,
+            0.215
+          ]
+        },
+        "n_animals_onset": {
+          "effect_per_sd": 0.147,
+          "ci": [
+            0.021,
+            0.274
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.1131,
+      "seasonal_peak_month": "Apr",
+      "seasonal_joint_wald_p": 0.7078
+    },
+    "source_caveat": "candidate_split_events.csv derives from the presplit pipeline, not the frozen export; gap 7.3 applies"
+  },
+  "axis_c": {
+    "excursions_in_window": 322,
+    "units": 18,
+    "animals": 86,
+    "excursion_duration": {
+      "label": "log away-nights per excursion; Gaussian GEE clustered on unit",
+      "n": 322,
+      "clusters": 18,
+      "response_mean": 1.0002,
+      "terms": {
+        "season_sin": {
+          "effect_per_sd": -0.004,
+          "ci": [
+            -0.168,
+            0.16
+          ]
+        },
+        "season_cos": {
+          "effect_per_sd": 0.075,
+          "ci": [
+            -0.14,
+            0.291
+          ]
+        },
+        "trend_months": {
+          "effect_per_sd": 0.235,
+          "ci": [
+            0.033,
+            0.437
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.1043,
+      "seasonal_peak_month": "Dec",
+      "seasonal_joint_wald_p": 0.7779
+    },
+    "depth_reached_another_unit": {
+      "label": "did the excursion reach another unit? Binomial GEE clustered on unit",
+      "n": 322,
+      "clusters": 18,
+      "response_mean": 0.5311,
+      "terms": {
+        "season_sin": {
+          "or_per_sd": 0.962,
+          "ci": [
+            0.673,
+            1.375
+          ]
+        },
+        "season_cos": {
+          "or_per_sd": 0.691,
+          "ci": [
+            0.446,
+            1.072
+          ]
+        },
+        "trend_months": {
+          "or_per_sd": 1.425,
+          "ci": [
+            0.86,
+            2.361
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.5145,
+      "seasonal_peak_month": "Jul",
+      "seasonal_joint_wald_p": 0.234
+    },
+    "depth_reached_settlement": {
+      "label": "did the excursion reach settlement (>=7 joined nights)? Binomial GEE clustered on unit",
+      "n": 322,
+      "clusters": 18,
+      "response_mean": 0.1894,
+      "terms": {
+        "season_sin": {
+          "or_per_sd": 1.113,
+          "ci": [
+            0.694,
+            1.785
+          ]
+        },
+        "season_cos": {
+          "or_per_sd": 0.892,
+          "ci": [
+            0.521,
+            1.528
+          ]
+        },
+        "trend_months": {
+          "or_per_sd": 1.464,
+          "ci": [
+            0.831,
+            2.58
+          ]
+        }
+      },
+      "seasonal_amplitude": 0.2285,
+      "seasonal_peak_month": "May",
+      "seasonal_joint_wald_p": 0.8261
+    }
+  }
+}

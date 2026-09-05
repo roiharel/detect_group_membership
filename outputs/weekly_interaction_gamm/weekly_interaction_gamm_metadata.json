@@ -1,0 +1,17 @@
+{
+  "canonical": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+  "interactions": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\bigmerge_5m_long_events_2min_days\\bigmerge_5m_hourly_long_event_assignments.csv",
+  "ndvi": "C:\\Users\\rharel\\Documents\\Github\\detect_group_membership\\indices_sentinel2.csv",
+  "ndvi_used": true,
+  "modeling_note": "Python fit uses binomial spline terms with group fixed effects and dyad-clustered GEE. Rscript/mgcv is not available in this environment.",
+  "equivalent_mgcv_formula": "mgcv::bam(cbind(interaction_edges, non_interaction_edges) ~ s(log1p(weekly_centroid_distance_m), k=5) + s(dyad_weekly_ndvi_mean, k=4) + s(dyad_weekly_ndvi_abs_diff, k=4) + s(group_a, bs='re') + s(group_b, bs='re') + s(pair_key, bs='re'), family=binomial(), method='fREML', data=weekly_rows)",
+  "python_group_control_note": "Python model collapses group_a/group_b levels with fewer than 5 weekly rows into side-specific other_group controls to reduce sparse fixed-effect instability.",
+  "outputs": {
+    "dashboard": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\weekly_interaction_gamm_dashboard.html",
+    "summary": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\weekly_interaction_gamm_model_summary.csv",
+    "coefficients": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\weekly_interaction_gamm_coefficients.csv",
+    "predictions": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\weekly_interaction_gamm_predictions.csv",
+    "model_input": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\weekly_interaction_model_input_rows.csv",
+    "far_right_dyad_weeks": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\weekly_interaction_gamm\\far_right_dyad_weeks_by_centroid_distance.csv"
+  }
+}

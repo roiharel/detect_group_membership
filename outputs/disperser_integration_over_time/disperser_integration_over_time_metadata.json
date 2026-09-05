@@ -1,0 +1,9 @@
+{
+  "events": 28,
+  "animals": 9,
+  "progress_bins": 10,
+  "weighting": "each event-progress cell receives equal weight in pooled curves",
+  "bootstrap_cluster_unit": "dispersal event",
+  "slope_scale": "change in contact probability from 0 to 100 percent event progress under a linear summary",
+  "caution": "normalized event time compares trajectories of different duration; it is not calendar time"
+}

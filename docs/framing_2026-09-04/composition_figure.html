@@ -1,0 +1,559 @@
+<title>Event Composition by Group</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--ground:#f4f5f3;--paper:#fff;--ink:#15191a;--ink-2:#3a4244;--muted:#6b7476;
+--rule:#d5dad7;--rule-soft:#e6eae7;--accent:#0f5f57;
+--c1:#1f6f8b;--c2:#4a92aa;--c3:#84b6c6;--c4:#8a5a1f;--c5:#6b4a7a;
+--sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+--serif:"Newsreader",Georgia,serif;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0f1213;
+--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;--muted:#8f9998;--rule:#2c3435;
+--rule-soft:#232a2b;--accent:#5fc0b0;--c1:#74b6d0;--c2:#4f93ad;--c3:#356a7f;
+--c4:#d3a061;--c5:#b494c4;}}
+:root[data-theme="dark"]{--ground:#0f1213;--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;
+--muted:#8f9998;--rule:#2c3435;--rule-soft:#232a2b;--accent:#5fc0b0;--c1:#74b6d0;
+--c2:#4f93ad;--c3:#356a7f;--c4:#d3a061;--c5:#b494c4;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:800px;margin:0 auto;padding:48px 28px 80px}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.15;
+letter-spacing:-.01em;margin:0 0 26px;text-wrap:balance}
+.plate{background:var(--paper);border:1px solid var(--rule-soft);padding:22px 22px 8px}
+.plate svg{display:block;width:100%;height:auto;overflow:visible}
+.scroll{overflow-x:auto}.scroll>svg{min-width:620px}
+.cap{font-size:12.5px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;
+padding-top:14px;border-top:1px solid var(--rule)}
+.cap b{font-weight:600;color:var(--ink)}
+.cap .fignum{font-weight:600;color:var(--ink)}
+.note{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:22px;
+padding-top:14px;border-top:1px solid var(--rule-soft)}
+.note code{font-family:var(--mono);font-size:.92em}
+text{font-family:var(--sans)}
+.gl{font-size:9.2px;fill:var(--ink-2)}
+.ts{font-size:8.4px;fill:var(--muted)}
+.ch{font-size:9.6px;fill:var(--ink);font-weight:600}
+.ph{font-size:11px;fill:var(--ink);font-weight:600}
+.pl{font-size:14px;font-weight:700;fill:var(--ink)}
+.g{stroke:var(--rule-soft);stroke-width:.8}
+.ax{stroke:var(--rule);stroke-width:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+  <div class="kicker">Figure 3 &middot; draft</div>
+  <h1>Event composition varies widely across groups</h1>
+
+  <div class="plate">
+    <div class="scroll"><svg viewBox="0 0 700 895" role="img" aria-label="Composition of event types by group, with bootstrap intervals, and a null test showing the between-group variation exceeds sampling and strengthens when collar coverage is matched.">
+<text class="pl" x="0" y="30.0">a</text>
+<text class="ph" x="18" y="30.0">Family composition, 23 groups</text>
+<text class="ch" x="104.0" y="46.0">Between-group merge</text>
+<line class="g" x1="104.0" y1="57.0" x2="104.0" y2="347.2"/>
+<line class="g" x1="141.0" y1="57.0" x2="141.0" y2="347.2"/>
+<line class="g" x1="178.0" y1="57.0" x2="178.0" y2="347.2"/>
+<line class="g" x1="215.0" y1="57.0" x2="215.0" y2="347.2"/>
+<line class="g" x1="252.0" y1="57.0" x2="252.0" y2="347.2"/>
+<text class="ts" x="104.0" y="359.2" text-anchor="middle">0</text>
+<text class="ts" x="178.0" y="359.2" text-anchor="middle">.5</text>
+<text class="ts" x="252.0" y="359.2" text-anchor="middle">1</text>
+<line x1="160.6" y1="57.0" x2="160.6" y2="347.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="160.6" y="56.0" text-anchor="middle">0.38</text>
+<text class="ch" x="278.0" y="46.0">Within-group split</text>
+<line class="g" x1="278.0" y1="57.0" x2="278.0" y2="347.2"/>
+<line class="g" x1="315.0" y1="57.0" x2="315.0" y2="347.2"/>
+<line class="g" x1="352.0" y1="57.0" x2="352.0" y2="347.2"/>
+<line class="g" x1="389.0" y1="57.0" x2="389.0" y2="347.2"/>
+<line class="g" x1="426.0" y1="57.0" x2="426.0" y2="347.2"/>
+<text class="ts" x="278.0" y="359.2" text-anchor="middle">0</text>
+<text class="ts" x="352.0" y="359.2" text-anchor="middle">.5</text>
+<text class="ts" x="426.0" y="359.2" text-anchor="middle">1</text>
+<line x1="318.2" y1="57.0" x2="318.2" y2="347.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="318.2" y="56.0" text-anchor="middle">0.27</text>
+<text class="ch" x="452.0" y="46.0">Individual separation</text>
+<line class="g" x1="452.0" y1="57.0" x2="452.0" y2="347.2"/>
+<line class="g" x1="489.0" y1="57.0" x2="489.0" y2="347.2"/>
+<line class="g" x1="526.0" y1="57.0" x2="526.0" y2="347.2"/>
+<line class="g" x1="563.0" y1="57.0" x2="563.0" y2="347.2"/>
+<line class="g" x1="600.0" y1="57.0" x2="600.0" y2="347.2"/>
+<text class="ts" x="452.0" y="359.2" text-anchor="middle">0</text>
+<text class="ts" x="526.0" y="359.2" text-anchor="middle">.5</text>
+<text class="ts" x="600.0" y="359.2" text-anchor="middle">1</text>
+<line x1="503.2" y1="57.0" x2="503.2" y2="347.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="503.2" y="56.0" text-anchor="middle">0.35</text>
+<text class="gl" x="70.0" y="69.7" text-anchor="end">TrickyTeal</text>
+<text class="ts" x="96.0" y="69.7" text-anchor="end">38</text>
+<line x1="174.1" y1="66.5" x2="216.9" y2="66.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="197.5" cy="66.5" r="2.6" fill="var(--c1)"/>
+<line x1="278.0" y1="66.5" x2="278.0" y2="66.5" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="278.0" cy="66.5" r="2.6" fill="var(--c4)"/>
+<line x1="487.1" y1="66.5" x2="529.9" y2="66.5" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="506.5" cy="66.5" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="82.1" text-anchor="end">Sapphire</text>
+<text class="ts" x="96.0" y="82.1" text-anchor="end">135</text>
+<line x1="181.8" y1="78.9" x2="206.0" y2="78.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="193.9" cy="78.9" r="2.6" fill="var(--c1)"/>
+<line x1="301.0" y1="78.9" x2="320.8" y2="78.9" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="310.9" cy="78.9" r="2.6" fill="var(--c4)"/>
+<line x1="468.4" y1="78.9" x2="487.1" y2="78.9" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="477.2" cy="78.9" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="94.5" text-anchor="end">LapisSplinter</text>
+<text class="ts" x="96.0" y="94.5" text-anchor="end">643</text>
+<line x1="183.9" y1="91.3" x2="195.1" y2="91.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="189.4" cy="91.3" r="2.6" fill="var(--c1)"/>
+<line x1="305.9" y1="91.3" x2="315.1" y2="91.3" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="310.5" cy="91.3" r="2.6" fill="var(--c4)"/>
+<line x1="477.8" y1="91.3" x2="487.0" y2="91.3" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="482.2" cy="91.3" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="106.9" text-anchor="end">Copper</text>
+<text class="ts" x="96.0" y="106.9" text-anchor="end">1682</text>
+<line x1="184.7" y1="103.7" x2="191.7" y2="103.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="188.1" cy="103.7" r="2.6" fill="var(--c1)"/>
+<line x1="311.8" y1="103.7" x2="317.9" y2="103.7" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="314.8" cy="103.7" r="2.6" fill="var(--c4)"/>
+<line x1="476.4" y1="103.7" x2="482.0" y2="103.7" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="479.1" cy="103.7" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="119.3" text-anchor="end">Red</text>
+<text class="ts" x="96.0" y="119.3" text-anchor="end">222</text>
+<line x1="177.3" y1="116.1" x2="196.7" y2="116.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="187.3" cy="116.1" r="2.6" fill="var(--c1)"/>
+<line x1="292.7" y1="116.1" x2="306.7" y2="116.1" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="299.3" cy="116.1" r="2.6" fill="var(--c4)"/>
+<line x1="486.0" y1="116.1" x2="504.7" y2="116.1" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="495.3" cy="116.1" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="131.7" text-anchor="end">Lilac</text>
+<text class="ts" x="96.0" y="131.7" text-anchor="end">2012</text>
+<line x1="180.4" y1="128.5" x2="187.0" y2="128.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="183.9" cy="128.5" r="2.6" fill="var(--c1)"/>
+<line x1="304.8" y1="128.5" x2="309.9" y2="128.5" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="307.3" cy="128.5" r="2.6" fill="var(--c4)"/>
+<line x1="488.1" y1="128.5" x2="494.0" y2="128.5" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="490.8" cy="128.5" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="144.1" text-anchor="end">Purple</text>
+<text class="ts" x="96.0" y="144.1" text-anchor="end">442</text>
+<line x1="175.0" y1="140.9" x2="188.7" y2="140.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="181.7" cy="140.9" r="2.6" fill="var(--c1)"/>
+<line x1="312.5" y1="140.9" x2="324.9" y2="140.9" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="318.9" cy="140.9" r="2.6" fill="var(--c4)"/>
+<line x1="476.1" y1="140.9" x2="487.2" y2="140.9" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="481.5" cy="140.9" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="156.5" text-anchor="end">Obsidian</text>
+<text class="ts" x="96.0" y="156.5" text-anchor="end">101</text>
+<line x1="167.0" y1="153.3" x2="196.3" y2="153.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="181.7" cy="153.3" r="2.6" fill="var(--c1)"/>
+<line x1="302.9" y1="153.3" x2="327.8" y2="153.3" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="314.6" cy="153.3" r="2.6" fill="var(--c4)"/>
+<line x1="474.0" y1="153.3" x2="498.9" y2="153.3" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="485.7" cy="153.3" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="168.9" text-anchor="end">SneakySilver</text>
+<text class="ts" x="96.0" y="168.9" text-anchor="end">127</text>
+<line x1="168.1" y1="165.7" x2="193.7" y2="165.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="180.9" cy="165.7" r="2.6" fill="var(--c1)"/>
+<line x1="287.3" y1="165.7" x2="303.6" y2="165.7" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="295.5" cy="165.7" r="2.6" fill="var(--c4)"/>
+<line x1="492.8" y1="165.7" x2="518.4" y2="165.7" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="505.6" cy="165.7" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="181.3" text-anchor="end">Magenta</text>
+<text class="ts" x="96.0" y="181.3" text-anchor="end">1353</text>
+<line x1="176.3" y1="178.1" x2="184.2" y2="178.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="180.1" cy="178.1" r="2.6" fill="var(--c1)"/>
+<line x1="309.0" y1="178.1" x2="315.6" y2="178.1" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="312.2" cy="178.1" r="2.6" fill="var(--c4)"/>
+<line x1="486.2" y1="178.1" x2="493.0" y2="178.1" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="489.6" cy="178.1" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="193.7" text-anchor="end">Bronze</text>
+<text class="ts" x="96.0" y="193.7" text-anchor="end">871</text>
+<line x1="173.8" y1="190.5" x2="183.7" y2="190.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="178.8" cy="190.5" r="2.6" fill="var(--c1)"/>
+<line x1="313.3" y1="190.5" x2="321.8" y2="190.5" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="317.6" cy="190.5" r="2.6" fill="var(--c4)"/>
+<line x1="481.7" y1="190.5" x2="489.9" y2="190.5" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="485.6" cy="190.5" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="206.1" text-anchor="end">FireOpal</text>
+<text class="ts" x="96.0" y="206.1" text-anchor="end">151</text>
+<line x1="162.8" y1="202.9" x2="185.4" y2="202.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="173.6" cy="202.9" r="2.6" fill="var(--c1)"/>
+<line x1="312.3" y1="202.9" x2="333.9" y2="202.9" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="323.1" cy="202.9" r="2.6" fill="var(--c4)"/>
+<line x1="475.5" y1="202.9" x2="495.1" y2="202.9" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="485.3" cy="202.9" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="218.5" text-anchor="end">Turquoise</text>
+<text class="ts" x="96.0" y="218.5" text-anchor="end">350</text>
+<line x1="152.2" y1="215.3" x2="167.0" y2="215.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="159.4" cy="215.3" r="2.6" fill="var(--c1)"/>
+<line x1="315.2" y1="215.3" x2="329.6" y2="215.3" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="322.4" cy="215.3" r="2.6" fill="var(--c4)"/>
+<line x1="492.6" y1="215.3" x2="507.0" y2="215.3" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="500.2" cy="215.3" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="230.9" text-anchor="end">Emerald</text>
+<text class="ts" x="96.0" y="230.9" text-anchor="end">1420</text>
+<line x1="155.4" y1="227.7" x2="162.6" y2="227.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="159.1" cy="227.7" r="2.6" fill="var(--c1)"/>
+<line x1="311.2" y1="227.7" x2="317.9" y2="227.7" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="314.5" cy="227.7" r="2.6" fill="var(--c4)"/>
+<line x1="504.7" y1="227.7" x2="512.1" y2="227.7" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="508.4" cy="227.7" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="243.3" text-anchor="end">FenceJumpers</text>
+<text class="ts" x="96.0" y="243.3" text-anchor="end">42</text>
+<line x1="132.2" y1="240.1" x2="174.5" y2="240.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="153.3" cy="240.1" r="2.6" fill="var(--c1)"/>
+<line x1="302.6" y1="240.1" x2="341.4" y2="240.1" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="320.3" cy="240.1" r="2.6" fill="var(--c4)"/>
+<line x1="487.2" y1="240.1" x2="529.5" y2="240.1" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="508.4" cy="240.1" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="255.7" text-anchor="end">Green</text>
+<text class="ts" x="96.0" y="255.7" text-anchor="end">30</text>
+<line x1="123.7" y1="252.5" x2="173.1" y2="252.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="148.4" cy="252.5" r="2.6" fill="var(--c1)"/>
+<line x1="287.9" y1="252.5" x2="327.3" y2="252.5" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="307.6" cy="252.5" r="2.6" fill="var(--c4)"/>
+<line x1="501.3" y1="252.5" x2="555.6" y2="252.5" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="526.0" cy="252.5" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="268.1" text-anchor="end">PhantomWest</text>
+<text class="ts" x="96.0" y="268.1" text-anchor="end">550</text>
+<line x1="141.9" y1="264.9" x2="153.8" y2="264.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="147.9" cy="264.9" r="2.6" fill="var(--c1)"/>
+<line x1="326.2" y1="264.9" x2="338.0" y2="264.9" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="332.1" cy="264.9" r="2.6" fill="var(--c4)"/>
+<line x1="496.4" y1="264.9" x2="508.2" y2="264.9" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="502.1" cy="264.9" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="280.5" text-anchor="end">RubyRunners</text>
+<text class="ts" x="96.0" y="280.5" text-anchor="end">281</text>
+<line x1="138.8" y1="277.3" x2="154.6" y2="277.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="146.7" cy="277.3" r="2.6" fill="var(--c1)"/>
+<line x1="325.9" y1="277.3" x2="343.3" y2="277.3" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="333.8" cy="277.3" r="2.6" fill="var(--c4)"/>
+<line x1="493.1" y1="277.3" x2="509.4" y2="277.3" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="501.5" cy="277.3" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="292.9" text-anchor="end">Chartreuse</text>
+<text class="ts" x="96.0" y="292.9" text-anchor="end">1749</text>
+<line x1="140.5" y1="289.7" x2="146.6" y2="289.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="143.4" cy="289.7" r="2.6" fill="var(--c1)"/>
+<line x1="300.8" y1="289.7" x2="305.9" y2="289.7" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="303.4" cy="289.7" r="2.6" fill="var(--c4)"/>
+<line x1="531.7" y1="289.7" x2="538.6" y2="289.7" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="535.2" cy="289.7" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="305.3" text-anchor="end">Maroon</text>
+<text class="ts" x="96.0" y="305.3" text-anchor="end">483</text>
+<line x1="134.6" y1="302.1" x2="146.3" y2="302.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="140.5" cy="302.1" r="2.6" fill="var(--c1)"/>
+<line x1="327.0" y1="302.1" x2="339.9" y2="302.1" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="333.5" cy="302.1" r="2.6" fill="var(--c4)"/>
+<line x1="501.6" y1="302.1" x2="514.5" y2="302.1" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="508.1" cy="302.1" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="317.7" text-anchor="end">Lapis</text>
+<text class="ts" x="96.0" y="317.7" text-anchor="end">1695</text>
+<line x1="134.0" y1="314.5" x2="139.9" y2="314.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="136.8" cy="314.5" r="2.6" fill="var(--c1)"/>
+<line x1="317.1" y1="314.5" x2="323.6" y2="314.5" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="320.4" cy="314.5" r="2.6" fill="var(--c4)"/>
+<line x1="521.2" y1="314.5" x2="528.1" y2="314.5" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="524.7" cy="314.5" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="330.1" text-anchor="end">Jade</text>
+<text class="ts" x="96.0" y="330.1" text-anchor="end">835</text>
+<line x1="128.3" y1="326.9" x2="136.3" y2="326.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="132.2" cy="326.9" r="2.6" fill="var(--c1)"/>
+<line x1="333.5" y1="326.9" x2="343.4" y2="326.9" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="338.4" cy="326.9" r="2.6" fill="var(--c4)"/>
+<line x1="506.4" y1="326.9" x2="516.2" y2="326.9" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="511.4" cy="326.9" r="2.6" fill="var(--c5)"/>
+<text class="gl" x="70.0" y="342.5" text-anchor="end">Periwinkle</text>
+<text class="ts" x="96.0" y="342.5" text-anchor="end">1610</text>
+<line x1="118.8" y1="339.3" x2="123.6" y2="339.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="121.0" cy="339.3" r="2.6" fill="var(--c1)"/>
+<line x1="339.2" y1="339.3" x2="346.5" y2="339.3" stroke="var(--c4)" stroke-width="1.4" opacity=".85"/>
+<circle cx="342.8" cy="339.3" r="2.6" fill="var(--c4)"/>
+<line x1="514.6" y1="339.3" x2="521.9" y2="339.3" stroke="var(--c5)" stroke-width="1.4" opacity=".85"/>
+<circle cx="518.2" cy="339.3" r="2.6" fill="var(--c5)"/>
+<line class="ax" x1="104.0" y1="347.2" x2="252.0" y2="347.2"/>
+<line class="ax" x1="278.0" y1="347.2" x2="426.0" y2="347.2"/>
+<line class="ax" x1="452.0" y1="347.2" x2="600.0" y2="347.2"/>
+<text class="pl" x="0" y="389.2">b</text>
+<text class="ph" x="18" y="389.2">Merge-scale composition within merges, 20 groups</text>
+<text class="ch" x="104.0" y="405.2">Large merge</text>
+<line class="g" x1="104.0" y1="416.2" x2="104.0" y2="669.2"/>
+<line class="g" x1="141.0" y1="416.2" x2="141.0" y2="669.2"/>
+<line class="g" x1="178.0" y1="416.2" x2="178.0" y2="669.2"/>
+<line class="g" x1="215.0" y1="416.2" x2="215.0" y2="669.2"/>
+<line class="g" x1="252.0" y1="416.2" x2="252.0" y2="669.2"/>
+<text class="ts" x="104.0" y="681.2" text-anchor="middle">0</text>
+<text class="ts" x="178.0" y="681.2" text-anchor="middle">.5</text>
+<text class="ts" x="252.0" y="681.2" text-anchor="middle">1</text>
+<line x1="169.0" y1="416.2" x2="169.0" y2="669.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="169.0" y="415.2" text-anchor="middle">0.44</text>
+<text class="ch" x="278.0" y="405.2">Medium partial</text>
+<line class="g" x1="278.0" y1="416.2" x2="278.0" y2="669.2"/>
+<line class="g" x1="315.0" y1="416.2" x2="315.0" y2="669.2"/>
+<line class="g" x1="352.0" y1="416.2" x2="352.0" y2="669.2"/>
+<line class="g" x1="389.0" y1="416.2" x2="389.0" y2="669.2"/>
+<line class="g" x1="426.0" y1="416.2" x2="426.0" y2="669.2"/>
+<text class="ts" x="278.0" y="681.2" text-anchor="middle">0</text>
+<text class="ts" x="352.0" y="681.2" text-anchor="middle">.5</text>
+<text class="ts" x="426.0" y="681.2" text-anchor="middle">1</text>
+<line x1="308.8" y1="416.2" x2="308.8" y2="669.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="308.8" y="415.2" text-anchor="middle">0.21</text>
+<text class="ch" x="452.0" y="405.2">Small subset</text>
+<line class="g" x1="452.0" y1="416.2" x2="452.0" y2="669.2"/>
+<line class="g" x1="489.0" y1="416.2" x2="489.0" y2="669.2"/>
+<line class="g" x1="526.0" y1="416.2" x2="526.0" y2="669.2"/>
+<line class="g" x1="563.0" y1="416.2" x2="563.0" y2="669.2"/>
+<line class="g" x1="600.0" y1="416.2" x2="600.0" y2="669.2"/>
+<text class="ts" x="452.0" y="681.2" text-anchor="middle">0</text>
+<text class="ts" x="526.0" y="681.2" text-anchor="middle">.5</text>
+<text class="ts" x="600.0" y="681.2" text-anchor="middle">1</text>
+<line x1="504.2" y1="416.2" x2="504.2" y2="669.2" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 2" opacity=".65"/>
+<text class="ts" x="504.2" y="415.2" text-anchor="middle">0.35</text>
+<text class="gl" x="70.0" y="428.9" text-anchor="end">FireOpal</text>
+<text class="ts" x="96.0" y="428.9" text-anchor="end">71</text>
+<line x1="212.4" y1="425.7" x2="237.4" y2="425.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="224.9" cy="425.7" r="2.6" fill="var(--c1)"/>
+<line x1="286.3" y1="425.7" x2="307.2" y2="425.7" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="296.8" cy="425.7" r="2.6" fill="var(--c2)"/>
+<line x1="454.1" y1="425.7" x2="468.7" y2="425.7" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="460.3" cy="425.7" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="441.3" text-anchor="end">Obsidian</text>
+<text class="ts" x="96.0" y="441.3" text-anchor="end">53</text>
+<line x1="207.3" y1="438.1" x2="238.0" y2="438.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="224.1" cy="438.1" r="2.6" fill="var(--c1)"/>
+<line x1="280.8" y1="438.1" x2="303.2" y2="438.1" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="292.0" cy="438.1" r="2.6" fill="var(--c2)"/>
+<line x1="454.8" y1="438.1" x2="479.9" y2="438.1" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="466.0" cy="438.1" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="453.7" text-anchor="end">SneakySilver</text>
+<text class="ts" x="96.0" y="453.7" text-anchor="end">66</text>
+<line x1="198.2" y1="450.5" x2="227.3" y2="450.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="213.9" cy="450.5" r="2.6" fill="var(--c1)"/>
+<line x1="278.0" y1="450.5" x2="284.7" y2="450.5" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="280.2" cy="450.5" r="2.6" fill="var(--c2)"/>
+<line x1="474.4" y1="450.5" x2="503.6" y2="450.5" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="487.9" cy="450.5" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="466.1" text-anchor="end">Jade</text>
+<text class="ts" x="96.0" y="466.1" text-anchor="end">159</text>
+<line x1="201.7" y1="462.9" x2="223.1" y2="462.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="212.9" cy="462.9" r="2.6" fill="var(--c1)"/>
+<line x1="293.8" y1="462.9" x2="311.5" y2="462.9" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="302.2" cy="462.9" r="2.6" fill="var(--c2)"/>
+<line x1="460.4" y1="462.9" x2="474.3" y2="462.9" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="466.9" cy="462.9" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="478.5" text-anchor="end">Purple</text>
+<text class="ts" x="96.0" y="478.5" text-anchor="end">232</text>
+<line x1="188.8" y1="475.3" x2="207.3" y2="475.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="198.4" cy="475.3" r="2.6" fill="var(--c1)"/>
+<line x1="297.8" y1="475.3" x2="312.4" y2="475.3" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="304.8" cy="475.3" r="2.6" fill="var(--c2)"/>
+<line x1="471.1" y1="475.3" x2="486.4" y2="475.3" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="478.8" cy="475.3" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="490.9" text-anchor="end">LapisSplinter</text>
+<text class="ts" x="96.0" y="490.9" text-anchor="end">371</text>
+<line x1="179.4" y1="487.7" x2="193.8" y2="487.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="186.6" cy="487.7" r="2.6" fill="var(--c1)"/>
+<line x1="296.7" y1="487.7" x2="307.5" y2="487.7" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="301.9" cy="487.7" r="2.6" fill="var(--c2)"/>
+<line x1="486.7" y1="487.7" x2="499.9" y2="487.7" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="493.5" cy="487.7" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="503.3" text-anchor="end">Periwinkle</text>
+<text class="ts" x="96.0" y="503.3" text-anchor="end">185</text>
+<line x1="167.2" y1="500.1" x2="189.6" y2="500.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="178.4" cy="500.1" r="2.6" fill="var(--c1)"/>
+<line x1="305.2" y1="500.1" x2="323.6" y2="500.1" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="314.8" cy="500.1" r="2.6" fill="var(--c2)"/>
+<line x1="480.0" y1="500.1" x2="498.4" y2="500.1" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="488.8" cy="500.1" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="515.7" text-anchor="end">Bronze</text>
+<text class="ts" x="96.0" y="515.7" text-anchor="end">440</text>
+<line x1="168.2" y1="512.5" x2="182.0" y2="512.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="175.0" cy="512.5" r="2.6" fill="var(--c1)"/>
+<line x1="303.2" y1="512.5" x2="314.0" y2="512.5" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="308.3" cy="512.5" r="2.6" fill="var(--c2)"/>
+<line x1="492.4" y1="512.5" x2="505.1" y2="512.5" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="498.8" cy="512.5" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="528.1" text-anchor="end">Magenta</text>
+<text class="ts" x="96.0" y="528.1" text-anchor="end">696</text>
+<line x1="169.1" y1="524.9" x2="179.9" y2="524.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="174.4" cy="524.9" r="2.6" fill="var(--c1)"/>
+<line x1="302.9" y1="524.9" x2="311.4" y2="524.9" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="307.1" cy="524.9" r="2.6" fill="var(--c2)"/>
+<line x1="495.4" y1="524.9" x2="505.6" y2="524.9" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="500.5" cy="524.9" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="540.5" text-anchor="end">Lapis</text>
+<text class="ts" x="96.0" y="540.5" text-anchor="end">376</text>
+<line x1="162.3" y1="537.3" x2="176.8" y2="537.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="169.3" cy="537.3" r="2.6" fill="var(--c1)"/>
+<line x1="291.0" y1="537.3" x2="300.4" y2="537.3" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="295.7" cy="537.3" r="2.6" fill="var(--c2)"/>
+<line x1="509.1" y1="537.3" x2="524.0" y2="537.3" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="516.9" cy="537.3" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="552.9" text-anchor="end">Emerald</text>
+<text class="ts" x="96.0" y="552.9" text-anchor="end">529</text>
+<line x1="162.5" y1="549.7" x2="175.1" y2="549.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="168.9" cy="549.7" r="2.6" fill="var(--c1)"/>
+<line x1="297.6" y1="549.7" x2="306.8" y2="549.7" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="302.3" cy="549.7" r="2.6" fill="var(--c2)"/>
+<line x1="504.9" y1="549.7" x2="517.2" y2="549.7" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="510.8" cy="549.7" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="565.3" text-anchor="end">Maroon</text>
+<text class="ts" x="96.0" y="565.3" text-anchor="end">119</text>
+<line x1="155.0" y1="562.1" x2="179.9" y2="562.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="166.2" cy="562.1" r="2.6" fill="var(--c1)"/>
+<line x1="294.2" y1="562.1" x2="312.8" y2="562.1" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="302.9" cy="562.1" r="2.6" fill="var(--c2)"/>
+<line x1="500.5" y1="562.1" x2="525.4" y2="562.1" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="512.9" cy="562.1" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="577.7" text-anchor="end">Chartreuse</text>
+<text class="ts" x="96.0" y="577.7" text-anchor="end">466</text>
+<line x1="157.7" y1="574.5" x2="171.3" y2="574.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="164.7" cy="574.5" r="2.6" fill="var(--c1)"/>
+<line x1="294.8" y1="574.5" x2="303.7" y2="574.5" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="299.3" cy="574.5" r="2.6" fill="var(--c2)"/>
+<line x1="511.7" y1="574.5" x2="524.7" y2="574.5" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="518.1" cy="574.5" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="590.1" text-anchor="end">Copper</text>
+<text class="ts" x="96.0" y="590.1" text-anchor="end">956</text>
+<line x1="158.3" y1="586.9" x2="167.2" y2="586.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="162.7" cy="586.9" r="2.6" fill="var(--c1)"/>
+<line x1="312.8" y1="586.9" x2="320.7" y2="586.9" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="316.9" cy="586.9" r="2.6" fill="var(--c2)"/>
+<line x1="498.0" y1="586.9" x2="507.1" y2="586.9" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="502.5" cy="586.9" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="602.5" text-anchor="end">Red</text>
+<text class="ts" x="96.0" y="602.5" text-anchor="end">125</text>
+<line x1="147.8" y1="599.3" x2="172.7" y2="599.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="159.6" cy="599.3" r="2.6" fill="var(--c1)"/>
+<line x1="321.8" y1="599.3" x2="347.9" y2="599.3" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="334.8" cy="599.3" r="2.6" fill="var(--c2)"/>
+<line x1="476.9" y1="599.3" x2="499.4" y2="599.3" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="487.5" cy="599.3" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="614.9" text-anchor="end">Turquoise</text>
+<text class="ts" x="96.0" y="614.9" text-anchor="end">131</text>
+<line x1="144.7" y1="611.7" x2="168.4" y2="611.7" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="156.0" cy="611.7" r="2.6" fill="var(--c1)"/>
+<line x1="322.1" y1="611.7" x2="346.9" y2="611.7" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="334.5" cy="611.7" r="2.6" fill="var(--c2)"/>
+<line x1="481.4" y1="611.7" x2="502.8" y2="611.7" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="491.5" cy="611.7" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="627.3" text-anchor="end">Lilac</text>
+<text class="ts" x="96.0" y="627.3" text-anchor="end">1086</text>
+<line x1="149.7" y1="624.1" x2="158.2" y2="624.1" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="153.9" cy="624.1" r="2.6" fill="var(--c1)"/>
+<line x1="314.9" y1="624.1" x2="323.1" y2="624.1" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="318.9" cy="624.1" r="2.6" fill="var(--c2)"/>
+<line x1="504.9" y1="624.1" x2="513.6" y2="624.1" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="509.2" cy="624.1" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="639.7" text-anchor="end">Sapphire</text>
+<text class="ts" x="96.0" y="639.7" text-anchor="end">82</text>
+<line x1="134.7" y1="636.5" x2="161.8" y2="636.5" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="147.3" cy="636.5" r="2.6" fill="var(--c1)"/>
+<line x1="308.7" y1="636.5" x2="337.6" y2="636.5" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="323.1" cy="636.5" r="2.6" fill="var(--c2)"/>
+<line x1="497.1" y1="636.5" x2="527.8" y2="636.5" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="511.6" cy="636.5" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="652.1" text-anchor="end">RubyRunners</text>
+<text class="ts" x="96.0" y="652.1" text-anchor="end">81</text>
+<line x1="131.4" y1="648.9" x2="160.6" y2="648.9" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="146.0" cy="648.9" r="2.6" fill="var(--c1)"/>
+<line x1="301.8" y1="648.9" x2="329.2" y2="648.9" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="314.5" cy="648.9" r="2.6" fill="var(--c2)"/>
+<line x1="505.0" y1="648.9" x2="537.9" y2="648.9" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="521.4" cy="648.9" r="2.6" fill="var(--c3)"/>
+<text class="gl" x="70.0" y="664.5" text-anchor="end">PhantomWest</text>
+<text class="ts" x="96.0" y="664.5" text-anchor="end">163</text>
+<line x1="118.5" y1="661.3" x2="135.8" y2="661.3" stroke="var(--c1)" stroke-width="1.4" opacity=".85"/>
+<circle cx="126.7" cy="661.3" r="2.6" fill="var(--c1)"/>
+<line x1="278.0" y1="661.3" x2="280.7" y2="661.3" stroke="var(--c2)" stroke-width="1.4" opacity=".85"/>
+<circle cx="278.9" cy="661.3" r="2.6" fill="var(--c2)"/>
+<line x1="567.3" y1="661.3" x2="584.6" y2="661.3" stroke="var(--c3)" stroke-width="1.4" opacity=".85"/>
+<circle cx="576.4" cy="661.3" r="2.6" fill="var(--c3)"/>
+<line class="ax" x1="104.0" y1="669.2" x2="252.0" y2="669.2"/>
+<line class="ax" x1="278.0" y1="669.2" x2="426.0" y2="669.2"/>
+<line class="ax" x1="452.0" y1="669.2" x2="600.0" y2="669.2"/>
+<text class="pl" x="0" y="717.2">c</text>
+<text class="ph" x="18" y="717.2">Between-group spread against a multinomial null</text>
+<line class="g" x1="148.0" y1="741.2" x2="148.0" y2="849.2"/>
+<text class="ts" x="148.0" y="861.2" text-anchor="middle">0.00</text>
+<line class="g" x1="219.5" y1="741.2" x2="219.5" y2="849.2"/>
+<text class="ts" x="219.5" y="861.2" text-anchor="middle">0.03</text>
+<line class="g" x1="291.0" y1="741.2" x2="291.0" y2="849.2"/>
+<text class="ts" x="291.0" y="861.2" text-anchor="middle">0.06</text>
+<line class="g" x1="362.5" y1="741.2" x2="362.5" y2="849.2"/>
+<text class="ts" x="362.5" y="861.2" text-anchor="middle">0.09</text>
+<line class="g" x1="434.0" y1="741.2" x2="434.0" y2="849.2"/>
+<text class="ts" x="434.0" y="861.2" text-anchor="middle">0.12</text>
+<text class="ch" x="0" y="757.4">Family composition</text>
+<text class="gl" x="140.0" y="757.4" text-anchor="end">all groups (23)</text>
+<rect x="148.0" y="749.4" width="29.0" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="402.2" cy="752.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="410.2" y="757.4">8.8&times; null,  p &lt; 0.001</text>
+<text class="gl" x="140.0" y="774.4" text-anchor="end">collars >= 8 (11)</text>
+<rect x="148.0" y="766.4" width="29.8" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="393.7" cy="769.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="401.7" y="774.4">8.2&times; null,  p &lt; 0.001</text>
+<text class="gl" x="140.0" y="791.4" text-anchor="end">collars 7-14 (12)</text>
+<rect x="148.0" y="783.4" width="29.8" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="388.0" cy="786.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="396.0" y="791.4">8.0&times; null,  p &lt; 0.001</text>
+<text class="ch" x="0" y="808.4">Merge-scale composition</text>
+<text class="gl" x="140.0" y="808.4" text-anchor="end">all groups (20)</text>
+<rect x="148.0" y="800.4" width="44.3" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="318.5" cy="803.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="326.5" y="808.4">3.9&times; null,  p &lt; 0.001</text>
+<text class="gl" x="140.0" y="825.4" text-anchor="end">collars >= 8 (11)</text>
+<rect x="148.0" y="817.4" width="49.7" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="370.1" cy="820.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="378.1" y="825.4">4.5&times; null,  p &lt; 0.001</text>
+<text class="gl" x="140.0" y="842.4" text-anchor="end">collars 7-14 (12)</text>
+<rect x="148.0" y="834.4" width="44.9" height="7" fill="var(--muted)" opacity=".3"/>
+<circle cx="355.7" cy="837.9" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="363.7" y="842.4">4.6&times; null,  p &lt; 0.001</text>
+<line class="ax" x1="148.0" y1="849.2" x2="448.0" y2="849.2"/>
+<text class="ts" x="148" y="879.2">grey bar: null mean &middot; dot: observed</text>
+</svg></div>
+    <p class="cap">
+      <span class="fignum">Figure 3.</span> Event-type composition across 23 social groups.
+      Rows are groups, ordered by the leftmost proportion; the number beside each group name
+      is its event total. Dots are observed proportions, horizontal lines 95% percentile
+      bootstrap intervals over that group's own events (2,000 draws); the dashed line in each
+      column is the pooled proportion across all groups.
+      <b>(a)</b> Family composition. Pooled, 38% of
+      events are between-group merges, 27%
+      within-group splits and 35% individual
+      separations &mdash; but the spread is wide: LapisSplinter is
+      58% merges against Jade at 19%,
+      while Jade produces 41% splits.
+      <b>(b)</b> Composition of the merges themselves, pooled over the record. The spread is
+      wide &mdash; PhantomWest is 84% small subsets of
+      163 merges, FireOpal 82% large of
+      71 &mdash; but <b>this ordering does not survive a temporal
+      decomposition</b> and should be read as variation in the population rather than as
+      differences between groups. See Figure 4: once quarter-to-quarter drift is retained,
+      merge-scale composition has an ICC of 0.05&ndash;0.13 and is not distinguishable from
+      shuffled group labels (permutation p = 0.09&ndash;0.26), and well-sampled groups traverse
+      most of the range within their own record.
+      <b>(c)</b> Observed between-group spread (dot) against the mean of a multinomial null in
+      which each group draws its own number of events from the pooled distribution (grey bar),
+      in three collar-coverage strata. Family composition varies at
+      8.8&times; the null across all groups and
+      8.0&times; within a matched 7&ndash;14 collar band; merge-scale composition
+      at 3.9&times; and 4.6&times; respectively. The variation
+      is not a coverage artefact &mdash; it <b>strengthens</b> when coverage is matched. Note
+      the limit of this null, though: it assumes each group draws from a fixed pooled
+      distribution with no temporal structure, so it tests whether the spread exceeds
+      <em>sampling</em>, not whether groups differ. Figure 4 applies the stronger test.
+    </p>
+  </div>
+
+  <p class="note">
+    Merges are dyadic and counted for both participating groups, so merge counts sum to twice
+    the merge event total; splits and individual separations are attributed to the origin group.
+    Groups with fewer than 30 events are omitted. Collar coverage does bias detection
+    by type &mdash; the within-group-split share correlates with median collars at
+    Spearman +0.41 and the merge share at -0.32, as
+    expected since a split needs two clusters visible while a merge needs one animal from each
+    side &mdash; which is why panel (c) repeats the test inside coverage strata. Events and
+    exposure both come from the legacy hourly source filtered to 2025-01-01 onward; cohort
+    reconciliation with the frozen export is outstanding. Generated by
+    <code>build_composition_figure.py</code> from
+    <code>analyze_event_composition_by_group.py</code>. Bootstrap and null seed 20260904.
+  </p>
+</div>

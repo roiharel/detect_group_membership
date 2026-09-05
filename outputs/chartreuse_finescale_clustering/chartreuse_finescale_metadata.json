@@ -1,0 +1,17 @@
+{
+  "gps_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\network_v1_cleaned_gps_v1.parquet",
+  "matched_events_with_gps": 26,
+  "matched_hours_with_gps": {
+    "Matched Purple absent": 133,
+    "Purple present": 133
+  },
+  "radii_m": [
+    2.0,
+    5.0,
+    10.0
+  ],
+  "fine_split_definition": "at least two connected components each containing at least two Chartreuse animals in a 2-minute bin",
+  "edge_definition": "great-circle distance at or below the stated radius using one median location per animal per 2-minute bin",
+  "bootstrap_cluster_unit": "Chartreuse-Purple encounter event",
+  "caution": "GPS availability varies by bin; absence of an edge is evaluated only among co-observed animals."
+}

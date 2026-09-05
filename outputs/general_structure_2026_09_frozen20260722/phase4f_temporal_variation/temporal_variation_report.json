@@ -1,0 +1,309 @@
+{
+  "seed": 20260904,
+  "window": "calendar quarter",
+  "source_caveat": "legacy hourly source filtered to 2025-01-01 onward; six quarters 2025Q1 to 2026Q2; gap 7.3 applies",
+  "family": {
+    "decomposition": {
+      "group_quarters": 76,
+      "groups": 14,
+      "min_events_per_window": 20,
+      "min_windows_per_group": 4,
+      "quarters": [
+        "2025Q1",
+        "2025Q2",
+        "2025Q3",
+        "2025Q4",
+        "2026Q1",
+        "2026Q2"
+      ],
+      "by_proportion": {
+        "group_merge": {
+          "between_group_variance": 0.6044,
+          "within_group_over_time_variance": 0.6465,
+          "icc_between_group": 0.483,
+          "interpretation": "mostly temporal variation within group"
+        },
+        "within_group": {
+          "between_group_variance": 0.2592,
+          "within_group_over_time_variance": 0.6418,
+          "icc_between_group": 0.288,
+          "interpretation": "mostly temporal variation within group"
+        },
+        "individual": {
+          "between_group_variance": 0.2871,
+          "within_group_over_time_variance": 0.3069,
+          "icc_between_group": 0.483,
+          "interpretation": "mostly temporal variation within group"
+        }
+      }
+    },
+    "anova_permutation": {
+      "group_quarters": 76,
+      "groups": 14,
+      "by_proportion": {
+        "group_merge": {
+          "icc_anova": 0.475,
+          "F": 5.89,
+          "permutation_p": 0.0,
+          "verdict": "groups differ"
+        },
+        "within_group": {
+          "icc_anova": 0.317,
+          "F": 3.52,
+          "permutation_p": 0.0005,
+          "verdict": "groups differ"
+        },
+        "individual": {
+          "icc_anova": 0.526,
+          "F": 7.01,
+          "permutation_p": 0.0,
+          "verdict": "groups differ"
+        }
+      }
+    },
+    "persistence": {
+      "group_merge": {
+        "consecutive_quarter_pairs": 68,
+        "lag1_autocorrelation": 0.579
+      },
+      "within_group": {
+        "consecutive_quarter_pairs": 68,
+        "lag1_autocorrelation": 0.556
+      },
+      "individual": {
+        "consecutive_quarter_pairs": 68,
+        "lag1_autocorrelation": 0.589
+      }
+    }
+  },
+  "merge_scale": {
+    "decomposition": {
+      "group_quarters": 54,
+      "groups": 10,
+      "min_events_per_window": 20,
+      "min_windows_per_group": 4,
+      "quarters": [
+        "2025Q1",
+        "2025Q2",
+        "2025Q3",
+        "2025Q4",
+        "2026Q1",
+        "2026Q2"
+      ],
+      "by_proportion": {
+        "large_merge": {
+          "between_group_variance": 0.0179,
+          "within_group_over_time_variance": 0.3151,
+          "icc_between_group": 0.054,
+          "interpretation": "mostly temporal variation within group"
+        },
+        "medium_partial_merge": {
+          "between_group_variance": 0.0507,
+          "within_group_over_time_variance": 0.5232,
+          "icc_between_group": 0.088,
+          "interpretation": "mostly temporal variation within group"
+        },
+        "small_subset_merge": {
+          "between_group_variance": 0.0471,
+          "within_group_over_time_variance": 0.4212,
+          "icc_between_group": 0.101,
+          "interpretation": "mostly temporal variation within group"
+        }
+      }
+    },
+    "anova_permutation": {
+      "group_quarters": 54,
+      "groups": 10,
+      "by_proportion": {
+        "large_merge": {
+          "icc_anova": 0.056,
+          "F": 1.32,
+          "permutation_p": 0.2605,
+          "verdict": "not distinguishable from shuffling group labels"
+        },
+        "medium_partial_merge": {
+          "icc_anova": 0.053,
+          "F": 1.3,
+          "permutation_p": 0.2565,
+          "verdict": "not distinguishable from shuffling group labels"
+        },
+        "small_subset_merge": {
+          "icc_anova": 0.13,
+          "F": 1.81,
+          "permutation_p": 0.0855,
+          "verdict": "not distinguishable from shuffling group labels"
+        }
+      }
+    },
+    "persistence": {
+      "large_merge": {
+        "consecutive_quarter_pairs": 51,
+        "lag1_autocorrelation": 0.411
+      },
+      "medium_partial_merge": {
+        "consecutive_quarter_pairs": 51,
+        "lag1_autocorrelation": 0.272
+      },
+      "small_subset_merge": {
+        "consecutive_quarter_pairs": 51,
+        "lag1_autocorrelation": 0.257
+      }
+    }
+  },
+  "partner_turnover": {
+    "consecutive_quarter_pairs": 74,
+    "mean_jaccard": 0.61,
+    "median_jaccard": 0.586,
+    "null_mean_jaccard": 0.154,
+    "ratio_to_null": 3.95
+  },
+  "event_rate": {
+    "group_quarters": 92,
+    "groups": 23,
+    "model": "log(events per group-week) ~ collars + (1|group)",
+    "between_group_variance": 0.4922,
+    "within_group_over_time_variance": 0.2515,
+    "icc_between_group": 0.662,
+    "collar_coefficient": 0.021,
+    "collar_pvalue": 0.2927,
+    "spearman_rate_vs_collars": 0.284
+  },
+  "within_group_swing_p_large_merge": [
+    {
+      "group": "PhantomWest",
+      "windows": 2,
+      "total_events": 151,
+      "min": 0.048,
+      "max": 0.615,
+      "swing": 0.567
+    },
+    {
+      "group": "Lapis",
+      "windows": 6,
+      "total_events": 376,
+      "min": 0.299,
+      "max": 0.758,
+      "swing": 0.458
+    },
+    {
+      "group": "Emerald",
+      "windows": 5,
+      "total_events": 510,
+      "min": 0.179,
+      "max": 0.568,
+      "swing": 0.389
+    },
+    {
+      "group": "Periwinkle",
+      "windows": 5,
+      "total_events": 181,
+      "min": 0.306,
+      "max": 0.682,
+      "swing": 0.376
+    },
+    {
+      "group": "Copper",
+      "windows": 6,
+      "total_events": 956,
+      "min": 0.299,
+      "max": 0.657,
+      "swing": 0.358
+    },
+    {
+      "group": "Lilac",
+      "windows": 6,
+      "total_events": 1086,
+      "min": 0.178,
+      "max": 0.53,
+      "swing": 0.352
+    },
+    {
+      "group": "FireOpal",
+      "windows": 2,
+      "total_events": 71,
+      "min": 0.657,
+      "max": 0.972,
+      "swing": 0.315
+    },
+    {
+      "group": "Chartreuse",
+      "windows": 5,
+      "total_events": 453,
+      "min": 0.225,
+      "max": 0.53,
+      "swing": 0.305
+    },
+    {
+      "group": "Magenta",
+      "windows": 6,
+      "total_events": 696,
+      "min": 0.411,
+      "max": 0.66,
+      "swing": 0.248
+    },
+    {
+      "group": "Obsidian",
+      "windows": 2,
+      "total_events": 53,
+      "min": 0.696,
+      "max": 0.9,
+      "swing": 0.204
+    },
+    {
+      "group": "Jade",
+      "windows": 3,
+      "total_events": 151,
+      "min": 0.623,
+      "max": 0.827,
+      "swing": 0.204
+    },
+    {
+      "group": "Purple",
+      "windows": 4,
+      "total_events": 232,
+      "min": 0.519,
+      "max": 0.714,
+      "swing": 0.196
+    },
+    {
+      "group": "Turquoise",
+      "windows": 2,
+      "total_events": 131,
+      "min": 0.25,
+      "max": 0.437,
+      "swing": 0.187
+    },
+    {
+      "group": "Bronze",
+      "windows": 5,
+      "total_events": 421,
+      "min": 0.4,
+      "max": 0.579,
+      "swing": 0.179
+    },
+    {
+      "group": "LapisSplinter",
+      "windows": 6,
+      "total_events": 371,
+      "min": 0.477,
+      "max": 0.623,
+      "swing": 0.145
+    },
+    {
+      "group": "Red",
+      "windows": 2,
+      "total_events": 125,
+      "min": 0.296,
+      "max": 0.437,
+      "swing": 0.14
+    },
+    {
+      "group": "RubyRunners",
+      "windows": 2,
+      "total_events": 71,
+      "min": 0.16,
+      "max": 0.239,
+      "swing": 0.079
+    }
+  ]
+}

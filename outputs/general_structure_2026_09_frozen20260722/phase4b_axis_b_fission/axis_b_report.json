@@ -1,0 +1,676 @@
+{
+  "seed": 20260904,
+  "scope": "combined_1100_1600",
+  "weekly_source": "outputs\\canonical_within_group_density_modularity_ridges\\canonical_within_group_weekly_network_metrics.csv",
+  "source_caveat": "weekly network metrics derive from the legacy hourly source filtered to 2025-01-01 onward; axes A and C use the frozen 1,924,104-row export. Cross-axis pooling remains blocked on gap 7.3.",
+  "part1_modularity": {
+    "detectability_ladder": [
+      {
+        "collars_observed": "1-4",
+        "group_weeks": 491,
+        "units": 24,
+        "pct_weeks_modular": 1.2,
+        "pct_weeks_with_split": 28.7,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "5-7",
+        "group_weeks": 306,
+        "units": 19,
+        "pct_weeks_modular": 1.3,
+        "pct_weeks_with_split": 61.4,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "8-9",
+        "group_weeks": 184,
+        "units": 12,
+        "pct_weeks_modular": 3.3,
+        "pct_weeks_with_split": 65.8,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "10-11",
+        "group_weeks": 123,
+        "units": 15,
+        "pct_weeks_modular": 9.8,
+        "pct_weeks_with_split": 82.1,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "12-14",
+        "group_weeks": 175,
+        "units": 12,
+        "pct_weeks_modular": 12.6,
+        "pct_weeks_with_split": 76.6,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0069,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "15-19",
+        "group_weeks": 107,
+        "units": 6,
+        "pct_weeks_modular": 31.8,
+        "pct_weeks_with_split": 81.3,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0261,
+        "median_n_communities": 1.0
+      },
+      {
+        "collars_observed": "20-99",
+        "group_weeks": 32,
+        "units": 2,
+        "pct_weeks_modular": 46.9,
+        "pct_weeks_with_split": 78.1,
+        "median_modularity": 0.0,
+        "p90_modularity": 0.0636,
+        "median_n_communities": 2.0
+      }
+    ],
+    "coverage_confound": {
+      "spearman_modularity_vs_collars": 0.225,
+      "spearman_split_fraction_vs_collars": 0.489
+    },
+    "coverage_matched_band": [
+      12,
+      16
+    ],
+    "coverage_matched": [
+      {
+        "dynamic_social_unit": "Lilac",
+        "group_weeks": 39,
+        "median_collars": 13.0,
+        "nominal_group_size": 60.0,
+        "pct_weeks_modular": 53.8,
+        "median_modularity": 0.0064693634741225,
+        "max_modularity": 0.4577785891318795,
+        "median_split_fraction": 0.5,
+        "median_largest_community_fraction": 0.75
+      },
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "group_weeks": 20,
+        "median_collars": 15.0,
+        "nominal_group_size": 74.0,
+        "pct_weeks_modular": 45.0,
+        "median_modularity": 0.0,
+        "max_modularity": 0.0645098645555353,
+        "median_split_fraction": 0.7857142857142857,
+        "median_largest_community_fraction": 0.9666666666666666
+      },
+      {
+        "dynamic_social_unit": "FireOpal",
+        "group_weeks": 7,
+        "median_collars": 12.0,
+        "nominal_group_size": 62.0,
+        "pct_weeks_modular": 14.3,
+        "median_modularity": 0.0,
+        "max_modularity": 0.0056944152722351,
+        "median_split_fraction": 0.0,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "Copper",
+        "group_weeks": 8,
+        "median_collars": 13.5,
+        "nominal_group_size": 50.0,
+        "pct_weeks_modular": 12.5,
+        "median_modularity": 0.0,
+        "max_modularity": 0.0030384881157945,
+        "median_split_fraction": 0.1428571428571428,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "PhantomWest",
+        "group_weeks": 9,
+        "median_collars": 13.0,
+        "nominal_group_size": 78.0,
+        "pct_weeks_modular": 11.1,
+        "median_modularity": 0.0,
+        "max_modularity": 0.0803044386813948,
+        "median_split_fraction": 0.5,
+        "median_largest_community_fraction": 0.9166666666666666
+      },
+      {
+        "dynamic_social_unit": "Maroon",
+        "group_weeks": 9,
+        "median_collars": 12.0,
+        "nominal_group_size": 42.0,
+        "pct_weeks_modular": 11.1,
+        "median_modularity": 0.0,
+        "max_modularity": 0.0179223985071183,
+        "median_split_fraction": 0.8571428571428571,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "group_weeks": 45,
+        "median_collars": 13.0,
+        "nominal_group_size": 74.0,
+        "pct_weeks_modular": 2.2,
+        "median_modularity": 0.0,
+        "max_modularity": 0.00715280162832,
+        "median_split_fraction": 0.2142857142857142,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "Magenta",
+        "group_weeks": 7,
+        "median_collars": 13.0,
+        "nominal_group_size": 56.0,
+        "pct_weeks_modular": 0.0,
+        "median_modularity": 0.0,
+        "max_modularity": 3.3306690738754696e-16,
+        "median_split_fraction": 0.5714285714285714,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "group_weeks": 34,
+        "median_collars": 14.0,
+        "nominal_group_size": 62.0,
+        "pct_weeks_modular": 0.0,
+        "median_modularity": 0.0,
+        "max_modularity": 2.220446049250313e-16,
+        "median_split_fraction": 0.0714285714285714,
+        "median_largest_community_fraction": 1.0
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "group_weeks": 27,
+        "median_collars": 13.0,
+        "nominal_group_size": 64.0,
+        "pct_weeks_modular": 0.0,
+        "median_modularity": 0.0,
+        "max_modularity": 1.1102230246251563e-16,
+        "median_split_fraction": 0.1428571428571428,
+        "median_largest_community_fraction": 1.0
+      }
+    ],
+    "variance_decomposition": {
+      "model": "MixedLM(modularity ~ collars + (1|unit)), well-covered weeks",
+      "group_weeks": 314,
+      "units": 12,
+      "between_unit_variance": 0.000319,
+      "residual_variance": 0.001835,
+      "icc_between_unit": 0.148,
+      "collar_coefficient": 0.00064,
+      "collar_pvalue": 0.4282
+    },
+    "persistence": [
+      {
+        "dynamic_social_unit": "Chartreuse",
+        "consecutive_week_pairs": 73,
+        "lag1_autocorrelation": 0.331
+      },
+      {
+        "dynamic_social_unit": "Copper",
+        "consecutive_week_pairs": 6,
+        "lag1_autocorrelation": -0.2
+      },
+      {
+        "dynamic_social_unit": "FireOpal",
+        "consecutive_week_pairs": 5,
+        "lag1_autocorrelation": -0.25
+      },
+      {
+        "dynamic_social_unit": "Lapis",
+        "consecutive_week_pairs": 75,
+        "lag1_autocorrelation": -0.018
+      },
+      {
+        "dynamic_social_unit": "Lilac",
+        "consecutive_week_pairs": 37,
+        "lag1_autocorrelation": 0.413
+      },
+      {
+        "dynamic_social_unit": "Magenta",
+        "consecutive_week_pairs": 5,
+        "lag1_autocorrelation": 0.791
+      },
+      {
+        "dynamic_social_unit": "Maroon",
+        "consecutive_week_pairs": 7,
+        "lag1_autocorrelation": -0.167
+      },
+      {
+        "dynamic_social_unit": "PhantomWest",
+        "consecutive_week_pairs": 9,
+        "lag1_autocorrelation": -0.0
+      },
+      {
+        "dynamic_social_unit": "Purple",
+        "consecutive_week_pairs": 33,
+        "lag1_autocorrelation": 0.132
+      },
+      {
+        "dynamic_social_unit": "RubyRunners",
+        "consecutive_week_pairs": 38,
+        "lag1_autocorrelation": -0.027
+      }
+    ]
+  },
+  "part2_cositting": {
+    "retained_event_dyads": 27812,
+    "retained_events": 461,
+    "retained_units": 15,
+    "min_coobserved_bins": 10,
+    "bond_exclusion_days": 7,
+    "note": "both AUCs computed on the identical retained sample",
+    "mean_event_auc_preceding": 0.5702,
+    "mean_event_auc_preceding_ci": [
+      0.5601,
+      0.5816
+    ],
+    "mean_event_auc_general_bond": 0.5742,
+    "mean_event_auc_general_bond_ci": [
+      0.5617,
+      0.5873
+    ],
+    "paired_auc_difference_general_minus_preceding": 0.0039,
+    "paired_auc_difference_ci": [
+      -0.0093,
+      0.0179
+    ],
+    "joint_within_event_model": {
+      "design": "logit(same_subgroup) ~ general_bond + preceding_rate, both z-scored then demeaned within event; Binomial GEE clustered on event",
+      "n_event_dyads": 26058,
+      "n_events": 465,
+      "terms": {
+        "w_general_bond": {
+          "log_odds_per_sd": 0.2513,
+          "odds_ratio_per_sd": 1.286,
+          "ci_or": [
+            1.215,
+            1.36
+          ]
+        },
+        "w_preceding_rate": {
+          "log_odds_per_sd": 0.1774,
+          "odds_ratio_per_sd": 1.194,
+          "ci_or": [
+            1.137,
+            1.254
+          ]
+        }
+      },
+      "alone": {
+        "w_general_bond": {
+          "odds_ratio_per_sd": 1.347,
+          "ci_or": [
+            1.27,
+            1.428
+          ]
+        },
+        "w_preceding_rate": {
+          "odds_ratio_per_sd": 1.269,
+          "ci_or": [
+            1.205,
+            1.338
+          ]
+        }
+      }
+    }
+  },
+  "part3_environment": {
+    "ndvi_source": "C:\\Users\\rharel\\Documents\\Github\\detect_group_membership\\indices_sentinel2.csv",
+    "ndvi_date_range": [
+      "2024-02-29",
+      "2026-04-29"
+    ],
+    "group_weeks_before_join": 1418,
+    "group_weeks_retained": 836,
+    "units_retained": 19,
+    "retention_note": "requires a successful NDVI week for that group and >=5 collars observed; NDVI ends 2026-04-29 while membership runs to 2026-07-22",
+    "split_week_rate": 0.7129,
+    "occurrence_model": {
+      "label": "does a split occur in this group-week? Binomial GEE clustered on unit",
+      "n": 836,
+      "clusters": 19,
+      "terms": {
+        "ndvi_unit_mean": {
+          "coef": 0.4677,
+          "or_per_sd": 1.596,
+          "ci_or": [
+            1.051,
+            2.426
+          ]
+        },
+        "ndvi_deviation": {
+          "coef": 0.0286,
+          "or_per_sd": 1.029,
+          "ci_or": [
+            0.902,
+            1.174
+          ]
+        },
+        "n_animals_observed": {
+          "coef": 0.4337,
+          "or_per_sd": 1.543,
+          "ci_or": [
+            0.936,
+            2.545
+          ]
+        },
+        "season_sin": {
+          "coef": 0.0913,
+          "or_per_sd": 1.096,
+          "ci_or": [
+            0.794,
+            1.511
+          ]
+        },
+        "season_cos": {
+          "coef": 0.0527,
+          "or_per_sd": 1.054,
+          "ci_or": [
+            0.782,
+            1.42
+          ]
+        }
+      }
+    },
+    "occurrence_model_no_coverage_term": {
+      "label": "same model with the collar-coverage term dropped -- for contrast only",
+      "n": 836,
+      "clusters": 19,
+      "terms": {
+        "ndvi_unit_mean": {
+          "coef": 0.5354,
+          "or_per_sd": 1.708,
+          "ci_or": [
+            1.073,
+            2.719
+          ]
+        },
+        "ndvi_deviation": {
+          "coef": 0.003,
+          "or_per_sd": 1.003,
+          "ci_or": [
+            0.871,
+            1.155
+          ]
+        },
+        "season_sin": {
+          "coef": 0.1172,
+          "or_per_sd": 1.124,
+          "ci_or": [
+            0.854,
+            1.481
+          ]
+        },
+        "season_cos": {
+          "coef": 0.0838,
+          "or_per_sd": 1.087,
+          "ci_or": [
+            0.795,
+            1.488
+          ]
+        }
+      }
+    },
+    "occurrence_response_ladder": [
+      {
+        "subset": "all retained",
+        "response": "any split timestamp (as reported above)",
+        "n": 836,
+        "base_rate": 0.713,
+        "ndvi_unit_mean_or": 1.596,
+        "ndvi_unit_mean_ci": [
+          1.051,
+          2.426
+        ],
+        "ndvi_deviation_or": 1.029,
+        "ndvi_deviation_ci": [
+          0.902,
+          1.174
+        ],
+        "n_animals_observed_or": 1.543,
+        "n_animals_observed_ci": [
+          0.936,
+          2.545
+        ]
+      },
+      {
+        "subset": "all retained",
+        "response": "group split in >50% of timestamps",
+        "n": 836,
+        "base_rate": 0.246,
+        "ndvi_unit_mean_or": 1.34,
+        "ndvi_unit_mean_ci": [
+          0.887,
+          2.025
+        ],
+        "ndvi_deviation_or": 1.088,
+        "ndvi_deviation_ci": [
+          0.874,
+          1.356
+        ],
+        "n_animals_observed_or": 2.083,
+        "n_animals_observed_ci": [
+          1.327,
+          3.267
+        ]
+      },
+      {
+        "subset": "all retained",
+        "response": "any multi-animal split, excluding lone animals",
+        "n": 836,
+        "base_rate": 0.392,
+        "ndvi_unit_mean_or": 2.194,
+        "ndvi_unit_mean_ci": [
+          1.482,
+          3.247
+        ],
+        "ndvi_deviation_or": 1.005,
+        "ndvi_deviation_ci": [
+          0.833,
+          1.214
+        ],
+        "n_animals_observed_or": 1.53,
+        "n_animals_observed_ci": [
+          1.046,
+          2.237
+        ]
+      },
+      {
+        "subset": "all retained",
+        "response": "multi-animal split in >25% of timestamps",
+        "n": 836,
+        "base_rate": 0.106,
+        "ndvi_unit_mean_or": 2.906,
+        "ndvi_unit_mean_ci": [
+          1.891,
+          4.466
+        ],
+        "ndvi_deviation_or": 0.768,
+        "ndvi_deviation_ci": [
+          0.592,
+          0.997
+        ],
+        "n_animals_observed_or": 2.08,
+        "n_animals_observed_ci": [
+          1.38,
+          3.135
+        ]
+      },
+      {
+        "subset": ">=12 collars",
+        "response": "any split timestamp (as reported above)",
+        "n": 284,
+        "base_rate": 0.799,
+        "ndvi_unit_mean_or": 4.476,
+        "ndvi_unit_mean_ci": [
+          1.217,
+          16.465
+        ],
+        "ndvi_deviation_or": 0.926,
+        "ndvi_deviation_ci": [
+          0.759,
+          1.13
+        ],
+        "n_animals_observed_or": 1.19,
+        "n_animals_observed_ci": [
+          0.745,
+          1.903
+        ]
+      },
+      {
+        "subset": ">=12 collars",
+        "response": "group split in >50% of timestamps",
+        "n": 284,
+        "base_rate": 0.433,
+        "ndvi_unit_mean_or": 2.429,
+        "ndvi_unit_mean_ci": [
+          1.919,
+          3.074
+        ],
+        "ndvi_deviation_or": 0.975,
+        "ndvi_deviation_ci": [
+          0.716,
+          1.328
+        ],
+        "n_animals_observed_or": 1.192,
+        "n_animals_observed_ci": [
+          0.729,
+          1.949
+        ]
+      },
+      {
+        "subset": ">=12 collars",
+        "response": "any multi-animal split, excluding lone animals",
+        "n": 284,
+        "base_rate": 0.525,
+        "ndvi_unit_mean_or": 4.504,
+        "ndvi_unit_mean_ci": [
+          2.08,
+          9.753
+        ],
+        "ndvi_deviation_or": 1.117,
+        "ndvi_deviation_ci": [
+          0.829,
+          1.505
+        ],
+        "n_animals_observed_or": 1.131,
+        "n_animals_observed_ci": [
+          0.882,
+          1.449
+        ]
+      },
+      {
+        "subset": ">=12 collars",
+        "response": "multi-animal split in >25% of timestamps",
+        "n": 284,
+        "base_rate": 0.239,
+        "ndvi_unit_mean_or": 5.49,
+        "ndvi_unit_mean_ci": [
+          2.067,
+          14.579
+        ],
+        "ndvi_deviation_or": 0.703,
+        "ndvi_deviation_ci": [
+          0.545,
+          0.907
+        ],
+        "n_animals_observed_or": 0.828,
+        "n_animals_observed_ci": [
+          0.339,
+          2.024
+        ]
+      }
+    ],
+    "occurrence_verdict": "The within-unit NDVI deviation term -- the only term that asks whether a group splits more in weeks greener than its own norm -- is null in every specification, and in the two strictest it turns weakly negative with a CI touching 1. The large ndvi_unit_mean term is between-group range greenness, not separable from group identity across 19 units; it is the same failure mode as the axis-A seasonal term, which fell from OR 0.62 to 0.86 under restriction. Collar coverage predicts split detection in the full sample and stops doing so above the well-covered threshold.",
+    "extent_model": {
+      "label": "given a split week, what fraction of timestamps are split? Gaussian GEE (identity), z-scored predictors",
+      "n": 596,
+      "clusters": 19,
+      "terms": {
+        "ndvi_unit_mean": {
+          "coef": 0.0299,
+          "or_per_sd": 1.03,
+          "ci_or": [
+            0.966,
+            1.099
+          ]
+        },
+        "ndvi_deviation": {
+          "coef": 0.0089,
+          "or_per_sd": 1.009,
+          "ci_or": [
+            0.969,
+            1.05
+          ]
+        },
+        "n_animals_observed": {
+          "coef": 0.1238,
+          "or_per_sd": 1.132,
+          "ci_or": [
+            1.063,
+            1.206
+          ]
+        },
+        "season_sin": {
+          "coef": 0.026,
+          "or_per_sd": 1.026,
+          "ci_or": [
+            0.963,
+            1.094
+          ]
+        },
+        "season_cos": {
+          "coef": -0.031,
+          "or_per_sd": 0.969,
+          "ci_or": [
+            0.916,
+            1.027
+          ]
+        }
+      },
+      "response_note": "coefficients are per SD of predictor, on the raw fraction"
+    },
+    "duration_sample": {
+      "events_with_ndvi_on_onset_day": 655,
+      "units": 14,
+      "median_persistent_split_hours": 2.0,
+      "p90_persistent_split_hours": 13.0,
+      "max_persistent_split_hours": 240.0
+    },
+    "duration_model": {
+      "label": "log(persistent split hours) ~ NDVI terms + animals at onset; Gaussian GEE clustered on unit",
+      "n": 655,
+      "clusters": 14,
+      "terms": {
+        "ndvi_unit_mean": {
+          "coef": -0.0456,
+          "ci": [
+            -0.2179,
+            0.1267
+          ]
+        },
+        "ndvi_deviation": {
+          "coef": 0.0505,
+          "ci": [
+            0.0021,
+            0.0989
+          ]
+        },
+        "n_animals_onset": {
+          "coef": 0.2367,
+          "ci": [
+            0.0536,
+            0.4197
+          ]
+        }
+      }
+    }
+  }
+}

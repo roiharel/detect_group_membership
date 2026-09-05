@@ -1,0 +1,18 @@
+{
+  "membership_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+  "pair_summary": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\effect_plots\\canonical_group_pair_merge_probabilities_monthly.csv",
+  "output_dir": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\copper_lilac_phase_alluvial_from_202403",
+  "groups": [
+    "Copper",
+    "Lilac"
+  ],
+  "category_order": [
+    "Copper",
+    "Copper-Lilac mixed",
+    "Lilac",
+    "single-animal separation",
+    "other"
+  ],
+  "phase_definition": "contiguous dynamic-programming segments minimizing within-phase variance of monthly Copper-Lilac large/whole merge probability",
+  "n_animals": 41
+}

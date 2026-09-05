@@ -1,0 +1,1072 @@
+<title>Stable Groups, Fluid Boundaries</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #f1f3f1;
+    --paper: #fbfcfa;
+    --ink: #141a19;
+    --ink-2: #38423f;
+    --muted: #667370;
+    --faint: #8d9793;
+    --rule: #d3d9d4;
+    --rule-soft: #e3e8e3;
+    --accent: #0f5f57;
+    --accent-soft: #dceae6;
+    --ax-a: #1f6f8b;
+    --ax-b: #8a5a1f;
+    --ax-c: #6b4a7a;
+    --ax-d: #46683a;
+    --caution: #8a6410;
+    --caution-bg: #f6efdc;
+    --stop: #8c3a2e;
+    --stop-bg: #f7e6e2;
+    --ok-bg: #dceae6;
+    --shadow: 0 1px 2px rgba(20, 26, 25, .05), 0 8px 24px -14px rgba(20, 26, 25, .18);
+    --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --sans: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #101413;
+      --paper: #171d1c;
+      --ink: #e9efec;
+      --ink-2: #c3ccc8;
+      --muted: #94a09c;
+      --faint: #737e7a;
+      --rule: #2b3432;
+      --rule-soft: #222a29;
+      --accent: #5fc0b0;
+      --accent-soft: #1a302d;
+      --ax-a: #74b6d0;
+      --ax-b: #d3a061;
+      --ax-c: #b494c4;
+      --ax-d: #90b47e;
+      --caution: #d8ab54;
+      --caution-bg: #2c2515;
+      --stop: #e08a78;
+      --stop-bg: #2e1a16;
+      --ok-bg: #17302c;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -14px rgba(0, 0, 0, .7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #101413;
+    --paper: #171d1c;
+    --ink: #e9efec;
+    --ink-2: #c3ccc8;
+    --muted: #94a09c;
+    --faint: #737e7a;
+    --rule: #2b3432;
+    --rule-soft: #222a29;
+    --accent: #5fc0b0;
+    --accent-soft: #1a302d;
+    --ax-a: #74b6d0;
+    --ax-b: #d3a061;
+    --ax-c: #b494c4;
+    --ax-d: #90b47e;
+    --caution: #d8ab54;
+    --caution-bg: #2c2515;
+    --stop: #e08a78;
+    --stop-bg: #2e1a16;
+    --ok-bg: #17302c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -14px rgba(0, 0, 0, .7);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 0 48px;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px 96px;
+  }
+
+  /* ---- rail ---- */
+  nav.rail {
+    grid-column: 1;
+    align-self: start;
+    position: sticky;
+    top: 0;
+    padding: 44px 0 0;
+  }
+  .rail-mark {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 14px;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  nav.rail a {
+    display: flex;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+    padding: 5px 6px 5px 0;
+    border-radius: 3px;
+  }
+  nav.rail a:hover { color: var(--accent); }
+  nav.rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  nav.rail .n { font-family: var(--mono); font-size: 11px; color: var(--faint); padding-top: 1px; }
+
+  /* ---- masthead ---- */
+  main { grid-column: 2; min-width: 0; padding-top: 44px; }
+  header.mast { border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 34px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 5.4vw, 52px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -.018em;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 34em;
+    margin: 0 0 18px;
+  }
+  .mast-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .mast-meta b { font-weight: 500; color: var(--ink-2); }
+
+  /* ---- sections ---- */
+  section { margin-bottom: 52px; scroll-margin-top: 24px; }
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -.012em;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 30px 0 8px;
+  }
+  h4 {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    margin: 26px 0 6px;
+    letter-spacing: -.005em;
+  }
+  p { margin: 0 0 14px; max-width: 66ch; }
+  main a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  strong { font-weight: 600; }
+  code, .num { font-family: var(--mono); font-size: .88em; font-variant-numeric: tabular-nums; }
+
+  blockquote {
+    margin: 22px 0;
+    padding: 18px 22px;
+    background: var(--paper);
+    border-left: 3px solid var(--accent);
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.42;
+    color: var(--ink);
+    max-width: 40em;
+  }
+  blockquote p { margin: 0; max-width: none; }
+
+  /* ---- tables ---- */
+  .tw { overflow-x: auto; margin: 18px 0 22px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 500px; }
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding-bottom: 8px;
+  }
+  th, td { text-align: left; padding: 8px 12px 8px 0; vertical-align: top; border-bottom: 1px solid var(--rule-soft); }
+  thead th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+  }
+  td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; padding-right: 0; }
+  tbody tr:last-child td { border-bottom: none; }
+  tr.total td { border-top: 1px solid var(--rule); border-bottom: none; font-weight: 600; }
+
+  /* ---- axis chips ---- */
+  .axis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(224px, 1fr)); gap: 1px; background: var(--rule-soft); border: 1px solid var(--rule-soft); margin: 20px 0 24px; }
+  .axis-card { background: var(--paper); padding: 16px 16px 18px; border-top: 3px solid var(--ac); display: flex; flex-direction: column; gap: 7px; }
+  .axis-card .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ac); }
+  .axis-card .nm { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.2; }
+  .axis-card p { font-size: 13px; line-height: 1.5; margin: 0; color: var(--ink-2); max-width: none; }
+  .axis-card .share { margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); border-top: 1px dotted var(--rule); }
+  .axis-card .share b { color: var(--ink); font-weight: 500; font-size: 15px; }
+  .a-a { --ac: var(--ax-a); } .a-b { --ac: var(--ax-b); } .a-c { --ac: var(--ax-c); } .a-d { --ac: var(--ax-d); }
+
+  /* ---- figures ---- */
+  figure { margin: 26px 0; background: var(--paper); border: 1px solid var(--rule-soft); padding: 20px 20px 16px; box-shadow: var(--shadow); }
+  figure .ftitle { font-family: var(--sans); font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  figure .fsub { font-size: 12.5px; color: var(--muted); margin-bottom: 16px; max-width: 62ch; }
+  figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+  figcaption { font-size: 12px; color: var(--muted); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule-soft); max-width: 66ch; }
+  .svg-scroll { overflow-x: auto; }
+  .svg-scroll > svg { min-width: 460px; }
+  text { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .lbl { font-size: 10.5px; fill: var(--ink-2); }
+  .lbl-sm { font-size: 9.5px; fill: var(--faint); }
+  .lbl-em { font-size: 10.5px; fill: var(--ink); font-weight: 500; }
+  .axline { stroke: var(--rule); stroke-width: 1; }
+  .grid { stroke: var(--rule-soft); stroke-width: 1; }
+
+  /* ---- verdict pills ---- */
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; white-space: nowrap; }
+  .p-ok { background: var(--ok-bg); color: var(--accent); }
+  .p-cau { background: var(--caution-bg); color: var(--caution); }
+  .p-stop { background: var(--stop-bg); color: var(--stop); }
+  .p-var { background: transparent; color: var(--ax-b); box-shadow: inset 0 0 0 1px var(--ax-b); }
+
+  /* ---- callout ---- */
+  .callout { background: var(--paper); border: 1px solid var(--rule); border-left: 3px solid var(--caution); padding: 15px 18px; margin: 20px 0; }
+  .callout .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--caution); margin-bottom: 5px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  ul, ol.rich { padding-left: 20px; max-width: 66ch; margin: 0 0 16px; }
+  li { margin-bottom: 7px; }
+
+  footer { grid-column: 2; border-top: 1px solid var(--rule); padding-top: 16px; font-size: 12.5px; color: var(--muted); }
+
+  @media (max-width: 860px) {
+    .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 0 20px 64px; }
+    nav.rail { display: none; }
+    main, footer { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+
+<nav class="rail">
+  <div class="rail-mark">Framing &middot; 4 Sep 2026</div>
+  <ol>
+    <li><a href="#thesis"><span class="n">1</span><span>The thesis</span></a></li>
+    <li><a href="#routes"><span class="n">2</span><span>Three routes</span></a></li>
+    <li><a href="#coverage"><span class="n">3</span><span>What coverage buys</span></a></li>
+    <li><a href="#ledger"><span class="n">4</span><span>The coverage ledger</span></a></li>
+    <li><a href="#fission"><span class="n">&nbsp;</span><span style="font-size:12px">&mdash; fission &amp; modularity</span></a></li>
+    <li><a href="#individual"><span class="n">&nbsp;</span><span style="font-size:12px">&mdash; individual excursion</span></a></li>
+    <li><a href="#pattern"><span class="n">5</span><span>The shared pattern</span></a></li>
+    <li><a href="#season"><span class="n">&nbsp;</span><span style="font-size:12px">&mdash; season &amp; trend</span></a></li>
+    <li><a href="#results"><span class="n">6</span><span>Result architecture</span></a></li>
+    <li><a href="#gaps"><span class="n">7</span><span>What is missing</span></a></li>
+    <li><a href="#verdict"><span class="n">8</span><span>Claim &amp; verdict</span></a></li>
+    <li><a href="#phases"><span class="n">9</span><span>Phase plan</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="mast">
+  <div class="eyebrow">General framing &middot; supersedes PAPER_STRUCTURE_GENERAL</div>
+  <h1>Stable groups, fluid boundaries</h1>
+  <p class="standfirst">Three routes across a group boundary, measured on one cohort &mdash; and, for each one, what a 350-animal, 26-group, 29-month dataset actually licenses.</p>
+  <div class="mast-meta">
+    <span><b>1,924,104</b> animal-hours</span>
+    <span><b>81,695</b> animal-nights</span>
+    <span><b>350</b> animals</span>
+    <span><b>26</b> origin groups</span>
+    <span><b>2024-03-01</b> &rarr; <b>2026-07-22</b></span>
+  </div>
+</header>
+
+<section id="thesis">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The thesis</h2></div>
+  <p>A group is not a container. It is a <strong>baseline animals return to</strong>, and the interesting quantity is not whether the baseline exists but how, how often, and how deeply animals leave it.</p>
+  <p>On <span class="num">82.7%</span> of 81,695 animal-nights an animal sleeps with its origin group. That is the stability. On the other <span class="num">17.3%</span> it is somewhere else &mdash; and on <span class="num">33.2%</span> of nights the <em>configuration</em> it sleeps in is not its whole group: merged with another group, split from part of its own, or alone. Stability and fluidity are properties of the same population at the same time, measured on the same rows.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Two orthogonal nightly classifications of the same 81,695 animal-nights</caption>
+      <thead><tr><th>Where the animal slept</th><th class="n">Nights</th><th class="n">Share</th><th style="padding-left:28px">What the configuration was</th><th class="n">Nights</th><th class="n">Share</th></tr></thead>
+      <tbody>
+        <tr><td>With origin group</td><td class="n">67,561</td><td class="n">82.7%</td><td style="padding-left:28px">Whole group</td><td class="n">54,572</td><td class="n">66.8%</td></tr>
+        <tr><td>With another group</td><td class="n">11,418</td><td class="n">14.0%</td><td style="padding-left:28px">Between-group merge</td><td class="n">20,468</td><td class="n">25.1%</td></tr>
+        <tr><td>Isolated</td><td class="n">2,499</td><td class="n">3.1%</td><td style="padding-left:28px">Within-group split</td><td class="n">3,789</td><td class="n">4.6%</td></tr>
+        <tr><td>Mixed / unclear</td><td class="n">217</td><td class="n">0.3%</td><td style="padding-left:28px">Isolated / low support</td><td class="n">2,866</td><td class="n">3.5%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The paper&rsquo;s job is to turn that pair of facts into a general, quantified statement about <strong>which routes across a group boundary are used, how far each one goes, and what a population-scale dataset can establish about each.</strong></p>
+</section>
+
+<section id="routes">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Three routes across the same boundary</h2></div>
+  <p>A group boundary can become fluid in three ways, and the frozen cohort measures all three on the same rows. They are not three studies but three measurements of one quantity &mdash; <strong>boundary permeability</strong> &mdash; taken at different grain: the group crosses, the group&rsquo;s internal structure divides, or an individual crosses alone.</p>
+  <p><strong>Isolation and dispersal are one axis, not two.</strong> An animal away from its origin group is either alone in the landscape or with another group, and those are graded depths of a single individual-level process &mdash; see <a href="#individual">&sect;4.3</a>. Held apart, they produced a 285-animal isolation inventory that was roughly three-quarters observation artefact alongside a 17-animal dispersal case series that could not carry a rate. Merged and support-filtered, they give one axis with 91 animals, 338 excursions and an explicit denominator.</p>
+
+  <div class="axis-grid">
+    <div class="axis-card a-a">
+      <span class="tag">Axis A</span>
+      <span class="nm">Between-group interaction &amp; mixture</span>
+      <p>Two groups occupy the same space; individuals may or may not mix inside it. Whole groups cross first, then individuals within the merged mass.</p>
+      <span class="share"><b>25.1%</b> of animal-nights</span>
+    </div>
+    <div class="axis-card a-b">
+      <span class="tag">Axis B</span>
+      <span class="nm">Within-group fission &amp; modularity</span>
+      <p>A group divides into subunits that may or may not have persistent membership. What crosses is the group&rsquo;s own internal structure &mdash; measurable only above about twelve collars.</p>
+      <span class="share"><b>4,570</b> splits, 24 groups</span>
+    </div>
+    <div class="axis-card a-c">
+      <span class="tag">Axis C</span>
+      <span class="nm">Individual excursion</span>
+      <p>One animal leaves the origin group, reaching either nothing (<em>alone</em>) or another unit (<em>joined</em>), then returns or settles. Isolation and dispersal are depths of this one process, not separate axes.</p>
+      <span class="share"><b>338</b> excursions, 91 animals</span>
+    </div>
+  </div>
+
+  <h3>The axes interact, and the interactions point the same way</h3>
+  <ul>
+    <li><strong>LapisSplinter</strong> is a splinter unit that supplies the most permeable dyad on axis A: Lapis&ndash;LapisSplinter has the smallest deficit of the twelve measurable dyads (<span class="num">&minus;0.295</span>), LapisSplinter&ndash;Magenta the fourth smallest (<span class="num">&minus;0.356</span>), and LapisSplinter appears in <strong>two of the five</strong> dyads that ever entered sustained association. It also receives the one genuine transfer in that lineage (<code>24AC02_3C4D</code>, origin Lapis, 289 days into its own record). <em>But the fission itself is not in the record:</em> six of LapisSplinter&rsquo;s seven animals carry <code>origin_group = LapisSplinter</code> and were all first observed on the day they were collared, 2024-11-11, when Lapis&rsquo;s own collars jumped from 6 to 14. The unit name encodes field knowledge of a split that predates tracking. A parent and its splinter mix more than any other pair &mdash; that is the observation; fission dynamics are not.</li>
+    <li><strong>Sapphire</strong> is the only group with substantial median within-group modularity (<span class="num">0.278</span>, axis B) and it is one of three dyads with a sustained association on axis A (Maroon&ndash;Sapphire).</li>
+    <li><strong>Axis C is the raw material.</strong> 5,828 single-animal separation events across 301 of 350 animals are what both a brief absence and a permanent dispersal are cut from. The classifier that separates them is the weakest link in the project.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="k">Prediction the framing generates &mdash; and why this dataset cannot test it</div>
+    <p>Splinter units and internally structured groups are the most permeable units here. But the one candidate fission was not observed: Lapis carried 4&ndash;6 collars across all 18 of its pre-2024-11-11 group-weeks, below the twelve-collar modularity threshold, so &ldquo;did Lapis show modular phases before it divided?&rdquo; is <strong>untestable</strong> &mdash; not negative. Answering it needs a group tracked with twelve or more collars <em>through</em> a division. State the prediction; do not present the data as adjudicating it.</p>
+  </div>
+</section>
+
+<section id="coverage">
+  <div class="sec-head"><span class="sec-num">03</span><h2>What population-level coverage buys</h2></div>
+  <p>This is the general argument, and it is worth stating as a method contribution rather than burying it. Population coverage does three specific things no case study can do, and each has already changed a conclusion here.</p>
+
+  <h4>3.1 &mdash; It converts a case into a distribution with a documented tail</h4>
+  <p>Before: Copper&ndash;Lilac fused, therefore group boundaries are permeable. After: twelve measurable dyads all mix far below composition expectation (dyad-weighted <span class="num">&minus;0.405 [&minus;0.442, &minus;0.367]</span>, 12 of 12 negative), and Copper&ndash;Lilac&rsquo;s <em>encounters</em> rank tenth of twelve. The general result is stronger than the case ever was, and the case became the labelled endpoint.</p>
+
+  <h4>3.2 &mdash; It separates an entity from a state</h4>
+  <p>This is the most valuable thing coverage does, and it generalises across all three axes. With one dyad you cannot tell whether an extreme value is a property of that pair or of a condition the pair happened to be in. With twelve you can: Copper&ndash;Lilac&rsquo;s discrete encounters give <span class="num">&minus;0.339</span> (inside the pack); its sustained association gives <span class="num">&minus;0.033</span> (near expectation). <strong>The outlier is a state, not a dyad</strong> &mdash; and five dyads entered that state.</p>
+
+  <div class="tw">
+    <table>
+      <caption>The same decomposition, asked of each axis</caption>
+      <thead><tr><th style="width:8%">Axis</th><th style="width:42%">Entity or state?</th><th>Where it stands</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ax-a)">A</strong></td><td>Is high mixing a dyad property or a state?</td><td><span class="pill p-ok">Answered: state</span> Sustained association, 5 dyads</td></tr>
+        <tr><td><strong style="color:var(--ax-b)">B</strong></td><td>Is high modularity a group property or a state some groups enter?</td><td><span class="pill p-ok">answered: state</span> ICC between-unit <strong>0.148</strong> on well-covered group-weeks &mdash; 85% of the variance is within group over time. Sticky, not noise: lag-1 <em>r</em> 0.33&ndash;0.41 in the two groups that enter it</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong></td><td>Is &ldquo;disperser&rdquo; a type of animal or a property of a trip?</td><td><span class="pill p-ok">structurally answered</span> Dispersal is a <em>terminal excursion</em> &mdash; 61 of 338 excursions, in 16 of 91 animals, pass the 7-night settlement threshold. Animals contribute trips with different outcomes, so the type reading is unavailable. Variance decomposition still to run</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>If the answer is &ldquo;state&rdquo; on all three axes, the paper has a single general finding rather than three descriptive chapters.</p>
+
+  <h4>3.3 &mdash; It makes negatives real</h4>
+  <p>Coverage is what lets an <em>observed absence</em> be distinguished from a <em>missing row</em>. The opportunity table holds 70,312 observed-no-encounter dyad-days with a median 24 shared observed hours and a median closest approach of <span class="num">10.8 km</span>, against 2,867 detected-encounter days with a median closest approach of <span class="num">66 m</span>. The saved pipeline had zero-filled <strong>2,406 real encounters across 53 dyads</strong> as non-events, with no exposure measure behind any zero.</p>
+  <p>Axis C now has the same thing &mdash; 82,205 animal-nights in four explicit states, with <code>unresolvable</code> named rather than silently scored as isolation (<a href="#individual">&sect;4.3</a>). <strong>Axis B still has none:</strong> there is no opportunity table for a group failing to split, so every rate there is an event count without a denominator.</p>
+</section>
+
+<section id="ledger">
+  <div class="sec-head"><span class="sec-num">04</span><h2>The coverage ledger</h2></div>
+  <p>The three axes are not equally supported. Scaling each claim to its coverage is the single most important editorial decision in the paper.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Coverage by axis, and the claim level it permits</caption>
+      <thead><tr><th style="width:20%"></th><th style="width:27%"><span style="color:var(--ax-a)">A &middot; Between-group</span></th><th style="width:26%"><span style="color:var(--ax-b)">B &middot; Within-group</span></th><th><span style="color:var(--ax-c)">C &middot; Individual excursion</span></th></tr></thead>
+      <tbody>
+        <tr><td><strong>Units</strong></td><td>26 units, 317 co-observed dyads</td><td>24 groups with splits; 20 with weekly networks</td><td>350 animals</td></tr>
+        <tr><td><strong>Units with the phenomenon</strong></td><td>68 dyads</td><td>24 groups</td><td>91 animals in 18 groups</td></tr>
+        <tr><td><strong>Events</strong></td><td>1,705 encounters</td><td>4,570 splits</td><td>338 excursions, 61 reaching settlement</td></tr>
+        <tr><td><strong>Denominator</strong></td><td><span class="pill p-ok">exists</span> 73,353 dyad-days, four explicit states</td><td><span class="pill p-cau">group-weeks</span> 1,418 with collar support; 836 joined to NDVI</td><td><span class="pill p-ok">exists</span> 82,205 animal-nights, four explicit states</td></tr>
+        <tr><td><strong>Depth measurement</strong></td><td>5 m / 2 m cross-group contact &mdash; 12 dyads, 751 events</td><td>weekly modularity, usable in 12 units above 12 collars</td><td>ordinal &mdash; alone &rarr; joined &rarr; settled (&ge;7 nights)</td></tr>
+        <tr class="total"><td><strong>Claim level permitted</strong></td><td>population rate + within-dyad model</td><td>inventory; modularity only above 12 collars</td><td>population rate + depth model</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4><span style="color:var(--ax-a)">Axis A</span> &mdash; best supported, and the model is fitted</h4>
+  <p>Two-stage separation works. <strong>Stage 1</strong> (72,724 dyad-days, 2,852 encounters, 3.92%): whether groups meet is driven by geometry and by <em>history</em> &mdash; prior encounters carry <span class="num">OR 1.762 [1.486, 2.088]</span> after both between-dyad and lag-1 within-dyad distance are in the model, and <span class="num">OR 1.57 [1.27, 1.93]</span> in the restricted sample where the groups were already within 5 km yesterday. Encounter propensity is a <strong>dyad</strong> property: dyad-effect SD <span class="num">1.58</span> against shared-group-effect SD <span class="num">0.044</span>, stable across three prior scales. Out-of-sample AUC with whole dyads held out is <span class="num">0.880</span>; the calibration slope is <span class="num">0.540</span>, a stated limit.</p>
+  <p><strong>Stage 2</strong> (738 discrete encounters, 12 dyads): the odds of a cross-group link during a discrete encounter are <strong>4.6% of the composition expectation</strong> (intercept <span class="num">&minus;3.073 [&minus;3.433, &minus;2.765]</span>). Duration is the only robust predictor (log span <span class="num">+0.624 [+0.302, +0.828]</span>). Nothing that predicts meeting predicts mixing.</p>
+
+  <figure>
+    <div class="ftitle">The mixing gradient &mdash; every measurable dyad sits far below composition expectation</div>
+    <div class="fsub">Edge-weighted cross-group contact at 5 m, minus the composition expectation. Bars run from the expectation (right edge) to the observed value; whiskers are 95% percentile-bootstrap intervals over Stage-1 encounters within dyad, 2,000 draws.</div>
+    <div class="svg-scroll">
+    <svg viewBox="0 0 748 452" role="img" aria-label="Per-dyad mixing deficit at 5 metres for twelve discrete-encounter dyads and three sustained associations, all below composition expectation.">
+      <!-- gridlines -->
+      <g class="grid">
+        <line x1="200.9" y1="34" x2="200.9" y2="396"/><line x1="286.7" y1="34" x2="286.7" y2="396"/>
+        <line x1="372.5" y1="34" x2="372.5" y2="396"/><line x1="458.4" y1="34" x2="458.4" y2="396"/>
+        <line x1="544.2" y1="34" x2="544.2" y2="396"/>
+      </g>
+      <!-- dyad-weighted mean band -->
+      <rect x="250.7" y="34" width="64.4" height="262" fill="var(--accent)" opacity=".10"/>
+      <line x1="282.5" y1="34" x2="282.5" y2="296" stroke="var(--accent)" stroke-width="1.25" stroke-dasharray="3 3"/>
+      <text class="lbl-sm" x="282.5" y="28" text-anchor="middle" fill="var(--accent)">dyad-weighted mean &minus;0.405</text>
+      <!-- expectation axis -->
+      <line x1="630" y1="34" x2="630" y2="396" stroke="var(--ink)" stroke-width="1.5"/>
+      <text class="lbl-em" x="636" y="38">composition</text>
+      <text class="lbl-em" x="636" y="50">expectation</text>
+
+      <g>
+        <!-- discrete encounters: y, x_obs, x_lo, x_hi, label, events -->
+        <text class="lbl" x="0" y="47">Jade &ndash; Purple</text><rect x="213.1" y="40" width="416.9" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="207.3" y1="44.5" x2="218.7" y2="44.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="47" text-anchor="end">119</text>
+        <text class="lbl" x="0" y="69">Chartreuse &ndash; Purple</text><rect x="215.7" y="62" width="414.3" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="204.4" y1="66.5" x2="226.7" y2="66.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="69" text-anchor="end">24</text>
+        <text class="lbl" x="0" y="91">Lilac &ndash; Magenta</text><rect x="217.7" y="84" width="412.3" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="207.1" y1="88.5" x2="232.0" y2="88.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="91" text-anchor="end">57</text>
+        <text class="lbl" x="0" y="113">Copper &ndash; Magenta</text><rect x="227.4" y="106" width="402.6" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="217.7" y1="110.5" x2="239.3" y2="110.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="113" text-anchor="end">128</text>
+        <text class="lbl" x="0" y="135">Emerald &ndash; Lilac</text><rect x="242.0" y="128" width="388.0" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="224.3" y1="132.5" x2="265.7" y2="132.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="135" text-anchor="end">46</text>
+        <text class="lbl" x="0" y="157">Bronze &ndash; Magenta</text><rect x="246.8" y="150" width="383.2" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="233.9" y1="154.5" x2="263.7" y2="154.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="157" text-anchor="end">48</text>
+        <text class="lbl" x="0" y="179">Bronze &ndash; Lilac</text><rect x="302.5" y="172" width="327.5" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="270.9" y1="176.5" x2="334.0" y2="176.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="179" text-anchor="end">22</text>
+        <text class="lbl" x="0" y="201" fill="var(--ax-b)">LapisSplinter &ndash; Magenta</text><rect x="324.7" y="194" width="305.3" height="9" fill="var(--ax-b)" opacity=".8"/><line x1="298.1" y1="198.5" x2="348.4" y2="198.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="201" text-anchor="end">86</text>
+        <text class="lbl" x="0" y="223">Lapis &ndash; Periwinkle</text><rect x="336.4" y="216" width="293.6" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="316.7" y1="220.5" x2="352.8" y2="220.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="223" text-anchor="end">65</text>
+        <text class="lbl" x="0" y="245">Copper &ndash; Lilac</text><rect x="339.1" y="238" width="290.9" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="317.6" y1="242.5" x2="360.7" y2="242.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="245" text-anchor="end">47</text>
+        <text class="lbl" x="0" y="267">Maroon &ndash; Sapphire</text><rect x="349.6" y="260" width="280.4" height="9" fill="var(--ax-a)" opacity=".78"/><line x1="338.8" y1="264.5" x2="359.6" y2="264.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="267" text-anchor="end">16</text>
+        <text class="lbl" x="0" y="289" fill="var(--ax-b)">Lapis &ndash; LapisSplinter</text><rect x="376.7" y="282" width="253.3" height="9" fill="var(--ax-b)" opacity=".8"/><line x1="349.6" y1="286.5" x2="397.4" y2="286.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="289" text-anchor="end">82</text>
+      </g>
+
+      <text class="lbl-sm" x="742" y="30" text-anchor="end">events</text>
+      <line class="axline" x1="0" y1="304" x2="742" y2="304"/>
+      <text class="lbl-sm" x="0" y="318" fill="var(--accent)">SUSTAINED ASSOCIATION &mdash; the same dyads in a different state</text>
+
+      <g>
+        <text class="lbl" x="0" y="341">Copper &ndash; Lilac</text><rect x="601.8" y="334" width="28.2" height="9" fill="var(--accent)" opacity=".85"/><line x1="346.5" y1="338.5" x2="609.2" y2="338.5" stroke="var(--ink)" stroke-width="1.4"/><text class="lbl-sm" x="742" y="341" text-anchor="end">8</text>
+        <text class="lbl" x="0" y="363">Maroon &ndash; Sapphire</text><rect x="472.9" y="356" width="157.1" height="9" fill="var(--accent)" opacity=".85"/><text class="lbl-sm" x="742" y="363" text-anchor="end">1</text>
+        <text class="lbl" x="0" y="385">Bronze &ndash; Magenta</text><rect x="325.4" y="378" width="304.6" height="9" fill="var(--accent)" opacity=".85"/><text class="lbl-sm" x="742" y="385" text-anchor="end">2</text>
+      </g>
+
+      <!-- x axis -->
+      <line class="axline" x1="158" y1="396" x2="630" y2="396"/>
+      <g class="lbl">
+        <text x="200.9" y="411" text-anchor="middle">&minus;0.5</text><text x="286.7" y="411" text-anchor="middle">&minus;0.4</text>
+        <text x="372.5" y="411" text-anchor="middle">&minus;0.3</text><text x="458.4" y="411" text-anchor="middle">&minus;0.2</text>
+        <text x="544.2" y="411" text-anchor="middle">&minus;0.1</text><text x="630" y="411" text-anchor="middle">0</text>
+      </g>
+      <text class="lbl-sm" x="394" y="430" text-anchor="middle">observed &minus; expected cross-group contact fraction (5 m)</text>
+    </svg>
+    </div>
+    <figcaption>Ochre marks the two dyads involving LapisSplinter, the fission product &mdash; the least and fourth-least deficient of the twelve. Sustained associations rest on 1&ndash;8 events each; only Copper&ndash;Lilac carries an interval, and its lower tail comes from resamples where its sustained events are under-represented. Source: <code>phase3_mixing_gradient/mixing_gradient_by_dyad.csv</code>.</figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="k">What coverage forbids on axis A</div>
+    <p>Any between-dyad statement at Stage 2. Twelve of 68 structural dyads have fine-scale support. Every Stage 2 result is within-dyad, and the paper must say so in the results text, not only in limitations.</p>
+  </div>
+
+  <h4 id="fission"><span style="color:var(--ax-b)">Axis B</span> &mdash; modularity is measurable above twelve collars, and it is a state</h4>
+  <p>The event side is genuinely general: 4,570 split events across 24 groups, median duration <span class="num">2 h</span>, p90 <span class="num">14 h</span>, median maximum split fraction <span class="num">0.25</span>, p90 <span class="num">0.50</span>. Splits are overwhelmingly binary &mdash; 2 clusters in 3,829 events (<span class="num">83.8%</span>), 3 in 628, four or more in 113 &mdash; and shallow: the typical split detaches a quarter of the observed animals for two hours.</p>
+  <p>Modularity is where coverage bites, and the threshold is sharp. Detectability scales monotonically with collar count, so nothing can be compared across groups until coverage is matched:</p>
+  <div class="tw">
+    <table>
+      <caption>Modularity and split detection against collar count, 1,418 group-weeks</caption>
+      <thead><tr><th>Collars observed</th><th class="n">Group-weeks</th><th class="n">Units</th><th class="n">Weeks modular</th><th class="n">Weeks with a split</th><th class="n">p90 modularity</th></tr></thead>
+      <tbody>
+        <tr><td>1&ndash;4</td><td class="n">491</td><td class="n">24</td><td class="n"><strong>1.2%</strong></td><td class="n">28.7%</td><td class="n">0.000</td></tr>
+        <tr><td>5&ndash;7</td><td class="n">306</td><td class="n">19</td><td class="n">1.3%</td><td class="n">61.4%</td><td class="n">0.000</td></tr>
+        <tr><td>8&ndash;9</td><td class="n">184</td><td class="n">12</td><td class="n">3.3%</td><td class="n">65.8%</td><td class="n">0.000</td></tr>
+        <tr><td>10&ndash;11</td><td class="n">123</td><td class="n">15</td><td class="n">9.8%</td><td class="n">82.1%</td><td class="n">0.000</td></tr>
+        <tr><td>12&ndash;14</td><td class="n">175</td><td class="n">12</td><td class="n">12.6%</td><td class="n">76.6%</td><td class="n">0.007</td></tr>
+        <tr><td>15&ndash;19</td><td class="n">107</td><td class="n">6</td><td class="n">31.8%</td><td class="n">81.3%</td><td class="n">0.026</td></tr>
+        <tr><td>20+</td><td class="n">32</td><td class="n">2</td><td class="n"><strong>46.9%</strong></td><td class="n">78.1%</td><td class="n">0.064</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Spearman correlation with collar count is <span class="num">0.222</span> for modularity on the frozen cohort (0.225 on the legacy source &mdash; unchanged). For split-timestamp fraction it is <span class="num">0.163</span> frozen against <span class="num">0.489</span> legacy: <strong>the split-detection confound is real but far weaker than the legacy source implied</strong>, and the ladder above (a legacy-source table, 28.7% &rarr; 78.1%) flattens to 38.3% &rarr; 58.6% on the frozen cohort. The modularity threshold stands; the claim that no unadjusted split rate can survive does not.</p>
+  <div class="callout" style="border-left-color:var(--ax-b)">
+    <div class="k" style="color:var(--ax-b)">Cohort check &mdash; gap 7.3, now closed for these metrics</div>
+    <p>The weekly metrics were rebuilt from the frozen export, matching the legacy definition (11:00 and 16:00 UTC sampling, observed positions only, cluster identity from <code>association_event_id</code>): 1,268 group-weeks in 23 units against the legacy 1,418 in 26. <strong>What holds:</strong> the modularity&ndash;collar relationship (0.222 vs 0.225), the between-unit ICC (<strong>0.169</strong> vs 0.148, both on 12 units), the null collar term above threshold, Lilac (55.3% vs 53.8% of weeks modular; max modularity 0.449 vs 0.458), week-to-week stickiness (Lilac 0.417 vs 0.413; Chartreuse 0.399 vs 0.331), and the cohesive units at 0.0%. <strong>What does not:</strong> the split-detection confound above, and <strong>Chartreuse</strong>, which falls from 45.0% of 20 weeks to <strong>14.7% of 34</strong>. Lilac is the one unit whose recurrent modular phase replicates across cohorts. The axis-B NDVI models below still run on the legacy weekly file and are the remaining piece of 7.3.</p>
+  </div>
+
+  <figure>
+    <div class="ftitle">Collared fraction per group &mdash; the figure that licenses and forbids the rest</div>
+    <div class="fsub">Median tracked animals per group-week against the nominal group size. Median coverage across 20 groups is about 17%; no group exceeds 26%.</div>
+    <div class="svg-scroll">
+    <svg viewBox="0 0 660 480" role="img" aria-label="Horizontal bar chart of collared fraction per group, ranging from 7.4 percent for Jade to 25.8 percent for Emerald, with a median near 17 percent.">
+      <g class="grid">
+        <line x1="118" y1="32" x2="118" y2="432"/><line x1="278.7" y1="32" x2="278.7" y2="432"/>
+        <line x1="439.3" y1="32" x2="439.3" y2="432"/><line x1="600" y1="32" x2="600" y2="432"/>
+      </g>
+      <line x1="391.1" y1="26" x2="391.1" y2="432" stroke="var(--accent)" stroke-width="1.25" stroke-dasharray="3 3"/>
+      <text class="lbl-sm" x="391.1" y="20" text-anchor="middle" fill="var(--accent)">median 17%</text>
+
+      <g>
+        <text class="lbl" x="0" y="45">Jade</text><rect x="118" y="38" width="119.1" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="243" y="47">8 of 108</text>
+        <text class="lbl" x="0" y="65">FenceJumpers</text><rect x="118" y="58" width="131.7" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="256" y="67">5 of 61</text>
+        <text class="lbl" x="0" y="85" fill="var(--ax-c)">Sapphire</text><rect x="118" y="78" width="153.0" height="11" fill="var(--ax-c)" opacity=".85"/><text class="lbl-sm" x="277" y="87" fill="var(--ax-c)">4 of 42 &mdash; the &ldquo;modular&rdquo; group, 9 weeks</text>
+        <text class="lbl" x="0" y="105">Bronze</text><rect x="118" y="98" width="200.8" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="325" y="107">6 of 48</text>
+        <text class="lbl" x="0" y="125">Obsidian</text><rect x="118" y="118" width="214.2" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="338" y="127">10 of 75</text>
+        <text class="lbl" x="0" y="145">Lilac</text><rect x="118" y="138" width="214.2" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="338" y="147">8 of 60</text>
+        <text class="lbl" x="0" y="165">PhantomWest</text><rect x="118" y="158" width="226.6" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="351" y="167">11 of 78</text>
+        <text class="lbl" x="0" y="185">Magenta</text><rect x="118" y="178" width="229.6" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="354" y="187">8 of 56</text>
+        <text class="lbl" x="0" y="205">Periwinkle</text><rect x="118" y="198" width="234.3" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="358" y="207">7 of 48</text>
+        <text class="lbl" x="0" y="225">Copper</text><rect x="118" y="218" width="273.1" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="397" y="227">8.5 of 50</text>
+        <text class="lbl" x="0" y="245">Turquoise</text><rect x="118" y="238" width="281.2" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="405" y="247">10.5 of 60</text>
+        <text class="lbl" x="0" y="265">Lapis</text><rect x="118" y="258" width="282.3" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="406" y="267">13 of 74</text>
+        <text class="lbl" x="0" y="285">Maroon</text><rect x="118" y="278" width="306.1" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="430" y="287">8 of 42</text>
+        <text class="lbl" x="0" y="305">FireOpal</text><rect x="118" y="298" width="310.9" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="435" y="307">12 of 62</text>
+        <text class="lbl" x="0" y="325" fill="var(--ax-b)">LapisSplinter</text><rect x="118" y="318" width="349.3" height="11" fill="var(--ax-b)" opacity=".95"/><text class="lbl-sm" x="473" y="327" fill="var(--ax-b)">5 of 23 &mdash; the fission product</text>
+        <text class="lbl" x="0" y="345">RubyRunners</text><rect x="118" y="338" width="351.4" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="475" y="347">14 of 64</text>
+        <text class="lbl" x="0" y="365">SneakySilver</text><rect x="118" y="358" width="362.8" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="487" y="367">7 of 31</text>
+        <text class="lbl" x="0" y="385">Purple</text><rect x="118" y="378" width="362.8" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="487" y="387">14 of 62</text>
+        <text class="lbl" x="0" y="405">Chartreuse</text><rect x="118" y="398" width="390.8" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="515" y="407">18 of 74</text>
+        <text class="lbl" x="0" y="425">Emerald</text><rect x="118" y="418" width="414.7" height="11" fill="var(--ax-b)" opacity=".8"/><text class="lbl-sm" x="539" y="427">8 of 31</text>
+      </g>
+
+      <line class="axline" x1="118" y1="432" x2="600" y2="432"/>
+      <g class="lbl">
+        <text x="118" y="447" text-anchor="middle">0</text><text x="278.7" y="447" text-anchor="middle">10%</text>
+        <text x="439.3" y="447" text-anchor="middle">20%</text><text x="600" y="447" text-anchor="middle">30%</text>
+      </g>
+      <text class="lbl-sm" x="359" y="466" text-anchor="middle">median tracked animals as a share of nominal group size</text>
+    </svg>
+    </div>
+    <figcaption>Median weekly within-group modularity is exactly zero in 19 of these 20 groups &mdash; but that is a property of the estimator, not the animals: handed 5&ndash;18 nodes drawn from a group of 50, it returns a single cluster. The figure below shows what happens once coverage is matched. Source: <code>canonical_within_group_density_modularity_summary_by_group.csv</code>, scope <code>combined_1100_1600</code>.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="ftitle">At matched coverage, groups genuinely differ in internal cohesion</div>
+    <div class="fsub">Share of group-weeks with modularity above zero, restricted to weeks with 12&ndash;16 collars observed so every group is measured with a comparable number of nodes. Units with at least five such weeks.</div>
+    <div class="svg-scroll">
+    <svg viewBox="0 0 660 322" role="img" aria-label="Bar chart: Lilac modular in 53.8 percent of well-covered weeks and Chartreuse 45 percent, against Purple, RubyRunners and Magenta at zero, all at 13 to 15 collars.">
+      <g class="grid">
+        <line x1="292" y1="26" x2="292" y2="272"/><line x1="446" y1="26" x2="446" y2="272"/>
+        <line x1="600" y1="26" x2="600" y2="272"/>
+      </g>
+      <line class="axline" x1="138" y1="26" x2="138" y2="272"/>
+      <g>
+        <text class="lbl-em" x="0" y="42" fill="var(--ax-b)">Lilac</text><rect x="138" y="32" width="414.3" height="13" fill="var(--ax-b)"/><text class="lbl-sm" x="558" y="42">53.8% &middot; 39 wks, 13 collars</text>
+        <text class="lbl" x="0" y="66">Chartreuse</text><rect x="138" y="56" width="113.2" height="13" fill="var(--ax-b)" opacity=".5"/><rect x="138" y="56" width="346.5" height="13" fill="none" stroke="var(--ax-b)" stroke-width="1" stroke-dasharray="3 2"/><text class="lbl-sm" x="490" y="66">14.7% frozen &middot; 45.0% legacy (dashed)</text>
+        <text class="lbl" x="0" y="90">FireOpal</text><rect x="138" y="80" width="110.1" height="13" fill="var(--ax-b)" opacity=".5"/><text class="lbl-sm" x="254" y="90">14.3% &middot; 7 wks</text>
+        <text class="lbl" x="0" y="114">Copper</text><rect x="138" y="104" width="96.3" height="13" fill="var(--ax-b)" opacity=".5"/><text class="lbl-sm" x="240" y="114">12.5% &middot; 8 wks</text>
+        <text class="lbl" x="0" y="138">PhantomWest</text><rect x="138" y="128" width="85.5" height="13" fill="var(--ax-b)" opacity=".5"/><text class="lbl-sm" x="229" y="138">11.1% &middot; 9 wks</text>
+        <text class="lbl" x="0" y="162">Maroon</text><rect x="138" y="152" width="85.5" height="13" fill="var(--ax-b)" opacity=".5"/><text class="lbl-sm" x="229" y="162">11.1% &middot; 9 wks</text>
+        <text class="lbl" x="0" y="186">Lapis</text><rect x="138" y="176" width="16.9" height="13" fill="var(--ax-b)" opacity=".5"/><text class="lbl-sm" x="161" y="186">2.2% &middot; 45 wks, 13 collars</text>
+        <text class="lbl" x="0" y="210">Magenta</text><rect x="136" y="204" width="4" height="13" fill="var(--muted)"/><text class="lbl-sm" x="146" y="210">0.0% &middot; 7 wks</text>
+        <text class="lbl-em" x="0" y="234">Purple</text><rect x="136" y="228" width="4" height="13" fill="var(--muted)"/><text class="lbl-sm" x="146" y="234">0.0% &middot; 34 wks, 14 collars &mdash; measured, and cohesive</text>
+        <text class="lbl-em" x="0" y="258">RubyRunners</text><rect x="136" y="252" width="4" height="13" fill="var(--muted)"/><text class="lbl-sm" x="146" y="258">0.0% &middot; 27 wks, 13 collars &mdash; measured, and cohesive</text>
+      </g>
+      <line class="axline" x1="138" y1="272" x2="600" y2="272"/>
+      <g class="lbl">
+        <text x="138" y="287" text-anchor="middle">0</text><text x="292" y="287" text-anchor="middle">20%</text>
+        <text x="446" y="287" text-anchor="middle">40%</text><text x="600" y="287" text-anchor="middle">60%</text>
+      </g>
+      <text class="lbl-sm" x="369" y="306" text-anchor="middle">share of well-covered group-weeks with modularity &gt; 0</text>
+      <text class="lbl-sm" x="0" y="320">Within this band, collar count no longer predicts modularity (p = 0.43).</text>
+    </svg>
+    </div>
+    <figcaption>Bars are the frozen-cohort values; Chartreuse&rsquo;s dashed outline marks the legacy value it does not replicate. Lilac reaches a modularity of 0.449 on the frozen source (0.458 legacy) and is modular in 55.3% of its well-covered weeks; Purple, RubyRunners and Turquoise never leave zero at the same collar count. This revises the earlier judgement that modularity should not be reported as biology &mdash; right for the full 20-group set, wrong for the well-covered subset. Sources: <code>phase4d_axis_b_frozen/weekly_network_metrics_frozen.csv</code>, <code>phase4b_axis_b_fission/modularity_coverage_matched.csv</code>.</figcaption>
+  </figure>
+
+  <p><strong>But modularity is mostly a state, not a group property.</strong> A random-intercept model on the well-covered group-weeks (&ge;12 collars, 12 units) puts the between-unit ICC at <span class="num">0.169</span> on the frozen cohort and <span class="num">0.148</span> on the legacy one &mdash; <strong>roughly 85% of the variance is within group across time, on both sources.</strong> It is a <em>sticky</em> state rather than noise: lag-1 week-to-week autocorrelation is <span class="num">0.417</span> in Lilac and <span class="num">0.399</span> in Chartreuse on the frozen cohort (0.413 and 0.331 legacy), against roughly zero in Lapis, Maroon, Purple and RubyRunners. A group enters a modular phase and stays in it for weeks.</p>
+  <p>That gives <a href="#pattern">Result 5</a> its third leg: extreme permeability is a state, not an entity, now shown on all three axes with three different measurements.</p>
+
+  <h4>The split-composition signal is a bond, not a pre-split cue</h4>
+  <p>The saved anticipation result &mdash; mean event AUC <span class="num">0.568</span> &mdash; uses only the cohesive hours <em>immediately preceding</em> each split. That measures current positioning, not relationship. The untested alternative: does a dyad&rsquo;s <strong>general</strong> co-sitting rate predict which side it ends up on? Measured over all other cohesive hours in its group, with a &plusmn;7-day holdout around the focal split so the bond cannot contain the event it predicts.</p>
+  <div class="tw">
+    <table>
+      <caption>Identical retained sample &mdash; 461 events, 15 units, 27,812 event-dyads</caption>
+      <thead><tr><th style="width:40%">Predictor</th><th class="n">Mean event AUC</th><th>95% CI</th><th class="n">OR per SD, together</th><th class="n">alone</th></tr></thead>
+      <tbody>
+        <tr><td>Immediately-preceding proximity</td><td class="n">0.5702</td><td>0.5601 &ndash; 0.5816</td><td class="n">1.194 [1.137, 1.254]</td><td class="n">1.269</td></tr>
+        <tr><td><strong>General bond</strong> (&plusmn;7-day holdout)</td><td class="n"><strong>0.5742</strong></td><td>0.5617 &ndash; 0.5873</td><td class="n"><strong>1.286 [1.215, 1.360]</strong></td><td class="n">1.347</td></tr>
+        <tr class="total"><td>Paired difference, general &minus; preceding</td><td class="n">+0.0039</td><td>&minus;0.0093 &ndash; +0.0179</td><td class="n" colspan="2">within event, Binomial GEE clustered on event</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The general bond does <strong>at least as well</strong>, and the paired difference straddles zero. Both survive together, each keeping roughly 90% of its solo effect, so they carry partly independent information &mdash; but the larger of the two is measured on weeks that have nothing to do with the split. <strong>Splits follow standing social structure; they are not anticipated by immediate positioning.</strong> The effect also stays weak, and that has not changed: AUC &asymp; 0.57, and the mean event ARI of <span class="num">0.100</span> says split composition is mostly unpredicted. Report the reframing and the ARI together.</p>
+
+  <h4>Environmental conditions do not predict when a group splits, or for how long</h4>
+  <p>Group-weeks are axis B&rsquo;s opportunity table: a group-week with observation support and no split is an observed negative. 836 group-weeks in 19 units join to Sentinel-2 NDVI. Two NDVI terms are kept apart, following axis A&rsquo;s design rule &mdash; the unit&rsquo;s mean range greenness is a <em>between-group</em> term, and the week&rsquo;s departure from that unit&rsquo;s own norm is the <em>within-group</em> term. Only the second can answer &ldquo;does <em>this group</em> split more when conditions are greener.&rdquo;</p>
+  <div class="tw">
+    <table>
+      <caption>Odds ratios per SD, Binomial GEE clustered on unit &mdash; eight specifications</caption>
+      <thead><tr><th style="width:13%">Subset</th><th style="width:25%">Response</th><th class="n">Base rate</th><th class="n">Between-group NDVI</th><th class="n">Within-group NDVI</th><th class="n">Collar coverage</th></tr></thead>
+      <tbody>
+        <tr><td>all (836)</td><td>any split timestamp</td><td class="n">0.713</td><td class="n">1.596 [1.05, 2.43]</td><td class="n">1.029 [0.90, 1.17]</td><td class="n">1.543 [0.94, 2.55]</td></tr>
+        <tr><td>all</td><td>split in &gt;50% of timestamps</td><td class="n">0.246</td><td class="n">1.340 [0.89, 2.03]</td><td class="n">1.088 [0.87, 1.36]</td><td class="n">2.083 [1.33, 3.27]</td></tr>
+        <tr><td>all</td><td>any multi-animal split</td><td class="n">0.392</td><td class="n">2.194 [1.48, 3.25]</td><td class="n">1.005 [0.83, 1.21]</td><td class="n">1.530 [1.05, 2.24]</td></tr>
+        <tr><td>all</td><td>multi-animal split &gt;25%</td><td class="n">0.106</td><td class="n">2.906 [1.89, 4.47]</td><td class="n"><strong>0.768 [0.59, 1.00]</strong></td><td class="n">2.080 [1.38, 3.14]</td></tr>
+        <tr><td>&ge;12 collars (284)</td><td>any split timestamp</td><td class="n">0.799</td><td class="n">4.476 [1.22, 16.5]</td><td class="n">0.926 [0.76, 1.13]</td><td class="n">1.190 [0.75, 1.90]</td></tr>
+        <tr><td>&ge;12 collars</td><td>split in &gt;50% of timestamps</td><td class="n">0.433</td><td class="n">2.429 [1.92, 3.07]</td><td class="n">0.975 [0.72, 1.33]</td><td class="n">1.192 [0.73, 1.95]</td></tr>
+        <tr><td>&ge;12 collars</td><td>any multi-animal split</td><td class="n">0.525</td><td class="n">4.504 [2.08, 9.75]</td><td class="n">1.117 [0.83, 1.51]</td><td class="n">1.131 [0.88, 1.45]</td></tr>
+        <tr><td>&ge;12 collars</td><td>multi-animal split &gt;25%</td><td class="n">0.239</td><td class="n">5.490 [2.07, 14.6]</td><td class="n"><strong>0.703 [0.55, 0.91]</strong></td><td class="n">0.828 [0.34, 2.02]</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Three readings. <strong>The within-group NDVI term is null in six of eight specifications</strong>, and in the two strictest it turns <em>negative</em> with the interval barely excluding 1 &mdash; greener-than-usual weeks give marginally <em>fewer</em> substantial splits, if anything. <strong>The large between-group term is not evidence of anything ecological:</strong> it is range greenness across 19 units, inseparable from group identity, and it is the same failure mode as axis A&rsquo;s seasonal term, which fell from OR 0.62 [0.44, 0.86] to 0.86 [0.69, 1.07] under restriction. <strong>Collar coverage predicts split detection below twelve collars and stops above it</strong> &mdash; which independently validates the well-covered threshold.</p>
+  <p>Split <em>extent</em> given a split week (596 weeks) has both NDVI terms null and only collar coverage surviving (<span class="num">1.132 [1.063, 1.206]</span>): as currently defined, extent measures observation, not behaviour. Split <em>duration</em> (655 events, 14 units; median <span class="num">2 h</span>, p90 <span class="num">13 h</span>, max <span class="num">240 h</span>) gives a within-group NDVI coefficient of <span class="num">+0.051 [+0.002, +0.099]</span> on log hours &mdash; marginal, and pointing the <em>opposite</em> way from the occurrence result, while the collar term is five times larger at <span class="num">+0.237 [+0.054, +0.420]</span>.</p>
+
+  <div class="callout">
+    <div class="k">Verdict on the ecological prediction</div>
+    <p><strong>No robust environmental effect on fission</strong> &mdash; not on whether a group splits, not on how much of the week it spends split, not on how long a split lasts. Two marginal within-group signals with opposite signs are not a finding. This retires the old Phase 5 prediction &mdash; <em>scarcity fragments, abundance connects</em> &mdash; on the fission side as written. Report it as tested and unsupported, which is more useful than leaving it an unstated ambition. NDVI is not the whole hypothesis, though: the Sentinel-2 product also carries NDWI, LSWI and EVI, and water availability is a different mechanism that has not been tested.</p>
+  </div>
+
+  <div class="callout">
+    <div class="k">What coverage still forbids on axis B</div>
+    <p>Modularity claims below twelve collars, and any unadjusted split rate &mdash; detection correlates with collar count at Spearman 0.489. The matched Chartreuse&ndash;Purple comparison remains a clean null (difference <span class="num">0.0015 [&minus;0.025, 0.023]</span>) and should be reported as one. And this axis still runs on the legacy source filtered to 2025-01-01, while axes A and C are on the frozen export from 2024-03-01 &mdash; <a href="#gaps">gap 7.3</a> is now the last structural blocker here.</p>
+  </div>
+
+  <h4 id="individual"><span style="color:var(--ax-c)">Axis C</span> &mdash; one axis for isolation and dispersal, once the artefact is removed</h4>
+  <p>An animal&rsquo;s position relative to its origin group is one of four exhaustive states. <code>unresolvable</code> is a first-class state, not a gap &mdash; the axis-A lesson applied to individuals.</p>
+  <div class="tw">
+    <table>
+      <caption>The individual state space, on all 1,924,104 animal-hours &mdash; nothing dropped</caption>
+      <thead><tr><th style="width:16%">State</th><th style="width:40%">Meaning</th><th class="n">Depth</th><th class="n">Animal-hours</th><th class="n">Share</th><th class="n">Animals</th></tr></thead>
+      <tbody>
+        <tr><td><code>with_origin</code></td><td>in a cluster containing the origin group &mdash; a between-group merge counts here, the origin group is still present</td><td class="n">0</td><td class="n">1,029,679</td><td class="n">53.5%</td><td class="n">342</td></tr>
+        <tr><td><code>alone</code></td><td>away from the origin group, with no group</td><td class="n">1</td><td class="n">11,668</td><td class="n">0.6%</td><td class="n">267</td></tr>
+        <tr><td><code>with_other</code></td><td>away from the origin group, in a cluster with another unit</td><td class="n">2</td><td class="n">31,882</td><td class="n">1.7%</td><td class="n">269</td></tr>
+        <tr><td><code>unresolvable</code></td><td>the data cannot distinguish &mdash; 795,467 carried positions plus 53,008 observed hours with no located reference group</td><td class="n">&mdash;</td><td class="n">850,875</td><td class="n">44.2%</td><td class="n">350</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The unit that joins the two old inventories is the <strong>excursion</strong>: a run of consecutive away-from-origin nights, ending when the animal is back with its origin group. Each carries a depth (the deepest state reached) and an outcome. <strong>Dispersal is then a terminal excursion</strong> &mdash; one whose <code>with_other</code> phase passes the membership builder&rsquo;s own 7-night threshold. &ldquo;Disperser&rdquo; stops being a type of animal and becomes a property of a trip.</p>
+  <p>This is axis A&rsquo;s two-stage structure at the individual scale, which is what makes the merge worth doing rather than merely tidy: <em>does the animal leave</em> (82,205 animal-nights, four states) and <em>given a departure, how deep does it go</em>.</p>
+
+  <div class="tw">
+    <table>
+      <caption>338 excursions, 91 animals, 18 origin groups &mdash; dominant nightly rule, no gap bridging</caption>
+      <thead><tr><th style="width:34%">Depth reached</th><th class="n">Excursions</th><th class="n">Median away-nights</th></tr></thead>
+      <tbody>
+        <tr><td><code>alone_only</code> &mdash; left, joined nothing</td><td class="n">163</td><td class="n"><strong>1</strong></td></tr>
+        <tr><td><code>joined_only</code> &mdash; left, went straight to another unit</td><td class="n">164</td><td class="n"><strong>4</strong></td></tr>
+        <tr><td><code>alone_and_joined</code> &mdash; both states in one trip</td><td class="n">11</td><td class="n">3</td></tr>
+        <tr class="total"><td>of which settlement candidates (&ge;7 nights joined)</td><td class="n">61</td><td class="n">16 animals</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Depth requires duration on this axis too.</strong> Excursions that only ever reach <code>alone</code> last a single night at the median; those reaching another group last four times as long; settlement takes seven. That is the same dissociation axis A found, on a different sample and a different measurement &mdash; which gives &sect;5.3 a second independent leg.</p>
+
+  <div class="callout">
+    <div class="k">A result that qualifies the premise</div>
+    <p>The reason to merge was that a dispersing animal either moves alone or joins another group &mdash; two phases of one process. The data says they are mostly <em>not</em> sequential: only 11 of 338 excursions (3%) contain both states, rising to 15 of 196 under generous gap bridging and 10% under the permissive nightly rule. <strong>Floating alone is rarely the route into another group</strong> &mdash; animals that end up elsewhere mostly appear there directly. On separate axes the question could not be asked at all.</p>
+  </div>
+
+  <h4>The sparse-collar artefact, and the rule that removes it</h4>
+  <p>With few collars an animal can be scored isolated by accident &mdash; when it is the only tracked animal in its group, or when a two-collar group splits and both sides look alone. The fix is a single principle: <strong>a social state is assignable only when the data could have shown a different state.</strong> For <code>alone</code>, the origin group has to be locatable somewhere else at the same moment.</p>
+  <p>An animal-hour is scored <code>alone</code> or <code>with_other</code> only if (1) the focal animal&rsquo;s own position is <strong>observed</strong>, not carried, and (2) at least <strong>two collared animals of its origin group are observed in the same hour, co-clustered with each other</strong>, in a cluster the focal animal is not in. Condition 2 is a <em>located reference group</em> &mdash; &ldquo;I can see your group over there, and you are not in it&rdquo; &mdash; not a partner count.</p>
+
+  <figure>
+    <div class="ftitle">About three-quarters of the raw isolation record is an observation artefact</div>
+    <div class="fsub">Raw &ldquo;isolated&rdquo; animal-hours surviving each candidate support rule. Each rule adds to the one above it; the highlighted row is the recommended definition.</div>
+    <div class="svg-scroll">
+    <svg viewBox="0 0 660 270" role="img" aria-label="Bar chart showing 48,775 raw isolated animal-hours falling to 11,668 under the located-reference-cluster rule, about 24 percent.">
+      <g class="grid">
+        <line x1="334" y1="24" x2="334" y2="212"/><line x1="408" y1="24" x2="408" y2="212"/>
+        <line x1="482" y1="24" x2="482" y2="212"/><line x1="556" y1="24" x2="556" y2="212"/>
+        <line x1="630" y1="24" x2="630" y2="212"/>
+      </g>
+      <text class="lbl" x="0" y="40">raw isolated animal-hours</text><rect x="260" y="30" width="360.9" height="13" fill="var(--muted)" opacity=".45"/><text class="lbl-sm" x="627" y="40">100%</text>
+      <text class="lbl" x="0" y="66">focal position observed</text><rect x="260" y="56" width="204.3" height="13" fill="var(--muted)" opacity=".55"/><text class="lbl-sm" x="470" y="66">56.6%</text>
+      <text class="lbl" x="0" y="92">+ &ge;1 observed group-mate anywhere</text><rect x="260" y="82" width="88.8" height="13" fill="var(--ax-c)" opacity=".5"/><text class="lbl-sm" x="355" y="92">24.6% &mdash; still passes the two-collar split</text>
+      <text class="lbl" x="0" y="118">+ &ge;3 observed group-mates anywhere</text><rect x="260" y="108" width="82.9" height="13" fill="var(--ax-c)" opacity=".5"/><text class="lbl-sm" x="349" y="118">23.0%</text>
+      <text class="lbl-em" x="0" y="144">+ located reference cluster &ge;2</text><rect x="260" y="134" width="86.3" height="13" fill="var(--accent)"/><text class="lbl-sm" x="353" y="144" fill="var(--accent)">23.9% &mdash; 11,668 hours, 267 animals, 21 groups</text>
+      <text class="lbl" x="0" y="170">+ located reference cluster &ge;3</text><rect x="260" y="160" width="81.9" height="13" fill="var(--accent)" opacity=".45"/><text class="lbl-sm" x="348" y="170">22.7%</text>
+      <text class="lbl" x="0" y="196">+ located reference cluster &ge;4</text><rect x="260" y="186" width="72.4" height="13" fill="var(--accent)" opacity=".45"/><text class="lbl-sm" x="339" y="196">20.1%</text>
+
+      <line class="axline" x1="260" y1="212" x2="630" y2="212"/>
+      <g class="lbl">
+        <text x="260" y="227" text-anchor="middle">0</text><text x="334" y="227" text-anchor="middle">10k</text>
+        <text x="408" y="227" text-anchor="middle">20k</text><text x="482" y="227" text-anchor="middle">30k</text>
+        <text x="556" y="227" text-anchor="middle">40k</text><text x="630" y="227" text-anchor="middle">50k</text>
+      </g>
+      <text class="lbl-sm" x="445" y="248" text-anchor="middle">isolated animal-hours retained</text>
+      <text class="lbl-sm" x="0" y="264">Threshold-insensitive: 23.9% / 22.7% / 20.1% for a reference cluster of 2 / 3 / 4.</text>
+    </svg>
+    </div>
+    <figcaption>Source: <code>phase4b_individual_axis/isolation_rule_ladder.csv</code>, from <code>analyze_individual_axis_identifiability.py</code>. Nearly half the raw record &mdash; 21,167 hours &mdash; is not even an observed position; the focal animal&rsquo;s location was carried forward.</figcaption>
+  </figure>
+
+  <p>The rule removes exactly the cases it was built for, by construction rather than by tuning &mdash; with one collar there is never a reference cluster, and with two collars apart neither side reaches size two:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:38%">Observation context</th><th class="n">Animal-hours</th><th class="n">Animals</th><th class="n">Groups</th><th class="n">Passing the rule</th></tr></thead>
+      <tbody>
+        <tr><td>Only the focal animal observed</td><td class="n">15,613</td><td class="n">52</td><td class="n">21</td><td class="n"><strong>0</strong> (0.0%)</td></tr>
+        <tr><td>Exactly 2 animals of the group observed</td><td class="n">295</td><td class="n">29</td><td class="n">10</td><td class="n"><strong>0</strong> (0.0%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Five origin groups drop to <strong>zero</strong> supported isolated hours &mdash; TrickyTeal, Green, Gold, Red, Mint &mdash; while Maroon (1,033 of 1,033), Lapis (1,017 of 1,022) and Magenta (364 of 370) retain essentially all of theirs. Twenty-six groups can produce an isolation count; only 21 can support an isolation claim. The per-animal ranking reshuffles completely: <code>25AA22_2W3X</code> (TrickyTeal) has 2,880 raw isolated hours and <strong>zero</strong> supported ones, because it is the only collar in its group and was scored isolated by construction for its entire record.</p>
+
+  <div class="callout">
+    <div class="k">Two definitional choices that must be pinned, not defaulted</div>
+    <p><strong>The nightly-state rule moves the excursion count tenfold.</strong> <code>dominant</code> (the night takes its most frequent hourly state) gives 338 excursions in 91 animals, 92.0% of nights resolvable; <code>any_away</code> (away if any hour was away) gives 3,541 in 303 animals, 95.3% resolvable &mdash; but 71% of those are single nights, so it is largely counting brief daytime departures. Recommend <code>dominant</code> as primary.</p>
+    <p><strong>Gap tolerance matters under <code>dominant</code> and not under <code>any_away</code>.</strong> Bridging unresolvable nights collapses 338 excursions to 234 / 210 / 199 / 196 at gaps of 1 / 2 / 3 / 7, stabilising from gap 3; settlement candidates fall from 61 to 22 as trips merge. Under <code>any_away</code> it moves nothing (3,541 &rarr; 3,534). The animal count &mdash; 91, or 303 &mdash; never moves on either rule at any gap, so the <em>sample</em> is stable and only the <em>event parsing</em> is sensitive.</p>
+  </div>
+
+  <div class="callout">
+    <div class="k">What coverage still forbids on axis C</div>
+    <p>The 285-animal isolation figure and both dispersal inventories (28 events / 9 animals; 71 segments / 17 animals) should be labelled legacy and not reported again. Excursion outcomes and censoring are not yet assigned &mdash; the 500-night Chartreuse excursion is still open at the end of the record. And the night definition here (a <code>window_start &minus; 10 h</code> calendar cut, 82,205 animal-nights) must be reconciled with the canonical 16:00&ndash;06:00 night (81,695) before any rate is published.</p>
+  </div>
+</section>
+
+<section id="pattern">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The general pattern the three axes share</h2></div>
+  <p>Read across, the three axes tell one story with the same shape at every scale.</p>
+
+  <blockquote><p>Boundary crossing is common, brief, partial, and rarely deep &mdash; at every scale it is measured.</p></blockquote>
+
+  <div class="tw">
+    <table>
+      <caption>The same four-part shape, on each axis</caption>
+      <thead><tr><th style="width:12%">Axis</th><th style="width:23%">Common</th><th style="width:19%">Brief</th><th style="width:22%">Partial</th><th>Rarely deep</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ax-a)">A</strong> Between-group</td><td>68 of 317 dyads; 25.1% of animal-nights merged</td><td>median span 14 h</td><td>median active contact 0.17 h inside a 14 h span</td><td>mixing at 4.6% of expectation; 16 of 1,705 events sustained</td></tr>
+        <tr><td><strong style="color:var(--ax-b)">B</strong> Within-group</td><td>4,570 events, 24 groups</td><td>median 2 h</td><td>median split fraction 0.25; 83.8% binary</td><td>composition barely anticipated &mdash; AUC 0.574, ARI 0.100; modular phases in 2 of 12 well-covered units</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong> Individual excursion</td><td>338 excursions, 91 animals, 18 groups</td><td>median 2 away-nights; 43% single-night</td><td>one animal at a time; 163 of 338 reach only <code>alone</code></td><td>61 of 338 reach settlement, in 16 animals</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>5.1 &mdash; The unit of analysis is the state, not the entity</h4>
+  <p>All three axes now say it, with three different measurements:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:10%">Axis</th><th style="width:26%">The state</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ax-a)">A</strong></td><td>sustained association</td><td>16 of 1,705 encounters, 5 of 68 dyads; contrast +1.376 [+0.338, +1.543]</td></tr>
+        <tr><td><strong style="color:var(--ax-b)">B</strong></td><td>modular phase</td><td>ICC 0.148 &mdash; 85% of modularity variance is within group over time; lag-1 <em>r</em> 0.33&ndash;0.41 in the two groups that enter it</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong></td><td>terminal excursion</td><td>61 of 338 excursions, 16 of 91 animals, reach settlement</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>What remains is the <em>variance</em> decomposition on axes A and C to match axis B&rsquo;s ICC, so all three report the same quantity. Axis B is the one that is done.</p>
+
+  <h4>5.2 &mdash; Depth and frequency are separately regulated</h4>
+  <p>On axis A this is a positive, fitted result: geometry and history predict <em>whether</em> groups meet; neither predicts <em>how much</em> they mix, and duration is the only thing that does. The corresponding dissociation on axis B &mdash; splits happen often; who ends up with whom is weakly determined, ARI 0.100 &mdash; is the same pattern at a smaller scale. Two axes, two grains, one dissociation: that is a general claim about fission&ndash;fusion regulation, and the strongest broad-audience angle in the project.</p>
+
+  <h4>5.3 &mdash; Depth requires duration, and duration is rare</h4>
+  <p>The only route to near-complete mixing observed anywhere in the population is sustained association: <span class="num">+1.376 [+0.338, +1.543]</span> logit units closer to expectation than the same dyads&rsquo; discrete encounters. It occurred in 16 of 1,705 encounters, in 5 of 68 dyads, and only one dyad carried it to near-completion.</p>
+  <p><strong>The individual axis says the same thing independently.</strong> Excursions reaching only <code>alone</code> last a median 1 night; those reaching another unit last 4; settlement takes 7 or more, and 61 of 338 excursions get there. Two scales, two mechanisms, two samples, one pattern: permeability is not a property units have or lack, it is a threshold almost nothing crosses.</p>
+
+  <h4 id="season">5.4 &mdash; Opportunity is seasonal; the crossing decision is not</h4>
+  <div class="callout" style="border-left-color:var(--accent)">
+    <div class="k" style="color:var(--accent)">In plain terms</div>
+    <p>Groups move around the landscape over the year, following the vegetation, so if you simply count how often two groups end up in the same place it looks seasonal. That part is geography. Condition on the days when two groups were <em>already close enough to meet</em> and the pattern disappears &mdash; whether they meet has no annual rhythm.</p>
+    <p>But <em>meeting</em> is not the same as <em>how</em> they meet, and that is a separate question at every scale from a few hundred metres down to two. <strong>How much of each group actually joins a merge varies a great deal &mdash; from about 62% to 98%.</strong> Whether that variation is <em>seasonal</em> is something this record cannot answer: the months with the lowest participation are sampled in a single year, and the same calendar month differs between years by as much as the apparent cycle.</p>
+    <p>How closely they mix once merged, at 5 m or 2 m, and how much of that structure survives tightening the radius, show no seasonal pattern at all.</p>
+    <p><strong>Bottom line: the calendar decides where the animals are. It does not decide whether they meet, or how closely they mix once they do. How much of a group turns up to a merge does vary &mdash; but 1.6 years of data cannot tell a season from one unusual autumn.</strong></p>
+  </div>
+  <p>The environment in this system cycles strongly: NDVI deviation from each unit&rsquo;s own mean has an amplitude of <span class="num">0.046</span> peaking on <strong>day 199, about 18 July</strong>, with joint Wald <span class="num">p &lt; 0.0001</span> over 7,423 group-days in 23 units. So a null on any axis cannot be explained away by there being no season to respond to.</p>
+  <p>Before any of it: <strong>observation effort rises 121-fold across the record</strong> &mdash; from 2 collared animals in 1 unit to 242 in 23 &mdash; with nightly resolvability going from 0.00 to 0.95. The well-observed window starts 2024-12-01 and contains only <strong>1.53&ndash;1.63 seasonal cycles</strong>. Season and effort are near-uncorrelated in that window (|<em>r</em>| &le; 0.12, max VIF 1.25), so a seasonal coefficient is not an effort artefact &mdash; but it is estimated from fewer than two cycles, and no interval fixes that.</p>
+  <p>Only axis A shows a seasonal signal at all, and it looks convincing: amplitude <span class="num">0.285</span> logit, peak <strong>12 July</strong>, joint <span class="num">p = 0.0103</span>, unchanged by the effort term, and landing within <em>six days</em> of the NDVI peak. Then it fails the one restriction that matters.</p>
+
+  <figure>
+    <div class="ftitle">The encounter season is range overlap, not interaction</div>
+    <div class="fsub">Seasonal amplitude of encounter probability as the dyads are restricted to those already close. Restricting removes the geometry explanation and leaves only the question of whether co-located groups meet seasonally.</div>
+    <div class="svg-scroll">
+    <svg viewBox="0 0 660 300" role="img" aria-label="Seasonal amplitude of encounter probability decaying from 0.285 with all dyads to 0.087 within 2 kilometres, with the joint p-value rising from 0.010 to 0.629.">
+      <g class="grid">
+        <line x1="120" y1="40" x2="620" y2="40"/><line x1="120" y1="87.5" x2="620" y2="87.5"/>
+        <line x1="120" y1="135" x2="620" y2="135"/><line x1="120" y1="182.5" x2="620" y2="182.5"/>
+      </g>
+      <rect x="365" y="40" width="255" height="190" fill="var(--muted)" opacity=".07"/>
+      <line x1="365" y1="34" x2="365" y2="230" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 3"/>
+      <text class="lbl-sm" x="371" y="46" fill="var(--muted)">seasonal term no longer distinguishable from zero</text>
+
+      <!-- all dyads series -->
+      <polyline points="150,94.6 280,111.2 410,145.4 540,188.7" fill="none" stroke="var(--ax-a)" stroke-width="2"/>
+      <g fill="var(--ax-a)">
+        <circle cx="150" cy="94.6" r="4.5"/><circle cx="280" cy="111.2" r="4.5"/>
+        <circle cx="410" cy="145.4" r="4.5"/><circle cx="540" cy="188.7" r="4.5"/>
+      </g>
+      <text class="lbl-em" x="150" y="86" text-anchor="middle">0.285</text>
+      <text class="lbl-em" x="280" y="103" text-anchor="middle">0.250</text>
+      <text class="lbl-em" x="410" y="137" text-anchor="middle">0.178</text>
+      <text class="lbl-em" x="540" y="180" text-anchor="middle">0.087</text>
+      <text class="lbl-sm" x="556" y="196" fill="var(--ax-a)">all 317 dyads</text>
+
+      <!-- balanced panel series -->
+      <polyline points="150,64.7 410,112.2 540,179.2" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 3"/>
+      <g fill="var(--accent)">
+        <circle cx="150" cy="64.7" r="4"/><circle cx="410" cy="112.2" r="4"/><circle cx="540" cy="179.2" r="4"/>
+      </g>
+      <text class="lbl-sm" x="150" y="56" text-anchor="middle" fill="var(--accent)">0.348</text>
+      <text class="lbl-sm" x="410" y="104" text-anchor="middle" fill="var(--accent)">0.248</text>
+      <text class="lbl-sm" x="540" y="171" text-anchor="middle" fill="var(--accent)">0.107</text>
+      <text class="lbl-sm" x="160" y="68" fill="var(--accent)">balanced 45-dyad panel</text>
+
+      <!-- axes -->
+      <line class="axline" x1="120" y1="230" x2="620" y2="230"/>
+      <line class="axline" x1="120" y1="34" x2="120" y2="230"/>
+      <g class="lbl">
+        <text x="112" y="234" text-anchor="end">0</text><text x="112" y="186" text-anchor="end">0.1</text>
+        <text x="112" y="139" text-anchor="end">0.2</text><text x="112" y="91" text-anchor="end">0.3</text>
+        <text x="112" y="44" text-anchor="end">0.4</text>
+      </g>
+      <g class="lbl">
+        <text x="150" y="248" text-anchor="middle">all dyads</text><text x="280" y="248" text-anchor="middle">&le; 10 km</text>
+        <text x="410" y="248" text-anchor="middle">&le; 5 km</text><text x="540" y="248" text-anchor="middle">&le; 2 km</text>
+      </g>
+      <g class="lbl-sm">
+        <text x="150" y="264" text-anchor="middle">p = 0.010</text><text x="280" y="264" text-anchor="middle">p = 0.007</text>
+        <text x="410" y="264" text-anchor="middle">p = 0.231</text><text x="540" y="264" text-anchor="middle">p = 0.629</text>
+      </g>
+      <text class="lbl-sm" x="0" y="284">Vertical axis: seasonal amplitude of the annual harmonic, in logit units. Restriction is the dyad-day&rsquo;s minimum centroid distance.</text>
+      <text class="lbl-sm" x="0" y="297">At &le; 2 km the fitted peak also flips from July to October &mdash; what a harmonic does when there is no harmonic to fit.</text>
+    </svg>
+    </div>
+    <figcaption>The same restriction, and the same failure mode, that took the Phase 4 Stage-1 seasonal term from OR 0.62 [0.44, 0.86] to 0.86 [0.69, 1.07]. Applying the balanced panel and the distance restriction together gives the same decay and the same crossing point. Source: <code>phase4c_seasonality/axis_a_distance_restriction_ladder.csv</code>.</figcaption>
+  </figure>
+
+  <p><strong>There is an annual cycle in where groups are, and none in whether they interact once co-located.</strong> Ranges shift with the vegetation cycle, which is exactly why the unrestricted peak tracks NDVI to within a week &mdash; the phase match was a property of the geometry, not the behaviour.</p>
+  <p>The apparent secular decline in encounter probability goes the same way. Unrestricted, the trend is OR <span class="num">0.748 [0.615, 0.909]</span>; on a balanced panel of the 45 dyads observed throughout it is OR <span class="num">1.100 [0.884, 1.368]</span> &mdash; null, sign flipped. The mechanism is visible in the denominator: dyads in it rise from 45 to 210 as units are collared, and the median closest approach across all dyad-days rises from <span class="num">8,670 m</span> to <span class="num">11,437 m</span>. The decline is the denominator filling with distant pairs.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Season and trend on the other two axes &mdash; nothing, and one clean confound</caption>
+      <thead><tr><th style="width:30%">Response</th><th class="n">Seasonal joint <em>p</em></th><th class="n">Trend, effort in</th><th class="n">Trend, effort dropped</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ax-b)">B</strong> multi-animal split &gt;25% of a group-week</td><td class="n">0.644</td><td class="n">1.152 [0.873, 1.520]</td><td class="n"><strong>1.389 [1.022, 1.889]</strong></td></tr>
+        <tr><td><strong style="color:var(--ax-b)">B</strong> group-week modular (&ge;12 collars)</td><td class="n">0.615</td><td class="n">1.440 [1.040, 1.993]</td><td class="n">&mdash;</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong> away from origin group tonight</td><td class="n">0.730</td><td class="n">1.159 [0.873, 1.537]</td><td class="n">&mdash;</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong> excursion starts tonight</td><td class="n">0.573</td><td class="n">0.820 [0.578, 1.164]</td><td class="n">0.814 [0.614, 1.079]</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Axis B is a textbook effort confound: the split trend is significant with effort omitted and null once collars enter the model, while collar coverage itself carries OR <span class="num">2.667 [1.055, 6.745]</span>. Its modularity trend survives the effort control but is <strong>unverifiable</strong> &mdash; only 2 of 12 well-covered units (Chartreuse, Lapis) span the window with 20 or more weeks, and a two-cluster fit is not inference. Axis C shows nothing on either response, with or without effort, and that is the most informative null of the three because it has the cleanest denominator in the project.</p>
+
+  <h4>Down the gradient: participation, mixture, within-merge structure</h4>
+  <p>Collapsing &ldquo;how they interacted&rdquo; into one number &mdash; the 5 m cross-group contact fraction &mdash; is too thin. Once two groups share a spatial cluster at a scale of hundreds of metres, what happens inside spans a gradient, and each level is a different social question. A merge can be large but structurally segregated, or small but thoroughly mixed. <strong>Power also decays down that gradient, which is itself a result:</strong> 66 dyads at the cluster scale, 12 at 5 m and 2 m, one for betweenness.</p>
+  <div class="tw">
+    <table>
+      <caption>The annual harmonic against every level of the interaction gradient</caption>
+      <thead><tr><th style="width:11%">Scale</th><th style="width:31%">Response</th><th class="n">n</th><th class="n">Dyads</th><th class="n">Amplitude</th><th class="n">Peak</th><th class="n">Joint <em>p</em></th></tr></thead>
+      <tbody>
+        <tr><td>~10&sup2; m</td><td><strong>mutual participation</strong> &mdash; how much of <em>each</em> group joins</td><td class="n">1,480</td><td class="n">66</td><td class="n">1.481</td><td class="n">Apr</td><td class="n"><strong>0.0033</strong></td></tr>
+        <tr><td>~10&sup2; m</td><td><strong>large merge rather than partial</strong></td><td class="n">1,480</td><td class="n">66</td><td class="n">0.714</td><td class="n">Mar</td><td class="n"><strong>0.0029</strong></td></tr>
+        <tr><td>~10&sup2; m</td><td>log largest joint cluster size</td><td class="n">1,480</td><td class="n">66</td><td class="n">0.078</td><td class="n">Jan</td><td class="n">0.184</td></tr>
+        <tr><td>5 m</td><td>mixture deficit vs composition expectation</td><td class="n">716</td><td class="n">12</td><td class="n">0.401</td><td class="n">Sep</td><td class="n">0.320</td></tr>
+        <tr><td>5 m</td><td>within-merge modularity &mdash; two communities or one?</td><td class="n">716</td><td class="n">12</td><td class="n">0.032</td><td class="n">Oct</td><td class="n">0.066</td></tr>
+        <tr><td>5 m</td><td>entropy / balance / bins with any contact</td><td class="n">716</td><td class="n">12</td><td class="n">0.017&ndash;0.048</td><td class="n">Jul&ndash;Sep</td><td class="n">0.178&ndash;0.327</td></tr>
+        <tr><td>2 m</td><td>mixture deficit</td><td class="n">654</td><td class="n">12</td><td class="n">0.070</td><td class="n">Jul</td><td class="n">0.911</td></tr>
+        <tr><td>2 m</td><td>within-merge modularity</td><td class="n">654</td><td class="n">12</td><td class="n">0.031</td><td class="n">Oct</td><td class="n">0.061</td></tr>
+        <tr><td>2 m / 5 m</td><td>how much of the 5 m contact survives tightening</td><td class="n">323</td><td class="n">12</td><td class="n">0.093</td><td class="n">Oct</td><td class="n">0.196</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>So not a flat null. Two responses at the coarse end sit at <em>p</em> &lt; 0.005, and within-merge modularity is borderline at <strong>both</strong> radii with the same October phase &mdash; consistency across radii being the kind of thing that argues against noise. Descriptively, mutual participation runs from <span class="num">0.95</span> in May&ndash;June to <span class="num">0.62&ndash;0.69</span> in August and November, and survives a balanced panel of the 11 dyads spanning the window (<em>p</em> = 0.0036).</p>
+
+  <div class="callout" style="border-left-color:var(--stop)">
+    <div class="k" style="color:var(--stop)">And then it fails &mdash; for a reason about the record, not the animals</div>
+    <p>The window holds <strong>1.63 annual cycles</strong>, and they are not evenly spread across the calendar. January&ndash;July and December appear in two years; <strong>August, September, October and November appear in one</strong> (2025) &mdash; and those are precisely the low-participation months. The fitted trough is a single autumn.</p>
+    <p>Two checks, both fatal. <strong>Refit on months with two or more years of data</strong> (1,193 events, 60 dyads): joint <em>p</em> = <strong>0.511</strong>. <strong>Season demeaned within dyad:</strong> participation <em>p</em> = 0.169, large-merge <em>p</em> = 0.116. And the same calendar month differs between years by up to <span class="num">0.236</span> in participation &mdash; as large as the apparent seasonal range. December alone makes the point: 0.643 in 2024 against 0.880 in 2025.</p>
+    <p>So the participation signal is a <strong>single-year late-2025 feature</strong>. Report it as documented variation in how much of a group joins a merge &mdash; not as a season. The borderline modularity signals share the same October phase and the same limitation.</p>
+  </div>
+
+  <p>One further level is measurable in one dyad only. <strong>Betweenness</strong> within a merge &mdash; who brokers, and how concentrated brokerage is &mdash; exists for Copper&ndash;Lilac (38 animals, 77 weeks, radii 1/2/5/20 m). Its weekly series looks strongly seasonal at every radius, amplitude falling from 1.74 at 1 m to 0.53 at 20 m. But it is one dyad passing through a fusion, clustered on seven quarter-blocks, and the source metadata records that its fusion hours saturate after 2025-08-01, so a secular transition would alias with season. <strong>Not reportable as seasonality</strong> &mdash; and the reason the within-merge brokerage question stays open is gap 7.5, the 12-of-68 fine-scale coverage.</p>
+
+  <h4>Depth and duration, not only occurrence</h4>
+  <p>Every test above uses an <strong>occurrence</strong> response &mdash; does an encounter happen, does a split happen, does an animal leave. Depth and duration are different questions, and there was a specific reason to expect them to differ: on two axes duration is the thing that carries depth, so a season could reach depth through duration with occurrence flat. Tested with the same harmonic and the same clustering:</p>
+  <div class="tw">
+    <table>
+      <caption>Seasonality in depth and duration &mdash; samples one to two orders of magnitude smaller than the occurrence tables</caption>
+      <thead><tr><th style="width:8%">Axis</th><th style="width:34%">Response</th><th class="n">n</th><th class="n">Clusters</th><th class="n">Amplitude</th><th class="n">Joint <em>p</em></th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--ax-a)">A</strong></td><td>encounter duration (log structural span)</td><td class="n">1,480</td><td class="n">66</td><td class="n">0.084</td><td class="n">0.589</td></tr>
+        <tr><td><strong style="color:var(--ax-a)">A</strong></td><td>mixing depth given an encounter</td><td class="n">716</td><td class="n">12</td><td class="n">0.401</td><td class="n">0.320</td></tr>
+        <tr><td><strong style="color:var(--ax-a)">A</strong></td><td><em>same, duration term dropped</em></td><td class="n">716</td><td class="n">12</td><td class="n">0.399</td><td class="n"><strong>0.084</strong></td></tr>
+        <tr><td><strong style="color:var(--ax-b)">B</strong></td><td>split duration (log persistent hours)</td><td class="n">857</td><td class="n">16</td><td class="n">0.113</td><td class="n">0.708</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong></td><td>excursion duration (log away-nights)</td><td class="n">322</td><td class="n">18</td><td class="n">0.104</td><td class="n">0.778</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong></td><td>depth: reached another unit</td><td class="n">322</td><td class="n">18</td><td class="n">0.514</td><td class="n">0.234</td></tr>
+        <tr><td><strong style="color:var(--ax-c)">C</strong></td><td>depth: reached settlement</td><td class="n">322</td><td class="n">18</td><td class="n">0.229</td><td class="n">0.826</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>No season in depth or duration either &mdash; so the claim now rests on seven responses across three axes rather than three. One row deserves naming rather than burying: axis A&rsquo;s mixing depth reaches <span class="num">p = 0.084</span> with the duration term dropped and <span class="num">0.320</span> with it in, while duration itself carries <span class="num">+1.286 [1.127, 1.445]</span> per SD on depth. <strong>If season acts on depth anywhere, it acts through duration</strong> &mdash; and 716 events in 12 dyads cannot resolve it. That is an open question, not a null.</p>
+
+  <blockquote><p>Where groups are follows the year. Whether they meet once close does not. <strong>How much of each group joins a merge varies widely, and this record cannot say whether that variation is seasonal</strong> &mdash; the months where participation is lowest are sampled in a single year. How closely they mix once merged shows no seasonal pattern at any radius tested.</p></blockquote>
+  <p>The middle clause is the correction. An earlier version of this section read &ldquo;opportunity is seasonal, the crossing decision is not,&rdquo; which was reached by collapsing everything downstream of a merge into one 5 m number. The type of interaction is a separate question from the fact of meeting, it does vary substantially, and the honest statement is that 1.6 annual cycles cannot resolve whether the variation is seasonal.</p>
+  <p>That belongs with Result 4 rather than as a separate ecological finding. Frequency and depth already had different predictors; the same dissociation now appears in time. And the nulls are the more robust half of these results: a null from a 1.6-cycle window is a weak claim of absence, whereas a positive from one is easily an artefact &mdash; which is exactly what the single positive turned out to be.</p>
+</section>
+
+<section id="results">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Result architecture</h2></div>
+  <p>Six results. Each carries its coverage in its own statement.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:4%">#</th><th style="width:34%">Result</th><th style="width:34%">Coverage that carries it</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td>Group identity persists while configuration varies constantly</td><td>350 animals, 26 groups, 81,695 animal-nights; two orthogonal state distributions</td><td>frozen; needs coverage / ambiguity weighting</td></tr>
+        <tr><td class="n">2</td><td>Boundary crossing happens by three routes, and all three are common, brief and partial</td><td>1,705 encounters, 4,570 splits, 338 excursions &mdash; one cohort</td><td>assembled here; needs cohort re-derivation for B</td></tr>
+        <tr><td class="n">3</td><td>Groups share space far more often than they mix, and mixing runs at 4.6% of composition expectation</td><td>12 dyads, 738 encounters, 12 of 12 below expectation</td><td><span class="pill p-ok">supported &amp; modelled</span></td></tr>
+        <tr><td class="n">4</td><td>Frequency and depth have different predictors, at two scales</td><td>Stage 1 (317 dyads) against Stage 2 (12 dyads); split occurrence against split composition</td><td><span class="pill p-ok">supported on both</span> nothing that predicts split occurrence predicts split composition either</td></tr>
+        <tr><td class="n">5</td><td><strong>Extreme permeability is a state, not an entity</strong></td><td>5 dyads sustained (A); ICC 0.148 with lag-1 <em>r</em> 0.33&ndash;0.41 (B); 61 of 338 excursions settling (C)</td><td><span class="pill p-ok">supported on all three</span> variance decomposition to match on A and C</td></tr>
+        <tr><td class="n">6</td><td>Repeated crossing structures the population, and the structure is dyadic</td><td>prior-encounter OR 1.57 within 5 km; dyad SD 1.58 against group SD 0.044</td><td>first real support; needs time-respecting connectivity</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Result 5 is the new spine.</strong> It is what the multi-axis framing buys, and it is the result no single-axis paper could state.</p>
+  <p>Supporting, not main: Copper&ndash;Lilac as the labelled endpoint of Result 3; Chartreuse&ndash;Purple as a reported null; individual dispersal centrality as a case series; activity controls (VeDBA on 101/108 events, GPS movement on 97/108; <span class="num">r &asymp; 0.28</span> and <span class="num">0.21</span> against saved 5 m integration).</p>
+
+  <h3>Figure plan</h3>
+  <ol class="rich">
+    <li><strong>Cohort and coverage.</strong> Animals &times; time ribbon, and &mdash; critically &mdash; collar fraction per group against nominal size. This figure licenses and forbids the rest, so it goes first and is not a supplement.</li>
+    <li><strong>Three routes, one cohort.</strong> Three panels sharing a duration axis: encounter span, split duration, excursion away-nights split by depth, each with its event and unit counts. &ldquo;Common, brief, partial&rdquo; should be visible at a glance.</li>
+    <li><strong>The mixing gradient.</strong> Per-dyad observed minus expected with support counts and intervals; radius as a second dimension; Copper&ndash;Lilac labelled at the tail.</li>
+    <li><strong>Frequency against depth.</strong> Stage 1 predicted encounter probability and Stage 2 mixing conditional on encounter, side by side, with the axis-B analogue (split occurrence against split-composition AUC) as a third panel.</li>
+    <li><strong>State, not entity.</strong> The decomposition on all three axes &mdash; within-entity against between-entity variance. This is Result 5, and it does not exist yet.</li>
+    <li><strong>Population network.</strong> Dyadic encounter network against an opportunity-adjusted null.</li>
+  </ol>
+</section>
+
+<section id="gaps">
+  <div class="sec-head"><span class="sec-num">07</span><h2>What this framing requires that does not exist</h2></div>
+  <p>The multi-axis structure exposes gaps the single-axis structure hid. In priority order.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:5%"></th><th style="width:30%">Gap</th><th>Why it blocks</th></tr></thead>
+      <tbody>
+        <tr><td class="n">7.1</td><td>Opportunity tables <span class="pill p-ok">all three closed</span></td><td>Axis A: 73,353 dyad-days. Axis C: 82,205 animal-nights. Axis B: 1,418 group-weeks carrying collar support, 836 joined to NDVI. What axis B still lacks is a <em>coverage-independent</em> extent measure &mdash; as defined, split extent is predicted by collar count and nothing else.</td></tr>
+        <tr><td class="n">7.2</td><td><strong>One common variance statistic across the three axes</strong></td><td>Result 5 and Figure 5. Axis B reports an ICC of 0.148; axis A reports a stratum contrast; axis C reports a depth distribution. All three support the same conclusion but none is directly comparable to another. Compute the same within-entity / between-entity decomposition on A and C so Figure 5 has one axis.</td></tr>
+        <tr><td class="n">7.3</td><td><strong>Cohort re-derivation for axis B</strong> <span class="pill p-ok">weekly metrics closed</span></td><td>The weekly network metrics are now rebuilt on the frozen export (1,268 group-weeks, 23 units) and the comparison caught two errors: the split-detection confound was overstated (Spearman 0.489 &rarr; 0.163) and Chartreuse&rsquo;s modular rate does not replicate (45.0% &rarr; 14.7%). The ICC, Lilac, the stickiness and the cohesive units all hold. <strong>Remaining:</strong> the axis-B NDVI models still run on the legacy weekly file &mdash; a smaller job, and its conclusion was a null in six of eight specifications, so less likely to move than the two positives that did.</td></tr>
+        <tr><td class="n">7.4</td><td>Excursion outcomes and censoring</td><td>Superseded the old dispersal reconciliation: both legacy inventories are retired in favour of the excursion table. What remains is assigning each excursion a terminal outcome &mdash; returned, settled, or censored at the end of tracking &mdash; and reconciling the night definition (82,205 against the canonical 81,695 animal-nights).</td></tr>
+        <tr><td class="n">7.5</td><td>Fine-scale extension on axis A</td><td>12 of 68 structural dyads have 2-minute products. Regenerating that product for more dyads in <code>New project</code> is the only route to a between-dyad Stage 2, and it was not attempted in Phases 0&ndash;4.</td></tr>
+        <tr><td class="n">7.6</td><td>Demographic group size</td><td>Absent on every axis. Collar counts are correctly labelled as coverage in Phases 2&ndash;4 and must not be promoted to group size in cross-axis tables. Axis B needs this most: split fraction is a fraction of <em>observed</em> animals.</td></tr>
+        <tr><td class="n">7.7</td><td>The cross-axis prediction in &sect;2</td><td>Fission products and internally divided groups are the most permeable units. LapisSplinter and Sapphire both point that way from four independent saved tables. It is directional and can fail; testing it needs 7.1 and 7.3 first. Do not assert it before then &mdash; do state it as the prediction the framing generates.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="verdict">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Claim, coverage, verdict</h2></div>
+  <h4>Rare is not the same as unmeasurable</h4>
+  <p>Two things are easy to conflate and must not be. A <strong>measurement failure</strong> is a number that does not measure what it claims &mdash; it would not become true with more data of the same kind. A <strong>rare pattern</strong> is a sound observation of an uncommon state. Suppressing the second hides the most informative part of a population-scale dataset.</p>
+  <div class="tw">
+    <table>
+      <caption>Rare but soundly measured &mdash; report with the frequency, do not suppress</caption>
+      <thead><tr><th style="width:32%">Pattern</th><th style="width:28%">Frequency in this sample</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td>Sustained association</td><td>16 of 1,705 encounters, 5 of 68 dyads</td><td>the only route to near-complete mixing observed anywhere</td></tr>
+        <tr><td>Full fusion</td><td>1 dyad (Copper&ndash;Lilac), deficit &minus;0.033</td><td>the ceiling of between-group permeability</td></tr>
+        <tr><td>Recurrent modular phase</td><td>1 of 11 well-covered units (Lilac, 55% of its weeks)</td><td>a group can hold internal community structure for weeks</td></tr>
+        <tr><td>Settlement excursion</td><td>61 of 338 excursions, 16 of 91 animals</td><td>dispersal as the outcome of an ordinary trip</td></tr>
+        <tr><td>Alone-then-joined excursion</td><td>11 of 338 (3%)</td><td>the classical float-then-transfer pathway does occur, rarely</td></tr>
+        <tr><td>Splinter-unit permeability</td><td>1 lineage (Lapis&ndash;LapisSplinter, &minus;0.295)</td><td>the most permeable dyad measured</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <blockquote><p>This is 26 social units over 29 months in one landscape &mdash; a subset of a population and a subset of the conditions it experiences. Within that subset, every axis shows states only a few units enter. The frequencies are low and are reported as such. But the presence of a tail in a 26-unit sample is itself the result: <strong>the population contains variation in social context, and this sample is too small to have exhausted it.</strong> More groups across a wider environmental range would sample that tail better; they would not make it disappear.</p></blockquote>
+  <p>That also places the nulls. The seasonal and environmental nulls say that <em>within the range this sample covers</em>, no annual or vegetation signal organises boundary crossing. They do not say no such signal exists across a wider environmental range.</p>
+  <p>The verdict column below is therefore three-way: <span class="pill p-ok">report</span> supported at population scale, <span class="pill p-var">report as variation</span> rare but soundly measured, and <span class="pill p-stop">do not report</span> measurement failure.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:31%">Claim</th><th style="width:41%">Coverage behind it</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Identity persists while configuration varies</td><td>81,695 animal-nights; 82.7% origin, 33.2% not whole-group</td><td><span class="pill p-ok">report</span></td></tr>
+        <tr><td>All three routes are common, brief and partial</td><td>3 inventories, 1 cohort &mdash; axis B denominator unreconciled</td><td><span class="pill p-cau">report after 7.3</span></td></tr>
+        <tr><td>Shared space rarely means mixing; 4.6% of expectation</td><td>12 dyads, 738 encounters, 12 of 12 negative</td><td><span class="pill p-ok">report</span></td></tr>
+        <tr><td>Frequency and depth are separately regulated</td><td>Stage 1 against Stage 2; split occurrence against composition</td><td><span class="pill p-ok">report</span> A fitted, B descriptive</td></tr>
+        <tr><td>Extreme permeability is a state, not an entity</td><td>5 dyads sustained (A); ICC 0.169 frozen / 0.148 legacy (B); 61 of 338 excursions settling (C)</td><td><span class="pill p-ok">report</span> on all three axes</td></tr>
+        <tr><td>Full fusion &mdash; a dyad mixing to near composition expectation</td><td>1 dyad, Copper&ndash;Lilac, deficit &minus;0.033; 16 sustained events in 5 of 68 dyads</td><td><span class="pill p-var">report as variation</span></td></tr>
+        <tr><td>A group holding a recurrent modular phase</td><td>Lilac, 55.3% of well-covered weeks, max modularity 0.449, lag-1 <em>r</em> 0.417 &mdash; replicates across cohorts</td><td><span class="pill p-var">report as variation</span></td></tr>
+        <tr><td>Chartreuse as a modular group</td><td>45.0% of 20 weeks legacy, <strong>14.7% of 34 frozen</strong>; stickiness survives (0.399)</td><td><span class="pill p-cau">report the frozen value only</span></td></tr>
+        <tr><td>Settlement and float-then-transfer excursions</td><td>61 of 338 reach settlement (16 of 91 animals); 11 of 338 pass through both states</td><td><span class="pill p-var">report as variation</span></td></tr>
+        <tr><td>Splinter-unit permeability</td><td>Lapis&ndash;LapisSplinter, smallest deficit of 12 dyads; 2 of 5 sustained dyads</td><td><span class="pill p-var">report as variation</span></td></tr>
+        <tr><td>A fission event in this dataset</td><td>6 of 7 LapisSplinter animals carry <code>origin_group = LapisSplinter</code>, all first observed on the collaring day; Lapis had 4&ndash;6 collars beforehand</td><td><span class="pill p-stop">do not report</span> the split predates tracking</td></tr>
+        <tr><td>Repeated crossing is dyadic and beyond geometry</td><td>OR 1.57 [1.27, 1.93] within 5 km; dyad SD 1.58 against group SD 0.044</td><td><span class="pill p-ok">report</span></td></tr>
+        <tr><td>Split composition follows a long-run bond, not a pre-split cue</td><td>general bond AUC 0.574 [0.562, 0.587] against preceding 0.570 [0.560, 0.582], paired difference +0.004 [&minus;0.009, +0.018]; both survive together at OR 1.286 and 1.194 per SD</td><td><span class="pill p-ok">report with the ARI</span> reframes the saved result</td></tr>
+        <tr><td>Split composition is <em>mostly</em> unpredicted</td><td>mean event ARI 0.100; AUC &asymp; 0.57 either way</td><td><span class="pill p-ok">report alongside</span></td></tr>
+        <tr><td>Groups differ in internal modularity</td><td>at 12&ndash;16 matched collars: Lilac 53.8% and Chartreuse 45.0% of weeks modular against Purple, RubyRunners and Magenta at 0.0%</td><td><span class="pill p-ok">report</span> above 12 collars only</td></tr>
+        <tr><td>Modularity is a state, not a group property</td><td>ICC 0.148 on 314 well-covered group-weeks; lag-1 <em>r</em> 0.413 Lilac, 0.331 Chartreuse</td><td><span class="pill p-ok">report</span></td></tr>
+        <tr><td>Modularity below 12 collars</td><td>1.2% of weeks modular at 1&ndash;4 collars against 46.9% at 20+; the estimator returns one cluster whatever the animals do</td><td><span class="pill p-stop">do not report</span> measurement failure</td></tr>
+        <tr><td>Split detection is half explained by collar count</td><td>Spearman 0.489 legacy but <strong>0.163 frozen</strong>; ladder flattens from 28.7&rarr;78.1% to 38.3&rarr;58.6%</td><td><span class="pill p-stop">withdrawn</span> overstated from the legacy source</td></tr>
+        <tr><td>Roughly three-quarters of the raw isolation record is an observation artefact</td><td>48,775 raw isolated animal-hours &rarr; 11,668 supported; 1- and 2-collar contexts both 0% surviving; threshold-insensitive</td><td><span class="pill p-ok">report</span></td></tr>
+        <tr><td>Floating alone is rarely the route into another group</td><td>11 of 338 excursions contain both states; 15 of 196 bridged; 10% under the permissive rule</td><td><span class="pill p-ok">report</span> with both nightly rules</td></tr>
+        <tr><td>Individual departure rates and excursion depth</td><td>338 excursions, 91 animals, 18 groups, over 82,205 animal-nights</td><td><span class="pill p-cau">report after night-definition reconciliation</span></td></tr>
+        <tr><td>Isolation is an animal type</td><td>the per-animal ranking is driven by collar deployment &mdash; the top raw animal has 2,880 raw and 0 supported hours</td><td><span class="pill p-stop">do not report</span> measurement failure</td></tr>
+        <tr><td>Fission products are the most permeable units</td><td>LapisSplinter: smallest discrete deficit, 2 of 5 sustained dyads, receives a transfer</td><td><span class="pill p-cau">state as prediction</span></td></tr>
+        <tr><td>Ecology regulates fission &mdash; <em>scarcity fragments</em></td><td>within-group NDVI null in 6 of 8 specifications, weakly negative in the strictest two; extent and duration predicted only by collar coverage</td><td><span class="pill p-stop">tested, unsupported</span> report as a failed prediction</td></tr>
+        <tr><td>Observation effort rises 121-fold across the record</td><td>2 &rarr; 242 collared animals, 1 &rarr; 23 units; nightly resolvability 0.00 &rarr; 0.95</td><td><span class="pill p-ok">report</span> it licenses and forbids every trend</td></tr>
+        <tr><td>Range overlap between groups is seasonal</td><td>encounter amplitude 0.285, peak 12 July, <em>p</em> = 0.010; NDVI peaks 18 July</td><td><span class="pill p-ok">report as geometry</span></td></tr>
+        <tr><td>Groups meet more in some seasons, once co-located</td><td>amplitude falls 0.285 &rarr; 0.087 and <em>p</em> 0.010 &rarr; 0.629 under distance restriction</td><td><span class="pill p-stop">do not report</span> fails the within-5 km test, as in Phase 4</td></tr>
+        <tr><td>Encounter probability declines over the record</td><td>OR 0.748 [0.615, 0.909] unrestricted; 1.100 [0.884, 1.368] on a balanced 45-dyad panel</td><td><span class="pill p-stop">do not report</span> denominator composition</td></tr>
+        <tr><td>Fission and individual excursion are seasonal</td><td>split <em>p</em> = 0.644; modularity <em>p</em> = 0.615; away <em>p</em> = 0.730; onset <em>p</em> = 0.573</td><td><span class="pill p-ok">report as tested and null</span></td></tr>
+        <tr><td>Depth and duration are seasonal, on any axis</td><td>seven responses, joint <em>p</em> from 0.234 to 0.826; samples 322&ndash;1,480</td><td><span class="pill p-ok">report as tested and null</span> weaker than the occurrence nulls</td></tr>
+        <tr><td>Mixture at 5 m and 2 m, and the 2 m/5 m radius profile, are seasonal</td><td>joint <em>p</em> 0.196&ndash;0.911 across six responses at two radii, 12 dyads</td><td><span class="pill p-ok">report as tested and null</span></td></tr>
+        <tr><td>How much of each group joins a merge varies widely</td><td>mutual participation 0.62&ndash;0.98; dyad-balanced 0.689 (Aug) to 0.949 (May)</td><td><span class="pill p-var">report as variation</span></td></tr>
+        <tr><td>&hellip; and that variation is <em>seasonal</em></td><td><em>p</em> = 0.0033 across dyads but <strong>0.511</strong> on months with 2+ years of data; Aug&ndash;Nov sampled once; same-month between-year spread up to 0.236</td><td><span class="pill p-stop">do not report</span> single-year feature</td></tr>
+        <tr><td>Within-merge modularity is seasonal</td><td><em>p</em> = 0.066 at 5 m and 0.061 at 2 m, same October phase &mdash; but the same single-year window</td><td><span class="pill p-cau">open signal</span> not a result</td></tr>
+        <tr><td>Betweenness within a merge is seasonal</td><td>Copper&ndash;Lilac only; 7 quarter-block clusters; fusion hours saturate after 2025-08-01</td><td><span class="pill p-stop">do not report</span> one dyad, aliased with a transition</td></tr>
+        <tr><td>Season reaches mixing depth through duration</td><td><em>p</em> = 0.084 with the duration term dropped, 0.320 with it in; duration carries +1.286 [1.127, 1.445] per SD</td><td><span class="pill p-cau">open question</span> needs more than 12 fine-scale dyads</td></tr>
+        <tr><td>Modularity is increasing over the record</td><td>OR 1.440 [1.040, 1.993], survives the effort term &mdash; but only 2 of 12 well-covered units span the window</td><td><span class="pill p-cau">unverifiable</span> not confirmed, not refuted</td></tr>
+        <tr><td>Ecology regulates between-group permeability</td><td>one model with known input faults; the seasonal term already fails the within-5 km test</td><td><span class="pill p-cau">Phase 5, axis A only</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Where this leaves the phase plan</h2></div>
+  <p>Phases 0&ndash;4 are complete and unaffected &mdash; they built axis A, and axis A is the model the other three axes should be built to match. The revision is to the ordering of what remains.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:32%">Earlier plan</th><th style="width:16%">Now</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 5 &mdash; symmetric ecological test</td><td><span class="pill p-stop">answered, negative</span></td><td>NDVI does not predict split occurrence, extent or duration (axis B), and the encounter season is range overlap that dies under the within-5 km restriction (axis A). What remains is the untested indices &mdash; NDWI, LSWI, EVI &mdash; and a second seasonal harmonic; the record holds only 1.6 annual cycles in its well-observed window</td></tr>
+        <tr><td>Phase 6 &mdash; connectivity</td><td>keep, unchanged</td><td>Result 6</td></tr>
+        <tr><td>Phase 7 &mdash; case studies and hygiene</td><td>keep, unchanged</td><td>includes 7.4</td></tr>
+        <tr><td><em>new</em></td><td><strong>Phase 4b</strong></td><td>opportunity tables and cohort re-derivation (7.1, 7.3) &mdash; prerequisite for Result 2. Axis C done (<code>analyze_individual_axis_identifiability.py</code>), axis B analysed (<code>analyze_axis_b_fission_structure.py</code>); <strong>only the cohort re-derivation remains</strong></td></tr>
+        <tr><td><em>new</em></td><td><strong>Phase 4c</strong></td><td>one common variance statistic across the three axes (7.2) &mdash; Result 5, Figure 5</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Phases 0&ndash;4 plus 4b and 4c produce the paper this framing describes: one cohort, three routes, three coverage-scaled claims, and one general finding &mdash; that permeability at every scale is a state a few units enter briefly, and almost none sustain.</p>
+</section>
+
+</main>
+
+<footer>
+  Every figure and number is read from saved outputs in <code>group_mebership</code>. No model was rerun for this document. Companions in <code>docs/framing_2026-09-04/</code>: <code>STABLE_GROUPS_FLUID_BOUNDARIES.md</code>, <code>INDIVIDUAL_AXIS_MERGE.md</code>, <code>AXIS_B_FISSION_RESULTS.md</code>, <code>SEASONALITY_AND_TRENDS.md</code>, <code>COHORT_CLOSURE_AND_RARE_PATTERNS.md</code>, <code>INTERACTION_GRADIENT_SEASONALITY.md</code>; predecessors <code>PAPER_STRUCTURE_GENERAL.md</code>, <code>PHASE0_3_RESULTS.md</code>, <code>PHASE4_RESULTS.md</code>. Figures from <code>analyze_axis_b_fission_structure.py</code>, <code>analyze_individual_axis_identifiability.py</code> and <code>analyze_seasonality_and_trends.py</code>.
+</footer>
+
+</div>

@@ -1,0 +1,23 @@
+{
+  "membership_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+  "rows_used": 1516740,
+  "merge_pair_rows": 55467,
+  "events": 13615,
+  "start_date": "2025-01-01",
+  "max_gap_hours_for_event_stitching": 2.5,
+  "event_counts_by_type": {
+    "single_animal_separation": 5828,
+    "within_group_split": 4570,
+    "large_merge": 1420,
+    "small_subset_merge": 1132,
+    "medium_partial_merge": 665
+  },
+  "event_definitions": {
+    "single_animal_separation": "deduplicated union of isolated rows, sustained non-origin rows, and size-1 within-group split components",
+    "isolated": "social_context == isolated, excluding rows inside sustained non-origin dynamic segments",
+    "disperser": "dynamic_assignment == sustained_non_origin_association; event size is one focal animal",
+    "within_group_split": "a dynamic social unit appears in more than one temp_group_id at the same timestamp",
+    "group_merge_scales": "mixed temp-group pairs split into small/medium/large by observed representation fractions"
+  },
+  "output_dir": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_group_merge_scale_log_scatter"
+}

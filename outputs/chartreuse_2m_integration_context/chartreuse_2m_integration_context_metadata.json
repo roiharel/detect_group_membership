@@ -1,0 +1,29 @@
+{
+  "metrics_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+  "panel_file": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\chartreuse_social_reorganization\\chartreuse_hourly_identity_panel.parquet",
+  "pair_key": "Chartreuse - Purple",
+  "edge_radius_m": 2,
+  "two_minute_rows": 777,
+  "hours": 118,
+  "days": 33,
+  "positive_cross_edge_rows": 9,
+  "contexts_observed": {
+    "disperser_present": 463,
+    "splinter_present": 314
+  },
+  "bootstrap_contrast": {
+    "estimand": "weighted 2m cross-edge fraction: splinter_present minus disperser_present",
+    "estimate": 0.002332070958740283,
+    "cluster_unit": "calendar day",
+    "days": 33,
+    "valid_bootstrap_replicates": 5000,
+    "ci_95_low": -0.005405862149582946,
+    "ci_95_high": 0.01020408163265306
+  },
+  "limitations": [
+    "Saved 2 m support for Chartreuse is available only for the Chartreuse-Purple dyad.",
+    "The social-context categories describe Chartreuse at that hour, not the identity of each 2 m edge.",
+    "All supported hours contained a splinter or a disperser; there is no cohesive-core control context.",
+    "Only nine two-minute rows contain any observed cross-group 2 m edge, so results are descriptive."
+  ]
+}

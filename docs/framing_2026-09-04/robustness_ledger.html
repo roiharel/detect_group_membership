@@ -1,0 +1,453 @@
+<title>Robustness Ledger</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#f1f3f1;--paper:#fbfcfa;--ink:#141a19;--ink-2:#38423f;--muted:#667370;
+--faint:#8d9793;--rule:#d3d9d4;--rule-soft:#e3e8e3;--accent:#0f5f57;--ax-a:#1f6f8b;
+--ax-b:#8a5a1f;--ax-c:#6b4a7a;--agree:#0f5f57;--differ:#8c3a2e;--mid:#8a6410;
+--shadow:0 1px 2px rgba(20,26,25,.05),0 8px 24px -14px rgba(20,26,25,.18);
+--serif:"Newsreader","Iowan Old Style",Georgia,serif;
+--sans:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#101413;
+--paper:#171d1c;--ink:#e9efec;--ink-2:#c3ccc8;--muted:#94a09c;--faint:#737e7a;
+--rule:#2b3432;--rule-soft:#222a29;--accent:#5fc0b0;--ax-a:#74b6d0;--ax-b:#d3a061;
+--ax-c:#b494c4;--agree:#5fc0b0;--differ:#e08a78;--mid:#d8ab54;
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -14px rgba(0,0,0,.7);}}
+:root[data-theme="dark"]{--ground:#101413;--paper:#171d1c;--ink:#e9efec;--ink-2:#c3ccc8;
+--muted:#94a09c;--faint:#737e7a;--rule:#2b3432;--rule-soft:#222a29;--accent:#5fc0b0;
+--ax-a:#74b6d0;--ax-b:#d3a061;--ax-c:#b494c4;--agree:#5fc0b0;--differ:#e08a78;
+--mid:#d8ab54;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -14px rgba(0,0,0,.7);}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:44px 28px 96px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+h1{font-family:var(--serif);font-size:clamp(32px,5vw,48px);font-weight:500;
+line-height:1.05;letter-spacing:-.018em;margin:0 0 12px;text-wrap:balance}
+.standfirst{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink-2);
+max-width:36em;margin:0 0 18px}
+header{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:36px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;font-family:var(--mono);font-size:11.5px;
+color:var(--muted)}
+.meta b{font-weight:500;color:var(--ink-2)}
+h2{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-.012em;
+line-height:1.2;margin:0 0 6px;text-wrap:balance}
+.secnum{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:4px}
+section{margin-bottom:54px}
+p{margin:0 0 14px;max-width:66ch}
+strong{font-weight:600}
+code,.num{font-family:var(--mono);font-size:.88em;font-variant-numeric:tabular-nums}
+figure{margin:24px 0;background:var(--paper);border:1px solid var(--rule-soft);
+padding:20px 20px 16px;box-shadow:var(--shadow)}
+figure svg{display:block;width:100%;height:auto;overflow:visible}
+.scroll{overflow-x:auto}.scroll>svg{min-width:520px}
+figcaption{font-size:12px;color:var(--muted);margin-top:14px;padding-top:12px;
+border-top:1px solid var(--rule-soft);max-width:70ch}
+text{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.lbl{font-size:10.5px;fill:var(--ink-2)}.lbl-sm{font-size:9.5px;fill:var(--faint)}
+.lbl-em{font-size:10.5px;fill:var(--ink);font-weight:500}
+.axline{stroke:var(--rule);stroke-width:1}.grid{stroke:var(--rule-soft);stroke-width:1}
+.key{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);font-size:11px;
+color:var(--muted);margin:14px 0 0}
+.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;
+vertical-align:-1px}
+blockquote{margin:22px 0;padding:18px 22px;background:var(--paper);
+border-left:3px solid var(--accent);font-family:var(--serif);font-size:19px;
+line-height:1.45;max-width:42em}
+blockquote p{margin:0;max-width:none}
+footer{border-top:1px solid var(--rule);padding-top:16px;font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Companion to Stable Groups, Fluid Boundaries</div>
+  <h1>Where the results agree, and where they don't</h1>
+  <p class="standfirst">Every finding in this project, plotted against the specification that tests it. Agreement and disagreement at the same visual weight, because both are results.</p>
+  <div class="meta">
+    <span><b>26</b> tests of the annual harmonic</span>
+    <span><b>10</b> quantities re-derived across cohorts</span>
+    <span><b>10</b> paired control comparisons</span>
+    <span><b>5</b> sensitivity ladders</span>
+  </div>
+</header>
+
+<section>
+  <div class="secnum">01</div>
+  <h2>Seasonality: nothing survives its own control</h2>
+  <p>Twenty-six tests of the annual harmonic, ordered by behaviour rather than by size. The pattern is stark: <strong>every test that reached <span class="num">p &lt; 0.05</span> did so before the relevant control was applied, and none of them survived it.</strong> Sixteen were never distinguishable from zero in the first place.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 700 538" role="img" aria-label="Specification curve of every seasonality test, p-value on a log axis. Tests that were significant lose significance once the relevant control is applied; the majority were never significant.">
+<line x1="250.0" y1="26.0" x2="250.0" y2="480.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<text class="lbl" x="250.0" y="20.0" text-anchor="middle">0.002</text>
+<line x1="348.4" y1="26.0" x2="348.4" y2="480.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<text class="lbl" x="348.4" y="20.0" text-anchor="middle">0.01</text>
+<line x1="446.8" y1="26.0" x2="446.8" y2="480.0" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="4 3"/>
+<text class="lbl-em" x="446.8" y="20.0" text-anchor="middle">0.05</text>
+<line x1="489.2" y1="26.0" x2="489.2" y2="480.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<text class="lbl" x="489.2" y="20.0" text-anchor="middle">0.1</text>
+<line x1="587.6" y1="26.0" x2="587.6" y2="480.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<text class="lbl" x="587.6" y="20.0" text-anchor="middle">0.5</text>
+<line x1="630.0" y1="26.0" x2="630.0" y2="480.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<text class="lbl" x="630.0" y="20.0" text-anchor="middle">1</text>
+<text class="lbl-sm" x="446.8" y="8.0" text-anchor="middle" fill="var(--ink)">p = 0.05</text>
+<text class="lbl-em" x="0" y="46.5">Encounter occurrence, all 317 dyads</text>
+<line x1="250.0" y1="43.0" x2="350.2" y2="43.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="350.2" cy="43.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="358.2" y="46.5">0.010</text>
+<text class="lbl" x="12" y="63.5">— restricted to ≤ 10 km</text>
+<line x1="250.0" y1="60.0" x2="330.0" y2="60.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="330.0" cy="60.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="338.0" y="63.5">0.007</text>
+<text class="lbl" x="12" y="80.5">— restricted to ≤ 5 km</text>
+<line x1="250.0" y1="77.0" x2="540.3" y2="77.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="540.3" cy="77.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="548.3" y="80.5">0.231</text>
+<text class="lbl" x="12" y="97.5">— restricted to ≤ 2 km</text>
+<line x1="250.0" y1="94.0" x2="601.6" y2="94.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="601.6" cy="94.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="609.6" y="97.5">0.629</text>
+<text class="lbl-em" x="0" y="114.5">Merge participation, all 66 dyads</text>
+<line x1="250.0" y1="111.0" x2="280.6" y2="111.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="280.6" cy="111.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="288.6" y="114.5">0.003</text>
+<text class="lbl" x="12" y="131.5">— balanced dyad panel</text>
+<line x1="250.0" y1="128.0" x2="285.9" y2="128.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="285.9" cy="128.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="293.9" y="131.5">0.004</text>
+<text class="lbl" x="12" y="148.5">— season demeaned within dyad</text>
+<line x1="250.0" y1="145.0" x2="521.4" y2="145.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="521.4" cy="145.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="529.4" y="148.5">0.169</text>
+<text class="lbl" x="12" y="165.5">— months with 2+ years of data</text>
+<line x1="250.0" y1="162.0" x2="588.9" y2="162.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="588.9" cy="162.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="596.9" y="165.5">0.511</text>
+<text class="lbl-em" x="0" y="182.5">Large merge vs partial, all dyads</text>
+<line x1="250.0" y1="179.0" x2="272.7" y2="179.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="272.7" cy="179.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="280.7" y="182.5">0.003</text>
+<text class="lbl" x="12" y="199.5">— demeaned within dyad</text>
+<line x1="250.0" y1="196.0" x2="498.1" y2="196.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="498.1" cy="196.0" r="4" fill="var(--differ)"/>
+<text class="lbl-sm" x="506.1" y="199.5">0.116</text>
+<text class="lbl-em" x="0" y="216.5">Within-merge modularity, 5 m</text>
+<line x1="250.0" y1="213.0" x2="464.1" y2="213.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="464.1" cy="213.0" r="4" fill="var(--mid)"/>
+<text class="lbl-sm" x="472.1" y="216.5">0.066</text>
+<text class="lbl-em" x="0" y="233.5">Within-merge modularity, 2 m</text>
+<line x1="250.0" y1="230.0" x2="458.7" y2="230.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="458.7" cy="230.0" r="4" fill="var(--mid)"/>
+<text class="lbl-sm" x="466.7" y="233.5">0.061</text>
+<text class="lbl-em" x="0" y="250.5">Mixing depth, duration held out</text>
+<line x1="250.0" y1="247.0" x2="478.5" y2="247.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="478.5" cy="247.0" r="4" fill="var(--mid)"/>
+<text class="lbl-sm" x="486.5" y="250.5">0.084</text>
+<text class="lbl-em" x="0" y="267.5">Mixing depth, duration in model</text>
+<line x1="250.0" y1="264.0" x2="560.4" y2="264.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="560.4" cy="264.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="568.4" y="267.5">0.320</text>
+<text class="lbl-em" x="0" y="284.5">Mixture deficit, 2 m</text>
+<line x1="250.0" y1="281.0" x2="624.3" y2="281.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="624.3" cy="281.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="632.3" y="284.5">0.911</text>
+<text class="lbl-em" x="0" y="301.5">2 m / 5 m radius profile</text>
+<line x1="250.0" y1="298.0" x2="530.3" y2="298.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="530.3" cy="298.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="538.3" y="301.5">0.196</text>
+<text class="lbl-em" x="0" y="318.5">Largest joint cluster size</text>
+<line x1="250.0" y1="315.0" x2="526.6" y2="315.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="526.6" cy="315.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="534.6" y="318.5">0.184</text>
+<text class="lbl-em" x="0" y="335.5">Split occurrence (axis B)</text>
+<line x1="250.0" y1="332.0" x2="603.1" y2="332.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="603.1" cy="332.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="611.1" y="335.5">0.644</text>
+<text class="lbl-em" x="0" y="352.5">Group-week modular (axis B)</text>
+<line x1="250.0" y1="349.0" x2="600.3" y2="349.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="600.3" cy="349.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="608.3" y="352.5">0.615</text>
+<text class="lbl-em" x="0" y="369.5">Split duration (axis B)</text>
+<line x1="250.0" y1="366.0" x2="608.9" y2="366.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="608.9" cy="366.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="616.9" y="369.5">0.708</text>
+<text class="lbl-em" x="0" y="386.5">Away from origin tonight (axis C)</text>
+<line x1="250.0" y1="383.0" x2="610.8" y2="383.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="610.8" cy="383.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="618.8" y="386.5">0.730</text>
+<text class="lbl-em" x="0" y="403.5">Excursion onset (axis C)</text>
+<line x1="250.0" y1="400.0" x2="596.0" y2="400.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="596.0" cy="400.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="604.0" y="403.5">0.573</text>
+<text class="lbl-em" x="0" y="420.5">Excursion duration (axis C)</text>
+<line x1="250.0" y1="417.0" x2="614.6" y2="417.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="614.6" cy="417.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="622.6" y="420.5">0.778</text>
+<text class="lbl-em" x="0" y="437.5">Excursion reached another unit</text>
+<line x1="250.0" y1="434.0" x2="541.2" y2="434.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="541.2" cy="434.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="549.2" y="437.5">0.234</text>
+<text class="lbl-em" x="0" y="454.5">Excursion reached settlement</text>
+<line x1="250.0" y1="451.0" x2="618.3" y2="451.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="618.3" cy="451.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="626.3" y="454.5">0.826</text>
+<text class="lbl-em" x="0" y="471.5">Encounter duration (axis A)</text>
+<line x1="250.0" y1="468.0" x2="597.6" y2="468.0" stroke="var(--rule-soft)" stroke-width="1"/>
+<circle cx="597.6" cy="468.0" r="4" fill="var(--muted)"/>
+<text class="lbl-sm" x="605.6" y="471.5">0.589</text>
+<line class="axline" x1="250.0" y1="480.0" x2="630.0" y2="480.0"/>
+<text class="lbl-sm" x="440.0" y="498.0" text-anchor="middle">joint Wald p for the annual harmonic, log axis</text>
+</svg></div>
+    <div class="key"><span><i style="background:var(--agree)"></i>survives every control</span><span><i style="background:var(--differ)"></i>significant until the control is applied</span><span><i style="background:var(--mid)"></i>borderline, unresolved</span><span><i style="background:var(--muted)"></i>never distinguishable from zero</span></div>
+    <figcaption>Indented rows are successive controls on the row above. Encounter occurrence dies under distance restriction; merge participation survives a balanced dyad panel but dies once restricted to calendar months sampled in more than one year, and dies again when the harmonic is demeaned within dyad. Within-merge modularity sits at 0.061&ndash;0.066 at both radii with the same October phase &mdash; consistent, unresolved, and resting on the same single-year window. Sources: <code>phase4c_seasonality/</code>.</figcaption>
+  </figure>
+  <blockquote><p>The one thing that <em>would</em> change this picture is more years. August to November exist in a single year of the well-observed window, and those are exactly the months carrying the signal.</p></blockquote>
+</section>
+
+<section>
+  <div class="secnum">02</div>
+  <h2>Cohort replication: eight of ten hold</h2>
+  <p>Axis B was rebuilt from the frozen export to match the legacy definition. Points on the diagonal replicated; the two off it are the findings the cohort change moved &mdash; and both had been reported before the check was run.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 700 402" role="img" aria-label="Scatter of ten axis-B quantities, legacy source against frozen export. Eight sit on the agreement diagonal; Chartreuse modular share and the split-detection correlation are far off it.">
+<line class="grid" x1="74.0" y1="20.0" x2="74.0" y2="350.0"/>
+<line class="grid" x1="74.0" y1="350.0" x2="404.0" y2="350.0"/>
+<text class="lbl" x="74.0" y="366.0" text-anchor="middle">0.0</text>
+<text class="lbl" x="66.0" y="353.5" text-anchor="end">0.0</text>
+<line class="grid" x1="132.9" y1="20.0" x2="132.9" y2="350.0"/>
+<line class="grid" x1="74.0" y1="291.1" x2="404.0" y2="291.1"/>
+<text class="lbl" x="132.9" y="366.0" text-anchor="middle">0.1</text>
+<text class="lbl" x="66.0" y="294.6" text-anchor="end">0.1</text>
+<line class="grid" x1="191.9" y1="20.0" x2="191.9" y2="350.0"/>
+<line class="grid" x1="74.0" y1="232.1" x2="404.0" y2="232.1"/>
+<text class="lbl" x="191.9" y="366.0" text-anchor="middle">0.2</text>
+<text class="lbl" x="66.0" y="235.6" text-anchor="end">0.2</text>
+<line class="grid" x1="250.8" y1="20.0" x2="250.8" y2="350.0"/>
+<line class="grid" x1="74.0" y1="173.2" x2="404.0" y2="173.2"/>
+<text class="lbl" x="250.8" y="366.0" text-anchor="middle">0.3</text>
+<text class="lbl" x="66.0" y="176.7" text-anchor="end">0.3</text>
+<line class="grid" x1="309.7" y1="20.0" x2="309.7" y2="350.0"/>
+<line class="grid" x1="74.0" y1="114.3" x2="404.0" y2="114.3"/>
+<text class="lbl" x="309.7" y="366.0" text-anchor="middle">0.4</text>
+<text class="lbl" x="66.0" y="117.8" text-anchor="end">0.4</text>
+<line class="grid" x1="368.6" y1="20.0" x2="368.6" y2="350.0"/>
+<line class="grid" x1="74.0" y1="55.4" x2="404.0" y2="55.4"/>
+<text class="lbl" x="368.6" y="366.0" text-anchor="middle">0.5</text>
+<text class="lbl" x="66.0" y="58.9" text-anchor="end">0.5</text>
+<line x1="74.0" y1="350.0" x2="404.0" y2="20.0" stroke="var(--muted)" stroke-width="1" stroke-dasharray="5 4"/>
+<text class="lbl-sm" x="309.7" y="90.7" fill="var(--muted)">perfect agreement</text>
+<circle cx="206.6" cy="219.2" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="216.6" y="211.2" text-anchor="start" fill="var(--ink-2)">Spearman(modularity, collars)</text>
+<circle cx="161.2" cy="250.4" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="171.2" y="264.4" text-anchor="start" fill="var(--ink-2)">ICC between-unit, modularity</text>
+<circle cx="391.0" cy="24.1" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="383.0" y="12.1" text-anchor="end" fill="var(--ink-2)">Lilac, share of weeks modular</text>
+<circle cx="343.9" cy="85.4" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="353.9" y="97.4" text-anchor="start" fill="var(--ink-2)">Lilac, max modularity</text>
+<circle cx="317.4" cy="104.3" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="327.4" y="94.3" text-anchor="start" fill="var(--ink-2)">Lilac, lag-1 autocorrelation</text>
+<circle cx="269.1" cy="114.9" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="279.1" y="128.9" text-anchor="start" fill="var(--ink-2)">Chartreuse, lag-1 autocorrelation</text>
+<circle cx="74.0" cy="336.4" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="86.0" y="340.4" text-anchor="start" fill="var(--ink-2)">Purple, share of weeks modular</text>
+<circle cx="74.0" cy="350.0" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="86.0" y="366.0" text-anchor="start" fill="var(--ink-2)">RubyRunners, share of weeks modular</text>
+<line x1="339.2" y1="84.8" x2="339.2" y2="263.4" stroke="var(--differ)" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="339.2" cy="263.4" r="5.5" fill="var(--differ)" stroke="var(--paper)" stroke-width="1"/>
+<text class="lbl-em" x="333.2" y="285.4" text-anchor="end" fill="var(--differ)">Chartreuse, share of weeks modular</text>
+<line x1="362.2" y1="61.8" x2="362.2" y2="253.9" stroke="var(--differ)" stroke-width="1" stroke-dasharray="2 2"/>
+<circle cx="362.2" cy="253.9" r="5.5" fill="var(--differ)" stroke="var(--paper)" stroke-width="1"/>
+<text class="lbl-em" x="372.2" y="259.9" text-anchor="start" fill="var(--differ)">Spearman(split fraction, collars)</text>
+<line class="axline" x1="74.0" y1="350.0" x2="404.0" y2="350.0"/>
+<line class="axline" x1="74.0" y1="20.0" x2="74.0" y2="350.0"/>
+<text class="lbl-sm" x="239.0" y="388.0" text-anchor="middle">value on the LEGACY source</text>
+<text class="lbl-sm" transform="translate(30.0 185.0) rotate(-90)" text-anchor="middle">value on the FROZEN export</text>
+</svg></div>
+    <div class="key"><span><i style="background:var(--agree)"></i>replicates</span><span><i style="background:var(--differ)"></i>does not replicate</span></div>
+    <figcaption>The ICC &mdash; the finding that modularity is a state rather than a group property &mdash; replicates (0.148 &rarr; 0.169), as does Lilac on every measure. Chartreuse&rsquo;s modular share falls from 45.0% of 20 weeks to 14.7% of 34, and the split-detection correlation from 0.489 to 0.163, which withdraws the claim that half of split detection was collar count. Source: <code>phase4d_axis_b_frozen/cohort_comparison.json</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="secnum">03</div>
+  <h2>Controls: seven of ten pairs cross the null</h2>
+  <p>Each row is one estimate fitted twice &mdash; once without the control that matters, once with it. Hollow marker without, filled marker with. Where the pair crosses the dashed line, the control decides the answer.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 700 576" role="img" aria-label="Paired estimates with and without the relevant control. Seven of ten pairs cross the null line once the control is applied.">
+<text class="lbl-em" x="0" y="36.0" fill="var(--accent)">Odds ratios — hollow marker is without the control, filled is with it</text>
+<line x1="335.3" y1="40.0" x2="335.3" y2="234.0" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text class="lbl-sm" x="335.3" y="32.0" text-anchor="middle" fill="var(--ink)">no effect</text>
+<text class="lbl-em" x="0" y="58.0">Axis A trend in encounter probability</text>
+<line x1="301.4" y1="54.0" x2="348.8" y2="54.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="301.4" cy="54.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="348.8" cy="54.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="297.4" y="46.0" text-anchor="start">0.748 all dyads</text>
+<text class="lbl-sm" x="348.8" y="73.0" text-anchor="middle">1.100 balanced panel</text>
+<text class="lbl-em" x="0" y="98.0">Axis B trend in split occurrence</text>
+<line x1="387.7" y1="94.0" x2="355.8" y2="94.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="387.7" cy="94.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="355.8" cy="94.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="387.7" y="86.0" text-anchor="middle">1.389 no effort term</text>
+<text class="lbl-sm" x="355.8" y="113.0" text-anchor="middle">1.152 effort in model</text>
+<text class="lbl-em" x="0" y="138.0">Axis A Stage-1 seasonality (sin term)</text>
+<line x1="283.6" y1="134.0" x2="315.9" y2="134.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="283.6" cy="134.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="315.9" cy="134.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="279.6" y="126.0" text-anchor="start">0.616 full sample</text>
+<text class="lbl-sm" x="311.9" y="153.0" text-anchor="start">0.856 within 5 km</text>
+<text class="lbl-em" x="0" y="178.0">NDVI on split occurrence (strictest)</text>
+<line x1="591.9" y1="174.0" x2="295.3" y2="174.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="591.9" cy="174.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="295.3" cy="174.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="595.9" y="166.0" text-anchor="end">2.906 between-group term</text>
+<text class="lbl-sm" x="291.3" y="193.0" text-anchor="start">0.703 within-group term</text>
+<text class="lbl-em" x="0" y="218.0">Split-composition predictor</text>
+<line x1="371.5" y1="214.0" x2="382.0" y2="214.0" stroke="var(--agree)" stroke-width="2"/>
+<circle cx="371.5" cy="214.0" r="4" fill="var(--paper)" stroke="var(--agree)" stroke-width="2"/>
+<circle cx="382.0" cy="214.0" r="4.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="371.5" y="206.0" text-anchor="middle">1.269 preceding proximity</text>
+<text class="lbl-sm" x="382.0" y="233.0" text-anchor="middle">1.347 general bond</text>
+<text class="lbl-em" x="0" y="260.0" fill="var(--accent)">Logit coefficients</text>
+<line x1="361.9" y1="264.0" x2="361.9" y2="418.0" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text class="lbl-sm" x="361.9" y="256.0" text-anchor="middle" fill="var(--ink)">no effect</text>
+<text class="lbl-em" x="0" y="282.0">Stage-2 pre-event distance</text>
+<line x1="340.9" y1="278.0" x2="362.8" y2="278.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="340.9" cy="278.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="362.8" cy="278.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="340.9" y="270.0" text-anchor="middle">-0.123 no dyad effects</text>
+<text class="lbl-sm" x="362.8" y="297.0" text-anchor="middle">+0.005 dyad effects in</text>
+<text class="lbl-em" x="0" y="322.0">Stage-2 collar coverage</text>
+<line x1="295.5" y1="318.0" x2="359.3" y2="318.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="295.5" cy="318.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="359.3" cy="318.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="291.5" y="310.0" text-anchor="start">-0.389 no dyad effects</text>
+<text class="lbl-sm" x="359.3" y="337.0" text-anchor="middle">-0.015 dyad effects in</text>
+<text class="lbl-em" x="0" y="362.0">Stage-2 prior encounters</text>
+<line x1="318.2" y1="358.0" x2="347.9" y2="358.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="318.2" cy="358.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="347.9" cy="358.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="314.2" y="350.0" text-anchor="start">-0.256 no calendar time</text>
+<text class="lbl-sm" x="347.9" y="377.0" text-anchor="middle">-0.082 calendar time in</text>
+<text class="lbl-em" x="0" y="402.0">Sustained-association contrast</text>
+<line x1="596.8" y1="398.0" x2="343.3" y2="398.0" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="596.8" cy="398.0" r="4" fill="var(--paper)" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="343.3" cy="398.0" r="4.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="600.8" y="390.0" text-anchor="end">+1.376 stratum alone</text>
+<text class="lbl-sm" x="343.3" y="417.0" text-anchor="middle">-0.109 with exposure terms</text>
+<text class="lbl-em" x="0" y="444.0" fill="var(--accent)">Agreement across sources</text>
+<text class="lbl-em" x="0" y="464.0">Axis B modularity ICC</text>
+<text class="lbl-sm" x="268.0" y="464.0" fill="var(--agree)">legacy cohort 0.148 &rarr; frozen cohort 0.169 &mdash; agrees</text>
+</svg></div>
+    <div class="key"><span><i style="background:var(--differ)"></i>control changes the conclusion</span><span><i style="background:var(--agree)"></i>conclusion unchanged</span></div>
+    <figcaption>Four distinct controls appear here and all four bite: dyad or unit fixed effects (Stage-2 distance and coverage), an observation-effort term (axis B trend), a sample restriction (within 5 km; balanced panel), and separating a between-unit from a within-unit term (NDVI). The two agreeing rows are the modularity ICC across cohorts and the two split-composition predictors, which give the same answer either way. Sources: <code>PHASE4_RESULTS.md</code>, <code>phase4b_axis_b_fission/</code>, <code>phase4c_seasonality/</code>, <code>phase4d_axis_b_frozen/</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="secnum">04</div>
+  <h2>Robust by design: the choices that don't matter</h2>
+  <p>Not every arbitrary choice moves a result, and saying which ones don't is as much a part of the audit as saying which ones do. Three of these five ladders are flat.</p>
+  <figure>
+    <div class="scroll"><svg viewBox="0 0 700 282" role="img" aria-label="Five sensitivity ladders. Three are flat: the isolation threshold, the permissive gap rule and the animal count. Two decline: the dominant-rule excursion count and the Stage-1 event count.">
+<text class="lbl-em" x="0.0" y="14.0">Isolation support: located-cluster thr</text>
+<line class="axline" x1="30.0" y1="92.0" x2="210.0" y2="92.0"/>
+<polyline points="30.0,36.1 120.0,38.9 210.0,45.0" fill="none" stroke="var(--agree)" stroke-width="2"/>
+<circle cx="30.0" cy="36.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="30.0" y="105.0" text-anchor="middle">≥ 2</text>
+<circle cx="120.0" cy="38.9" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="120.0" y="105.0" text-anchor="middle">≥ 3</text>
+<circle cx="210.0" cy="45.0" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="210.0" y="105.0" text-anchor="middle">≥ 4</text>
+<text class="lbl-sm" x="26.0" y="39.6" text-anchor="end">23.9</text>
+<text class="lbl-sm" x="26.0" y="48.5" text-anchor="end">20.1</text>
+<text class="lbl-sm" x="30.0" y="119.0" fill="var(--agree)">insensitive</text>
+<text class="lbl-sm" x="30.0" y="131.0">% of raw isolated hours retained</text>
+<text class="lbl-em" x="228.0" y="14.0">Excursion count: gap tolerance, permis</text>
+<line class="axline" x1="258.0" y1="92.0" x2="438.0" y2="92.0"/>
+<polyline points="258.0,36.1 294.0,36.1 330.0,36.2 366.0,36.2 402.0,36.2 438.0,36.2" fill="none" stroke="var(--agree)" stroke-width="2"/>
+<circle cx="258.0" cy="36.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="258.0" y="105.0" text-anchor="middle">0</text>
+<circle cx="294.0" cy="36.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="294.0" y="105.0" text-anchor="middle">1</text>
+<circle cx="330.0" cy="36.2" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="330.0" y="105.0" text-anchor="middle">2</text>
+<circle cx="366.0" cy="36.2" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="366.0" y="105.0" text-anchor="middle">3</text>
+<circle cx="402.0" cy="36.2" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="402.0" y="105.0" text-anchor="middle">7</text>
+<circle cx="438.0" cy="36.2" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="438.0" y="105.0" text-anchor="middle">14</text>
+<text class="lbl-sm" x="254.0" y="39.6" text-anchor="end">3541</text>
+<text class="lbl-sm" x="254.0" y="39.7" text-anchor="end">3534</text>
+<text class="lbl-sm" x="258.0" y="119.0" fill="var(--agree)">insensitive</text>
+<text class="lbl-sm" x="258.0" y="131.0">excursions</text>
+<text class="lbl-em" x="456.0" y="14.0">Excursion count: gap tolerance, domina</text>
+<line class="axline" x1="486.0" y1="92.0" x2="666.0" y2="92.0"/>
+<polyline points="486.0,36.1 522.0,53.3 558.0,57.2 594.0,59.1 630.0,59.6 666.0,59.6" fill="none" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="486.0" cy="36.1" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="486.0" y="105.0" text-anchor="middle">0</text>
+<circle cx="522.0" cy="53.3" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="522.0" y="105.0" text-anchor="middle">1</text>
+<circle cx="558.0" cy="57.2" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="558.0" y="105.0" text-anchor="middle">2</text>
+<circle cx="594.0" cy="59.1" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="594.0" y="105.0" text-anchor="middle">3</text>
+<circle cx="630.0" cy="59.6" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="630.0" y="105.0" text-anchor="middle">7</text>
+<circle cx="666.0" cy="59.6" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="666.0" y="105.0" text-anchor="middle">14</text>
+<text class="lbl-sm" x="482.0" y="39.6" text-anchor="end">338</text>
+<text class="lbl-sm" x="482.0" y="63.1" text-anchor="end">196</text>
+<text class="lbl-sm" x="486.0" y="119.0" fill="var(--differ)">SENSITIVE</text>
+<text class="lbl-sm" x="486.0" y="131.0">excursions</text>
+<text class="lbl-em" x="0.0" y="158.0">Stage-1 encounters: gap rule</text>
+<line class="axline" x1="30.0" y1="236.0" x2="210.0" y2="236.0"/>
+<polyline points="30.0,180.1 90.0,183.4 150.0,188.2 210.0,201.8" fill="none" stroke="var(--differ)" stroke-width="2"/>
+<circle cx="30.0" cy="180.1" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="30.0" y="249.0" text-anchor="middle">2 h</text>
+<circle cx="90.0" cy="183.4" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="90.0" y="249.0" text-anchor="middle">3 h</text>
+<circle cx="150.0" cy="188.2" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="150.0" y="249.0" text-anchor="middle">6 h</text>
+<circle cx="210.0" cy="201.8" r="3.5" fill="var(--differ)"/>
+<text class="lbl-sm" x="210.0" y="249.0" text-anchor="middle">14 h</text>
+<text class="lbl-sm" x="26.0" y="183.6" text-anchor="end">1812</text>
+<text class="lbl-sm" x="26.0" y="205.3" text-anchor="end">1109</text>
+<text class="lbl-sm" x="30.0" y="263.0" fill="var(--differ)">SENSITIVE in events, not in dyads</text>
+<text class="lbl-sm" x="30.0" y="275.0">events (dyads stay 68 throughout)</text>
+<text class="lbl-em" x="228.0" y="158.0">Animals contributing excursions: gap t</text>
+<line class="axline" x1="258.0" y1="236.0" x2="438.0" y2="236.0"/>
+<polyline points="258.0,180.1 294.0,180.1 330.0,180.1 366.0,180.1 402.0,180.1 438.0,180.1" fill="none" stroke="var(--agree)" stroke-width="2"/>
+<circle cx="258.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="258.0" y="249.0" text-anchor="middle">0</text>
+<circle cx="294.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="294.0" y="249.0" text-anchor="middle">1</text>
+<circle cx="330.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="330.0" y="249.0" text-anchor="middle">2</text>
+<circle cx="366.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="366.0" y="249.0" text-anchor="middle">3</text>
+<circle cx="402.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="402.0" y="249.0" text-anchor="middle">7</text>
+<circle cx="438.0" cy="180.1" r="3.5" fill="var(--agree)"/>
+<text class="lbl-sm" x="438.0" y="249.0" text-anchor="middle">14</text>
+<text class="lbl-sm" x="254.0" y="183.6" text-anchor="end">91</text>
+<text class="lbl-sm" x="254.0" y="183.6" text-anchor="end">91</text>
+<text class="lbl-sm" x="258.0" y="263.0" fill="var(--agree)">insensitive</text>
+<text class="lbl-sm" x="258.0" y="275.0">animals, dominant rule</text>
+</svg></div>
+    <figcaption>The isolation support rule is threshold-insensitive, so the 76%-artefact conclusion does not depend on where the cut sits. The permissive nightly rule is gap-insensitive; the dominant rule is not, which is why the gap ladder is reported rather than a single number. And the Stage-1 gap rule changes the event count from 1,812 to 1,109 while the dyad count stays at 68 throughout &mdash; the sample is stable, only the event parsing is sensitive. The same holds on axis C: 91 animals at every gap tolerance. Sources: <code>phase4b_individual_axis/</code>, <code>phase2_two_stage_events/stage1_gap_rule_sensitivity.csv</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="secnum">05</div>
+  <h2>What the four plots say together</h2>
+  <p><strong>The nulls are the robust half of this project.</strong> Plot 1 shows no seasonal signal surviving its own control; plot 3 shows that seven of ten headline estimates depend on a control being present. What holds across every specification is the descriptive backbone: mixing at 4.6% of composition expectation in 12 of 12 dyads, modularity as a state (ICC replicating across cohorts), 91 animals contributing excursions at every gap tolerance, and the isolation artefact at any threshold.</p>
+  <p><strong>Positives from short windows are where the errors were.</strong> Both non-replicating points in plot 2, and every red row in plot 1, are positive findings that did not survive a check. No null in this project has been overturned by adding a control. That asymmetry is worth stating in the paper: with 1.6 seasonal cycles and a 121-fold effort ramp, this design is far better at establishing absence within its range than at establishing a cycle.</p>
+  <p><strong>And rarity is not the same as fragility.</strong> The rare states &mdash; one fully fusing dyad, one recurrently modular group, 61 settlement excursions, 16 sustained associations &mdash; are not in plot 1 or plot 3, because they are observations rather than estimates. They replicate wherever they can be re-derived: Lilac holds on every measure across cohorts. Low frequency is a fact about the population; it is not a weakness in the measurement.</p>
+</section>
+
+<footer>
+  Generated by <code>build_robustness_ledger.py</code> from saved outputs under <code>outputs/general_structure_2026_09/</code> and the model fits documented in <code>docs/framing_2026-09-04/</code>. No model was rerun to build this page.
+</footer>
+</div>

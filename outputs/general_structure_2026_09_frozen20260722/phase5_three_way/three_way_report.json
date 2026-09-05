@@ -1,0 +1,23 @@
+{
+  "min_side_observed": 5,
+  "min_pure": 2,
+  "hour_cases": 534,
+  "events": 166,
+  "pairs": 19,
+  "median_event_hours": 2.0,
+  "max_event_hours": 14,
+  "mixed_side_median": 1.0,
+  "mixed_side_is_one_animal": 0.561,
+  "top_pairs": {
+    "LapisSplinter + Lilac": 272,
+    "Copper + LapisSplinter": 108,
+    "Copper + Lilac": 81,
+    "Periwinkle + RubyRunners": 28,
+    "Chartreuse + Maroon": 16,
+    "Emerald + PhantomWest": 6,
+    "Chartreuse + Emerald": 5,
+    "Lilac + Magenta": 5,
+    "Bronze + Chartreuse": 2,
+    "Chartreuse + FenceJumpers": 2
+  }
+}

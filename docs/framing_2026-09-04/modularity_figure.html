@@ -1,0 +1,302 @@
+<title>Within-Group Modularity</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{--ground:#f4f5f3;--paper:#fff;--ink:#15191a;--ink-2:#3a4244;--muted:#6b7476;
+--rule:#d5dad7;--rule-soft:#e6eae7;
+--c1:#1f6f8b;--c4:#8a5a1f;--c5:#6b4a7a;--c6:#0f5f57;
+--sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+--serif:"Newsreader",Georgia,serif;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0f1213;
+--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;--muted:#8f9998;--rule:#2c3435;
+--rule-soft:#242c2d;--c1:#74b6d0;--c4:#d3a061;--c5:#b494c4;--c6:#5fc0b0;}}
+:root[data-theme="dark"]{--ground:#0f1213;--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;
+--muted:#8f9998;--rule:#2c3435;--rule-soft:#242c2d;--c1:#74b6d0;--c4:#d3a061;
+--c5:#b494c4;--c6:#5fc0b0;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:800px;margin:0 auto;padding:48px 26px 80px}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.15;
+letter-spacing:-.01em;margin:0 0 26px;text-wrap:balance}
+.plate{background:var(--paper);border:1px solid var(--rule-soft);padding:22px 20px 8px}
+.plate svg{display:block;width:100%;height:auto;overflow:visible}
+.scroll{overflow-x:auto}.scroll>svg{min-width:660px}
+.cap{font-size:12.5px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;
+padding-top:14px;border-top:1px solid var(--rule)}
+.cap b{font-weight:600;color:var(--ink)}.cap .fignum{font-weight:600;color:var(--ink)}
+.cap code{font-family:var(--mono);font-size:.9em}
+.note{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:22px;
+padding-top:14px;border-top:1px solid var(--rule-soft)}
+.note code{font-family:var(--mono);font-size:.92em}
+text{font-family:var(--sans)}
+.nl{font-size:7.6px;fill:var(--ink-2)}
+.ts{font-size:8.4px;fill:var(--muted)}
+.ph{font-size:12px;fill:var(--ink);font-weight:600}
+.pl{font-size:13px;font-weight:700;fill:var(--ink)}
+.g{stroke:var(--rule-soft);stroke-width:.8}
+.ax{stroke:var(--rule);stroke-width:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+  <div class="kicker">Figure 3a &middot; draft</div>
+  <h1>What modularity looks like</h1>
+
+  <div class="plate">
+    <div class="scroll"><svg viewBox="0 0 700 308" role="img" aria-label="Within-group modularity: for one group on a single line: its weekly values through time with modular phases shaded, beside two of those weeks drawn as association networks -- one of two communities that barely associate, one a single connected group.">
+<text class="pl" x="0" y="44.0">a</text>
+<line class="g" x1="66.0" y1="212.0" x2="348.0" y2="212.0"/>
+<text class="ts" x="61.0" y="215.0" text-anchor="end">0</text>
+<line class="g" x1="66.0" y1="177.5" x2="348.0" y2="177.5"/>
+<line class="g" x1="66.0" y1="143.0" x2="348.0" y2="143.0"/>
+<text class="ts" x="61.0" y="146.0" text-anchor="end">0.22</text>
+<line class="g" x1="66.0" y1="108.5" x2="348.0" y2="108.5"/>
+<line class="g" x1="66.0" y1="74.0" x2="348.0" y2="74.0"/>
+<text class="ts" x="61.0" y="77.0" text-anchor="end">0.45</text>
+<line class="g" x1="66.0" y1="74.0" x2="66.0" y2="212.0"/>
+<line class="g" x1="207.0" y1="74.0" x2="207.0" y2="212.0"/>
+<line class="g" x1="348.0" y1="74.0" x2="348.0" y2="212.0"/>
+<line class="ax" x1="66.0" y1="212.0" x2="348.0" y2="212.0"/>
+<line class="ax" x1="66.0" y1="74.0" x2="66.0" y2="212.0"/>
+<text class="ts" x="207.0" y="236.0" text-anchor="middle">38 well-covered weeks</text>
+<text class="ts" x="38.0" y="143.0" text-anchor="middle" transform="rotate(-90 38.0 143.0)">modularity</text>
+<text class="ts" x="66.0" y="223.0" text-anchor="start">2025-07-28</text>
+<text class="ts" x="348.0" y="223.0" text-anchor="end">2026-04-27</text>
+<rect x="64.5" y="74.0" width="10.2" height="138.0" fill="var(--c4)" opacity=".11"/>
+<rect x="86.2" y="74.0" width="24.7" height="138.0" fill="var(--c4)" opacity=".11"/>
+<rect x="136.8" y="74.0" width="17.5" height="138.0" fill="var(--c4)" opacity=".11"/>
+<rect x="187.4" y="74.0" width="46.4" height="138.0" fill="var(--c4)" opacity=".11"/>
+<rect x="274.2" y="74.0" width="10.2" height="138.0" fill="var(--c4)" opacity=".11"/>
+<rect x="64.5" y="112.8" width="3" height="99.2" fill="var(--c4)"/>
+<rect x="71.7" y="74.0" width="3" height="138.0" fill="var(--c4)"/>
+<circle cx="80.5" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="86.2" y="190.0" width="3" height="22.0" fill="var(--c4)"/>
+<rect x="93.4" y="196.2" width="3" height="15.8" fill="var(--c4)"/>
+<rect x="100.7" y="202.3" width="3" height="9.7" fill="var(--c4)"/>
+<rect x="107.9" y="198.7" width="3" height="13.3" fill="var(--c4)"/>
+<circle cx="116.6" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="136.8" y="193.0" width="3" height="19.0" fill="var(--c4)"/>
+<rect x="144.0" y="163.8" width="3" height="48.2" fill="var(--c4)"/>
+<rect x="151.3" y="127.4" width="3" height="84.6" fill="var(--c4)"/>
+<circle cx="160.0" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="167.2" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="174.5" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="181.7" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="187.4" y="174.1" width="3" height="37.9" fill="var(--c4)"/>
+<rect x="194.7" y="169.6" width="3" height="42.4" fill="var(--c4)"/>
+<rect x="201.9" y="207.1" width="3" height="4.9" fill="var(--c4)"/>
+<rect x="209.1" y="209.9" width="3" height="2.1" fill="var(--c4)"/>
+<rect x="216.3" y="143.9" width="3" height="68.1" fill="var(--c4)"/>
+<rect x="223.6" y="145.8" width="3" height="66.2" fill="var(--c4)"/>
+<rect x="230.8" y="199.8" width="3" height="12.2" fill="var(--c4)"/>
+<circle cx="239.5" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="245.3" y="201.6" width="3" height="10.4" fill="var(--c4)"/>
+<circle cx="254.0" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="259.7" y="209.5" width="3" height="2.5" fill="var(--c4)"/>
+<circle cx="268.5" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="274.2" y="209.4" width="3" height="2.6" fill="var(--c4)"/>
+<rect x="281.4" y="195.9" width="3" height="16.1" fill="var(--c4)"/>
+<circle cx="290.2" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="297.4" cy="212.0" r="1.1" fill="var(--muted)"/>
+<rect x="303.1" y="209.1" width="3" height="2.9" fill="var(--c4)"/>
+<circle cx="311.8" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="319.1" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="326.3" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="333.5" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="340.8" cy="212.0" r="1.1" fill="var(--muted)"/>
+<circle cx="348.0" cy="212.0" r="1.1" fill="var(--muted)"/>
+<polyline points="66.0,131.5 73.2,131.5 80.5,74.0 87.7,120.0 94.9,134.4 102.2,113.4 109.4,113.4 116.6,74.0 138.3,131.5 145.5,108.5 152.8,154.5 160.0,74.0 167.2,74.0 174.5,74.0 181.7,74.0 188.9,123.3 196.2,123.3 203.4,116.5 210.6,116.5 217.8,116.5 225.1,116.5 232.3,123.3 239.5,74.0 246.8,123.3 254.0,74.0 261.2,103.6 268.5,74.0 275.7,123.3 282.9,123.3 290.2,74.0 297.4,74.0 304.6,127.1 311.8,74.0 319.1,74.0 326.3,74.0 333.5,74.0 340.8,74.0 348.0,74.0" fill="none" stroke="var(--c6)" stroke-width="1.5" opacity=".9"/>
+<line class="ax" x1="348.0" y1="74.0" x2="348.0" y2="212.0" stroke="var(--c6)" opacity=".55"/>
+<text class="ts" x="352.0" y="215.0" fill="var(--c6)">0</text>
+<text class="ts" x="352.0" y="146.0" fill="var(--c6)">0.5</text>
+<text class="ts" x="352.0" y="77.0" fill="var(--c6)">1</text>
+<line x1="73.2" y1="68.0" x2="73.2" y2="212.0" stroke="var(--ink-2)" stroke-width=".8" stroke-dasharray="2 2"/>
+<text class="ts" x="73.2" y="65.0" text-anchor="middle" fill="var(--ink-2)">1</text>
+<line x1="319.1" y1="68.0" x2="319.1" y2="212.0" stroke="var(--ink-2)" stroke-width=".8" stroke-dasharray="2 2"/>
+<text class="ts" x="319.1" y="65.0" text-anchor="middle" fill="var(--ink-2)">2</text>
+<rect x="406.0" y="74.0" width="138.0" height="138.0" fill="none" stroke="var(--rule-soft)" stroke-width="1"/>
+<ellipse cx="475.0" cy="101.1" rx="23.9" ry="23.3" fill="var(--c4)" opacity=".09"/>
+<ellipse cx="475.0" cy="183.7" rx="21.4" ry="23.3" fill="var(--c1)" opacity=".09"/>
+<line x1="467.5" y1="174.9" x2="476.7" y2="197.0" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="467.5" y1="174.9" x2="480.5" y2="173.9" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="467.5" y1="174.9" x2="465.2" y2="187.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="467.5" y1="174.9" x2="485.1" y2="185.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="476.7" y1="197.0" x2="480.5" y2="173.9" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="476.7" y1="197.0" x2="465.2" y2="187.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="476.7" y1="197.0" x2="485.1" y2="185.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="480.5" y1="173.9" x2="465.2" y2="187.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="480.5" y1="173.9" x2="485.1" y2="185.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="485.3" y2="92.8" stroke="var(--c4)" stroke-width="2.07" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="488.1" y2="107.9" stroke="var(--c4)" stroke-width="1.73" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="466.1" y2="105.9" stroke="var(--c4)" stroke-width="2.09" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="461.9" y2="95.6" stroke="var(--c4)" stroke-width="1.71" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="2.07" opacity=".5"/>
+<line x1="478.0" y1="101.7" x2="472.0" y2="115.1" stroke="var(--c4)" stroke-width="1.55" opacity=".5"/>
+<line x1="465.2" y1="187.3" x2="485.1" y2="185.3" stroke="var(--c1)" stroke-width="2.10" opacity=".5"/>
+<line x1="485.3" y1="92.8" x2="488.1" y2="107.9" stroke="var(--c4)" stroke-width="1.76" opacity=".5"/>
+<line x1="485.3" y1="92.8" x2="466.1" y2="105.9" stroke="var(--c4)" stroke-width="2.06" opacity=".5"/>
+<line x1="485.3" y1="92.8" x2="461.9" y2="95.6" stroke="var(--c4)" stroke-width="1.67" opacity=".5"/>
+<line x1="485.3" y1="92.8" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="2.08" opacity=".5"/>
+<line x1="485.3" y1="92.8" x2="472.0" y2="115.1" stroke="var(--c4)" stroke-width="1.48" opacity=".5"/>
+<line x1="488.1" y1="107.9" x2="466.1" y2="105.9" stroke="var(--c4)" stroke-width="1.72" opacity=".5"/>
+<line x1="488.1" y1="107.9" x2="461.9" y2="95.6" stroke="var(--c4)" stroke-width="1.44" opacity=".5"/>
+<line x1="488.1" y1="107.9" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="1.74" opacity=".5"/>
+<line x1="488.1" y1="107.9" x2="472.0" y2="115.1" stroke="var(--c4)" stroke-width="1.18" opacity=".5"/>
+<line x1="472.0" y1="115.1" x2="466.1" y2="105.9" stroke="var(--c4)" stroke-width="1.57" opacity=".5"/>
+<line x1="472.0" y1="115.1" x2="461.9" y2="95.6" stroke="var(--c4)" stroke-width="1.77" opacity=".5"/>
+<line x1="472.0" y1="115.1" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="1.53" opacity=".5"/>
+<line x1="466.1" y1="105.9" x2="461.9" y2="95.6" stroke="var(--c4)" stroke-width="1.73" opacity=".5"/>
+<line x1="466.1" y1="105.9" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="2.08" opacity=".5"/>
+<line x1="461.9" y1="95.6" x2="473.4" y2="89.0" stroke="var(--c4)" stroke-width="1.70" opacity=".5"/>
+<circle cx="467.5" cy="174.9" r="3.4" fill="var(--c1)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="476.7" cy="197.0" r="3.4" fill="var(--c1)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="480.5" cy="173.9" r="3.4" fill="var(--c1)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="478.0" cy="101.7" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="465.2" cy="187.3" r="3.4" fill="var(--c1)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="485.1" cy="185.3" r="3.4" fill="var(--c1)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="485.3" cy="92.8" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="488.1" cy="107.9" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="472.0" cy="115.1" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="466.1" cy="105.9" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="461.9" cy="95.6" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="473.4" cy="89.0" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<text class="ph" x="475.0" y="48.0" text-anchor="middle">1 · Q = 0.45</text>
+<text class="ts" x="475.0" y="59.0" text-anchor="middle">2025-08-04</text>
+<text class="ts" x="475.0" y="69.0" text-anchor="middle">12 animals, 2 communities</text>
+<rect x="560.0" y="74.0" width="138.0" height="138.0" fill="none" stroke="var(--rule-soft)" stroke-width="1"/>
+<ellipse cx="630.3" cy="142.9" rx="72.2" ry="73.4" fill="var(--c4)" opacity=".09"/>
+<line x1="587.3" y1="110.7" x2="610.0" y2="187.4" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="615.6" y2="93.4" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="584.3" y2="171.5" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="641.7" y2="160.9" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="672.4" y2="113.4" stroke="var(--c4)" stroke-width="1.94" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="587.3" y1="110.7" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.86" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="615.6" y2="93.4" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="584.3" y2="171.5" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="641.7" y2="160.9" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="672.4" y2="113.4" stroke="var(--c4)" stroke-width="1.94" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="610.0" y1="187.4" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.86" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="584.3" y2="171.5" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="641.7" y2="160.9" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="672.4" y2="113.4" stroke="var(--c4)" stroke-width="1.94" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="615.6" y1="93.4" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.86" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="641.7" y2="160.9" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="672.4" y2="113.4" stroke="var(--c4)" stroke-width="1.81" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="584.3" y1="171.5" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.98" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="672.4" y2="113.4" stroke="var(--c4)" stroke-width="1.96" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.96" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.97" opacity=".5"/>
+<line x1="641.7" y1="160.9" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.84" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="624.5" y2="130.0" stroke="var(--c4)" stroke-width="1.94" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="1.94" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.82" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="672.4" y1="113.4" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.68" opacity=".5"/>
+<line x1="624.5" y1="130.0" x2="678.3" y2="142.7" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="624.5" y1="130.0" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="624.5" y1="130.0" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="624.5" y1="130.0" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="624.5" y1="130.0" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.86" opacity=".5"/>
+<line x1="678.3" y1="142.7" x2="677.3" y2="177.4" stroke="var(--c4)" stroke-width="1.83" opacity=".5"/>
+<line x1="678.3" y1="142.7" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="678.3" y1="142.7" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.95" opacity=".5"/>
+<line x1="678.3" y1="142.7" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.86" opacity=".5"/>
+<line x1="677.3" y1="177.4" x2="642.2" y2="197.0" stroke="var(--c4)" stroke-width="1.84" opacity=".5"/>
+<line x1="677.3" y1="177.4" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="1.84" opacity=".5"/>
+<line x1="677.3" y1="177.4" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.84" opacity=".5"/>
+<line x1="642.2" y1="197.0" x2="579.7" y2="141.5" stroke="var(--c4)" stroke-width="2.10" opacity=".5"/>
+<line x1="642.2" y1="197.0" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.71" opacity=".5"/>
+<line x1="579.7" y1="141.5" x2="649.8" y2="89.0" stroke="var(--c4)" stroke-width="1.71" opacity=".5"/>
+<circle cx="587.3" cy="110.7" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="610.0" cy="187.4" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="615.6" cy="93.4" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="584.3" cy="171.5" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="641.7" cy="160.9" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="672.4" cy="113.4" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="624.5" cy="130.0" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="678.3" cy="142.7" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="677.3" cy="177.4" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="642.2" cy="197.0" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="579.7" cy="141.5" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<circle cx="649.8" cy="89.0" r="3.4" fill="var(--c4)" stroke="var(--paper)" stroke-width=".9"/>
+<text class="ph" x="629.0" y="48.0" text-anchor="middle">2 · Q = -0.00</text>
+<text class="ts" x="629.0" y="59.0" text-anchor="middle">2026-03-30</text>
+<text class="ts" x="629.0" y="69.0" text-anchor="middle">12 animals, 1 community</text>
+<rect x="45.0" y="256.0" width="3" height="9" fill="var(--c4)"/>
+<text class="ts" x="58.0" y="264.0">weekly modularity</text>
+<rect x="192.0" y="256.5" width="13" height="8" fill="var(--c4)" opacity=".16"/>
+<text class="ts" x="210.0" y="264.0">modular phase, 2+ weeks</text>
+<line x1="344.0" y1="260.5" x2="357.0" y2="260.5" stroke="var(--c6)" stroke-width="1.9"/>
+<text class="ts" x="362.0" y="264.0">largest sub-community</text>
+<circle cx="502.5" cy="260.5" r="3.4" fill="var(--c4)"/>
+<text class="ts" x="514.0" y="264.0">node = animal, colour = community</text>
+</svg></div>
+    <p class="cap">
+      <span class="fignum">Figure 3a.</span> Within-group modularity for one group,
+      through time and as pictures. <b>Left:</b> Lilac week by week, across its
+      38 weeks at 12 or more collars (2025-07-28 to
+      2026-04-27); bar height is that week&rsquo;s modularity, dots are weeks at
+      zero, and the teal trace is the largest sub-community as a share of the group on
+      the right-hand axis. 21 of 38 weeks are modular, in
+      5 shaded phases of two weeks or more, the longest running
+      7 consecutive weeks; up to 3 communities
+      appear and the largest falls to 42%. The group does not drift
+      apart and stay apart &mdash; it separates and re-fuses, on a scale of weeks.
+      <b>Right:</b> the two marked weeks as association networks. At Q = 0.45
+      (2025-08-04) the group is two communities that barely associate;
+      at Q = -0.00 (2026-03-30) it is one connected mass with no
+      partition to find, on the same 12 collars. <b>Both are the same unit five
+      months apart, which is the case for reading modularity as a state rather than a
+      trait.</b> It is also not a typical unit: across the 7 units with at
+      least 20 weeks at 12 or more collars, 5
+      reach modularity in some week and 2 never leave zero, but
+      <b>Lilac and Chartreuse alone hold 37 of the 42
+      modular weeks</b> (88%). This range is what a unit can do, not
+      what most units do.
+    </p>
+  </div>
+
+  <p class="note">
+    Everything here is restricted to well-covered unit-weeks. Below about
+    12 collars a modularity estimator returns a single community regardless
+    of the animals, so a low score from a sparse unit is a statement about the collars,
+    not the baboons; the 2 silent units counted in the caption are all
+    well-covered and their zeros are real. The two networks are matched on collar count,
+    so the flat one cannot be dismissed as a thinner week. Both are the week&rsquo;s
+    association network:
+    an edge is the share of hours two animals spent in the same association cluster,
+    among hours both were present, drawn at 0.05 and above; communities are greedy
+    modularity communities on that weighted graph, and positions come from a spring
+    layout with a fixed seed and each community&rsquo;s centre then placed on a fixed
+    circle, so that both networks are drawn to one convention and distance on the page
+    is indicative rather than metric. Weekly metrics come from the frozen 1,924,104-row export; networks are built
+    by <code>derive_level2_inputs.py</code>. Generated by
+    <code>build_modularity_figure.py</code>; seed 20260904.
+  </p>
+</div>

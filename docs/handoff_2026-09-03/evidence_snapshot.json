@@ -1,0 +1,1245 @@
+{
+  "audit_utc": "2026-09-03T14:39:29.928504+00:00",
+  "project_root": "C:\\Users\\rharel\\Documents\\group_mebership",
+  "scope": "Saved local metadata, CSVs and scripts only. No model reruns, source GPS validation, remote access or literature review.",
+  "cohorts": {
+    "full_hourly_export": {
+      "source": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership_with_association_events.parquet",
+      "output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\membership_export_narrow\\canonical_hourly_membership_narrow.csv",
+      "row_definition": "one animal in one hourly window",
+      "rows": 1924104,
+      "columns": [
+        "window_start",
+        "animal_id",
+        "tag_id",
+        "sex",
+        "age",
+        "origin_group",
+        "assigned_social_unit",
+        "dynamic_social_unit",
+        "social_context",
+        "association_type",
+        "association_event_id",
+        "association_event_label",
+        "temp_group_size",
+        "association_cluster_n_animals",
+        "membership_confidence",
+        "is_observed",
+        "is_carried_night",
+        "is_local_2h_supported",
+        "longitude",
+        "latitude"
+      ],
+      "column_count": 20,
+      "animals": 350,
+      "origin_groups": 26,
+      "start": "2024-03-01 04:00:00",
+      "end": "2026-07-22 06:00:00",
+      "duplicate_animal_hours": 0,
+      "sort_order": [
+        "window_start",
+        "origin_group",
+        "animal_id"
+      ],
+      "csv_bytes": 368751407
+    },
+    "nightly_export": {
+      "source": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership_with_association_events.parquet",
+      "output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\membership_export_nightly\\canonical_nightly_membership.csv",
+      "sample_output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\membership_export_nightly\\canonical_nightly_membership_sample.csv",
+      "row_definition": "one animal in one biological night",
+      "night_definition_utc": "16:00 through 06:00 inclusive; night_date is the evening date",
+      "classification_rule": "Dominant hourly assigned_social_unit defines immediate nightly membership; dominant dynamic_social_unit is retained as the conservative longer-term membership.",
+      "rows": 81695,
+      "animals": 350,
+      "origin_groups": 26,
+      "start_night": "2024-02-29 00:00:00",
+      "end_night": "2026-07-21 00:00:00",
+      "complete_nights": 79256,
+      "membership_class_counts": {
+        "with_origin_group": 67561,
+        "with_other_group": 11418,
+        "isolated": 2499,
+        "mixed_groups": 217
+      },
+      "association_type_counts": {
+        "whole_group": 54572,
+        "between_group_merge": 20468,
+        "within_group_split": 3789,
+        "isolated_or_low_support": 2866
+      },
+      "within_night_membership_conflicts": 9260,
+      "ambiguous_nights": 2162,
+      "columns": [
+        "night_date",
+        "night_start_utc",
+        "night_end_utc_exclusive",
+        "animal_id",
+        "tag_id",
+        "sex",
+        "age",
+        "origin_group",
+        "nightly_membership_class",
+        "nightly_assigned_social_unit",
+        "nightly_dynamic_social_unit",
+        "nightly_social_context",
+        "nightly_association_type",
+        "nightly_association_event_id",
+        "nightly_association_event_label",
+        "n_hourly_rows",
+        "expected_night_hours",
+        "night_coverage_fraction",
+        "is_complete_night",
+        "first_hour_utc",
+        "last_hour_utc",
+        "n_observed_hours",
+        "n_exact_hour_supported_hours",
+        "n_carried_hours",
+        "n_local_2h_supported_hours",
+        "evidence_type",
+        "dominant_assignment_fraction",
+        "dominant_dynamic_fraction",
+        "dominant_association_fraction",
+        "median_membership_confidence",
+        "minimum_membership_confidence",
+        "has_within_night_membership_conflict",
+        "is_ambiguous_night",
+        "n_assigned_social_units",
+        "n_dynamic_social_units",
+        "n_social_contexts",
+        "n_association_types",
+        "nightly_longitude",
+        "nightly_latitude"
+      ],
+      "csv_bytes": 29378455
+    },
+    "legacy_dynamic_status": {
+      "source_status": "C:\\Users\\rharel\\Documents\\New project\\outputs\\rerun_20260703_full_hierarchical_sampling_filtered_eps300\\proximity_status_full.parquet",
+      "source_canonical": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+      "output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\dynamic_social_unit_merge_gamm\\proximity_status_dynamic_social_unit.parquet",
+      "rows": 1070061,
+      "animals": 354,
+      "original_groups": 21,
+      "dynamic_analysis_groups": 21,
+      "reassigned_rows": 7886,
+      "reassigned_animals": 11,
+      "dynamic_assignment_counts": {
+        "origin_default": 965826,
+        "unmatched_status_row": 96349,
+        "sustained_non_origin_association": 7886
+      }
+    },
+    "two_metre_merge_summary": {
+      "input_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+      "edge_radius_m": 2,
+      "supported_dyads": 12,
+      "events": 1863,
+      "hours": 5034,
+      "two_minute_rows": 39975,
+      "bootstrap_cluster_unit": "event_number_for_pair within dyad",
+      "interpretation": "negative observed-minus-shuffle means fewer 2 m cross-group links than expected from group composition"
+    },
+    "copper_lilac": {
+      "pair": "Copper - Lilac",
+      "groups_are_stable_original_groups": true,
+      "fusion_context": "canonical between-group shared/fusion hours for the Copper-Lilac dynamic-unit pair",
+      "daytime_window_utc": "03:00-16:00 inclusive",
+      "radii_m": [
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0,
+        50.0,
+        100.0,
+        200.0,
+        400.0
+      ],
+      "primary_radius_m": 5.0,
+      "pair_opportunity": "both animals have valid GPS positions in the same 2-minute bin and canonical fusion cluster",
+      "pair_contact_rate": "contact bins within the selected radius / pairwise co-observed bins",
+      "aggregation": "pair rates averaged within individual, individuals averaged equally within original group, original groups averaged equally",
+      "within_reference": "equal mean of within-Copper and within-Lilac individual-average pair rates",
+      "integration_ratio": "group-balanced cross-origin rate / within-reference rate; 1 means equal cross- and within-origin contact density",
+      "min_pair_bins_per_month": 60,
+      "min_individual_partners_per_month": 2,
+      "bootstrap_unit": "individual, resampled separately within original group and month",
+      "bootstrap_replicates": 2000,
+      "fusion_membership_hours": 5785,
+      "fusion_membership_animals": 38,
+      "gps_position_rows": 2407831,
+      "pair_month_rows": 32724,
+      "caution": "Inference is limited to tracked animals and canonical fusion hours; uncollared contacts are not recoverable."
+    }
+  },
+  "meeting_input_audit": {
+    "daily": {
+      "candidate_rows": 56128,
+      "candidate_dyads": 207,
+      "rows_with_zero_saved_eligible_bins": 56000,
+      "copper_lilac_candidate_rows": 747,
+      "copper_lilac_positive_rows": 0,
+      "copper_lilac_saved_eligible_bins": 0,
+      "ndvi_complete_fit_rows": 51582,
+      "ndvi_complete_fit_dyads": 190,
+      "ndvi_complete_positive_rows": 93,
+      "copper_lilac_ndvi_complete_fit_rows": 703,
+      "group_size_equals_sum_observed_animals_all_rows": true
+    },
+    "weekly": {
+      "candidate_rows": 8277,
+      "candidate_dyads": 207,
+      "rows_with_zero_saved_eligible_bins": 8180,
+      "copper_lilac_candidate_rows": 109,
+      "copper_lilac_positive_rows": 0,
+      "copper_lilac_saved_eligible_bins": 0,
+      "ndvi_complete_fit_rows": 7605,
+      "ndvi_complete_fit_dyads": 190,
+      "ndvi_complete_positive_rows": 73,
+      "copper_lilac_ndvi_complete_fit_rows": 103,
+      "group_size_equals_sum_observed_animals_all_rows": true
+    }
+  },
+  "meeting_model_summaries": [
+    {
+      "model": "meeting_probability_weekly_separate",
+      "model_type": "separate",
+      "time_unit": "weekly",
+      "response": "any_interaction",
+      "n_dyad_intervals": 7605,
+      "n_dyads": 190,
+      "n_meeting_intervals": 73,
+      "meeting_probability": 0.0095989480604865,
+      "median_prior_meetings": 0.0,
+      "formula": "any_interaction ~ log1p_range_mean_centroid_distance_m_z + log1p_prior_pair_interaction_days_z + log1p_group_size_total_z + log1p_group_size_abs_diff_z + dyad_daily_ndvi_mean_z",
+      "fit_note": "Approximate Bayesian logistic model with weak informed Normal fixed-effect priors"
+    },
+    {
+      "model": "meeting_probability_weekly_hierarchical",
+      "model_type": "hierarchical",
+      "time_unit": "weekly",
+      "response": "any_interaction",
+      "n_dyad_intervals": 7605,
+      "n_dyads": 190,
+      "n_meeting_intervals": 73,
+      "meeting_probability": 0.0095989480604865,
+      "median_prior_meetings": 0.0,
+      "formula": "any_interaction ~ log1p_range_mean_centroid_distance_m_z + log1p_prior_pair_interaction_days_z + log1p_group_size_total_z + log1p_group_size_abs_diff_z + dyad_daily_ndvi_mean_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Approximate Bayesian logistic mixed model with weak informed Normal fixed-effect priors and Gaussian random-intercept priors for group 1, group 2, and dyad"
+    },
+    {
+      "model": "meeting_probability_daily_separate",
+      "model_type": "separate",
+      "time_unit": "daily",
+      "response": "any_interaction",
+      "n_dyad_intervals": 51582,
+      "n_dyads": 190,
+      "n_meeting_intervals": 93,
+      "meeting_probability": 0.0018029545190182,
+      "median_prior_meetings": 0.0,
+      "formula": "any_interaction ~ log1p_range_mean_centroid_distance_m_z + log1p_prior_pair_interaction_days_z + log1p_group_size_total_z + log1p_group_size_abs_diff_z + dyad_daily_ndvi_mean_z",
+      "fit_note": "Approximate Bayesian logistic model with weak informed Normal fixed-effect priors"
+    },
+    {
+      "model": "meeting_probability_daily_hierarchical",
+      "model_type": "hierarchical",
+      "time_unit": "daily",
+      "response": "any_interaction",
+      "n_dyad_intervals": 51582,
+      "n_dyads": 190,
+      "n_meeting_intervals": 93,
+      "meeting_probability": 0.0018029545190182,
+      "median_prior_meetings": 0.0,
+      "formula": "any_interaction ~ log1p_range_mean_centroid_distance_m_z + log1p_prior_pair_interaction_days_z + log1p_group_size_total_z + log1p_group_size_abs_diff_z + dyad_daily_ndvi_mean_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Approximate Bayesian logistic mixed model with weak informed Normal fixed-effect priors and Gaussian random-intercept priors for group 1, group 2, and dyad"
+    }
+  ],
+  "duration_model_summary": [
+    {
+      "model": "event_duration",
+      "merge_size_class": "all",
+      "response": "log1p_duration_hours",
+      "n_events": 88,
+      "n_dyads": 20,
+      "median_duration_hours": 5.9,
+      "max_duration_hours": 37.0,
+      "max_duration_days": 1.5416666666666667,
+      "median_active_contact_hours": 1.45,
+      "median_prior_meetings": 3.0,
+      "formula": "log1p_duration_hours ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    }
+  ],
+  "integration_model_summary": [
+    {
+      "model": "event_integration_5m",
+      "merge_size_class": "all",
+      "response": "logit_integration_5m_fraction",
+      "n_events": 108,
+      "n_dyads": 21,
+      "median_integration_5m_fraction": 0.4,
+      "mean_integration_5m_fraction": 0.3642794329992085,
+      "median_cross_group_5m_edges": 87.0,
+      "median_candidate_5m_edges": 314.5,
+      "median_duration_hours": 5.9,
+      "median_prior_meetings": 3.0,
+      "ndvi_used": false,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    }
+  ],
+  "integration_metric_models": [
+    {
+      "metric": "integration_5m_fraction",
+      "metric_label": "5 m cross-group link fraction",
+      "model_variant": "baseline",
+      "response": "logit_integration_5m_fraction",
+      "n_events": 108,
+      "n_dyads": 21,
+      "mean_metric": 0.3642794329992085,
+      "median_metric": 0.4,
+      "min_metric": 0.0888099467140319,
+      "max_metric": 0.600507614213198,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean a larger fraction of 5 m candidate links are between the two groups."
+    },
+    {
+      "metric": "integration_5m_fraction",
+      "metric_label": "5 m cross-group link fraction",
+      "model_variant": "gps_control",
+      "response": "logit_integration_5m_fraction",
+      "n_events": 97,
+      "n_dyads": 18,
+      "mean_metric": 0.3642794329992085,
+      "median_metric": 0.4,
+      "min_metric": 0.0888099467140319,
+      "max_metric": 0.600507614213198,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + log1p_event_gps_movement_mean_m_per_h_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean a larger fraction of 5 m candidate links are between the two groups."
+    },
+    {
+      "metric": "mean_cross_edge_fraction",
+      "metric_label": "Mean cross-edge fraction",
+      "model_variant": "baseline",
+      "response": "logit_mean_cross_edge_fraction",
+      "n_events": 108,
+      "n_dyads": 21,
+      "mean_metric": 0.4162104403332059,
+      "median_metric": 0.4425117953263821,
+      "min_metric": 0.0988353387114162,
+      "max_metric": 0.6833900226757369,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_cross_edge_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean more observed proximity edges cross between groups during the event."
+    },
+    {
+      "metric": "mean_cross_edge_fraction",
+      "metric_label": "Mean cross-edge fraction",
+      "model_variant": "gps_control",
+      "response": "logit_mean_cross_edge_fraction",
+      "n_events": 97,
+      "n_dyads": 18,
+      "mean_metric": 0.4162104403332059,
+      "median_metric": 0.4425117953263821,
+      "min_metric": 0.0988353387114162,
+      "max_metric": 0.6833900226757369,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_cross_edge_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + log1p_event_gps_movement_mean_m_per_h_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean more observed proximity edges cross between groups during the event."
+    },
+    {
+      "metric": "mean_composition_entropy_norm",
+      "metric_label": "Composition entropy",
+      "model_variant": "baseline",
+      "response": "logit_mean_composition_entropy_norm",
+      "n_events": 108,
+      "n_dyads": 21,
+      "mean_metric": 0.8790240366002765,
+      "median_metric": 0.8807001849613141,
+      "min_metric": 0.602783463925952,
+      "max_metric": 1.0,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_composition_entropy_norm ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean clusters are more compositionally mixed rather than dominated by one group."
+    },
+    {
+      "metric": "mean_composition_entropy_norm",
+      "metric_label": "Composition entropy",
+      "model_variant": "gps_control",
+      "response": "logit_mean_composition_entropy_norm",
+      "n_events": 97,
+      "n_dyads": 18,
+      "mean_metric": 0.8790240366002765,
+      "median_metric": 0.8807001849613141,
+      "min_metric": 0.602783463925952,
+      "max_metric": 1.0,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_composition_entropy_norm ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + log1p_event_gps_movement_mean_m_per_h_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean clusters are more compositionally mixed rather than dominated by one group."
+    },
+    {
+      "metric": "mean_pair_balance",
+      "metric_label": "Pair balance",
+      "model_variant": "baseline",
+      "response": "logit_mean_pair_balance",
+      "n_events": 108,
+      "n_dyads": 21,
+      "mean_metric": 0.7210203855415102,
+      "median_metric": 0.7542327457298708,
+      "min_metric": 0.2947732344284068,
+      "max_metric": 1.0,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_pair_balance ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean the two groups contribute more evenly to mixed clusters."
+    },
+    {
+      "metric": "mean_pair_balance",
+      "metric_label": "Pair balance",
+      "model_variant": "gps_control",
+      "response": "logit_mean_pair_balance",
+      "n_events": 97,
+      "n_dyads": 18,
+      "mean_metric": 0.7210203855415102,
+      "median_metric": 0.7542327457298708,
+      "min_metric": 0.2947732344284068,
+      "max_metric": 1.0,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "logit_mean_pair_balance ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + log1p_event_gps_movement_mean_m_per_h_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean the two groups contribute more evenly to mixed clusters."
+    },
+    {
+      "metric": "mean_edge_modularity_q",
+      "metric_label": "Edge modularity Q",
+      "model_variant": "baseline",
+      "response": "mean_edge_modularity_q",
+      "n_events": 108,
+      "n_dyads": 21,
+      "mean_metric": 0.0367176474454827,
+      "median_metric": 0.0469620928430085,
+      "min_metric": -0.21875,
+      "max_metric": 0.2777777777777778,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "mean_edge_modularity_q ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean stronger separation by group, so negative effects on this metric indicate more integration."
+    },
+    {
+      "metric": "mean_edge_modularity_q",
+      "metric_label": "Edge modularity Q",
+      "model_variant": "gps_control",
+      "response": "mean_edge_modularity_q",
+      "n_events": 97,
+      "n_dyads": 18,
+      "mean_metric": 0.0367176474454827,
+      "median_metric": 0.0469620928430085,
+      "min_metric": -0.21875,
+      "max_metric": 0.2777777777777778,
+      "ndvi_used": false,
+      "n_events_with_ndvi": 88,
+      "formula": "mean_edge_modularity_q ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + log1p_event_gps_movement_mean_m_per_h_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior",
+      "interpretation": "Higher values mean stronger separation by group, so negative effects on this metric indicate more integration."
+    }
+  ],
+  "distance_window_comparison": [
+    {
+      "model": "event_duration_before",
+      "response": "log1p_duration_hours",
+      "distance_window": "before",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": -0.0200626461903245,
+      "distance_ci_low": -0.1789756191779279,
+      "distance_ci_high": 0.1315021220403213,
+      "total_size_estimate": 0.2603709046417045,
+      "size_difference_estimate": -0.280957068947586,
+      "formula": "log1p_duration_hours ~ log1p_centroid_distance_median_1wk_before_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    },
+    {
+      "model": "event_duration_before_after",
+      "response": "log1p_duration_hours",
+      "distance_window": "before_after",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": -0.1011605075803602,
+      "distance_ci_low": -0.2728314054856121,
+      "distance_ci_high": 0.0627997200817005,
+      "total_size_estimate": 0.2760345086979273,
+      "size_difference_estimate": -0.2597961189804557,
+      "formula": "log1p_duration_hours ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    },
+    {
+      "model": "event_duration_after",
+      "response": "log1p_duration_hours",
+      "distance_window": "after",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": -0.088309603855286,
+      "distance_ci_low": -0.2481868074433418,
+      "distance_ci_high": 0.0645116600638967,
+      "total_size_estimate": 0.2681249841235152,
+      "size_difference_estimate": -0.2766579610658786,
+      "formula": "log1p_duration_hours ~ log1p_centroid_distance_median_1wk_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    },
+    {
+      "model": "event_integration_before",
+      "response": "logit_integration_5m_fraction",
+      "distance_window": "before",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": 0.0358847721605672,
+      "distance_ci_low": -0.0665990303855267,
+      "distance_ci_high": 0.1336296792519833,
+      "total_size_estimate": -0.2502719611853696,
+      "size_difference_estimate": -0.0677376553079035,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_before_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    },
+    {
+      "model": "event_integration_before_after",
+      "response": "logit_integration_5m_fraction",
+      "distance_window": "before_after",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": -0.0208766210016111,
+      "distance_ci_low": -0.1326654393192171,
+      "distance_ci_high": 0.0858911557449368,
+      "total_size_estimate": -0.2382443123548864,
+      "size_difference_estimate": -0.0523161819130653,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_before_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    },
+    {
+      "model": "event_integration_after",
+      "response": "logit_integration_5m_fraction",
+      "distance_window": "after",
+      "n_events": 88,
+      "n_dyads": 20,
+      "distance_estimate": -0.0334008380262144,
+      "distance_ci_low": -0.1372435228254175,
+      "distance_ci_high": 0.0658589062251611,
+      "total_size_estimate": -0.2377877545265392,
+      "size_difference_estimate": -0.0541037234217929,
+      "formula": "logit_integration_5m_fraction ~ log1p_centroid_distance_median_1wk_after_m_z + log1p_prior_meetings_z + log1p_group_size_total_1wk_before_after_z + log1p_group_size_abs_diff_1wk_before_after_z + dyad_ndvi_mean_1wk_before_after_z + (1|group_a) + (1|group_b) + (1|pair_key)",
+      "fit_note": "Bayesian Gaussian linear mixed model with weak informed Normal fixed-effect priors, Gaussian random-intercept priors for group 1, group 2, and dyad, and inverse-gamma residual variance prior"
+    }
+  ],
+  "weekly_gee_summary": [
+    {
+      "model": "distance_group_controls",
+      "fit_note": "GEE binomial spline; dyad-clustered working correlation",
+      "formula": "interaction_probability ~ bs(log1p_weekly_centroid_distance_m_z, df=5, degree=3, include_intercept=False) + C(group_a_control) + C(group_b_control)",
+      "n_weekly_dyad_rows": 96,
+      "n_dyads": 21,
+      "n_group_a": 11,
+      "n_group_b": 12,
+      "total_edges": 10725.0,
+      "interaction_edges": 3002.0,
+      "overall_interaction_probability": 0.2799067599067599,
+      "distance_min_m": 37.03771875073473,
+      "distance_median_m": 2188.3714892534226,
+      "distance_max_m": 7313.815487597431,
+      "aic": 98.59460369997235
+    },
+    {
+      "model": "distance_ndvi_group_controls",
+      "fit_note": "GEE binomial spline; dyad-clustered working correlation",
+      "formula": "interaction_probability ~ bs(log1p_weekly_centroid_distance_m_z, df=5, degree=3, include_intercept=False) + bs(dyad_weekly_ndvi_mean_z, df=4, degree=3, include_intercept=False) + bs(dyad_weekly_ndvi_abs_diff_z, df=4, degree=3, include_intercept=False) + C(group_a_control) + C(group_b_control)",
+      "n_weekly_dyad_rows": 75,
+      "n_dyads": 18,
+      "n_group_a": 10,
+      "n_group_b": 10,
+      "total_edges": 6327.0,
+      "interaction_edges": 1551.0,
+      "overall_interaction_probability": 0.2451398767188241,
+      "distance_min_m": 37.03771875073473,
+      "distance_median_m": 2107.7631179177192,
+      "distance_max_m": 7313.815487597431,
+      "aic": 92.83397154080828
+    }
+  ],
+  "copper_lilac_phase_ratios": [
+    {
+      "radius_m": 1.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.0004606765450332,
+      "integration_ratio": 0.1549238600862973,
+      "within_copper": 0.0016698512429914,
+      "within_lilac": 0.0044410614966565,
+      "within_reference": 0.003055456369824
+    },
+    {
+      "radius_m": 1.0,
+      "phase": "high merge",
+      "cross_balanced": 0.0016001492576951,
+      "integration_ratio": 0.8737341824915101,
+      "within_copper": 0.0020475008941273,
+      "within_lilac": 0.0016211286389316,
+      "within_reference": 0.0018343147665294
+    },
+    {
+      "radius_m": 1.0,
+      "phase": "transition",
+      "cross_balanced": 0.0014204202465184,
+      "integration_ratio": 0.8691918873400416,
+      "within_copper": 0.0016949498699297,
+      "within_lilac": 0.0015746317526735,
+      "within_reference": 0.0016347908113016
+    },
+    {
+      "radius_m": 2.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.0017904849375346,
+      "integration_ratio": 0.1547292799557235,
+      "within_copper": 0.007163936924103,
+      "within_lilac": 0.0171713994298616,
+      "within_reference": 0.0121676681769823
+    },
+    {
+      "radius_m": 2.0,
+      "phase": "high merge",
+      "cross_balanced": 0.0063140256360259,
+      "integration_ratio": 0.8835778844897557,
+      "within_copper": 0.0081098399631048,
+      "within_lilac": 0.0062141366862651,
+      "within_reference": 0.0071619883246849
+    },
+    {
+      "radius_m": 2.0,
+      "phase": "transition",
+      "cross_balanced": 0.0056149080011096,
+      "integration_ratio": 0.872954052344781,
+      "within_copper": 0.0065942583720474,
+      "within_lilac": 0.0062847846792802,
+      "within_reference": 0.0064395215256638
+    },
+    {
+      "radius_m": 5.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.0105589313173517,
+      "integration_ratio": 0.161839683429912,
+      "within_copper": 0.0423067946945652,
+      "within_lilac": 0.0917675121787222,
+      "within_reference": 0.0670371534366437
+    },
+    {
+      "radius_m": 5.0,
+      "phase": "high merge",
+      "cross_balanced": 0.0358194185279652,
+      "integration_ratio": 0.910631079813018,
+      "within_copper": 0.0440177885823697,
+      "within_lilac": 0.0346099109752533,
+      "within_reference": 0.0393138497788115
+    },
+    {
+      "radius_m": 5.0,
+      "phase": "transition",
+      "cross_balanced": 0.0319293234794813,
+      "integration_ratio": 0.8844676195744652,
+      "within_copper": 0.0372083623406378,
+      "within_lilac": 0.0350932850623992,
+      "within_reference": 0.0361508237015185
+    },
+    {
+      "radius_m": 10.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.0386649453893198,
+      "integration_ratio": 0.2014214687509664,
+      "within_copper": 0.1373390818114739,
+      "within_lilac": 0.250094399149307,
+      "within_reference": 0.1937167404803905
+    },
+    {
+      "radius_m": 10.0,
+      "phase": "high merge",
+      "cross_balanced": 0.1147607007981177,
+      "integration_ratio": 0.9404578186390086,
+      "within_copper": 0.1341133339588981,
+      "within_lilac": 0.1096223047663547,
+      "within_reference": 0.1218678193626264
+    },
+    {
+      "radius_m": 10.0,
+      "phase": "transition",
+      "cross_balanced": 0.1009113196824026,
+      "integration_ratio": 0.909162209773838,
+      "within_copper": 0.1163725633101875,
+      "within_lilac": 0.1059960253734856,
+      "within_reference": 0.1111842943418366
+    },
+    {
+      "radius_m": 20.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.1157789253551963,
+      "integration_ratio": 0.276834386744612,
+      "within_copper": 0.3258863035265415,
+      "within_lilac": 0.4984102421923879,
+      "within_reference": 0.4121482728594647
+    },
+    {
+      "radius_m": 20.0,
+      "phase": "high merge",
+      "cross_balanced": 0.283708708197001,
+      "integration_ratio": 0.9622450097801958,
+      "within_copper": 0.3161590160817497,
+      "within_lilac": 0.2727319015119355,
+      "within_reference": 0.2944454587968426
+    },
+    {
+      "radius_m": 20.0,
+      "phase": "transition",
+      "cross_balanced": 0.2458142567495071,
+      "integration_ratio": 0.9296930298383852,
+      "within_copper": 0.2828467222936666,
+      "within_lilac": 0.2466657826610878,
+      "within_reference": 0.2647562524773773
+    },
+    {
+      "radius_m": 50.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.2959869745869744,
+      "integration_ratio": 0.4048271899572893,
+      "within_copper": 0.6277519206424149,
+      "within_lilac": 0.8026934831336977,
+      "within_reference": 0.7152227018880563
+    },
+    {
+      "radius_m": 50.0,
+      "phase": "high merge",
+      "cross_balanced": 0.6044703016505526,
+      "integration_ratio": 0.9775249158175396,
+      "within_copper": 0.648971271689772,
+      "within_lilac": 0.5871680175032546,
+      "within_reference": 0.6180696445965133
+    },
+    {
+      "radius_m": 50.0,
+      "phase": "transition",
+      "cross_balanced": 0.5130029067088521,
+      "integration_ratio": 0.9467878152918552,
+      "within_copper": 0.5875752088328101,
+      "within_lilac": 0.4968486791212917,
+      "within_reference": 0.542211943977051
+    },
+    {
+      "radius_m": 100.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.5040199201867216,
+      "integration_ratio": 0.567401713186537,
+      "within_copper": 0.8140446075550802,
+      "within_lilac": 0.93300356199956,
+      "within_reference": 0.8735240847773202
+    },
+    {
+      "radius_m": 100.0,
+      "phase": "high merge",
+      "cross_balanced": 0.8281788505610748,
+      "integration_ratio": 0.98915734625998,
+      "within_copper": 0.857222269363154,
+      "within_lilac": 0.8170583992159611,
+      "within_reference": 0.8371403342895576
+    },
+    {
+      "radius_m": 100.0,
+      "phase": "transition",
+      "cross_balanced": 0.7181244799087197,
+      "integration_ratio": 0.9638456079629272,
+      "within_copper": 0.7941901029976473,
+      "within_lilac": 0.6962296402555876,
+      "within_reference": 0.7452098716266173
+    },
+    {
+      "radius_m": 200.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.766523475490776,
+      "integration_ratio": 0.7990175960022186,
+      "within_copper": 0.9214292259176023,
+      "within_lilac": 0.9795283958959105,
+      "within_reference": 0.9504788109067565
+    },
+    {
+      "radius_m": 200.0,
+      "phase": "high merge",
+      "cross_balanced": 0.948707335087326,
+      "integration_ratio": 0.997476117581074,
+      "within_copper": 0.9560484674349256,
+      "within_lilac": 0.9461110587486152,
+      "within_reference": 0.9510797630917704
+    },
+    {
+      "radius_m": 200.0,
+      "phase": "transition",
+      "cross_balanced": 0.8799866586208304,
+      "integration_ratio": 0.9831328017179386,
+      "within_copper": 0.9181317741249152,
+      "within_lilac": 0.8719056655563274,
+      "within_reference": 0.8950187198406212
+    },
+    {
+      "radius_m": 400.0,
+      "phase": "early mixing",
+      "cross_balanced": 0.9185807163068924,
+      "integration_ratio": 0.9398806495196604,
+      "within_copper": 0.9449965296420516,
+      "within_lilac": 0.9956439491183772,
+      "within_reference": 0.9703202393802144
+    },
+    {
+      "radius_m": 400.0,
+      "phase": "high merge",
+      "cross_balanced": 0.9880675352820448,
+      "integration_ratio": 0.9993713244598318,
+      "within_copper": 0.9882887128971484,
+      "within_lilac": 0.9890860531909348,
+      "within_reference": 0.9886873830440416
+    },
+    {
+      "radius_m": 400.0,
+      "phase": "transition",
+      "cross_balanced": 0.9589527085032524,
+      "integration_ratio": 0.99563385328464,
+      "within_copper": 0.9665507646780528,
+      "within_lilac": 0.9595371798412906,
+      "within_reference": 0.9630439722596718
+    }
+  ],
+  "copper_lilac_phase_dates": [
+    {
+      "phase": "low contact",
+      "phase_index": 0,
+      "start_month": "2024-03-01",
+      "end_month": "2024-04-01",
+      "mean_large_merge_probability": 0.0,
+      "n_months": 2
+    },
+    {
+      "phase": "early mixing",
+      "phase_index": 1,
+      "start_month": "2024-05-01",
+      "end_month": "2025-07-01",
+      "mean_large_merge_probability": 0.21504135870275,
+      "n_months": 15
+    },
+    {
+      "phase": "transition",
+      "phase_index": 2,
+      "start_month": "2025-08-01",
+      "end_month": "2026-02-01",
+      "mean_large_merge_probability": 0.568828176431863,
+      "n_months": 7
+    },
+    {
+      "phase": "high merge",
+      "phase_index": 3,
+      "start_month": "2026-03-01",
+      "end_month": "2026-06-01",
+      "mean_large_merge_probability": 0.939247311827957,
+      "n_months": 4
+    }
+  ],
+  "two_metre_dyad_summary": [
+    {
+      "pair_key": "Bronze - Lilac",
+      "events": 39,
+      "hours": 86,
+      "days": 29,
+      "bins_2min": 374,
+      "positive_bins": 39,
+      "cross_edges": 51,
+      "total_edges": 989,
+      "mean_obs_minus_shuffle": -0.3836853865934509,
+      "mean_modularity": 0.1286251299762329,
+      "mean_composition_entropy": 0.856320217174471,
+      "observed_cross_edge_fraction": 0.0515672396359959,
+      "positive_bin_fraction": 0.1042780748663101
+    },
+    {
+      "pair_key": "Bronze - Magenta",
+      "events": 132,
+      "hours": 292,
+      "days": 85,
+      "bins_2min": 677,
+      "positive_bins": 84,
+      "cross_edges": 109,
+      "total_edges": 1640,
+      "mean_obs_minus_shuffle": -0.4001333323154689,
+      "mean_modularity": 0.1251121980057409,
+      "mean_composition_entropy": 0.8898743375021906,
+      "observed_cross_edge_fraction": 0.0664634146341463,
+      "positive_bin_fraction": 0.1240768094534712
+    },
+    {
+      "pair_key": "Chartreuse - Purple",
+      "events": 41,
+      "hours": 118,
+      "days": 33,
+      "bins_2min": 777,
+      "positive_bins": 9,
+      "cross_edges": 9,
+      "total_edges": 2025,
+      "mean_obs_minus_shuffle": -0.4819469777366437,
+      "mean_modularity": 0.1900917645050298,
+      "mean_composition_entropy": 0.9429060260562798,
+      "observed_cross_edge_fraction": 0.0044444444444444,
+      "positive_bin_fraction": 0.0115830115830115
+    },
+    {
+      "pair_key": "Copper - Lilac",
+      "events": 656,
+      "hours": 4250,
+      "days": 439,
+      "bins_2min": 27891,
+      "positive_bins": 21531,
+      "cross_edges": 39743,
+      "total_edges": 85188,
+      "mean_obs_minus_shuffle": -0.0475898533464313,
+      "mean_modularity": -0.0841135251622421,
+      "mean_composition_entropy": 0.9650829243066068,
+      "observed_cross_edge_fraction": 0.4665328450016434,
+      "positive_bin_fraction": 0.7719694525115629
+    },
+    {
+      "pair_key": "Copper - Magenta",
+      "events": 189,
+      "hours": 369,
+      "days": 131,
+      "bins_2min": 1069,
+      "positive_bins": 63,
+      "cross_edges": 81,
+      "total_edges": 2591,
+      "mean_obs_minus_shuffle": -0.4774361593572795,
+      "mean_modularity": 0.1968897650801785,
+      "mean_composition_entropy": 0.9605974608835852,
+      "observed_cross_edge_fraction": 0.0312620609803164,
+      "positive_bin_fraction": 0.058933582787652
+    },
+    {
+      "pair_key": "Emerald - Lilac",
+      "events": 84,
+      "hours": 180,
+      "days": 48,
+      "bins_2min": 568,
+      "positive_bins": 51,
+      "cross_edges": 67,
+      "total_edges": 1412,
+      "mean_obs_minus_shuffle": -0.4546645467154395,
+      "mean_modularity": 0.1013541117738175,
+      "mean_composition_entropy": 0.9293038532868698,
+      "observed_cross_edge_fraction": 0.0474504249291784,
+      "positive_bin_fraction": 0.0897887323943662
+    },
+    {
+      "pair_key": "Jade - Purple",
+      "events": 194,
+      "hours": 340,
+      "days": 117,
+      "bins_2min": 1749,
+      "positive_bins": 82,
+      "cross_edges": 101,
+      "total_edges": 4814,
+      "mean_obs_minus_shuffle": -0.48637520536318,
+      "mean_modularity": 0.1665408448301239,
+      "mean_composition_entropy": 0.9653456402390048,
+      "observed_cross_edge_fraction": 0.0209804736186123,
+      "positive_bin_fraction": 0.0468839336763865
+    },
+    {
+      "pair_key": "Lapis - LapisSplinter",
+      "events": 142,
+      "hours": 542,
+      "days": 122,
+      "bins_2min": 3187,
+      "positive_bins": 394,
+      "cross_edges": 519,
+      "total_edges": 10962,
+      "mean_obs_minus_shuffle": -0.3041324595759218,
+      "mean_modularity": 0.1293778869669085,
+      "mean_composition_entropy": 0.7455274557463486,
+      "observed_cross_edge_fraction": 0.0473453749315818,
+      "positive_bin_fraction": 0.123627235644807
+    },
+    {
+      "pair_key": "Lapis - Periwinkle",
+      "events": 85,
+      "hours": 203,
+      "days": 80,
+      "bins_2min": 1121,
+      "positive_bins": 35,
+      "cross_edges": 43,
+      "total_edges": 4238,
+      "mean_obs_minus_shuffle": -0.3560460292718377,
+      "mean_modularity": 0.0594352497087016,
+      "mean_composition_entropy": 0.7640901509582527,
+      "observed_cross_edge_fraction": 0.010146295422369,
+      "positive_bin_fraction": 0.031222123104371
+    },
+    {
+      "pair_key": "LapisSplinter - Magenta",
+      "events": 142,
+      "hours": 338,
+      "days": 110,
+      "bins_2min": 930,
+      "positive_bins": 249,
+      "cross_edges": 368,
+      "total_edges": 2420,
+      "mean_obs_minus_shuffle": -0.349462234300944,
+      "mean_modularity": 0.068146475575495,
+      "mean_composition_entropy": 0.9181431213878276,
+      "observed_cross_edge_fraction": 0.1520661157024793,
+      "positive_bin_fraction": 0.267741935483871
+    },
+    {
+      "pair_key": "Lilac - Magenta",
+      "events": 113,
+      "hours": 244,
+      "days": 78,
+      "bins_2min": 1008,
+      "positive_bins": 67,
+      "cross_edges": 85,
+      "total_edges": 2493,
+      "mean_obs_minus_shuffle": -0.4851815802099158,
+      "mean_modularity": 0.2173390736916459,
+      "mean_composition_entropy": 0.979995477734501,
+      "observed_cross_edge_fraction": 0.0340954673084636,
+      "positive_bin_fraction": 0.0664682539682539
+    },
+    {
+      "pair_key": "Maroon - Sapphire",
+      "events": 46,
+      "hours": 169,
+      "days": 35,
+      "bins_2min": 624,
+      "positive_bins": 151,
+      "cross_edges": 184,
+      "total_edges": 1762,
+      "mean_obs_minus_shuffle": -0.2356022878926397,
+      "mean_modularity": -0.0035490894779089,
+      "mean_composition_entropy": 0.7204215091807654,
+      "observed_cross_edge_fraction": 0.1044267877412031,
+      "positive_bin_fraction": 0.2419871794871795
+    }
+  ],
+  "presplit_prediction": [
+    {
+      "n_events": 466,
+      "n_groups": 15,
+      "mean_event_auc": 0.5680730106223146,
+      "auc_ci_low": 0.557775567031391,
+      "auc_ci_high": 0.5780186223716951,
+      "permutation_p_one_sided": 0.0019960079840319,
+      "mean_same_minus_different_5m": 0.0091561506081557,
+      "difference_ci_low": 0.0073967420701467,
+      "difference_ci_high": 0.0110874556237428,
+      "mean_event_ari": 0.0998927010441446
+    }
+  ],
+  "activity": {
+    "vedba": {
+      "available_events": 101,
+      "pearson_r_with_integration_5m_fraction": 0.2780237798790214
+    },
+    "gps_movement": {
+      "available_events": 97,
+      "pearson_r_with_integration_5m_fraction": 0.2090122885517415
+    }
+  },
+  "dispersal": {
+    "earlier_events": 28,
+    "earlier_animals": 9,
+    "earlier_fates": {
+      "Stayed in recipient group": 16,
+      "Censored / no later data": 10,
+      "Left \u2014 returned to origin": 2
+    },
+    "later_segments": 71,
+    "later_animals": 17,
+    "later_segment_labels": {
+      "Permanent dispersal": 46,
+      "Returned to origin": 25
+    },
+    "later_segments_with_centrality": 60,
+    "later_measured_by_label": {
+      "Permanent dispersal": 35,
+      "Returned to origin": 25
+    }
+  },
+  "source_manifest": {
+    "outputs/membership_export_narrow/canonical_hourly_membership_narrow.metadata.json": {
+      "bytes": 1166,
+      "sha256": "f80c212d40c4eb41768d422042a6813d28adad413612cf22ce8c4e7a7f3a7dc8",
+      "modified_utc": "2026-08-08T07:07:59.932309+00:00"
+    },
+    "outputs/membership_export_nightly/canonical_nightly_membership.metadata.json": {
+      "bytes": 2540,
+      "sha256": "d35283e5137879781362182e41f615af1aee0c6ebd98cbe61f4063fa708d5cee",
+      "modified_utc": "2026-08-08T07:17:33.286724+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/proximity_status_dynamic_social_unit_metadata.json": {
+      "bytes": 792,
+      "sha256": "99508cfcbb3c8422c288075589092e809a33161af81222f5a604af6b8a6ebc75",
+      "modified_utc": "2026-07-08T15:09:26.550276+00:00"
+    },
+    "outputs/all_supported_2m_group_merges/all_supported_2m_group_merges_metadata.json": {
+      "bytes": 536,
+      "sha256": "fdf00878915839c31f45cf0dea8a3ace334f97e9a90151a4435fd09f13e6b57e",
+      "modified_utc": "2026-08-08T10:23:14.691744+00:00"
+    },
+    "outputs/copper_lilac_effort_corrected_integration/copper_lilac_effort_corrected_integration_metadata.json": {
+      "bytes": 1441,
+      "sha256": "b945bb1ad23b8edb9d726eee82edf3e928ecd1ac6c3484ad107cf6d2a8484560",
+      "modified_utc": "2026-08-20T09:38:38.640785+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/daily_interaction_hurdle_daily_event_rows.csv": {
+      "bytes": 39879303,
+      "sha256": "10484aa3559fc357f9714b7ea7a73b86c27f7bf09384f417562792e66ed05dc9",
+      "modified_utc": "2026-07-19T09:18:31.847380+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/daily_interaction_hurdle_model_rows.csv": {
+      "bytes": 3851341,
+      "sha256": "691a5e89e2c28eb2db5544e3924616bb5b2ff67034f6fa9cb31b9f078d8ce217",
+      "modified_utc": "2026-07-19T09:18:28.463810+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/meeting_probability_summary.csv": {
+      "bytes": 1855,
+      "sha256": "74214ecdadc4927b18debf3e6fdda548b55e0217edd768a52570e39eefd295f0",
+      "modified_utc": "2026-07-19T09:18:31.849864+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/event_duration_summary.csv": {
+      "bytes": 723,
+      "sha256": "2d2f692c13acd0c99b15dbf489bfc5650e73b13041651ba5d6dcbbda82765b79",
+      "modified_utc": "2026-07-19T09:18:31.888752+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/event_integration_summary.csv": {
+      "bytes": 782,
+      "sha256": "8c54b6b214c357e65135defbd521478b78e72c55b749fcfcad6b9ef7a3767f4a",
+      "modified_utc": "2026-07-19T09:18:31.897645+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/integration_metric_summary.csv": {
+      "bytes": 7316,
+      "sha256": "9103f98b2eb0b712baa02a877946461245524b0bb8ba3d1239596e34465873ce",
+      "modified_utc": "2026-07-19T09:18:31.928099+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/event_distance_window_comparison.csv": {
+      "bytes": 3952,
+      "sha256": "d40ef51e2b438f9d0e871607166c24a9eab514382836f8b9ec9eab24ec385d8c",
+      "modified_utc": "2026-07-19T09:18:31.909703+00:00"
+    },
+    "outputs/weekly_interaction_gamm/weekly_interaction_gamm_model_summary.csv": {
+      "bytes": 1037,
+      "sha256": "825b4b359a762c0ba5d5b5c945edd48e7775c8e9d493ba35ff5cc6fb61c49143",
+      "modified_utc": "2026-07-08T14:53:44.466275+00:00"
+    },
+    "outputs/copper_lilac_effort_corrected_integration/copper_lilac_phase_integration_by_radius.csv": {
+      "bytes": 3198,
+      "sha256": "176f1caa7c67a2669b13e3a65c9013682e03e5ff2606dee76cb9b614fbea09be",
+      "modified_utc": "2026-08-20T09:40:21.189894+00:00"
+    },
+    "outputs/copper_lilac_phase_alluvial_from_202403/copper_lilac_data_driven_phases.csv": {
+      "bytes": 295,
+      "sha256": "ae55c58689028d554368f20f0f2cf12f52bc7bf072a501f9e31a3ae3aae9ea9e",
+      "modified_utc": "2026-07-06T12:27:49.925714+00:00"
+    },
+    "outputs/all_supported_2m_group_merges/all_supported_2m_merge_dyad_summary.csv": {
+      "bytes": 1939,
+      "sha256": "da44cd4f3db6d39b133eccf1790e7b90d065acf1f65e1eb8f3dfd29cdf751a66",
+      "modified_utc": "2026-08-08T10:23:13.628695+00:00"
+    },
+    "outputs/presplit_cositting_prediction/prediction_summary.csv": {
+      "bytes": 330,
+      "sha256": "4966dade2a730dd5b155ed24cc487fed4cf9b1dd35339d43eda9c5d645ee8e8c",
+      "modified_utc": "2026-08-08T21:42:23.808542+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/event_activity_vedba_summary.csv": {
+      "bytes": 78183,
+      "sha256": "e83e2a5e82d9fbbf28d2bc267ddae894a7ff5e493c68879595a2bec2fe644a7f",
+      "modified_utc": "2026-07-19T09:18:31.937939+00:00"
+    },
+    "outputs/dynamic_social_unit_merge_gamm/daily_interaction_hurdle/event_gps_movement_summary.csv": {
+      "bytes": 59628,
+      "sha256": "d37631c76d03f2c1b73ad5773ed7eaae21d6a3c2cdb0a9cbad3bb08fc67e78b8",
+      "modified_utc": "2026-07-19T09:18:31.942487+00:00"
+    },
+    "outputs/disperser_integration_calendar_time/disperser_event_outcomes_14d.csv": {
+      "bytes": 3739,
+      "sha256": "6dcd98ee126c4ab8e828526a5292a37940a0802fa9475fc41eaf2c1fb517623c",
+      "modified_utc": "2026-08-10T20:08:59.935666+00:00"
+    },
+    "outputs/established_dispersal_centrality/established_events.csv": {
+      "bytes": 9859,
+      "sha256": "dd1449fef47d362136d1d469a008acf8a6cb77bbadb743f23df9a9c7651e1e4d",
+      "modified_utc": "2026-08-11T06:14:45.076770+00:00"
+    },
+    "outputs/established_dispersal_centrality/event_week_centrality_cells.csv": {
+      "bytes": 77660,
+      "sha256": "49b00c247aa09ad6da42e8da4dd2a9be6eaeccf2319f7dc683a6c72054deeb6f",
+      "modified_utc": "2026-08-11T06:16:09.664501+00:00"
+    },
+    "fit_daily_interaction_hurdle_model.py": {
+      "bytes": 189188,
+      "sha256": "056f06c018de6033112b4e729376fcab11c4893046b6e775ea0f115d7718e25b",
+      "modified_utc": "2026-07-19T09:11:09.181329+00:00"
+    },
+    "fit_weekly_interaction_gamm.py": {
+      "bytes": 29970,
+      "sha256": "55ae44cd2fd5355f0556132e5d3c98b537df74e65f6b6e1e6c584658f37a43b0",
+      "modified_utc": "2026-07-08T15:22:47.354355+00:00"
+    },
+    "analyze_copper_lilac_effort_corrected_integration.py": {
+      "bytes": 22865,
+      "sha256": "a298d95d73ef43a8dcec9d0d62c68584fa276b70766bd943203ac9e1a51849f4",
+      "modified_utc": "2026-08-20T09:39:57.651110+00:00"
+    },
+    "analyze_presplit_cositting_predicts_split.py": {
+      "bytes": 14596,
+      "sha256": "e97689afafabc2b54861f5a8d253f01eac02598132b405ec8e2a1d0c438643b3",
+      "modified_utc": "2026-08-08T21:37:14.193220+00:00"
+    },
+    "compare_centrality_stayed_left.py": {
+      "bytes": 3529,
+      "sha256": "2fb867de495ce24473588852b79e2b662aa7c16252543a15d39601486ad4bc28",
+      "modified_utc": "2026-08-10T20:44:44.703017+00:00"
+    },
+    "analyze_established_dispersal_centrality.py": {
+      "bytes": 9508,
+      "sha256": "97f83bc9ececf05a0e4530312ad4e6826632ad6a52e4b293a3cfce31741c02d8",
+      "modified_utc": "2026-08-11T06:12:38.558712+00:00"
+    },
+    "classify_disperser_event_outcomes.py": {
+      "bytes": 5042,
+      "sha256": "6d0f6ea5cee7282ee8d1f9ecb0f8bb5bed6e0f60883a69f073342bc47f2a6a14",
+      "modified_utc": "2026-08-10T20:08:49.581504+00:00"
+    },
+    "plot_permanent_5m_colocation_cadence_filtered.py": {
+      "bytes": 5286,
+      "sha256": "8b89ef96583853455ed92f22c94d3da2441b1138316887e434ff36164c85aebe",
+      "modified_utc": "2026-08-11T07:13:40.907505+00:00"
+    },
+    "docs/emerald_bronze_sparse_case_24AA11.md": {
+      "bytes": 3267,
+      "sha256": "85714d577948135f261f2dae017434dfd3f8fba3715f852e8a60a4c79eaa7709",
+      "modified_utc": "2026-07-06T16:13:12.770423+00:00"
+    }
+  }
+}

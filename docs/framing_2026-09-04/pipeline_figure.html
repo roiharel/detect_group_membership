@@ -1,0 +1,266 @@
+<title>From Fixes To Social Units</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{--ground:#f4f5f3;--paper:#fff;--ink:#15191a;--ink-2:#3a4244;--muted:#6b7476;
+--rule:#d5dad7;--rule-soft:#e6eae7;--n2:#c3cbc8;--alone:#4a5356;
+--c1:#1f6f8b;--c4:#8a5a1f;--c5:#6b4a7a;--c5b:#a58cba;
+--sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+--serif:"Newsreader",Georgia,serif;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#0f1213;
+--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;--muted:#8f9998;--rule:#2c3435;
+--rule-soft:#242c2d;--n2:#3f4a4b;--alone:#a7b0b2;--c1:#74b6d0;--c4:#d3a061;
+--c5:#b494c4;--c5b:#7d6291;}}
+:root[data-theme="dark"]{--ground:#0f1213;--paper:#171b1c;--ink:#e9eeed;--ink-2:#c2cac9;
+--muted:#8f9998;--rule:#2c3435;--rule-soft:#242c2d;--n2:#3f4a4b;--alone:#a7b0b2;
+--c1:#74b6d0;--c4:#d3a061;--c5:#b494c4;--c5b:#7d6291;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:800px;margin:0 auto;padding:48px 26px 80px}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:30px;font-weight:500;line-height:1.15;
+letter-spacing:-.01em;margin:0 0 26px;text-wrap:balance}
+.plate{background:var(--paper);border:1px solid var(--rule-soft);padding:22px 20px 8px}
+.plate svg{display:block;width:100%;height:auto;overflow:visible}
+.scroll{overflow-x:auto}.scroll>svg{min-width:660px}
+.cap{font-size:12.5px;line-height:1.62;color:var(--ink-2);margin:16px 0 0;
+padding-top:14px;border-top:1px solid var(--rule)}
+.cap b{font-weight:600;color:var(--ink)}.cap .fignum{font-weight:600;color:var(--ink)}
+.cap code{font-family:var(--mono);font-size:.9em}
+.note{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:22px;
+padding-top:14px;border-top:1px solid var(--rule-soft)}
+.note code{font-family:var(--mono);font-size:.92em}
+text{font-family:var(--sans)}
+.sn{font-size:9.6px;fill:var(--ink);font-weight:600}
+.ss{font-size:8.4px;fill:var(--muted)}
+.sc{font-size:9.6px;fill:var(--ink);font-weight:600;font-family:var(--mono)}
+.ts{font-size:8.4px;fill:var(--muted)}
+.ph{font-size:12px;fill:var(--ink);font-weight:600}
+.pl{font-size:13px;font-weight:700;fill:var(--ink)}
+.g{stroke:var(--rule-soft);stroke-width:.8}
+.ax{stroke:var(--rule);stroke-width:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<div class="wrap">
+  <div class="kicker">Methods figure &middot; draft</div>
+  <h1>How GPS fixes become dynamic social units</h1>
+
+  <div class="plate">
+    <div class="scroll"><svg viewBox="0 0 700 765" role="img" aria-label="Methods figure: the chain from hourly GPS fixes through spatial clusters, association events and social contexts to assigned and dynamic social units; the spell-length distributions of the assigned and dynamic labels; and the same resolution for one animal over two weeks.">
+<text class="pl" x="0" y="44.0">a</text>
+<text class="ph" x="16" y="44.0">From fixes to units</text>
+<rect x="8.0" y="62.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="62.0" width="3.2" height="30" fill="var(--c1)"/>
+<text class="sn" x="20.0" y="75.0">GPS fixes, hourly</text>
+<text class="ss" x="20.0" y="86.0">one row per animal per hour</text>
+<text class="sc" x="658.0" y="75.0" text-anchor="end">1,924,104 animal-hours</text>
+<text class="ss" x="658.0" y="86.0" text-anchor="end">350 animals x 20,955 hours</text>
+<path d="M 34.0 92.0 L 34.0 102.0" stroke="var(--muted)" stroke-width="1"/>
+<path d="M 34.0 102.6 l -2.6 -3.4 l 5.2 0 z" fill="var(--muted)"/>
+<rect x="8.0" y="102.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="102.0" width="3.2" height="30" fill="var(--c1)"/>
+<text class="sn" x="20.0" y="115.0">Spatial cluster</text>
+<text class="ss" x="20.0" y="126.0">adaptive clustering, 120-900 m edge range</text>
+<text class="sc" x="658.0" y="115.0" text-anchor="end">median 12 animals</text>
+<text class="ss" x="658.0" y="126.0" text-anchor="end">one cluster in one hour (temp_group_id); max 50</text>
+<path d="M 34.0 132.0 L 34.0 142.0" stroke="var(--muted)" stroke-width="1"/>
+<path d="M 34.0 142.6 l -2.6 -3.4 l 5.2 0 z" fill="var(--muted)"/>
+<rect x="8.0" y="142.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="142.0" width="3.2" height="30" fill="var(--c1)"/>
+<text class="sn" x="20.0" y="155.0">Association event</text>
+<text class="ss" x="20.0" y="166.0">clusters stitched across consecutive hours</text>
+<text class="sc" x="658.0" y="155.0" text-anchor="end">20,342 events</text>
+<text class="ss" x="658.0" y="166.0" text-anchor="end">the Stage-1 encounter identity</text>
+<path d="M 34.0 172.0 L 34.0 182.0" stroke="var(--muted)" stroke-width="1"/>
+<path d="M 34.0 182.6 l -2.6 -3.4 l 5.2 0 z" fill="var(--muted)"/>
+<rect x="8.0" y="182.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="182.0" width="3.2" height="30" fill="var(--c5)"/>
+<text class="sn" x="20.0" y="195.0">Social context</text>
+<text class="ss" x="20.0" y="206.0">cluster composition read against origin labels</text>
+<text class="sc" x="658.0" y="195.0" text-anchor="end">6 contexts</text>
+<text class="ss" x="658.0" y="206.0" text-anchor="end">with origin / merged / another unit / alone / unclear</text>
+<path d="M 34.0 212.0 L 34.0 222.0" stroke="var(--muted)" stroke-width="1"/>
+<path d="M 34.0 222.6 l -2.6 -3.4 l 5.2 0 z" fill="var(--muted)"/>
+<rect x="8.0" y="222.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="222.0" width="3.2" height="30" fill="var(--c5)"/>
+<text class="sn" x="20.0" y="235.0">Assigned unit</text>
+<text class="ss" x="20.0" y="246.0">immediate membership, recomputed every hour</text>
+<text class="sc" x="658.0" y="235.0" text-anchor="end">48 labels</text>
+<text class="ss" x="658.0" y="246.0" text-anchor="end">26 units + ISOLATED + 22 `mixed:` composites</text>
+<path d="M 34.0 252.0 L 34.0 262.0" stroke="var(--muted)" stroke-width="1"/>
+<path d="M 34.0 262.6 l -2.6 -3.4 l 5.2 0 z" fill="var(--muted)"/>
+<rect x="8.0" y="262.0" width="660.0" height="30" fill="var(--paper)" stroke="var(--rule)" stroke-width=".9"/>
+<rect x="8.0" y="262.0" width="3.2" height="30" fill="var(--c5)"/>
+<text class="sn" x="20.0" y="275.0">Dynamic unit</text>
+<text class="ss" x="20.0" y="286.0">reassign only on 7 days of sustained association</text>
+<text class="sc" x="658.0" y="275.0" text-anchor="end">26 units</text>
+<text class="ss" x="658.0" y="286.0" text-anchor="end">the membership used for analysis</text>
+<text class="pl" x="0" y="344.0">b</text>
+<text class="ph" x="16" y="344.0">What the 7-day rule discards</text>
+<line class="g" x1="62.0" y1="362.0" x2="62.0" y2="490.0"/>
+<text class="ts" x="62.0" y="502.0" text-anchor="middle">1 h</text>
+<line class="g" x1="191.0" y1="362.0" x2="191.0" y2="490.0"/>
+<text class="ts" x="191.0" y="502.0" text-anchor="middle">1 d</text>
+<line class="g" x1="270.0" y1="362.0" x2="270.0" y2="490.0"/>
+<text class="ts" x="270.0" y="502.0" text-anchor="middle">1 wk</text>
+<line class="g" x1="329.6" y1="362.0" x2="329.6" y2="490.0"/>
+<text class="ts" x="329.6" y="502.0" text-anchor="middle">1 mo</text>
+<line class="g" x1="430.5" y1="362.0" x2="430.5" y2="490.0"/>
+<text class="ts" x="430.5" y="502.0" text-anchor="middle">1 yr</text>
+<line class="g" x1="62.0" y1="490.0" x2="464.0" y2="490.0"/>
+<text class="ts" x="56.0" y="493.0" text-anchor="end">0</text>
+<line class="g" x1="62.0" y1="426.0" x2="464.0" y2="426.0"/>
+<text class="ts" x="56.0" y="429.0" text-anchor="end">0.5</text>
+<line class="g" x1="62.0" y1="362.0" x2="464.0" y2="362.0"/>
+<text class="ts" x="56.0" y="365.0" text-anchor="end">1</text>
+<polygon points="62.0,392.6 67.1,392.6 72.2,392.6 77.3,392.6 82.4,392.6 87.4,392.6 92.5,404.6 97.6,404.6 102.7,404.6 107.8,412.8 112.9,412.8 118.0,412.8 123.1,417.2 128.2,420.0 133.2,420.0 138.3,422.1 143.4,424.4 148.5,426.6 153.6,429.5 158.7,432.8 163.8,436.7 168.9,439.2 173.9,448.1 179.0,454.0 184.1,458.5 189.2,461.1 194.3,464.6 199.4,465.9 204.5,467.0 209.6,467.6 214.7,468.4 219.7,470.9 224.8,472.7 229.9,473.4 235.0,474.9 240.1,476.4 245.2,477.2 250.3,478.6 255.4,479.5 260.5,480.6 265.5,481.7 270.6,482.6 275.7,483.5 280.8,484.4 285.9,485.2 291.0,485.7 296.1,486.2 301.2,486.6 306.3,487.0 311.3,487.4 316.4,487.6 321.5,487.9 326.6,488.1 331.7,488.4 336.8,488.6 341.9,488.8 347.0,489.0 352.1,489.1 357.1,489.4 362.2,489.5 367.3,489.5 372.4,489.6 377.5,489.7 382.6,489.7 387.7,489.8 392.8,489.8 397.8,489.9 402.9,489.9 408.0,489.9 413.1,489.9 418.2,490.0 423.3,490.0 428.4,490.0 433.5,490.0 438.6,490.0 443.6,490.0 448.7,490.0 453.8,490.0 458.9,490.0 464.0,490.0 464.0,490.0 458.9,490.0 453.8,490.0 448.7,490.0 443.6,490.0 438.6,490.0 433.5,490.0 428.4,490.0 423.3,490.0 418.2,490.0 413.1,490.0 408.0,490.0 402.9,490.0 397.8,489.9 392.8,489.9 387.7,489.9 382.6,489.9 377.5,489.8 372.4,489.8 367.3,489.7 362.2,489.7 357.1,489.6 352.1,489.5 347.0,489.4 341.9,489.2 336.8,489.1 331.7,488.9 326.6,488.7 321.5,488.6 316.4,488.3 311.3,488.2 306.3,487.9 301.2,487.5 296.1,487.2 291.0,486.8 285.9,486.4 280.8,485.8 275.7,485.0 270.6,484.2 265.5,483.5 260.5,482.4 255.4,481.5 250.3,480.7 245.2,479.5 240.1,478.8 235.0,477.4 229.9,476.1 224.8,475.5 219.7,473.9 214.7,471.6 209.6,470.8 204.5,470.2 199.4,469.1 194.3,467.9 189.2,464.8 184.1,462.0 179.0,457.9 173.9,452.3 168.9,443.6 163.8,441.2 158.7,437.3 153.6,434.5 148.5,431.6 143.4,429.8 138.3,427.7 133.2,425.4 128.2,425.4 123.1,422.5 118.0,417.9 112.9,417.9 107.8,417.9 102.7,409.2 97.6,409.2 92.5,409.2 87.4,395.8 82.4,395.8 77.3,395.8 72.2,395.8 67.1,395.8 62.0,395.8" fill="var(--c5)" opacity=".16"/>
+<polyline points="62.0,394.1 67.1,394.1 72.2,394.1 77.3,394.1 82.4,394.1 87.4,394.1 92.5,406.8 97.6,406.8 102.7,406.8 107.8,415.2 112.9,415.2 118.0,415.2 123.1,419.7 128.2,422.7 133.2,422.7 138.3,424.8 143.4,427.0 148.5,429.1 153.6,431.9 158.7,434.9 163.8,438.8 168.9,441.3 173.9,450.1 179.0,455.9 184.1,460.3 189.2,462.9 194.3,466.3 199.4,467.6 204.5,468.7 209.6,469.3 214.7,470.1 219.7,472.5 224.8,474.2 229.9,474.8 235.0,476.3 240.1,477.7 245.2,478.5 250.3,479.7 255.4,480.5 260.5,481.6 265.5,482.7 270.6,483.5 275.7,484.4 280.8,485.2 285.9,485.9 291.0,486.3 296.1,486.8 301.2,487.1 306.3,487.5 311.3,487.8 316.4,488.0 321.5,488.3 326.6,488.5 331.7,488.7 336.8,488.9 341.9,489.1 347.0,489.2 352.1,489.3 357.1,489.5 362.2,489.6 367.3,489.6 372.4,489.7 377.5,489.8 382.6,489.8 387.7,489.8 392.8,489.9 397.8,489.9 402.9,489.9 408.0,489.9 413.1,490.0 418.2,490.0 423.3,490.0 428.4,490.0 433.5,490.0 438.6,490.0 443.6,490.0 448.7,490.0 453.8,490.0 458.9,490.0 464.0,490.0" fill="none" stroke="var(--c5)" stroke-width="1.9"/>
+<circle cx="141.0" cy="426.0" r="3" fill="var(--c5)"/>
+<polygon points="62.0,362.0 67.1,362.0 72.2,362.0 77.3,362.0 82.4,362.0 87.4,362.0 92.5,362.0 97.6,362.0 102.7,362.0 107.8,362.0 112.9,362.0 118.0,362.0 123.1,362.0 128.2,362.0 133.2,362.0 138.3,362.0 143.4,362.0 148.5,362.0 153.6,362.0 158.7,362.0 163.8,362.0 168.9,362.0 173.9,362.0 179.0,362.0 184.1,362.0 189.2,362.0 194.3,362.0 199.4,362.3 204.5,362.3 209.6,362.3 214.7,362.3 219.7,362.3 224.8,362.3 229.9,362.3 235.0,362.3 240.1,362.3 245.2,362.3 250.3,362.3 255.4,362.7 260.5,362.7 265.5,362.7 270.6,363.3 275.7,364.1 280.8,364.7 285.9,365.0 291.0,365.0 296.1,365.3 301.2,365.7 306.3,367.7 311.3,367.7 316.4,368.4 321.5,368.5 326.6,369.4 331.7,371.0 336.8,372.6 341.9,374.0 347.0,375.7 352.1,377.8 357.1,382.5 362.2,384.6 367.3,388.3 372.4,391.3 377.5,392.8 382.6,396.0 387.7,404.6 392.8,409.9 397.8,417.5 402.9,420.0 408.0,422.7 413.1,434.9 418.2,445.4 423.3,452.9 428.4,463.6 433.5,473.5 438.6,475.0 443.6,478.1 448.7,479.5 453.8,484.9 458.9,488.3 464.0,490.0 464.0,490.0 458.9,490.0 453.8,488.7 448.7,485.4 443.6,484.3 438.6,482.2 433.5,481.1 428.4,472.7 423.3,463.2 418.2,457.0 413.1,446.8 408.0,436.1 402.9,433.0 397.8,430.3 392.8,422.6 387.7,417.0 382.6,408.7 377.5,405.5 372.4,403.7 367.3,400.5 362.2,395.1 357.1,392.9 352.1,387.7 347.0,384.6 341.9,382.7 336.8,380.8 331.7,378.8 326.6,376.8 321.5,375.9 316.4,375.2 311.3,374.2 306.3,374.2 301.2,371.4 296.1,370.6 291.0,370.1 285.9,370.1 280.8,369.6 275.7,368.9 270.6,367.2 265.5,365.7 260.5,365.7 255.4,365.7 250.3,365.4 245.2,365.4 240.1,364.8 235.0,364.8 229.9,364.8 224.8,364.8 219.7,364.8 214.7,364.8 209.6,364.8 204.5,364.8 199.4,364.8 194.3,364.3 189.2,364.3 184.1,363.7 179.0,362.0 173.9,362.0 168.9,362.0 163.8,362.0 158.7,362.0 153.6,362.0 148.5,362.0 143.4,362.0 138.3,362.0 133.2,362.0 128.2,362.0 123.1,362.0 118.0,362.0 112.9,362.0 107.8,362.0 102.7,362.0 97.6,362.0 92.5,362.0 87.4,362.0 82.4,362.0 77.3,362.0 72.2,362.0 67.1,362.0 62.0,362.0" fill="var(--c1)" opacity=".16"/>
+<polyline points="62.0,362.0 67.1,362.0 72.2,362.0 77.3,362.0 82.4,362.0 87.4,362.0 92.5,362.0 97.6,362.0 102.7,362.0 107.8,362.0 112.9,362.0 118.0,362.0 123.1,362.0 128.2,362.0 133.2,362.0 138.3,362.0 143.4,362.0 148.5,362.0 153.6,362.0 158.7,362.0 163.8,362.0 168.9,362.0 173.9,362.0 179.0,362.0 184.1,362.7 189.2,363.0 194.3,363.0 199.4,363.4 204.5,363.4 209.6,363.4 214.7,363.4 219.7,363.4 224.8,363.4 229.9,363.4 235.0,363.4 240.1,363.4 245.2,363.7 250.3,363.7 255.4,364.0 260.5,364.0 265.5,364.0 270.6,365.0 275.7,366.4 280.8,367.1 285.9,367.4 291.0,367.4 296.1,367.7 301.2,368.4 306.3,370.8 311.3,370.8 316.4,371.8 321.5,372.1 326.6,373.1 331.7,374.8 336.8,376.5 341.9,378.2 347.0,379.9 352.1,382.3 357.1,387.3 362.2,389.7 367.3,394.1 372.4,397.5 377.5,399.2 382.6,402.2 387.7,411.0 392.8,416.4 397.8,424.1 402.9,426.8 408.0,429.5 413.1,441.0 418.2,451.2 423.3,458.3 428.4,468.4 433.5,477.2 438.6,478.5 443.6,481.2 448.7,482.6 453.8,487.0 458.9,489.3 464.0,490.0" fill="none" stroke="var(--c1)" stroke-width="1.9"/>
+<circle cx="401.8" cy="426.0" r="3" fill="var(--c1)"/>
+<rect x="478.0" y="367.0" width="8" height="8" fill="var(--c5)"/>
+<text class="sn" x="490.0" y="374.0">Assigned unit, hourly</text>
+<text class="ss" x="490.0" y="385.0">41,279 spells, median 7 h</text>
+<rect x="478.0" y="397.0" width="8" height="8" fill="var(--c1)"/>
+<text class="sn" x="490.0" y="404.0">Dynamic unit, 7-day rule</text>
+<text class="ss" x="490.0" y="415.0">379 spells, median 4,323 h</text>
+<line class="ax" x1="62.0" y1="490.0" x2="464.0" y2="490.0"/>
+<line class="ax" x1="62.0" y1="362.0" x2="62.0" y2="490.0"/>
+<text class="ts" x="263.0" y="518.0" text-anchor="middle">spell length, log scale</text>
+<text class="ts" transform="translate(32.0 426.0) rotate(-90)" text-anchor="middle">P(spell &gt; x)</text>
+<text class="pl" x="0" y="570.0">c</text>
+<text class="ph" x="16" y="570.0">One animal, two weeks, every stage</text>
+<polygon points="96.00,618.00 96.00,613.38 97.76,613.38 99.53,613.38 101.29,613.38 103.05,613.38 104.82,613.38 106.58,613.38 108.34,613.38 110.11,613.38 111.87,613.38 113.63,613.38 115.40,613.38 117.16,613.38 118.92,613.38 120.69,613.38 122.45,613.38 124.21,613.38 125.98,613.38 127.74,613.38 129.50,613.38 131.26,613.38 133.03,613.38 134.79,613.38 136.55,613.38 138.32,613.38 140.08,613.38 141.84,613.38 143.61,613.38 145.37,613.38 147.13,613.38 148.90,613.38 150.66,613.38 152.42,613.38 154.19,613.38 155.95,613.38 157.71,613.38 159.48,608.77 161.24,608.77 163.00,608.77 164.77,608.77 166.53,608.77 168.29,608.77 170.06,608.77 171.82,608.77 173.58,608.77 175.35,608.77 177.11,608.77 178.87,611.08 180.64,611.08 182.40,611.08 184.16,613.38 185.93,613.38 187.69,613.38 189.45,588.00 191.21,613.38 192.98,613.38 194.74,613.38 196.50,613.38 198.27,613.38 200.03,613.38 201.79,613.38 203.56,613.38 205.32,613.38 207.08,613.38 208.85,613.38 210.61,613.38 212.37,613.38 214.14,613.38 215.90,613.38 217.66,613.38 219.43,613.38 221.19,613.38 222.95,613.38 224.72,613.38 226.48,613.38 228.24,613.38 230.01,613.38 231.77,613.38 233.53,613.38 235.30,613.38 237.06,613.38 238.82,613.38 240.59,613.38 242.35,613.38 244.11,613.38 245.88,613.38 247.64,613.38 249.40,613.38 251.17,613.38 252.93,613.38 254.69,613.38 256.45,613.38 258.22,613.38 259.98,613.38 261.74,613.38 263.51,613.38 265.27,613.38 267.03,613.38 268.80,613.38 270.56,613.38 272.32,613.38 274.09,613.38 275.85,613.38 277.61,613.38 279.38,613.38 281.14,613.38 282.90,613.38 284.67,613.38 286.43,613.38 288.19,613.38 289.96,613.38 291.72,613.38 293.48,613.38 295.25,613.38 297.01,613.38 298.77,613.38 300.54,613.38 302.30,613.38 304.06,613.38 305.83,613.38 307.59,613.38 309.35,613.38 311.12,613.38 312.88,613.38 314.64,613.38 316.40,613.38 318.17,613.38 319.93,613.38 321.69,613.38 323.46,613.38 325.22,613.38 326.98,613.38 328.75,613.38 330.51,613.38 332.27,613.38 334.04,613.38 335.80,613.38 337.56,613.38 339.33,613.38 341.09,613.38 342.85,613.38 344.62,613.38 346.38,613.38 348.14,613.38 349.91,613.38 351.67,615.69 353.43,613.38 355.20,613.38 356.96,613.38 358.72,613.38 360.49,613.38 362.25,613.38 364.01,613.38 365.78,613.38 367.54,613.38 369.30,613.38 371.07,613.38 372.83,613.38 374.59,613.38 376.36,613.38 378.12,613.38 379.88,613.38 381.64,613.38 383.41,613.38 385.17,613.38 386.93,613.38 388.70,613.38 390.46,613.38 392.22,613.38 393.99,608.77 395.75,611.08 397.51,608.77 399.28,611.08 401.04,611.08 402.80,611.08 404.57,611.08 406.33,611.08 408.09,611.08 409.86,611.08 411.62,611.08 413.38,611.08 415.15,611.08 416.91,611.08 418.67,611.08 420.44,611.08 422.20,611.08 423.96,613.38 425.73,613.38 427.49,613.38 429.25,611.08 431.02,611.08 432.78,611.08 434.54,613.38 436.31,613.38 438.07,613.38 439.83,613.38 441.60,613.38 443.36,613.38 445.12,613.38 446.88,613.38 448.65,613.38 450.41,613.38 452.17,613.38 453.94,613.38 455.70,613.38 457.46,613.38 459.23,613.38 460.99,613.38 462.75,613.38 464.52,613.38 466.28,613.38 468.04,613.38 469.81,613.38 471.57,613.38 473.33,613.38 475.10,613.38 476.86,613.38 478.62,613.38 480.39,613.38 482.15,613.38 483.91,613.38 485.68,613.38 487.44,613.38 489.20,613.38 490.97,613.38 492.73,613.38 494.49,613.38 496.26,613.38 498.02,613.38 499.78,613.38 501.55,613.38 503.31,613.38 505.07,613.38 506.83,613.38 508.60,613.38 510.36,613.38 512.12,613.38 513.89,613.38 515.65,611.08 517.41,611.08 519.18,611.08 520.94,611.08 522.70,611.08 524.47,611.08 526.23,611.08 527.99,611.08 529.76,611.08 531.52,611.08 533.28,611.08 535.05,611.08 536.81,611.08 538.57,611.08 540.34,611.08 542.10,611.08 543.86,611.08 545.63,613.38 547.39,613.38 549.15,613.38 550.92,613.38 552.68,613.38 554.44,613.38 556.21,613.38 557.97,613.38 559.73,613.38 561.50,613.38 563.26,613.38 565.02,613.38 566.79,613.38 568.55,613.38 570.31,613.38 572.07,613.38 573.84,613.38 575.60,613.38 577.36,613.38 579.13,613.38 580.89,613.38 582.65,613.38 584.42,613.38 586.18,613.38 587.94,613.38 589.71,611.08 591.47,613.38 593.23,613.38 595.00,613.38 596.76,613.38 598.52,613.38 600.29,611.08 602.05,608.77 603.81,608.77 605.58,611.08 607.34,611.08 609.10,611.08 610.87,611.08 612.63,611.08 614.39,611.08 616.16,611.08 617.92,611.08 619.68,611.08 621.45,611.08 623.21,611.08 624.97,611.08 626.74,611.08 628.50,611.08 630.26,611.08 632.02,611.08 633.79,608.77 635.55,608.77 637.31,608.77 639.08,611.08 640.84,608.77 642.60,611.08 644.37,611.08 646.13,611.08 647.89,611.08 649.66,611.08 651.42,611.08 653.18,611.08 654.95,611.08 656.71,611.08 658.47,611.08 660.24,611.08 662.00,618.00" fill="var(--c1)" opacity=".3"/>
+<polyline points="96.00,613.38 97.76,613.38 99.53,613.38 101.29,613.38 103.05,613.38 104.82,613.38 106.58,613.38 108.34,613.38 110.11,613.38 111.87,613.38 113.63,613.38 115.40,613.38 117.16,613.38 118.92,613.38 120.69,613.38 122.45,613.38 124.21,613.38 125.98,613.38 127.74,613.38 129.50,613.38 131.26,613.38 133.03,613.38 134.79,613.38 136.55,613.38 138.32,613.38 140.08,613.38 141.84,613.38 143.61,613.38 145.37,613.38 147.13,613.38 148.90,613.38 150.66,613.38 152.42,613.38 154.19,613.38 155.95,613.38 157.71,613.38 159.48,608.77 161.24,608.77 163.00,608.77 164.77,608.77 166.53,608.77 168.29,608.77 170.06,608.77 171.82,608.77 173.58,608.77 175.35,608.77 177.11,608.77 178.87,611.08 180.64,611.08 182.40,611.08 184.16,613.38 185.93,613.38 187.69,613.38 189.45,588.00 191.21,613.38 192.98,613.38 194.74,613.38 196.50,613.38 198.27,613.38 200.03,613.38 201.79,613.38 203.56,613.38 205.32,613.38 207.08,613.38 208.85,613.38 210.61,613.38 212.37,613.38 214.14,613.38 215.90,613.38 217.66,613.38 219.43,613.38 221.19,613.38 222.95,613.38 224.72,613.38 226.48,613.38 228.24,613.38 230.01,613.38 231.77,613.38 233.53,613.38 235.30,613.38 237.06,613.38 238.82,613.38 240.59,613.38 242.35,613.38 244.11,613.38 245.88,613.38 247.64,613.38 249.40,613.38 251.17,613.38 252.93,613.38 254.69,613.38 256.45,613.38 258.22,613.38 259.98,613.38 261.74,613.38 263.51,613.38 265.27,613.38 267.03,613.38 268.80,613.38 270.56,613.38 272.32,613.38 274.09,613.38 275.85,613.38 277.61,613.38 279.38,613.38 281.14,613.38 282.90,613.38 284.67,613.38 286.43,613.38 288.19,613.38 289.96,613.38 291.72,613.38 293.48,613.38 295.25,613.38 297.01,613.38 298.77,613.38 300.54,613.38 302.30,613.38 304.06,613.38 305.83,613.38 307.59,613.38 309.35,613.38 311.12,613.38 312.88,613.38 314.64,613.38 316.40,613.38 318.17,613.38 319.93,613.38 321.69,613.38 323.46,613.38 325.22,613.38 326.98,613.38 328.75,613.38 330.51,613.38 332.27,613.38 334.04,613.38 335.80,613.38 337.56,613.38 339.33,613.38 341.09,613.38 342.85,613.38 344.62,613.38 346.38,613.38 348.14,613.38 349.91,613.38 351.67,615.69 353.43,613.38 355.20,613.38 356.96,613.38 358.72,613.38 360.49,613.38 362.25,613.38 364.01,613.38 365.78,613.38 367.54,613.38 369.30,613.38 371.07,613.38 372.83,613.38 374.59,613.38 376.36,613.38 378.12,613.38 379.88,613.38 381.64,613.38 383.41,613.38 385.17,613.38 386.93,613.38 388.70,613.38 390.46,613.38 392.22,613.38 393.99,608.77 395.75,611.08 397.51,608.77 399.28,611.08 401.04,611.08 402.80,611.08 404.57,611.08 406.33,611.08 408.09,611.08 409.86,611.08 411.62,611.08 413.38,611.08 415.15,611.08 416.91,611.08 418.67,611.08 420.44,611.08 422.20,611.08 423.96,613.38 425.73,613.38 427.49,613.38 429.25,611.08 431.02,611.08 432.78,611.08 434.54,613.38 436.31,613.38 438.07,613.38 439.83,613.38 441.60,613.38 443.36,613.38 445.12,613.38 446.88,613.38 448.65,613.38 450.41,613.38 452.17,613.38 453.94,613.38 455.70,613.38 457.46,613.38 459.23,613.38 460.99,613.38 462.75,613.38 464.52,613.38 466.28,613.38 468.04,613.38 469.81,613.38 471.57,613.38 473.33,613.38 475.10,613.38 476.86,613.38 478.62,613.38 480.39,613.38 482.15,613.38 483.91,613.38 485.68,613.38 487.44,613.38 489.20,613.38 490.97,613.38 492.73,613.38 494.49,613.38 496.26,613.38 498.02,613.38 499.78,613.38 501.55,613.38 503.31,613.38 505.07,613.38 506.83,613.38 508.60,613.38 510.36,613.38 512.12,613.38 513.89,613.38 515.65,611.08 517.41,611.08 519.18,611.08 520.94,611.08 522.70,611.08 524.47,611.08 526.23,611.08 527.99,611.08 529.76,611.08 531.52,611.08 533.28,611.08 535.05,611.08 536.81,611.08 538.57,611.08 540.34,611.08 542.10,611.08 543.86,611.08 545.63,613.38 547.39,613.38 549.15,613.38 550.92,613.38 552.68,613.38 554.44,613.38 556.21,613.38 557.97,613.38 559.73,613.38 561.50,613.38 563.26,613.38 565.02,613.38 566.79,613.38 568.55,613.38 570.31,613.38 572.07,613.38 573.84,613.38 575.60,613.38 577.36,613.38 579.13,613.38 580.89,613.38 582.65,613.38 584.42,613.38 586.18,613.38 587.94,613.38 589.71,611.08 591.47,613.38 593.23,613.38 595.00,613.38 596.76,613.38 598.52,613.38 600.29,611.08 602.05,608.77 603.81,608.77 605.58,611.08 607.34,611.08 609.10,611.08 610.87,611.08 612.63,611.08 614.39,611.08 616.16,611.08 617.92,611.08 619.68,611.08 621.45,611.08 623.21,611.08 624.97,611.08 626.74,611.08 628.50,611.08 630.26,611.08 632.02,611.08 633.79,608.77 635.55,608.77 637.31,608.77 639.08,611.08 640.84,608.77 642.60,611.08 644.37,611.08 646.13,611.08 647.89,611.08 649.66,611.08 651.42,611.08 653.18,611.08 654.95,611.08 656.71,611.08 658.47,611.08 660.24,611.08" fill="none" stroke="var(--c1)" stroke-width="1"/>
+<text class="sn" x="88.0" y="600.0" text-anchor="end">cluster size</text>
+<text class="ss" x="88.0" y="611.0" text-anchor="end">1 &ndash; 13</text>
+<rect x="96.00" y="628.0" width="63.48" height="15.0" fill="var(--c5)"/>
+<rect x="159.48" y="628.0" width="19.40" height="15.0" fill="var(--c5b)"/>
+<rect x="178.87" y="628.0" width="5.29" height="15.0" fill="var(--muted)"/>
+<rect x="184.16" y="628.0" width="5.29" height="15.0" fill="var(--c5)"/>
+<rect x="189.45" y="628.0" width="1.76" height="15.0" fill="var(--c5b)"/>
+<rect x="191.21" y="628.0" width="160.45" height="15.0" fill="var(--c5)"/>
+<rect x="351.67" y="628.0" width="1.76" height="15.0" fill="var(--alone)"/>
+<rect x="353.43" y="628.0" width="40.55" height="15.0" fill="var(--c5)"/>
+<rect x="393.99" y="628.0" width="1.76" height="15.0" fill="var(--c5b)"/>
+<rect x="395.75" y="628.0" width="1.76" height="15.0" fill="var(--muted)"/>
+<rect x="397.51" y="628.0" width="1.76" height="15.0" fill="var(--c5b)"/>
+<rect x="399.28" y="628.0" width="24.69" height="15.0" fill="var(--muted)"/>
+<rect x="423.96" y="628.0" width="5.29" height="15.0" fill="var(--c5)"/>
+<rect x="429.25" y="628.0" width="5.29" height="15.0" fill="var(--muted)"/>
+<rect x="434.54" y="628.0" width="81.11" height="15.0" fill="var(--c5)"/>
+<rect x="515.65" y="628.0" width="29.98" height="15.0" fill="var(--muted)"/>
+<rect x="545.63" y="628.0" width="44.08" height="15.0" fill="var(--c5)"/>
+<rect x="589.71" y="628.0" width="1.76" height="15.0" fill="var(--muted)"/>
+<rect x="591.47" y="628.0" width="8.82" height="15.0" fill="var(--c5)"/>
+<rect x="600.29" y="628.0" width="1.76" height="15.0" fill="var(--muted)"/>
+<rect x="602.05" y="628.0" width="3.53" height="15.0" fill="var(--c5b)"/>
+<rect x="605.58" y="628.0" width="28.21" height="15.0" fill="var(--muted)"/>
+<rect x="633.79" y="628.0" width="5.29" height="15.0" fill="var(--c5b)"/>
+<rect x="639.08" y="628.0" width="1.76" height="15.0" fill="var(--muted)"/>
+<rect x="640.84" y="628.0" width="1.76" height="15.0" fill="var(--c5b)"/>
+<rect x="642.60" y="628.0" width="19.40" height="15.0" fill="var(--muted)"/>
+<text class="sn" x="88.0" y="635.0" text-anchor="end">social context</text>
+<text class="ss" x="88.0" y="645.0" text-anchor="end">4 distinct</text>
+<rect x="96.00" y="655.0" width="63.48" height="15.0" fill="#a8703a"/>
+<rect x="159.48" y="655.0" width="19.40" height="15.0" fill="#2e8b6b"/>
+<rect x="178.87" y="655.0" width="5.29" height="15.0" fill="var(--c1)"/>
+<rect x="184.16" y="655.0" width="5.29" height="15.0" fill="#a8703a"/>
+<rect x="189.45" y="655.0" width="1.76" height="15.0" fill="#8a9a2b"/>
+<rect x="191.21" y="655.0" width="160.45" height="15.0" fill="#a8703a"/>
+<rect x="351.67" y="655.0" width="1.76" height="15.0" fill="var(--alone)"/>
+<rect x="353.43" y="655.0" width="40.55" height="15.0" fill="#a8703a"/>
+<rect x="393.99" y="655.0" width="1.76" height="15.0" fill="#2e8b6b"/>
+<rect x="395.75" y="655.0" width="1.76" height="15.0" fill="var(--c1)"/>
+<rect x="397.51" y="655.0" width="1.76" height="15.0" fill="#2e8b6b"/>
+<rect x="399.28" y="655.0" width="24.69" height="15.0" fill="var(--c1)"/>
+<rect x="423.96" y="655.0" width="5.29" height="15.0" fill="#a8703a"/>
+<rect x="429.25" y="655.0" width="5.29" height="15.0" fill="var(--c1)"/>
+<rect x="434.54" y="655.0" width="81.11" height="15.0" fill="#a8703a"/>
+<rect x="515.65" y="655.0" width="29.98" height="15.0" fill="var(--c1)"/>
+<rect x="545.63" y="655.0" width="44.08" height="15.0" fill="#a8703a"/>
+<rect x="589.71" y="655.0" width="1.76" height="15.0" fill="var(--c1)"/>
+<rect x="591.47" y="655.0" width="8.82" height="15.0" fill="#a8703a"/>
+<rect x="600.29" y="655.0" width="1.76" height="15.0" fill="var(--c1)"/>
+<rect x="602.05" y="655.0" width="3.53" height="15.0" fill="#2e8b6b"/>
+<rect x="605.58" y="655.0" width="28.21" height="15.0" fill="var(--c1)"/>
+<rect x="633.79" y="655.0" width="5.29" height="15.0" fill="#2e8b6b"/>
+<rect x="639.08" y="655.0" width="1.76" height="15.0" fill="var(--c1)"/>
+<rect x="640.84" y="655.0" width="1.76" height="15.0" fill="#2e8b6b"/>
+<rect x="642.60" y="655.0" width="19.40" height="15.0" fill="var(--c1)"/>
+<text class="sn" x="88.0" y="662.0" text-anchor="end">assigned unit</text>
+<text class="ss" x="88.0" y="672.0" text-anchor="end">6 labels, 68 h mixed</text>
+<rect x="96.00" y="682.0" width="566.00" height="15.0" fill="#a8703a"/>
+<text class="sn" x="88.0" y="689.0" text-anchor="end">dynamic unit</text>
+<text class="ss" x="88.0" y="699.0" text-anchor="end">1 label</text>
+<line class="g" x1="96.0" y1="588.0" x2="96.0" y2="697.0"/>
+<text class="ts" x="96.0" y="711.0" text-anchor="middle">20 Jun</text>
+<line class="g" x1="176.9" y1="588.0" x2="176.9" y2="697.0"/>
+<text class="ts" x="176.9" y="711.0" text-anchor="middle">22 Jun</text>
+<line class="g" x1="257.7" y1="588.0" x2="257.7" y2="697.0"/>
+<text class="ts" x="257.7" y="711.0" text-anchor="middle">24 Jun</text>
+<line class="g" x1="338.6" y1="588.0" x2="338.6" y2="697.0"/>
+<text class="ts" x="338.6" y="711.0" text-anchor="middle">26 Jun</text>
+<line class="g" x1="419.4" y1="588.0" x2="419.4" y2="697.0"/>
+<text class="ts" x="419.4" y="711.0" text-anchor="middle">28 Jun</text>
+<line class="g" x1="500.3" y1="588.0" x2="500.3" y2="697.0"/>
+<text class="ts" x="500.3" y="711.0" text-anchor="middle">30 Jun</text>
+<line class="g" x1="581.1" y1="588.0" x2="581.1" y2="697.0"/>
+<text class="ts" x="581.1" y="711.0" text-anchor="middle">02 Jul</text>
+<line class="g" x1="662.0" y1="588.0" x2="662.0" y2="697.0"/>
+<text class="ts" x="662.0" y="711.0" text-anchor="middle">04 Jul</text>
+<rect x="96.0" y="727.0" width="6" height="6" fill="var(--c5)"/>
+<text class="ts" x="105.0" y="732.5">with another unit</text>
+<rect x="190.1" y="727.0" width="6" height="6" fill="var(--c5b)"/>
+<text class="ts" x="199.1" y="732.5">merged, origin unit absent</text>
+<rect x="322.9" y="727.0" width="6" height="6" fill="var(--muted)"/>
+<text class="ts" x="331.9" y="732.5">unclear</text>
+<rect x="374.0" y="727.0" width="6" height="6" fill="var(--alone)"/>
+<text class="ts" x="383.0" y="732.5">alone</text>
+</svg></div>
+    <p class="cap">
+      <span class="fignum">Methods figure.</span> The clustering chain and what each step
+      keeps.
+      <b>(a)</b> Positions are clustered within each hour by adaptive clustering over a
+      120&ndash;900 m edge range, giving one spatial cluster per hour
+      (<code>temp_group_id</code>, median 12 animals). Consecutive
+      hours of the same cluster stitch into an association event
+      (<code>association_event_id</code>, 20,342 events), which is the Stage-1 encounter
+      identity. Reading a cluster's composition against the animals' origin labels gives a
+      social context; contexts resolve into an <em>assigned</em> unit recomputed every hour;
+      and a sustained-association rule collapses those into the <em>dynamic</em> unit used for
+      analysis. The assigned label carries 26 units + ISOLATED + 22 `mixed:` composites &mdash; a merge shows up as a
+      <code>mixed:</code> composite rather than as one of the units.
+      <b>(b)</b> Spell lengths, log axis, with 95% cluster-bootstrap bands resampling animals.
+      An assigned-unit spell has a median of <b>7 h</b> across
+      41,279 spells; a dynamic-unit spell <b>4,323 h</b> across
+      379 &mdash; a <b>618-fold</b> difference.
+      79.9% of animal-hours sit in an assigned spell shorter than a day,
+      against 0.8% for dynamic. The rule is not a smoothing choice at
+      the margin; it discards essentially all of the hourly structure.
+      <b>(c)</b> The same resolution for one animal &mdash; 24AA01 of Bronze
+      &mdash; over 14 days at hourly resolution. Cluster size moves between 1 and
+      50; social context takes 4 distinct values;
+      the assigned label takes 6, spending 68 h in
+      <code>mixed:</code> composites; and the dynamic unit takes
+      1 value for the whole window.
+    </p>
+  </div>
+
+  <p class="note">
+    Panel (b) counts a spell as a run of constant label for one animal, so a spell ends when the
+    label changes or the animal's record does; spells are right-censored at the ends of the
+    record, which affects the dynamic curve far more than the assigned one and makes the
+    618-fold ratio a lower bound. Panel (c) uses hours whose state is fixed or carried
+    overnight. Choosing between these identifiers is not cosmetic: <code>temp_group_id</code>
+    cannot persist across hours, <code>association_cluster_id</code> is the join key for
+    fine-scale 2-minute rows, and <code>association_event_id</code> is the only one that counts
+    events &mdash; the full mapping is in
+    <code>phase0_cohort_ledger/event_id_crosswalk.csv</code>. Frozen export, 1,924,104
+    animal-hours, 2024-03-01 to 2026-07-22. Generated by
+    <code>build_pipeline_figure.py</code>; seed 20260904.
+  </p>
+</div>

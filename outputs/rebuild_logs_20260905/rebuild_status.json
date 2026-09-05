@@ -1,0 +1,20 @@
+[
+  {
+    "step": "membership",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 1026.6
+  },
+  {
+    "step": "association_events",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 547.7
+  },
+  {
+    "step": "narrow_export",
+    "status": "ok",
+    "returncode": 0,
+    "seconds": 15.7
+  }
+]

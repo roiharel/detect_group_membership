@@ -1,0 +1,32 @@
+{
+  "pair": "Copper - Lilac",
+  "groups_are_stable_original_groups": true,
+  "fusion_context": "canonical between-group shared/fusion hours for the Copper-Lilac dynamic-unit pair",
+  "daytime_window_utc": "03:00-16:00 inclusive",
+  "radii_m": [
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0,
+    100.0,
+    200.0,
+    400.0
+  ],
+  "primary_radius_m": 5.0,
+  "pair_opportunity": "both animals have valid GPS positions in the same 2-minute bin and canonical fusion cluster",
+  "pair_contact_rate": "contact bins within the selected radius / pairwise co-observed bins",
+  "aggregation": "pair rates averaged within individual, individuals averaged equally within original group, original groups averaged equally",
+  "within_reference": "equal mean of within-Copper and within-Lilac individual-average pair rates",
+  "integration_ratio": "group-balanced cross-origin rate / within-reference rate; 1 means equal cross- and within-origin contact density",
+  "min_pair_bins_per_month": 60,
+  "min_individual_partners_per_month": 2,
+  "bootstrap_unit": "individual, resampled separately within original group and month",
+  "bootstrap_replicates": 2000,
+  "fusion_membership_hours": 5785,
+  "fusion_membership_animals": 38,
+  "gps_position_rows": 2407831,
+  "pair_month_rows": 32724,
+  "caution": "Inference is limited to tracked animals and canonical fusion hours; uncollared contacts are not recoverable."
+}

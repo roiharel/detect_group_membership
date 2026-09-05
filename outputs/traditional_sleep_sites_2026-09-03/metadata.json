@@ -1,0 +1,15 @@
+{
+  "source": "Z:\\baboon\\working\\data\\processed\\2025\\gps\\individual_night_locations.parquet",
+  "site_column": "cluster_united",
+  "baseline_end": "2025-05-01",
+  "traditional_ratio": 3.0,
+  "min_site_nights": 10,
+  "site_type_counts": {
+    "Lilac_traditional": 5,
+    "sparse": 4,
+    "shared": 2,
+    "Copper_traditional": 2
+  },
+  "method": "Site usage is converted to a within-group share before comparison, so a group with more collars does not appear to own more sites.",
+  "caveat": "Sites are classified once, from the baseline. A site that only came into use later is 'novel' and is excluded from the three plotted proportions."
+}

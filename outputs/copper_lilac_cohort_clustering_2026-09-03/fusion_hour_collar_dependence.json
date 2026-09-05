@@ -1,0 +1,36 @@
+{
+  "quorum": {
+    "min_per_group": 2,
+    "min_total": 4,
+    "source": "plot_canonical_5m_shared_history.py build_hourly_pair_rows"
+  },
+  "deployment_date": "2025-08-01",
+  "normalisation": "fusion hours / hours with >=2 observed collars in each group",
+  "fusion_rate": {
+    "control_pre": 0.24219875180028805,
+    "control_post": 1.0,
+    "stable_pre": 0.24316841218249668,
+    "stable_post": 0.6714285714285714
+  },
+  "control_rise": 0.757801248199712,
+  "stable_rise": 0.4282601592460747,
+  "stable_retained_fraction_of_control_rise": 0.5651351990557958,
+  "post_deployment_weeks_at_rate_1": {
+    "control": "45/45",
+    "stable": "0/35"
+  },
+  "mean_collars_per_hour": {
+    "control_pre_post": [
+      10.481645370758276,
+      22.063725792366572
+    ],
+    "stable_pre_post": [
+      8.939210654936462,
+      7.93709482714337
+    ]
+  },
+  "verdict": "Fusion rise SURVIVES on a constant cohort - consistent with real fusion.",
+  "detection_ceiling": "Control saturates at rate 1.000 in 45/45 post-deployment weeks vs 0/35 for the constant cohort. Zero-variance saturation indicates a detection ceiling, so the published fusion-hour set cannot support claims about the DEGREE of fusion after the deployment - only that fusion increased.",
+  "interpretation": "Two findings, not one. (1) Fusion genuinely increased: the constant cohort's fusion rate roughly triples even though its own collar count FALLS over the same period, so the rise cannot be a detection effect. (2) The published fusion-hour set is saturated: with the full collar set every satisfiable hour is scored as fusion, so it measures detection, not degree of association.",
+  "caveat": "Both arms exclude non-Copper/Lilac animals, so absolute rates are not comparable to the published run; only the control-vs-stable contrast is."
+}

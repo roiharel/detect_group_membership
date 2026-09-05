@@ -1,0 +1,182 @@
+{
+  "radii_m": [
+    2.0,
+    5.0,
+    100.0,
+    200.0,
+    400.0
+  ],
+  "min_bins_per_pair_week": 15,
+  "seed": 20260903,
+  "weeks": 77,
+  "animals": 38,
+  "definitions": {
+    "between_within_*": "normalised weighted betweenness inside that origin group's subgraph",
+    "between_cross_*": "betweenness_centrality_subset, sources=Copper targets=Lilac - brokerage",
+    "ARI_vs_origin": "adjusted Rand index of Louvain communities vs the origin split; communities are detected without using origin",
+    "edge_distance": "1/association"
+  },
+  "trends": {
+    "2m_between_within_copper_mean": {
+      "per_year": -0.03686853500161161,
+      "p": 0.05598498279312384
+    },
+    "2m_between_within_lilac_mean": {
+      "per_year": -0.030234995519749924,
+      "p": 0.0018766385543087572
+    },
+    "2m_between_cross_mean": {
+      "per_year": -0.019263303250905407,
+      "p": 1.5543610548232446e-07
+    },
+    "2m_rar_within_copper": {
+      "per_year": -0.002873033601043941,
+      "p": 0.6569322729011804
+    },
+    "2m_rar_within_lilac": {
+      "per_year": -0.01605129956274858,
+      "p": 0.3211022830833977
+    },
+    "2m_rar_cross": {
+      "per_year": -0.024704528237320465,
+      "p": 3.6276036339690234e-19
+    },
+    "2m_Q_origin": {
+      "per_year": -0.2303692199224806,
+      "p": 2.7738021539994088e-12
+    },
+    "2m_ARI_vs_origin": {
+      "per_year": -0.7131802844259657,
+      "p": 5.738760942570369e-27
+    },
+    "5m_between_within_copper_mean": {
+      "per_year": -0.022406115145450066,
+      "p": 0.002338565296442269
+    },
+    "5m_between_within_lilac_mean": {
+      "per_year": -0.028318420589754083,
+      "p": 0.0671007548166929
+    },
+    "5m_between_cross_mean": {
+      "per_year": -0.028218422905609372,
+      "p": 2.452998365303758e-08
+    },
+    "5m_rar_within_copper": {
+      "per_year": -0.027436647036332893,
+      "p": 0.003178906142825283
+    },
+    "5m_rar_within_lilac": {
+      "per_year": -0.003553907444561502,
+      "p": 0.824155693338291
+    },
+    "5m_rar_cross": {
+      "per_year": -0.03206911803769147,
+      "p": 2.270496180446707e-45
+    },
+    "5m_Q_origin": {
+      "per_year": -0.24757526045686276,
+      "p": 3.4823793910273135e-16
+    },
+    "5m_ARI_vs_origin": {
+      "per_year": -0.7440623581440978,
+      "p": 5.039250204369074e-19
+    },
+    "100m_between_within_copper_mean": {
+      "per_year": -0.008187579817377031,
+      "p": 0.17646453177979848
+    },
+    "100m_between_within_lilac_mean": {
+      "per_year": 0.0007628245059084892,
+      "p": 0.3901625513563052
+    },
+    "100m_between_cross_mean": {
+      "per_year": -0.006066481776681086,
+      "p": 0.11275458208132277
+    },
+    "100m_rar_within_copper": {
+      "per_year": -0.006451335752567981,
+      "p": 0.20746104346916472
+    },
+    "100m_rar_within_lilac": {
+      "per_year": 0.0014286081580056004,
+      "p": 0.5396889147553341
+    },
+    "100m_rar_cross": {
+      "per_year": -0.0028532571572377997,
+      "p": 0.17931903914663694
+    },
+    "100m_Q_origin": {
+      "per_year": -0.1019816935339644,
+      "p": 2.6691557184111477e-20
+    },
+    "100m_ARI_vs_origin": {
+      "per_year": -0.7999908917360854,
+      "p": 8.016468878232861e-20
+    },
+    "200m_between_within_copper_mean": {
+      "per_year": -0.008019323963289221,
+      "p": 0.1903906365004111
+    },
+    "200m_between_within_lilac_mean": {
+      "per_year": 0.0005653457027522879,
+      "p": 0.4178771968204913
+    },
+    "200m_between_cross_mean": {
+      "per_year": -0.0038474645326368826,
+      "p": 0.1331880253396663
+    },
+    "200m_rar_within_copper": {
+      "per_year": -0.00576635067284459,
+      "p": 0.26214583082571374
+    },
+    "200m_rar_within_lilac": {
+      "per_year": 0.0010055055128748533,
+      "p": 0.5492167712469355
+    },
+    "200m_rar_cross": {
+      "per_year": -0.001380858254234299,
+      "p": 0.26139047640156643
+    },
+    "200m_Q_origin": {
+      "per_year": -0.030406860849277698,
+      "p": 7.51793121140743e-12
+    },
+    "200m_ARI_vs_origin": {
+      "per_year": -0.5026807587563858,
+      "p": 7.1711733752816416e-06
+    },
+    "400m_between_within_copper_mean": {
+      "per_year": -0.003767061683278167,
+      "p": 0.2190919759181914
+    },
+    "400m_between_within_lilac_mean": {
+      "per_year": 0.0005643364029779248,
+      "p": 0.4150004647863692
+    },
+    "400m_between_cross_mean": {
+      "per_year": -0.001956313266409467,
+      "p": 0.13061241259717482
+    },
+    "400m_rar_within_copper": {
+      "per_year": -0.0059324688117621495,
+      "p": 0.2612914475736089
+    },
+    "400m_rar_within_lilac": {
+      "per_year": 0.0011633363569743763,
+      "p": 0.5042119605180768
+    },
+    "400m_rar_cross": {
+      "per_year": -0.0010666651282276928,
+      "p": 0.3247684080875143
+    },
+    "400m_Q_origin": {
+      "per_year": 0.0050730835692107306,
+      "p": 0.031970852602989985
+    },
+    "400m_ARI_vs_origin": {
+      "per_year": -0.038502942982886354,
+      "p": 0.14021167447168736
+    }
+  },
+  "caveat": "Conditioned on canonical Copper-Lilac fusion hours, which saturate after 2025-08-01. Association is GPS proximity, not affiliation."
+}

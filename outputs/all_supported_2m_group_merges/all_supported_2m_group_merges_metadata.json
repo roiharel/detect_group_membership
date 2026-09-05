@@ -1,0 +1,10 @@
+{
+  "input_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+  "edge_radius_m": 2,
+  "supported_dyads": 12,
+  "events": 1863,
+  "hours": 5034,
+  "two_minute_rows": 39975,
+  "bootstrap_cluster_unit": "event_number_for_pair within dyad",
+  "interpretation": "negative observed-minus-shuffle means fewer 2 m cross-group links than expected from group composition"
+}

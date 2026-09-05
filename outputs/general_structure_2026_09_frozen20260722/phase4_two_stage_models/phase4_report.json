@@ -1,0 +1,293 @@
+{
+  "phase": "4 - two-stage models",
+  "generated_utc": "2026-09-04T06:38:10+00:00",
+  "stage1_sample": {
+    "opportunity_rows": 73353,
+    "dropped_insufficient_support": 174,
+    "dropped_no_previous_day": 317,
+    "dropped_stale_previous_day_gap_over_3": 138,
+    "retained_rows": 72724,
+    "retained_dyads": 317,
+    "retained_encounters": 2852,
+    "retained_encounter_rate": 0.03922
+  },
+  "stage1_shared_group_effects": {
+    "n_groups": 26,
+    "reference_group": "Bronze",
+    "encoding": "one column per group, 1 whichever end of the dyad it occupies"
+  },
+  "stage1_models": [
+    {
+      "model": "M0_proximity",
+      "rows": 72724,
+      "dyad_clusters": 317,
+      "encounters": 2852,
+      "n_terms": 28,
+      "in_sample_auc": 0.9671
+    },
+    {
+      "model": "M1_plus_history",
+      "rows": 72724,
+      "dyad_clusters": 317,
+      "encounters": 2852,
+      "n_terms": 29,
+      "in_sample_auc": 0.9698
+    },
+    {
+      "model": "M2_plus_coverage",
+      "rows": 72724,
+      "dyad_clusters": 317,
+      "encounters": 2852,
+      "n_terms": 32,
+      "in_sample_auc": 0.9698
+    },
+    {
+      "model": "M3_plus_season",
+      "rows": 72724,
+      "dyad_clusters": 317,
+      "encounters": 2852,
+      "n_terms": 34,
+      "in_sample_auc": 0.9713
+    }
+  ],
+  "stage1_matched_sample_note": "all stage-1 models are fitted on the identical retained sample of 72724 rows, so nested comparisons are valid",
+  "stage1_cross_validation": {
+    "folds": 5,
+    "held_out_by": "whole dyads",
+    "out_of_sample_auc": 0.8802,
+    "calibration_intercept": -0.9632,
+    "calibration_slope": 0.5405,
+    "mean_predicted": 0.03646,
+    "observed_rate": 0.03922
+  },
+  "stage1_mixed_model": {
+    "method": "mean-field variational Bayes mixed GLM (statsmodels BinomialBayesMixedGLM.fit_vb); NOT MCMC, and no convergence diagnostics of the MCMC kind apply",
+    "random_effects": "shared group effect (26 levels) + dyad effect",
+    "prior_sensitivity": [
+      {
+        "prior_scale_vcp": 0.5,
+        "variance_components": {
+          "shared_group_effect_log_sd": -2.1245,
+          "dyad_effect_log_sd": 0.416,
+          "shared_group_effect_sd": 0.1195,
+          "dyad_effect_sd": 1.5158
+        },
+        "fixed_effects": {
+          "const": {
+            "posterior_mean": -6.8637,
+            "posterior_sd": 0.028
+          },
+          "z_between_dyad_dist": {
+            "posterior_mean": -2.7717,
+            "posterior_sd": 0.0166
+          },
+          "z_within_dyad_prev_dist": {
+            "posterior_mean": -1.0754,
+            "posterior_sd": 0.0148
+          },
+          "z_prior_encounters": {
+            "posterior_mean": 0.0494,
+            "posterior_sd": 0.0146
+          },
+          "z_collar_coverage_min": {
+            "posterior_mean": -0.0282,
+            "posterior_sd": 0.0293
+          },
+          "z_collar_coverage_total": {
+            "posterior_mean": 0.3639,
+            "posterior_sd": 0.0275
+          },
+          "z_shared_hours": {
+            "posterior_mean": -0.0567,
+            "posterior_sd": 0.025
+          },
+          "season_sin": {
+            "posterior_mean": -0.4552,
+            "posterior_sd": 0.04
+          },
+          "season_cos": {
+            "posterior_mean": -0.2906,
+            "posterior_sd": 0.0391
+          }
+        },
+        "n_groups": 26,
+        "n_dyads": 317
+      },
+      {
+        "prior_scale_vcp": 1.0,
+        "variance_components": {
+          "shared_group_effect_log_sd": -3.1305,
+          "dyad_effect_log_sd": 0.4562,
+          "shared_group_effect_sd": 0.0437,
+          "dyad_effect_sd": 1.5781
+        },
+        "fixed_effects": {
+          "const": {
+            "posterior_mean": -6.9085,
+            "posterior_sd": 0.028
+          },
+          "z_between_dyad_dist": {
+            "posterior_mean": -2.7944,
+            "posterior_sd": 0.0166
+          },
+          "z_within_dyad_prev_dist": {
+            "posterior_mean": -1.0747,
+            "posterior_sd": 0.0148
+          },
+          "z_prior_encounters": {
+            "posterior_mean": 0.0457,
+            "posterior_sd": 0.0146
+          },
+          "z_collar_coverage_min": {
+            "posterior_mean": -0.0284,
+            "posterior_sd": 0.0293
+          },
+          "z_collar_coverage_total": {
+            "posterior_mean": 0.3657,
+            "posterior_sd": 0.0275
+          },
+          "z_shared_hours": {
+            "posterior_mean": -0.0566,
+            "posterior_sd": 0.025
+          },
+          "season_sin": {
+            "posterior_mean": -0.4549,
+            "posterior_sd": 0.04
+          },
+          "season_cos": {
+            "posterior_mean": -0.2911,
+            "posterior_sd": 0.0391
+          }
+        },
+        "n_groups": 26,
+        "n_dyads": 317
+      },
+      {
+        "prior_scale_vcp": 2.0,
+        "variance_components": {
+          "shared_group_effect_log_sd": -3.8406,
+          "dyad_effect_log_sd": 0.4628,
+          "shared_group_effect_sd": 0.0215,
+          "dyad_effect_sd": 1.5885
+        },
+        "fixed_effects": {
+          "const": {
+            "posterior_mean": -6.9161,
+            "posterior_sd": 0.028
+          },
+          "z_between_dyad_dist": {
+            "posterior_mean": -2.7986,
+            "posterior_sd": 0.0166
+          },
+          "z_within_dyad_prev_dist": {
+            "posterior_mean": -1.0744,
+            "posterior_sd": 0.0148
+          },
+          "z_prior_encounters": {
+            "posterior_mean": 0.045,
+            "posterior_sd": 0.0146
+          },
+          "z_collar_coverage_min": {
+            "posterior_mean": -0.0285,
+            "posterior_sd": 0.0293
+          },
+          "z_collar_coverage_total": {
+            "posterior_mean": 0.3661,
+            "posterior_sd": 0.0275
+          },
+          "z_shared_hours": {
+            "posterior_mean": -0.0566,
+            "posterior_sd": 0.025
+          },
+          "season_sin": {
+            "posterior_mean": -0.4548,
+            "posterior_sd": 0.04
+          },
+          "season_cos": {
+            "posterior_mean": -0.2912,
+            "posterior_sd": 0.0391
+          }
+        },
+        "n_groups": 26,
+        "n_dyads": 317
+      }
+    ]
+  },
+  "stage1_sensitivity_within_5km": {
+    "model": "S1_within_5km",
+    "rows": 12156,
+    "dyad_clusters": 103,
+    "encounters": 2439,
+    "n_terms": 34,
+    "in_sample_auc": 0.8972,
+    "encounter_rate": 0.2006
+  },
+  "stage2_sample": {
+    "stage1_events": 1705,
+    "events_with_finescale_edges": 751,
+    "dropped_no_preceding_distance": 5,
+    "collinearity_warnings": {
+      "is_sustained_vs_z_log_span_pearson": 0.408,
+      "z_prior_encounters_vs_z_event_time_pearson": 0.285,
+      "note": "a sustained association is DEFINED by its span, so the two must not enter one model together; within a dyad, prior encounters largely indexes time"
+    },
+    "retained_events": 746,
+    "retained_dyads": 12,
+    "retained_discrete": 738,
+    "retained_sustained": 8
+  },
+  "stage2_models": [
+    {
+      "model": "D0_within_dyad",
+      "events": 738,
+      "dyads": 12,
+      "dyad_fixed_effects": true,
+      "total_edges": 321657,
+      "pearson_chi2_over_df": 12.76,
+      "mean_observed_fraction": 0.0589,
+      "mean_expected_fraction": 0.4504
+    },
+    {
+      "model": "D1_no_dyad_effects",
+      "events": 738,
+      "dyads": 12,
+      "dyad_fixed_effects": false,
+      "total_edges": 321657,
+      "pearson_chi2_over_df": 27.1,
+      "mean_observed_fraction": 0.0589,
+      "mean_expected_fraction": 0.4504
+    },
+    {
+      "model": "D2_plus_calendar_time",
+      "events": 738,
+      "dyads": 12,
+      "dyad_fixed_effects": true,
+      "total_edges": 321657,
+      "pearson_chi2_over_df": 12.2,
+      "mean_observed_fraction": 0.0589,
+      "mean_expected_fraction": 0.4504
+    },
+    {
+      "model": "A1_stratum_contrast_no_span",
+      "events": 746,
+      "dyads": 12,
+      "dyad_fixed_effects": true,
+      "total_edges": 956695,
+      "pearson_chi2_over_df": 14.74,
+      "mean_observed_fraction": 0.333,
+      "mean_expected_fraction": 0.4854
+    },
+    {
+      "model": "A2_stratum_contrast_alone",
+      "events": 746,
+      "dyads": 12,
+      "dyad_fixed_effects": true,
+      "total_edges": 956695,
+      "pearson_chi2_over_df": 21.55,
+      "mean_observed_fraction": 0.333,
+      "mean_expected_fraction": 0.4854
+    }
+  ],
+  "stage2_design_note": "12 dyads cannot support between-dyad inference, so the primary stage-2 model carries dyad fixed effects and is a within-dyad estimator; D1 drops them only to show how much the estimate moves",
+  "stage2_offset_note": "the response is cross-group edges out of total edges with logit(edge-weighted composition expectation) as an offset, so the intercept is the mean logit deficit relative to expectation"
+}

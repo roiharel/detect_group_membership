@@ -1,0 +1,57 @@
+{
+  "input_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership_with_association_events.parquet",
+  "encounter_definition": "association_id == MERGE_Chartreuse_Purple for any Chartreuse animal in the hour",
+  "reference_definition": "Purple absent; exact hour of day; within 30 days and 2 km; collar count within 2; greedy without replacement",
+  "eligible_definition": "at least 8 Chartreuse collars",
+  "matched_pairs": 407,
+  "encounter_events": 33,
+  "median_spatial_distance_m": 6.55698073464783,
+  "median_date_gap_days": 5.0,
+  "exact_collar_count_fraction": 0.7960687960687961,
+  "modularity_definition": "Louvain modularity of weighted Chartreuse pair co-association network; weight is same-cluster hours / co-observed hours",
+  "observed_difference_purple_minus_reference": {
+    "modularity": 0.0015029823654375274,
+    "split_probability": -0.07125307125307126,
+    "largest_component_fraction": 0.029369991869991785
+  },
+  "bootstrap_95_intervals": [
+    {
+      "quantile": 0.025,
+      "purple_present_modularity": 0.14024403329066526,
+      "purple_absent_modularity": 0.14889994293428593,
+      "modularity_difference": -0.025362748209408176,
+      "purple_present_split_probability": 0.03879990654690826,
+      "purple_absent_split_probability": 0.05978745373296019,
+      "split_probability_difference": -0.2160215174688859,
+      "purple_present_largest_fraction": 0.9300053417157331,
+      "purple_absent_largest_fraction": 0.8995778943393671,
+      "largest_fraction_difference": 0.0033823272557031024
+    },
+    {
+      "quantile": 0.5,
+      "purple_present_modularity": 0.16722938200203702,
+      "purple_absent_modularity": 0.16616301862433236,
+      "modularity_difference": 0.0009746677124196912,
+      "purple_present_split_probability": 0.09609006971923874,
+      "purple_absent_split_probability": 0.1680029966186803,
+      "split_probability_difference": -0.06937998539247656,
+      "purple_present_largest_fraction": 0.9567334299474965,
+      "purple_absent_largest_fraction": 0.9256358505354598,
+      "largest_fraction_difference": 0.02905656077373575
+    },
+    {
+      "quantile": 0.975,
+      "purple_present_modularity": 0.20077638807710405,
+      "purple_absent_modularity": 0.18713007063650092,
+      "modularity_difference": 0.023194428632065143,
+      "purple_present_split_probability": 0.17701445801762797,
+      "purple_absent_split_probability": 0.3002797371726737,
+      "split_probability_difference": 0.046537179627534724,
+      "purple_present_largest_fraction": 0.9782160188879082,
+      "purple_absent_largest_fraction": 0.959643607146573,
+      "largest_fraction_difference": 0.058835207287323416
+    }
+  ],
+  "bootstrap_cluster_unit": "Chartreuse-Purple association_event_id",
+  "caution": "This is a matched observational comparison, not a causal estimate of Purple presence."
+}

@@ -1,0 +1,17 @@
+{
+  "phase": "0 - cohort ledger and definitions",
+  "generated_utc": "2026-09-03T20:53:18+00:00",
+  "frozen_source": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership_with_association_events.parquet",
+  "products_inventoried": 20,
+  "products_missing": 0,
+  "tiers": {
+    "B-structural": 7,
+    "A-membership": 6,
+    "D-model": 4,
+    "C-finescale": 3
+  },
+  "outputs": {
+    "cohort_ledger": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase0_cohort_ledger\\cohort_ledger.csv",
+    "event_id_crosswalk": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase0_cohort_ledger\\event_id_crosswalk.csv"
+  }
+}

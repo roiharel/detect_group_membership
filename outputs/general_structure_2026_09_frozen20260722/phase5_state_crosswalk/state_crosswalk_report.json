@@ -1,0 +1,70 @@
+{
+  "shared_window": [
+    "2024-03-01 04:00:00",
+    "2026-07-02 00:00:00"
+  ],
+  "rows_other": 1245484,
+  "rows_ours": 1875660,
+  "joined_animal_hours": 1075208,
+  "joined_observed": 1030314,
+  "join_rate_of_ours": 0.5732,
+  "animals_in_join": 342,
+  "concordance_under_expected_mapping": 0.8467,
+  "state_totals_other": {
+    "FULL_ORIGIN_GROUP": 650783,
+    "BETWEEN_GROUP_MERGE": 284203,
+    "WITHIN_GROUP_SPLIT": 61657,
+    "ISOLATED": 19765,
+    "DISPERSAL_WITH_OTHER_GROUP": 13417,
+    "MIXED_CLUSTER": 489
+  },
+  "context_totals_ours": {
+    "with_origin": 636952,
+    "mixed_with_origin_present": 302471,
+    "mixed_without_origin_unit": 31060,
+    "other": 30089,
+    "isolated": 26346,
+    "mixed_tie_or_unclear": 3396
+  },
+  "dispersal_with_other_group": {
+    "n": 13417,
+    "our_context": {
+      "mixed_without_origin_unit": 12828,
+      "isolated": 457,
+      "other": 93,
+      "mixed_with_origin_present": 36,
+      "mixed_tie_or_unclear": 2,
+      "with_origin": 1
+    },
+    "median_same_origin_in_cluster": 1.0,
+    "share_alone_on_their_side": 1.0
+  },
+  "single_animal_side_rows": {
+    "n": 16404,
+    "their_state": {
+      "DISPERSAL_WITH_OTHER_GROUP": 13417,
+      "BETWEEN_GROUP_MERGE": 2498,
+      "MIXED_CLUSTER": 489
+    },
+    "our_context": {
+      "mixed_without_origin_unit": 14982,
+      "mixed_with_origin_present": 744,
+      "isolated": 569,
+      "other": 95,
+      "mixed_tie_or_unclear": 9,
+      "with_origin": 5
+    }
+  },
+  "between_group_merge": {
+    "n": 284203,
+    "our_context": {
+      "mixed_with_origin_present": 226234,
+      "with_origin": 38279,
+      "mixed_without_origin_unit": 17120,
+      "isolated": 1178,
+      "other": 1038,
+      "mixed_tie_or_unclear": 354
+    },
+    "median_same_origin_in_cluster": 11.0
+  }
+}

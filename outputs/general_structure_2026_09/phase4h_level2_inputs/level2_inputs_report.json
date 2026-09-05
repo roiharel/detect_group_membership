@@ -1,0 +1,85 @@
+{
+  "min_side": 2,
+  "gap_bridged_hours": 2,
+  "dyad_hours": 31016,
+  "encounter_bouts": 2053,
+  "encounter_dyads": 62,
+  "bout_hours": {
+    "count": 2053.0,
+    "mean": 15.4,
+    "std": 186.3,
+    "min": 1.0,
+    "25%": 3.0,
+    "50%": 13.0,
+    "75%": 16.0,
+    "max": 8384.0
+  },
+  "bouts_under_a_day": 1958,
+  "bouts_under_6h": 886,
+  "crossing_episodes": 1802,
+  "crossing_animals": 217,
+  "crossing_dyads": 76,
+  "dyads_with_repeat_crossings": 64,
+  "dyads_by_kind": {
+    "both": 58,
+    "crossing_only": 18,
+    "encounter_only": 4
+  },
+  "overlap": {
+    "shared_dyads": 58,
+    "encounter_hours_on_shared_dyads": 31557.0,
+    "hours_inside_a_stay": 22493.0,
+    "share_inside": 0.713,
+    "dyads_over_half_inside": 23
+  },
+  "split_bouts": 5503,
+  "split_units": 16,
+  "split_hours_median": 3.0,
+  "split_under_a_day": 5403,
+  "excursion_bouts": 21607,
+  "excursion_animals": 372,
+  "excursion_hours_median": 2.0,
+  "excursion_under_a_day": 20752,
+  "example_weeks": {
+    "Lilac_0p45": {
+      "unit": "Lilac",
+      "level": 0.45,
+      "period_start": "2025-08-04",
+      "modularity": 0.408,
+      "n_animals": 17,
+      "n_communities": 2,
+      "largest_community_fraction": 0.588,
+      "edges_drawn": 66
+    },
+    "Lilac_0p275": {
+      "unit": "Lilac",
+      "level": 0.275,
+      "period_start": "2025-12-29",
+      "modularity": 0.273,
+      "n_animals": 15,
+      "n_communities": 2,
+      "largest_community_fraction": 0.667,
+      "edges_drawn": 103
+    },
+    "Lilac_0p14": {
+      "unit": "Lilac",
+      "level": 0.14,
+      "period_start": "2025-11-24",
+      "modularity": 0.136,
+      "n_animals": 16,
+      "n_communities": 2,
+      "largest_community_fraction": 0.625,
+      "edges_drawn": 120
+    },
+    "Lilac_0p0": {
+      "unit": "Lilac",
+      "level": 0.0,
+      "period_start": "2025-08-11",
+      "modularity": 0.0,
+      "n_animals": 17,
+      "n_communities": 2,
+      "largest_community_fraction": 0.529,
+      "edges_drawn": 136
+    }
+  }
+}

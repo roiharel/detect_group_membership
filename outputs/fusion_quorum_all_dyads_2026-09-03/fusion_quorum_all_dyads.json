@@ -1,0 +1,12 @@
+{
+  "membership_source": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_shared_full_20260722\\canonical_hourly_membership.parquet",
+  "unit_column": "dynamic_social_unit",
+  "quorum": {
+    "min_per_unit": 2,
+    "min_total": 4
+  },
+  "normalisation": "fusion dyad-hours / dyad-hours where both units had >=2 collars observed",
+  "dyads_reported": 248,
+  "dyads_mostly_saturated": 0,
+  "caveat": "Saturation means the quorum was met in every scored hour. It does not by itself prove the groups were apart - it means the filter cannot distinguish degrees of association for that dyad, so anything conditioned on its fusion hours measures detection rather than association."
+}

@@ -1,0 +1,45 @@
+{
+  "phase": "1 - dyad-day opportunity table",
+  "generated_utc": "2026-09-05T16:03:13+00:00",
+  "membership_source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_hourly_membership_with_association_events.parquet",
+  "row_unit": "unordered pair of dynamic social units on one UTC calendar day",
+  "state_rules": {
+    "detected_encounter": "both units in one spatial cluster in >= 1 shared hour",
+    "observed_no_encounter": ">= 1 shared hour with exact-hour support for both units, never co-clustered",
+    "insufficient_support": "no shared hour with exact-hour support for both units",
+    "excluded": "dyad removed by an upstream rule of the audited pipeline"
+  },
+  "daytime_window_hours": [
+    3,
+    16
+  ],
+  "upstream_excluded_dyads": [
+    "Copper - Lilac"
+  ],
+  "dyad_days": 96106,
+  "dyads": 342,
+  "social_units": 27,
+  "days": 919,
+  "state_counts": {
+    "observed_no_encounter": 92153,
+    "detected_encounter": 3812,
+    "insufficient_support": 141
+  },
+  "dyads_with_any_detected_encounter": 82,
+  "dyads_with_finescale_product": 12,
+  "dyads_in_hurdle_input": 21,
+  "copper_lilac_phase1_states": {
+    "detected_encounter": 678,
+    "observed_no_encounter": 138,
+    "nan": 12
+  },
+  "copper_lilac_saved_positive_days": 0,
+  "saved_candidate_rows": 56128,
+  "outputs": {
+    "dyad_day_table": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase1_opportunity\\opportunity_dyad_day.csv",
+    "state_summary": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase1_opportunity\\opportunity_state_summary.csv",
+    "dyad_summary": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase1_opportunity\\opportunity_dyad_summary.csv",
+    "comparison_with_saved": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase1_opportunity\\opportunity_vs_saved_candidates.csv",
+    "copper_lilac_validation": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase1_opportunity\\validation_copper_lilac_days.csv"
+  }
+}

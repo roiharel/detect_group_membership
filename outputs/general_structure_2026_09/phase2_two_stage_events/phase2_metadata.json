@@ -1,0 +1,132 @@
+{
+  "phase": "2 - two-stage encounter unit",
+  "generated_utc": "2026-09-05T16:03:19+00:00",
+  "membership_source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_hourly_membership_with_association_events.parquet",
+  "finescale_sources": {
+    "5m": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_5m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv",
+    "2m": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_2m_shared_history_shuffle_expectation\\canonical_5m_shuffle_expectation_2min_rows.csv"
+  },
+  "stage1_definition": "two dynamic social units co-present in one spatial cluster, consecutive encounter hours stitched when separated by <= 3.0 h",
+  "stage2_definition": "every eligible fine-scale 2-minute bin inside the stage-1 window, including bins with zero cross-group contact",
+  "duration_fields": {
+    "structural_span_hours": "last encounter hour minus first, plus one hour",
+    "supported_exposure_hours": "eligible fine-scale bins x 2 minutes",
+    "active_contact_hours": "contact-positive bins x 2 minutes"
+  },
+  "encounter_class_rule": "structural span >= 168 h is a sustained association, not a discrete encounter; threshold matches the membership builder's 7-day dynamic-reassignment rule",
+  "primary_gap_rule_hours": 3.0,
+  "stage1_events": 2457,
+  "stage1_dyads": 82,
+  "stage1_events_by_class": {
+    "discrete_encounter": 2432,
+    "sustained_association": 25
+  },
+  "sustained_association_dyads": [
+    "Bronze - Magenta",
+    "Chartreuse - Maroon",
+    "Copper - LapisSplinter",
+    "Copper - Lilac",
+    "Copper - PhantomWest",
+    "Copper - SneakySilver",
+    "Jade - Purple",
+    "LapisSplinter - Lilac",
+    "Lilac - Magenta",
+    "Maroon - Sapphire"
+  ],
+  "discrete_encounter_dyads": 82,
+  "median_discrete_encounter_span_hours": 14.0,
+  "stage1_events_by_scale": {
+    "large_merge": 1667,
+    "small_subset_merge": 605,
+    "medium_partial_merge": 185
+  },
+  "events_with_5m_finescale": 1100,
+  "events_with_2m_finescale": 937,
+  "dyads_with_5m_finescale": 12,
+  "total_eligible_bins_5m": 199189,
+  "total_positive_bins_5m": 111386,
+  "share_of_5m_exposure_with_zero_cross_contact": 0.4408,
+  "median_structural_span_hours": 14.0,
+  "median_supported_exposure_hours_where_measured": 2.0,
+  "median_active_contact_hours_where_measured": 0.13333333333333333,
+  "worked_example": {
+    "stage1_event_id": "Lapis__LapisSplinter__E0077",
+    "pair_key": "Lapis - LapisSplinter",
+    "start_hour": "2026-05-19 11:00:00",
+    "end_hour": "2026-05-21 04:00:00",
+    "structural_span_hours": 42.0,
+    "eligible_bins_retained_by_phase2": 517,
+    "bins_retained_by_saved_pipeline": 54,
+    "bins_dropped_by_saved_pipeline": 463,
+    "share_of_exposure_dropped_by_saved_pipeline": 0.8956
+  },
+  "gap_rule_sensitivity": [
+    {
+      "gap_rule_hours": 2.0,
+      "events": 2643,
+      "dyads": 82,
+      "median_structural_span_hours": 13.0,
+      "mean_structural_span_hours": 17.864169504351118,
+      "max_structural_span_hours": 8457.0,
+      "median_encounter_hours": 13.0,
+      "large_merge": 1784,
+      "medium_partial_merge": 195,
+      "small_subset_merge": 664,
+      "discrete_encounters": 2618,
+      "sustained_associations": 25,
+      "sustained_dyads": 9
+    },
+    {
+      "gap_rule_hours": 3.0,
+      "events": 2457,
+      "dyads": 82,
+      "median_structural_span_hours": 14.0,
+      "mean_structural_span_hours": 19.367928367928368,
+      "max_structural_span_hours": 8463.0,
+      "median_encounter_hours": 14.0,
+      "large_merge": 1667,
+      "medium_partial_merge": 185,
+      "small_subset_merge": 605,
+      "discrete_encounters": 2432,
+      "sustained_associations": 25,
+      "sustained_dyads": 10
+    },
+    {
+      "gap_rule_hours": 6.0,
+      "events": 2167,
+      "dyads": 82,
+      "median_structural_span_hours": 14.0,
+      "mean_structural_span_hours": 22.472081218274113,
+      "max_structural_span_hours": 8463.0,
+      "median_encounter_hours": 14.0,
+      "large_merge": 1486,
+      "medium_partial_merge": 169,
+      "small_subset_merge": 512,
+      "discrete_encounters": 2141,
+      "sustained_associations": 26,
+      "sustained_dyads": 11
+    },
+    {
+      "gap_rule_hours": 14.0,
+      "events": 1400,
+      "dyads": 82,
+      "median_structural_span_hours": 12.0,
+      "mean_structural_span_hours": 39.46357142857143,
+      "max_structural_span_hours": 8524.0,
+      "median_encounter_hours": 8.0,
+      "large_merge": 994,
+      "medium_partial_merge": 98,
+      "small_subset_merge": 308,
+      "discrete_encounters": 1353,
+      "sustained_associations": 47,
+      "sustained_dyads": 17
+    }
+  ],
+  "outputs": {
+    "events": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_events_with_stage2_mixing.csv",
+    "encounter_hours": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_encounter_hours.csv",
+    "dyad_coverage": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_dyad_coverage.csv",
+    "gap_sensitivity": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\stage1_gap_rule_sensitivity.csv",
+    "worked_example_bins": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\general_structure_2026_09\\phase2_two_stage_events\\worked_example_bins.csv"
+  }
+}

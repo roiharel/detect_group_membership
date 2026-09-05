@@ -1,0 +1,40 @@
+{
+  "source": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\canonical_20260905_v2\\canonical_hourly_membership_with_association_events.parquet",
+  "output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\membership_export_narrow\\canonical_hourly_membership_narrow.csv",
+  "row_definition": "one animal in one hourly window",
+  "rows": 2665733,
+  "columns": [
+    "window_start",
+    "animal_id",
+    "tag_id",
+    "sex",
+    "age",
+    "origin_group",
+    "assigned_social_unit",
+    "dynamic_social_unit",
+    "social_context",
+    "association_type",
+    "association_event_id",
+    "association_event_label",
+    "temp_group_size",
+    "association_cluster_n_animals",
+    "membership_confidence",
+    "is_observed",
+    "is_carried_night",
+    "is_local_2h_supported",
+    "longitude",
+    "latitude"
+  ],
+  "column_count": 20,
+  "animals": 392,
+  "origin_groups": 27,
+  "start": "2024-03-01 04:00:00",
+  "end": "2026-09-05 06:00:00",
+  "duplicate_animal_hours": 0,
+  "sort_order": [
+    "window_start",
+    "origin_group",
+    "animal_id"
+  ],
+  "csv_bytes": 497995500
+}

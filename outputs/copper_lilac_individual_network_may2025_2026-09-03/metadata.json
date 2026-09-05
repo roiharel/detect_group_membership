@@ -1,0 +1,39 @@
+{
+  "source_pairs": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\copper_lilac_effort_corrected_integration\\copper_lilac_pair_month_contact_rates.csv",
+  "radius_m": 5.0,
+  "frequency": "monthly",
+  "min_co_observed_bins_per_pair_period": 60,
+  "edge_weight": "contact bins within radius / co-observed 2-minute bins for that pair",
+  "direction": "out_share(a->b) = association(a,b) / sum_c association(a,c)",
+  "n_animals": 14,
+  "n_periods": 21,
+  "cohort_month": "2025-05",
+  "cohort_animals": [
+    "24AA12_6P8Q",
+    "24AA16_9Q8P",
+    "24AC09_0S1T",
+    "24AC10_3U4V",
+    "24AC11_5W6X",
+    "24AC12_7Y8Z",
+    "24AE02_2H3I",
+    "24AE03_4J5K",
+    "24AE04_6L7M",
+    "24AE20_9R0S",
+    "24AE22_4V5W",
+    "24AE26_3L1R",
+    "24AE28_6O6R",
+    "24AE57_2R3C"
+  ],
+  "new_lilac_cohort": [
+    "25AB37_4X2Y",
+    "25AB38_9Z5A",
+    "25AB39_3B7C",
+    "25AB41_5F9G",
+    "25AB42_2H6I",
+    "25AB43_0J4K",
+    "25AB44_7L1M",
+    "25AB45_3N8O",
+    "25AB46_9PSQ"
+  ],
+  "caveat": "Conditioned on canonical Copper-Lilac fusion hours, which saturate after 2025-08-01 (see analyze_fusion_hour_collar_dependence.py). Association is GPS proximity, not affiliation."
+}

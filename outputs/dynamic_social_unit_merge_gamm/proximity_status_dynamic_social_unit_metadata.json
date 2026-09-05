@@ -1,0 +1,16 @@
+{
+  "source_status": "C:\\Users\\rharel\\Documents\\New project\\outputs\\rerun_20260703_full_hierarchical_sampling_filtered_eps300\\proximity_status_full.parquet",
+  "source_canonical": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+  "output": "C:\\Users\\rharel\\Documents\\group_mebership\\outputs\\dynamic_social_unit_merge_gamm\\proximity_status_dynamic_social_unit.parquet",
+  "rows": 1070061,
+  "animals": 354,
+  "original_groups": 21,
+  "dynamic_analysis_groups": 21,
+  "reassigned_rows": 7886,
+  "reassigned_animals": 11,
+  "dynamic_assignment_counts": {
+    "origin_default": 965826,
+    "unmatched_status_row": 96349,
+    "sustained_non_origin_association": 7886
+  }
+}

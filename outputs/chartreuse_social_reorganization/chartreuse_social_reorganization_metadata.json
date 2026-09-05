@@ -1,0 +1,32 @@
+{
+  "membership_file": "C:\\Users\\rharel\\Documents\\New project\\outputs\\canonical_robust_hourly_membership_local_2h_support\\canonical_hourly_membership.parquet",
+  "origin_group": "Chartreuse",
+  "definition_core": "largest temporary cluster among animals whose dynamic social unit remains the origin group; ties use temp_group_id order",
+  "definition_separated": [
+    "within_group_splinter",
+    "isolated",
+    "dispersed_to_other_group"
+  ],
+  "max_gap_hours_for_event_stitching": 2.5,
+  "phase_window_days": 14,
+  "panel_rows": 249218,
+  "animals": 46,
+  "events": 4237,
+  "state_counts": {
+    "with_chartreuse_core": 210534,
+    "within_group_splinter": 25865,
+    "isolated": 7430,
+    "dispersed_to_other_group": 5389
+  },
+  "event_dominant_state_counts": {
+    "within_group_splinter": 3558,
+    "isolated": 668,
+    "dispersed_to_other_group": 11
+  },
+  "recipient_counts": {
+    "null": 4226,
+    "Emerald": 8,
+    "Maroon": 3
+  },
+  "important_limitation": "temporary-cluster membership is structural association, not 5 m proximity integration"
+}

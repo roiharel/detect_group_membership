@@ -1,0 +1,130 @@
+{
+  "raw": {
+    "new_project_network_v1": {
+      "path": "C:\\Users\\rharel\\Documents\\New project\\outputs\\network_v1_cleaned_gps_v1.parquet",
+      "rows": 24153071,
+      "size_mb": 1030.2,
+      "modified": "2026-06-18T09:03:35.600533247",
+      "animals": 372,
+      "columns": 13,
+      "start": "2024-03-01 04:01:09+00:00",
+      "end": "2026-06-18 02:00:00+00:00",
+      "origin_groups": 27,
+      "animal_hours": 1156637,
+      "keyspace_sha1": "9b0358e79f0e9c29",
+      "probe_animals": {
+        "25AA07_4S5T": {
+          "n": 98678,
+          "first": "2025-07-08 13:00:07+00:00",
+          "last": "2026-03-23 13:26:30+00:00"
+        },
+        "24AC17_7J8K": {
+          "n": 24780,
+          "first": "2024-07-16 08:54:07+00:00",
+          "last": "2025-08-29 16:00:06+00:00"
+        },
+        "24AA01_5O8B": {
+          "n": 297247,
+          "first": "2024-03-05 06:24:07+00:00",
+          "last": "2026-06-17 00:00:16+00:00"
+        }
+      }
+    }
+  },
+  "derived": {
+    "frozen_narrow_export": {
+      "path": "outputs\\membership_export_narrow\\canonical_hourly_membership_narrow.csv",
+      "rows": 1924104,
+      "size_mb": 368.8,
+      "modified": "2026-08-08T07:07:59.815086126",
+      "animals": 350,
+      "origin_groups": 26,
+      "start": "2024-03-01 04:00:00",
+      "end": "2026-07-22 06:00:00",
+      "animal_hours": 1924104,
+      "keyspace_sha1": "3e6e6a882261ee20",
+      "probe_animals": {
+        "25AA07_4S5T": {
+          "n": 5922,
+          "first": "2025-07-08 12:00:00",
+          "last": "2026-03-16 07:00:00"
+        },
+        "24AC17_7J8K": {
+          "n": 3027,
+          "first": "2024-07-16 07:00:00",
+          "last": "2025-08-30 06:00:00"
+        },
+        "24AA01_5O8B": {
+          "n": 19938,
+          "first": "2024-03-05 05:00:00",
+          "last": "2026-07-10 06:00:00"
+        }
+      }
+    },
+    "hourly_grouping_observed": {
+      "path": "C:\\Users\\rharel\\Documents\\New project\\outputs\\hourly_grouping_validation_shared_20260703\\animal_hourly_grouping.parquet",
+      "rows": 1245484,
+      "size_mb": 65.5,
+      "modified": "2026-07-03T08:07:31.970572948",
+      "animals": 372,
+      "origin_groups": 27,
+      "start": "2024-03-01 04:00:00",
+      "end": "2026-07-02 00:00:00",
+      "animal_hours": 1245484,
+      "keyspace_sha1": "e4e80072da3356da",
+      "probe_animals": {
+        "25AA07_4S5T": {
+          "n": 3473,
+          "first": "2025-07-08 13:00:00",
+          "last": "2026-03-18 06:00:00"
+        },
+        "24AC17_7J8K": {
+          "n": 3694,
+          "first": "2024-07-16 08:00:00",
+          "last": "2025-08-29 16:00:00"
+        },
+        "24AA01_5O8B": {
+          "n": 11166,
+          "first": "2024-03-05 06:00:00",
+          "last": "2026-06-17 00:00:00"
+        }
+      }
+    },
+    "hourly_grouping_night_filled": {
+      "path": "C:\\Users\\rharel\\Documents\\New project\\outputs\\hourly_grouping_validation_shared_20260703\\animal_hourly_grouping_night_filled.parquet",
+      "rows": 1913631,
+      "size_mb": 72.3,
+      "modified": "2026-07-03T08:33:16.377810001",
+      "animals": 372,
+      "origin_groups": 27,
+      "start": "2024-03-01 04:00:00",
+      "end": "2026-07-02 00:00:00",
+      "animal_hours": 1913631,
+      "keyspace_sha1": "647dd32331ce6cac",
+      "probe_animals": {
+        "25AA07_4S5T": {
+          "n": 5933,
+          "first": "2025-07-08 13:00:00",
+          "last": "2026-03-18 06:00:00"
+        },
+        "24AC17_7J8K": {
+          "n": 6744,
+          "first": "2024-07-16 08:00:00",
+          "last": "2025-08-29 16:00:00"
+        },
+        "24AA01_5O8B": {
+          "n": 16793,
+          "first": "2024-03-05 06:00:00",
+          "last": "2026-06-17 00:00:00"
+        }
+      }
+    }
+  },
+  "unreachable": [
+    {
+      "name": "shared_drive",
+      "path": "\\\\10.126.19.90\\EAS_shared\\baboon\\working\\data\\processed\\2025\\gps\\v1_cleaned\\gps_v1.parquet"
+    }
+  ],
+  "identical_keyspaces": {}
+}

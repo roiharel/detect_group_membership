@@ -1,0 +1,85 @@
+{
+  "min_side": 2,
+  "gap_bridged_hours": 2,
+  "dyad_hours": 23641,
+  "encounter_bouts": 1445,
+  "encounter_dyads": 58,
+  "bout_hours": {
+    "count": 1445.0,
+    "mean": 17.3,
+    "std": 220.2,
+    "min": 1.0,
+    "25%": 3.0,
+    "50%": 14.0,
+    "75%": 16.0,
+    "max": 8372.0
+  },
+  "bouts_under_a_day": 1375,
+  "bouts_under_6h": 565,
+  "crossing_episodes": 882,
+  "crossing_animals": 146,
+  "crossing_dyads": 51,
+  "dyads_with_repeat_crossings": 38,
+  "dyads_by_kind": {
+    "both": 43,
+    "encounter_only": 15,
+    "crossing_only": 8
+  },
+  "overlap": {
+    "shared_dyads": 43,
+    "encounter_hours_on_shared_dyads": 24419.0,
+    "hours_inside_a_stay": 14324.0,
+    "share_inside": 0.587,
+    "dyads_over_half_inside": 14
+  },
+  "split_bouts": 914,
+  "split_units": 12,
+  "split_hours_median": 1.0,
+  "split_under_a_day": 874,
+  "excursion_bouts": 7520,
+  "excursion_animals": 319,
+  "excursion_hours_median": 1.0,
+  "excursion_under_a_day": 6806,
+  "example_weeks": {
+    "Lilac_high": {
+      "unit": "Lilac",
+      "level": "high",
+      "period_start": "2025-08-04",
+      "modularity": 0.449,
+      "n_animals": 12,
+      "n_communities": 2,
+      "largest_community_fraction": 0.583,
+      "edges_drawn": 31
+    },
+    "Lilac_mid": {
+      "unit": "Lilac",
+      "level": "mid",
+      "period_start": "2025-12-29",
+      "modularity": 0.215,
+      "n_animals": 13,
+      "n_communities": 2,
+      "largest_community_fraction": 0.692,
+      "edges_drawn": 78
+    },
+    "Lilac_low": {
+      "unit": "Lilac",
+      "level": "low",
+      "period_start": "2026-03-30",
+      "modularity": -0.0,
+      "n_animals": 12,
+      "n_communities": 1,
+      "largest_community_fraction": 1.0,
+      "edges_drawn": 66
+    },
+    "Chartreuse_high": {
+      "unit": "Chartreuse",
+      "level": "high",
+      "period_start": "2024-11-18",
+      "modularity": 0.209,
+      "n_animals": 21,
+      "n_communities": 2,
+      "largest_community_fraction": 0.714,
+      "edges_drawn": 204
+    }
+  }
+}

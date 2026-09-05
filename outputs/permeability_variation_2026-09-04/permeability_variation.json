@@ -1,0 +1,73 @@
+{
+  "fusion_rate": {
+    "n": 190,
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.00012355273464076388,
+    "min": 0.0,
+    "max": 0.6489656912209889,
+    "cv": 5.140707935876613
+  },
+  "split_prob": {
+    "n": 21,
+    "median": 0.0545613269314709,
+    "q1": 0.0222496909765142,
+    "q3": 0.1652247667514843,
+    "min": 0.0036390101892285,
+    "max": 0.281598020152024,
+    "cv": 0.9304618076998886
+  },
+  "scale_sensitivity": {
+    "n": 45,
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.019166666666666665,
+    "min": 0.0,
+    "max": 0.16680707666385847,
+    "cv": 1.8872021390359197
+  },
+  "confound_tests": [
+    {
+      "comparison": "dyad fusion rate  vs  lower coverage of the pair",
+      "n": 190,
+      "rho": 0.2215972799626445,
+      "p": 0.002121715458090042
+    },
+    {
+      "comparison": "dyad fusion rate  vs  mean coverage of the pair",
+      "n": 190,
+      "rho": 0.19661159430011257,
+      "p": 0.0065517449475119794
+    },
+    {
+      "comparison": "dyad fusion rate  vs  combined demographic size",
+      "n": 190,
+      "rho": -0.1079615292094249,
+      "p": 0.1381637506517382
+    },
+    {
+      "comparison": "group split probability  vs  its collar coverage",
+      "n": 21,
+      "rho": 0.26502112472779604,
+      "p": 0.24563352122551718
+    },
+    {
+      "comparison": "group split probability  vs  its demographic size",
+      "n": 21,
+      "rho": 0.35198505565144944,
+      "p": 0.11763195887814895
+    },
+    {
+      "comparison": "scale sensitivity  vs  lower coverage of the pair",
+      "n": 45,
+      "rho": 0.07049537617033708,
+      "p": 0.6453990958171483
+    },
+    {
+      "comparison": "scale sensitivity  vs  how often they are together",
+      "n": 45,
+      "rho": 0.9577689873398236,
+      "p": 6.675791823317984e-25
+    }
+  ]
+}

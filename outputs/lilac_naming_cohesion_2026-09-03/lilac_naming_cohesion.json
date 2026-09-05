@@ -1,0 +1,44 @@
+{
+  "Lilac_by_cohort_within_label_mean": 0.045556192328402814,
+  "Lilac_by_cohort_across_label_mean": 0.025609636103970386,
+  "Lilac_by_cohort_n_within": 55,
+  "Lilac_by_cohort_n_across": 62,
+  "Lilac_by_cohort_across_over_within": 0.5621548859781156,
+  "Lilac_by_datablock_within_label_mean": 0.04388590921903877,
+  "Lilac_by_datablock_across_label_mean": 0.025933092630776405,
+  "Lilac_by_datablock_n_within": 59,
+  "Lilac_by_datablock_n_across": 58,
+  "Lilac_by_datablock_across_over_within": 0.5909207099103692,
+  "Lilac_n_animals": 16,
+  "Lilac_block_vs_cohort_crosstab": {
+    "new_Aug2025": {
+      "1": 0,
+      "2": 9
+    },
+    "original": {
+      "1": 6,
+      "2": 1
+    }
+  },
+  "Copper_by_cohort_within_label_mean": 0.03928667413081929,
+  "Copper_by_cohort_across_label_mean": 0.03912816681762857,
+  "Copper_by_cohort_n_within": 73,
+  "Copper_by_cohort_n_across": 59,
+  "Copper_by_cohort_across_over_within": 0.9959653669673613,
+  "Copper_by_datablock_within_label_mean": 0.04036719861287128,
+  "Copper_by_datablock_across_label_mean": 0.02348040271185831,
+  "Copper_by_datablock_n_within": 123,
+  "Copper_by_datablock_n_across": 9,
+  "Copper_by_datablock_across_over_within": 0.5816703541169554,
+  "Copper_n_animals": 18,
+  "Copper_block_vs_cohort_crosstab": {
+    "new_Aug2025": {
+      "1": 11,
+      "2": 0
+    },
+    "original": {
+      "1": 6,
+      "2": 1
+    }
+  }
+}

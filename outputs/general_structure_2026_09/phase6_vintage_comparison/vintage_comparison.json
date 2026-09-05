@@ -1,0 +1,93 @@
+{
+  "new": {
+    "rows": 2662765,
+    "animals": 392,
+    "origin_groups": 27,
+    "units": 27,
+    "start": "2024-03-01 04:00:00",
+    "end": "2026-09-05 06:00:00",
+    "observed": 1547866,
+    "carried_night": 650713,
+    "context_shares": {
+      "with_origin": 0.5688,
+      "mixed_with_origin_present": 0.3436,
+      "mixed_without_origin_unit": 0.0343,
+      "isolated": 0.0272,
+      "other": 0.024,
+      "mixed_tie_or_unclear": 0.0021
+    }
+  },
+  "old": {
+    "rows": 1924104,
+    "animals": 350,
+    "origin_groups": 26,
+    "units": 26,
+    "start": "2024-03-01 04:00:00",
+    "end": "2026-07-22 06:00:00",
+    "observed": 1128637,
+    "carried_night": 725223,
+    "context_shares": {
+      "with_origin": 0.6007,
+      "mixed_with_origin_present": 0.3107,
+      "other": 0.0304,
+      "mixed_without_origin_unit": 0.0299,
+      "isolated": 0.0253,
+      "mixed_tie_or_unclear": 0.0029
+    }
+  },
+  "overlap": {
+    "window": [
+      "2024-03-01 04:00:00",
+      "2026-07-22 06:00:00"
+    ],
+    "shared_animals": 350,
+    "animals_only_new": 42,
+    "animals_only_old": 0,
+    "rows_new": 2339803,
+    "rows_old": 1924104,
+    "row_ratio": 1.216
+  },
+  "shared_animal_hours": {
+    "n": 1922637,
+    "context_agreement": 0.9189,
+    "unit_agreement": 0.9969,
+    "biggest_moves": {
+      "isolated -> mixed_with_origin_present": 1844,
+      "isolated -> mixed_without_origin_unit": 739,
+      "isolated -> other": 8880,
+      "isolated -> with_origin": 12364,
+      "mixed_tie_or_unclear -> mixed_with_origin_present": 2834,
+      "mixed_tie_or_unclear -> mixed_without_origin_unit": 592,
+      "mixed_tie_or_unclear -> other": 80,
+      "mixed_tie_or_unclear -> with_origin": 142,
+      "mixed_with_origin_present -> with_origin": 6909,
+      "mixed_without_origin_unit -> mixed_with_origin_present": 6658,
+      "other -> isolated": 714,
+      "other -> mixed_with_origin_present": 1941,
+      "other -> with_origin": 27477,
+      "with_origin -> mixed_with_origin_present": 78400
+    }
+  },
+  "products": {
+    "opportunity_dyad_day": {
+      "new": 96106,
+      "old": 73353,
+      "ratio": 1.31
+    },
+    "excursions_dominant": {
+      "new": 425,
+      "old": 338,
+      "ratio": 1.257
+    },
+    "weekly_network_metrics": {
+      "new": 1596,
+      "old": 1268,
+      "ratio": 1.259
+    },
+    "transfer_edges": {
+      "new": 29,
+      "old": 18,
+      "ratio": 1.611
+    }
+  }
+}
