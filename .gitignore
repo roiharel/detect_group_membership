@@ -1,0 +1,19 @@
+# Derived data is reproducible from the scripts and far too large for git:
+# outputs/ is ~1.7 GB and data/ ~1.3 GB, dominated by parquet and multi-hundred-MB CSVs.
+__pycache__/
+*.pyc
+
+# The dated local copy of the canonical GPS file (1.34 GB). The canonical source is
+# \\10.126.19.90\EAS_shared\baboon\working\data\processed\2025\gps\v1_cleaned\gps_v1.parquet,
+# which is updated IN PLACE -- hence the date in the filename. Never commit it; re-copy it
+# and record the upstream mtime in the name.
+/data/
+
+# Everything derived, EXCEPT the small JSON run metadata and reports (~0.3 MB in total).
+# Those are the provenance record: they carry the GPS file each run read, its parameters
+# and its row counts, which is exactly what was missing when three vintages of the same
+# table were in circulation and nobody could say which file built which.
+/outputs/**
+!/outputs/
+!/outputs/**/
+!/outputs/**/*.json
